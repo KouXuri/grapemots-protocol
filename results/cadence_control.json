@@ -1,0 +1,99 @@
+{
+ "NoPathPlanning_1": {
+  "1": {
+   "annotated_frames": 890,
+   "phi_per_annotated_frame": 0.01606877437836118,
+   "phi_per_source_frame": 0.01606877437836118,
+   "r2": 0.8744197601013014
+  },
+  "2": {
+   "annotated_frames": 445,
+   "phi_per_annotated_frame": 0.05614141119930096,
+   "phi_per_source_frame": 0.02807070559965048,
+   "r2": 0.8825639552350755
+  },
+  "3": {
+   "annotated_frames": 297,
+   "phi_per_annotated_frame": 0.5281907166278862,
+   "phi_per_source_frame": 0.1760635722092954,
+   "r2": 0.9548062954427174
+  }
+ },
+ "NoPathPlanning_2": {
+  "1": {
+   "annotated_frames": 900,
+   "phi_per_annotated_frame": 0.015299262918353223,
+   "phi_per_source_frame": 0.015299262918353223,
+   "r2": 0.6410714227926108
+  },
+  "2": {
+   "annotated_frames": 450,
+   "phi_per_annotated_frame": 0.17169710493439347,
+   "phi_per_source_frame": 0.08584855246719673,
+   "r2": 0.8677151783410914
+  },
+  "3": {
+   "annotated_frames": 300,
+   "phi_per_annotated_frame": 0.11511296018576751,
+   "phi_per_source_frame": 0.03837098672858917,
+   "r2": 0.6546793392816123
+  }
+ },
+ "NoPathPlanning_3": {
+  "1": {
+   "annotated_frames": 900,
+   "phi_per_annotated_frame": 0.004389468383784501,
+   "phi_per_source_frame": 0.004389468383784501,
+   "r2": 0.8125356818553078
+  },
+  "2": {
+   "annotated_frames": 450,
+   "phi_per_annotated_frame": 0.07646107295796414,
+   "phi_per_source_frame": 0.03823053647898207,
+   "r2": 0.8522585971305163
+  },
+  "3": {
+   "annotated_frames": 300,
+   "phi_per_annotated_frame": 0.3230322674277974,
+   "phi_per_source_frame": 0.10767742247593247,
+   "r2": 0.9327231957633721
+  }
+ },
+ "PathPlanning_1": {
+  "1": {
+   "annotated_frames": 927,
+   "phi_per_annotated_frame": 0.012746060108693131,
+   "phi_per_source_frame": 0.012746060108693131,
+   "r2": 0.8355348313287441
+  },
+  "2": {
+   "annotated_frames": 464,
+   "phi_per_annotated_frame": 0.171810445406747,
+   "phi_per_source_frame": 0.0859052227033735,
+   "r2": 0.7919304768950552
+  },
+  "3": {
+   "annotated_frames": 309,
+   "phi_per_annotated_frame": 0.21432491937164574,
+   "phi_per_source_frame": 0.07144163979054859,
+   "r2": 0.8079265401667189
+  }
+ },
+ "_summary": {
+  "step2_over_step1": {
+   "NoPathPlanning_1": 1.75,
+   "NoPathPlanning_2": 5.61,
+   "NoPathPlanning_3": 8.71,
+   "PathPlanning_1": 6.74
+  },
+  "step2_median": 6.175517004358839,
+  "step3_over_step1": {
+   "NoPathPlanning_1": 10.96,
+   "NoPathPlanning_2": 2.51,
+   "NoPathPlanning_3": 24.53,
+   "PathPlanning_1": 5.6
+  },
+  "step3_median": 8.280937056726133,
+  "released_between_group_gap": 11.4
+ }
+}
