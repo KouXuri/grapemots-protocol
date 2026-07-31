@@ -48,7 +48,7 @@ def main() -> None:
     ap.add_argument("--images", type=Path,
                     default=Path("datasets/grapemots_det_721/images/test"))
     ap.add_argument("--match-iou", type=float, default=0.3)
-    ap.add_argument("--pad", type=int, default=260)
+    ap.add_argument("--pad", type=int, default=200)
     ap.add_argument("--out", type=Path, default=Path("figures/fig_identity_break.pdf"))
     args = ap.parse_args()
 
@@ -96,12 +96,12 @@ def main() -> None:
     gcx, gcy = (early[2][0] + early[2][2]) / 2, (early[2][1] + early[2][3]) / 2
     ax0.add_patch(patches.Rectangle((gcx - args.pad, gcy - args.pad),
                                     2 * args.pad, 2 * args.pad, fill=False,
-                                    edgecolor="#f0c000", linewidth=1.0))
+                                    edgecolor="#f0c000", linewidth=0.9))
     # the bunch itself, at true scale inside that region: without it the yellow
     # rectangle reads as the target rather than as the crop window.
     gx0, gy0, gx1, gy1 = early[2]
     ax0.add_patch(patches.Rectangle((gx0, gy0), gx1 - gx0, gy1 - gy0, fill=False,
-                                    edgecolor=C_GT, linewidth=1.0))
+                                    edgecolor=C_GT, linewidth=0.4))
     ax0.set_title(f"(a) released frame, {context.shape[1]}$\\times${context.shape[0]}, "
                   f"{len(gt_ids[early[0]])} annotated bunches", fontsize=8.5)
     ax0.set_xticks([]); ax0.set_yticks([])

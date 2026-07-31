@@ -142,3 +142,20 @@ carries the SHA-256 of the three checkpoints and the frozen package list. The we
 themselves are not in this repository for size reasons; request them from the
 corresponding author, or retrain from `train_args_splitA.yaml` and the manifests in
 `splits/`.
+
+## Later additions
+
+| file | what it is |
+|---|---|
+| `results/oracle_decomposition.json` | `U`, `D`, `M` over the full oracle grid: 11 sequences x 4 miss modes x 5 rates x 3 seeds = 572 configurations. The identity `P-G = U+D-M` closes exactly in all 572. Produced by `tools/oracle_decomp.py`. |
+| `results/oracle_cmc_check.json` | the camera-motion-compensation control, three arms on all eleven sequences |
+| `results/cadence_control.json` | thinning the four cadence-1 sequences on the same footage, steps 1/2/3 |
+| `results/fullrate_tracking.json` | tracking every source frame at 30 Hz against the 15 Hz annotated subsequence |
+| `results/fullrate_buf60.json` | the 30 Hz arm with `track_buffer` doubled, so state retention matches 15 Hz in seconds |
+| `results/hota_arms.json` | HOTA / DetA / AssA for the eight arms, TrackEval 1.3.0, from the stored per-frame boxes |
+| `results/count_decomposition_iou0.{3,5,7}.json` | the decomposition at three matching thresholds |
+| `results/arm_conf0.70.json` | an under-counting real-detection arm (recall 0.071, e = -0.529). Note: run without `--save-frame-tracks`, so it stores boxes but not per-frame identities; its `U`/`D`/`M` are therefore not computed and are not quoted in the paper. |
+
+`tools/gen_cadence_figure.py`, `tools/gen_identity_break_figure.py` and
+`tools/gen_missmode_and_alignment_figures.py` regenerate the paper figures from these
+files.

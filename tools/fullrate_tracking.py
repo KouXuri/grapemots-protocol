@@ -108,18 +108,19 @@ def main() -> None:
     ap.add_argument("--tile", type=int, default=1280)
     ap.add_argument("--stride", type=int, default=960)
     ap.add_argument("--merge-threshold", type=float, default=0.5)
+    ap.add_argument("--steps", type=int, nargs="+", default=[1, 2])
     ap.add_argument("--out", type=Path,
                     default=ROOT / "runs/cbdcom2026_queue/results/fullrate_tracking.json")
     args = ap.parse_args()
 
     model = YOLO(str(WEIGHTS))
     records = []
-    for step in (1, 2):
+    for step in args.steps:
         for video in VIDEOS:
             records.append(run(video, step, model, args))
     # pooled whole-sequence error at tau=1, the number Table IV reports
     pooled = {}
-    for step in (1, 2):
+    for step in args.steps:
         p = g = 0
         for r in records:
             if r["step"] != step:
