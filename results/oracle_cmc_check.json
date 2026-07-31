@@ -1,0 +1,68 @@
+{
+ "bytetrack, no imagery (paper baseline)": {
+  "cfg": "bytetrack.yaml",
+  "images": false,
+  "median_of_video_medians": 0.922201138519924,
+  "videos_with_a_negative_cell": [
+   "NoPathPlanning_3"
+  ],
+  "per_video_median": {
+   "NoPathPlanning_1": 0.1646,
+   "NoPathPlanning_2": 0.1463,
+   "NoPathPlanning_3": 0.0349,
+   "PathPlanning_1": 0.0,
+   "PathPlanning_2": 1.6222,
+   "PathPlanning_3": 0.9958,
+   "PathPlanning_4": 0.9222,
+   "PathPlanning_5": 0.869,
+   "PathPlanning_6": 1.5532,
+   "PathPlanning_7": 1.6157,
+   "PathPlanning_8": 1.8614
+  },
+  "seconds": 9.7
+ },
+ "BoT-SORT, GMC off": {
+  "cfg": "cfg/trackers/botsort_nogmc.yaml",
+  "images": false,
+  "median_of_video_medians": 0.9388361796331435,
+  "videos_with_a_negative_cell": [
+   "NoPathPlanning_3"
+  ],
+  "per_video_median": {
+   "NoPathPlanning_1": 0.1519,
+   "NoPathPlanning_2": 0.1341,
+   "NoPathPlanning_3": 0.0488,
+   "PathPlanning_1": 0.0,
+   "PathPlanning_2": 1.6444,
+   "PathPlanning_3": 1.046,
+   "PathPlanning_4": 0.9388,
+   "PathPlanning_5": 0.9286,
+   "PathPlanning_6": 1.5,
+   "PathPlanning_7": 1.4996,
+   "PathPlanning_8": 1.8593
+  },
+  "seconds": 9.9
+ },
+ "BoT-SORT, GMC on, real frames": {
+  "cfg": "cfg/trackers/botsort_gmc.yaml",
+  "images": true,
+  "median_of_video_medians": 0.3,
+  "videos_with_a_negative_cell": [
+   "NoPathPlanning_3"
+  ],
+  "per_video_median": {
+   "NoPathPlanning_1": 0.1392,
+   "NoPathPlanning_2": 0.0476,
+   "NoPathPlanning_3": 0.0,
+   "PathPlanning_1": 0.0,
+   "PathPlanning_2": 0.5778,
+   "PathPlanning_3": 0.3297,
+   "PathPlanning_4": 0.3044,
+   "PathPlanning_5": 0.3333,
+   "PathPlanning_6": 0.766,
+   "PathPlanning_7": 0.27,
+   "PathPlanning_8": 0.3
+  },
+  "seconds": 1067.4
+ }
+}

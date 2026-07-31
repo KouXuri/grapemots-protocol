@@ -1,0 +1,19 @@
+{
+  "train": [
+    "NoPathPlanning_2",
+    "NoPathPlanning_3",
+    "PathPlanning_1",
+    "PathPlanning_3",
+    "PathPlanning_6",
+    "PathPlanning_7",
+    "PathPlanning_8"
+  ],
+  "val": [
+    "NoPathPlanning_1",
+    "PathPlanning_5"
+  ],
+  "test": [
+    "PathPlanning_2",
+    "PathPlanning_4"
+  ]
+}

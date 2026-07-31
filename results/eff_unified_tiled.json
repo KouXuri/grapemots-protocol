@@ -1,0 +1,42 @@
+{
+  "config": {
+    "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+    "root": "/home/kou/my_env/yolo26/datasets/grapemots_det_721",
+    "split": "test",
+    "mode": "tiled",
+    "imgsz": 1280,
+    "conf": 0.25,
+    "tile": 1280,
+    "stride": 960,
+    "merge_threshold": 0.5,
+    "merge_metric": "iou",
+    "device": "0",
+    "warmup": 5,
+    "samples": 50
+  },
+  "timings_ms": {
+    "read_ms": {
+      "mean": 150.44379093684256,
+      "p50": 152.7591964986641,
+      "p95": 158.59729823714588
+    },
+    "inference_ms": {
+      "mean": 197.88090236252174,
+      "p50": 197.73351697949693,
+      "p95": 198.5131160443416
+    },
+    "merge_ms": {
+      "mean": 0.15206629526801407,
+      "p50": 0.1466844987589866,
+      "p95": 0.16719942505005747
+    },
+    "total_ms": {
+      "mean": 348.5482826165389,
+      "p50": 350.647993007442,
+      "p95": 356.5927004441619
+    }
+  },
+  "mean_tiles_per_frame": 8.0,
+  "mean_detections_per_frame": 19.72,
+  "peak_gpu_memory_mb": 238.25830078125
+}

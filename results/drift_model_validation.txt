@@ -1,0 +1,18 @@
+held-out extrapolation: fit on the SHORT half of window lengths,
+score on the LONG half; and first-difference regression
+
+video                  n  phi_all  R2_all phi_short R2_heldout  phi_diff
+NoPathPlanning_1       2   too few windows after filtering
+NoPathPlanning_2       1   too few windows after filtering
+NoPathPlanning_3       2   too few windows after filtering
+PathPlanning_1         2   too few windows after filtering
+PathPlanning_2         1   too few windows after filtering
+PathPlanning_3         1   too few windows after filtering
+PathPlanning_4         2   too few windows after filtering
+PathPlanning_5         2   too few windows after filtering
+PathPlanning_6         5   too few windows after filtering
+PathPlanning_7         4   too few windows after filtering
+PathPlanning_8         6    0.854   0.909     0.780      0.683     0.146
+
+  held-out R^2: median 0.683, min 0.683, 0/1 above 0.8
+  first-difference slope: median 0.146 (level-fit medians are of the same order if the model is real)
