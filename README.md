@@ -89,3 +89,56 @@ frames in `NoPathPlanning_1`, seven in `PathPlanning_1`, and the first frame of
 ## Software
 
 Ultralytics 8.4.46, PyTorch 2.11, single NVIDIA RTX 2000 Ada (16 GB).
+
+## Reproducing the numbers
+
+```bash
+# oracle surfaces over all eleven sequences, four observation-loss modes
+python tools/oracle_count_surface.py --out results/oracle_master_bernoulli.json
+python tools/oracle_count_surface.py --miss-mode block --out results/oracle_master_block.json
+
+# the camera-motion-compensation control (BoT-SORT with GMC on real frames)
+python tools/oracle_cmc_check.py
+
+# does halving the annotation rate move the drift rate on the same footage?
+python tools/cadence_control.py
+
+# tracking every source frame at 30 Hz, scored only on annotated frames
+python tools/fullrate_tracking.py
+
+# the U + D - M decomposition, at three matching thresholds
+for t in 0.3 0.5 0.7; do
+  python tools/decompose_count_error.py --match-iou $t \
+    --out results/count_decomposition_iou$t.json
+done
+
+# HOTA / DetA / AssA from the stored per-frame boxes (TrackEval 1.3.0)
+python tools/compute_hota.py
+
+# apply the frozen retained-cell definition and write paper_numbers.json
+python tools/freeze_paper_numbers.py
+```
+
+## Tracker configurations
+
+`cfg/trackers/` holds every non-default tracker YAML used in the paper. The two
+baseline arms use Ultralytics 8.4.46's stock `botsort.yaml` and `bytetrack.yaml`;
+those files are reproduced verbatim in `cfg/trackers/ULTRALYTICS_DEFAULTS.txt` so the
+comparison does not rest on a library default that may change. The differences from
+stock are:
+
+| file | differs from stock by |
+|---|---|
+| `botsort_nogmc.yaml` | `gmc_method: none` |
+| `botsort_gmc.yaml` | `gmc_method: sparseOptFlow`, real frames supplied |
+| `botsort_reid_enc.yaml` | `with_reid: True`, `model: yolo11n-cls.pt` (ImageNet, never trained on vineyard data) |
+| `botsort_buf{10,60}.yaml`, `bytetrack_buf{10,60}.yaml` | `track_buffer` only |
+
+## Checkpoints and environment
+
+`configs/train_args_splitA.yaml` is the full Ultralytics training configuration for the
+detector behind every real-detection number. `configs/checkpoints_sha256_and_env.txt`
+carries the SHA-256 of the three checkpoints and the frozen package list. The weights
+themselves are not in this repository for size reasons; request them from the
+corresponding author, or retrain from `train_args_splitA.yaml` and the manifests in
+`splits/`.
