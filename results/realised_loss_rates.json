@@ -1,0 +1,922 @@
+{
+ "bernoulli": {
+  "0.1": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.099596886294134,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.10011023839051951,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.1005069315125181,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.10217755443886097,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.1008097641121934,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.10123819201384969,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.10165668219806227,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.10257760228145223,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.10275528474838985,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.1026146609978023,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.10230017251293848,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  },
+  "0.2": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.2040589380038921,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.20435441642552019,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.2030829712393958,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.20207096086493073,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.20236278996987833,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.20247638402769938,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.20231491753568523,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.20072392234287592,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.2018226034902055,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.2012446854396451,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.20136093540348857,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  },
+  "0.3": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.3017097581317765,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.30191539203527623,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.3003310573142975,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.30083752093802346,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.30059069749246964,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.3006285047608295,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.30049552547888475,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.299945157398267,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.30046233197038935,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.30012118224577405,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.30032585777266635,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  },
+  "0.4": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.4009591326105088,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.4009232465206008,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.40130353817504655,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.39917770671539515,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.39901420021124284,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.399872040946897,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.3992678056356778,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.39918832949435124,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.39875464336299743,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.3992236120524986,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.399923327582902,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  }
+ },
+ "block": {
+  "0.1": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.09744231303864331,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.09576960176381426,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.09973101593213325,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.09468554895690574,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.09427688455971521,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.09747469045199653,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.09659048886916649,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.09891411648568608,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.0959138405622812,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.09819869780434202,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.0978723404255319,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  },
+  "0.2": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.20544898526549904,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.20593909328923798,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.19661700806952206,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.19342165372316125,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.19047060204201385,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.19054608407662488,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.19070335034390948,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.19583196226829003,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.2000053448782704,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.2002587959825005,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.1992716120375695,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  },
+  "0.3": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.2955240478176258,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.2923384318588949,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.2854334781709083,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.28359981726815897,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.28486484371943827,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.2896390802002183,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.2854078840322461,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.28790172205769443,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.28718030946845186,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.29513011686897933,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.29743147402721876,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  },
+  "0.4": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.39706700027800945,
+    "identities_dropped": 0.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.3907261953975472,
+    "identities_dropped": 0.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.39338919925512106,
+    "identities_dropped": 0.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.3876960560377645,
+    "identities_dropped": 0.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.38195829910417406,
+    "identities_dropped": 0.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.38801701102705954,
+    "identities_dropped": 0.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.3846608978625841,
+    "identities_dropped": 0.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.3906328836239991,
+    "identities_dropped": 0.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.389427830781154,
+    "identities_dropped": 0.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.3972723725018999,
+    "identities_dropped": 0.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.3981598619896492,
+    "identities_dropped": 0.0,
+    "identities_total": 87
+   }
+  }
+ },
+ "identity": {
+  "0.1": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.11912705031971087,
+    "identities_dropped": 3.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.0954940057875155,
+    "identities_dropped": 4.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.10190357955721084,
+    "identities_dropped": 6.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.09176183950053296,
+    "identities_dropped": 9.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.11790478425849861,
+    "identities_dropped": 8.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.09834029581122276,
+    "identities_dropped": 5.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.09622069373567044,
+    "identities_dropped": 6.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.1047713063507733,
+    "identities_dropped": 8.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.08749565728640529,
+    "identities_dropped": 8.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.1091872573787664,
+    "identities_dropped": 9.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.1093348667816753,
+    "identities_dropped": 9.0,
+    "identities_total": 87
+   }
+  },
+  "0.2": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.231651376146789,
+    "identities_dropped": 6.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.17445225299710623,
+    "identities_dropped": 9.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.1983240223463687,
+    "identities_dropped": 11.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.20063956144358155,
+    "identities_dropped": 19.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.19829440988929312,
+    "identities_dropped": 17.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.18633096232734936,
+    "identities_dropped": 10.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.2160343169883884,
+    "identities_dropped": 13.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.1978940440934518,
+    "identities_dropped": 15.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.21406237472941556,
+    "identities_dropped": 17.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.2223796906771828,
+    "identities_dropped": 17.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.1912785125551083,
+    "identities_dropped": 17.0,
+    "identities_total": 87
+   }
+  },
+  "0.3": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.36488740617180987,
+    "identities_dropped": 9.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.29543888659225576,
+    "identities_dropped": 14.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.28382991930477963,
+    "identities_dropped": 17.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.2974874371859296,
+    "identities_dropped": 28.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.27539803622423037,
+    "identities_dropped": 25.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.28098302660795604,
+    "identities_dropped": 15.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.3125878263442053,
+    "identities_dropped": 20.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.31176922233190746,
+    "identities_dropped": 23.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.29893904166332613,
+    "identities_dropped": 25.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.3000595641547025,
+    "identities_dropped": 26.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.3004025301897642,
+    "identities_dropped": 26.0,
+    "identities_total": 87
+   }
+  },
+  "0.4": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.4128440366972477,
+    "identities_dropped": 12.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.40175003444949703,
+    "identities_dropped": 18.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.425770742809849,
+    "identities_dropped": 23.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.37709760925841324,
+    "identities_dropped": 37.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.39549348667996714,
+    "identities_dropped": 34.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.3883180911520079,
+    "identities_dropped": 20.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.383736410028844,
+    "identities_dropped": 26.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.38703520895031257,
+    "identities_dropped": 31.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.4158582538282691,
+    "identities_dropped": 33.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.3804711730030603,
+    "identities_dropped": 34.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.4001150086256469,
+    "identities_dropped": 35.0,
+    "identities_total": 87
+   }
+  }
+ },
+ "size": {
+  "0.1": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.07568807339449542,
+    "identities_dropped": 3.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.08805291442744936,
+    "identities_dropped": 4.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.09916201117318436,
+    "identities_dropped": 6.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.08853357697578804,
+    "identities_dropped": 9.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.06079098697335993,
+    "identities_dropped": 8.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.05306537202212939,
+    "identities_dropped": 5.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.055580208564455294,
+    "identities_dropped": 6.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.07252385653175386,
+    "identities_dropped": 8.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.06991100777679789,
+    "identities_dropped": 8.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.0868198903197979,
+    "identities_dropped": 9.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.06929269695227142,
+    "identities_dropped": 9.0,
+    "identities_total": 87
+   }
+  },
+  "0.2": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.20225187656380317,
+    "identities_dropped": 6.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.17589913187267467,
+    "identities_dropped": 9.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.2037554314090627,
+    "identities_dropped": 11.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.19716765646413886,
+    "identities_dropped": 19.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.1610139654970074,
+    "identities_dropped": 17.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.1420345489443378,
+    "identities_dropped": 10.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.17850011093854004,
+    "identities_dropped": 13.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.11582757486015137,
+    "identities_dropped": 15.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.1500040086587028,
+    "identities_dropped": 17.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.15940600160207036,
+    "identities_dropped": 17.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.13778033352501437,
+    "identities_dropped": 17.0,
+    "identities_total": 87
+   }
+  },
+  "0.3": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.32151793160967473,
+    "identities_dropped": 9.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.24472922695328647,
+    "identities_dropped": 14.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.3126939788950962,
+    "identities_dropped": 17.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.30178163544997716,
+    "identities_dropped": 28.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.21511559676094355,
+    "identities_dropped": 25.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.2595687027210116,
+    "identities_dropped": 15.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.28045262924339914,
+    "identities_dropped": 20.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.24870023033892727,
+    "identities_dropped": 23.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.2711456746572597,
+    "identities_dropped": 25.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.2661901534290468,
+    "identities_dropped": 26.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.25284646348476136,
+    "identities_dropped": 26.0,
+    "identities_total": 87
+   }
+  },
+  "0.4": {
+   "PathPlanning_1": {
+    "realised_obs_loss": 0.4622602168473728,
+    "identities_dropped": 12.0,
+    "identities_total": 29
+   },
+   "PathPlanning_2": {
+    "realised_obs_loss": 0.3338156262918561,
+    "identities_dropped": 18.0,
+    "identities_total": 45
+   },
+   "PathPlanning_3": {
+    "realised_obs_loss": 0.4444444444444444,
+    "identities_dropped": 23.0,
+    "identities_total": 57
+   },
+   "PathPlanning_4": {
+    "realised_obs_loss": 0.42384650525354045,
+    "identities_dropped": 37.0,
+    "identities_total": 93
+   },
+   "PathPlanning_5": {
+    "realised_obs_loss": 0.2935101513906818,
+    "identities_dropped": 34.0,
+    "identities_total": 84
+   },
+   "PathPlanning_6": {
+    "realised_obs_loss": 0.36739302246810435,
+    "identities_dropped": 20.0,
+    "identities_total": 51
+   },
+   "PathPlanning_7": {
+    "realised_obs_loss": 0.3491235855336144,
+    "identities_dropped": 26.0,
+    "identities_total": 65
+   },
+   "PathPlanning_8": {
+    "realised_obs_loss": 0.33872984534386313,
+    "identities_dropped": 31.0,
+    "identities_total": 77
+   },
+   "NoPathPlanning_1": {
+    "realised_obs_loss": 0.37208370079371444,
+    "identities_dropped": 33.0,
+    "identities_total": 83
+   },
+   "NoPathPlanning_2": {
+    "realised_obs_loss": 0.37845831536139013,
+    "identities_dropped": 34.0,
+    "identities_total": 86
+   },
+   "NoPathPlanning_3": {
+    "realised_obs_loss": 0.36319723979298446,
+    "identities_dropped": 35.0,
+    "identities_total": 87
+   }
+  }
+ }
+}

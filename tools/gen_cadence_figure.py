@@ -5,6 +5,7 @@ Left: the released sequences split cleanly by how they were labelled, not by how
 they were flown. Right: thinning the four every-source-frame sequences on the same
 footage walks them up into the cadence-2 band, so the gap is the sampling.
 """
+import os
 from pathlib import Path
 import json, sys
 import numpy as np
@@ -12,7 +13,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = Path("/home/kou/my_env/yolo26")
+ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
 RES = ROOT / "runs/cbdcom2026_queue/results"
 PHI = json.loads((ROOT / "tools/paper_numbers.json").read_text())["phi"]["per_video"]
 CAD = json.loads((RES / "cadence_control.json").read_text())

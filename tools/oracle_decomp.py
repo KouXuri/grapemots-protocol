@@ -9,12 +9,13 @@ track carries the index of the box it was matched to, so the predicted-track to
 trajectory assignment is exact and needs no IoU threshold.
 """
 from __future__ import annotations
+import os
 import json, sys, statistics
 from collections import defaultdict, Counter
 from pathlib import Path
 import numpy as np
 
-ROOT = Path("/home/kou/my_env/yolo26")
+ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
 sys.path.insert(0, str(ROOT / "tools"))
 import torch
 from ultralytics.engine.results import Boxes

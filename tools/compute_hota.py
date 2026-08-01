@@ -7,12 +7,12 @@ frame_gt_boxes / frame_gt_ids and frame_predicted_boxes / frame_predicted_ids, s
 the similarity matrices can be rebuilt offline and handed to TrackEval.
 """
 from __future__ import annotations
+import os
 import json, sys
 from pathlib import Path
 import numpy as np
 
-RES = Path("/home/kou/my_env/yolo26/runs/cbdcom2026_queue/results")
-sys.path.insert(0, "/home/kou/my_env/yolo26/.venv/lib/python3.12/site-packages")
+RES = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve() / "results"
 from trackeval.metrics import HOTA  # noqa: E402
 
 ARMS = [

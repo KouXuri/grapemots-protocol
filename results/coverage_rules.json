@@ -1,0 +1,250 @@
+{
+ "conf 0.55": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 17,
+    "M": 28,
+    "touched": 17,
+    "never_touched": 28,
+    "owned_recall": 0.37777777777777777,
+    "any_overlap_recall": 0.37777777777777777
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 47,
+    "M": 46,
+    "touched": 47,
+    "never_touched": 46,
+    "owned_recall": 0.5053763440860215,
+    "any_overlap_recall": 0.5053763440860215
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 74,
+   "never_touched": 74,
+   "owned_recall": 0.463768115942029,
+   "any_overlap_recall": 0.463768115942029
+  }
+ },
+ "Resize": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 15,
+    "M": 30,
+    "touched": 15,
+    "never_touched": 30,
+    "owned_recall": 0.3333333333333333,
+    "any_overlap_recall": 0.3333333333333333
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 44,
+    "M": 49,
+    "touched": 45,
+    "never_touched": 48,
+    "owned_recall": 0.4731182795698925,
+    "any_overlap_recall": 0.4838709677419355
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 79,
+   "never_touched": 78,
+   "owned_recall": 0.427536231884058,
+   "any_overlap_recall": 0.43478260869565216
+  }
+ },
+ "conf 0.40": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 21,
+    "M": 24,
+    "touched": 21,
+    "never_touched": 24,
+    "owned_recall": 0.4666666666666667,
+    "any_overlap_recall": 0.4666666666666667
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 58,
+    "M": 35,
+    "touched": 61,
+    "never_touched": 32,
+    "owned_recall": 0.6236559139784946,
+    "any_overlap_recall": 0.6559139784946236
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 59,
+   "never_touched": 56,
+   "owned_recall": 0.572463768115942,
+   "any_overlap_recall": 0.5942028985507246
+  }
+ },
+ "IoS merge": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 26,
+    "M": 19,
+    "touched": 26,
+    "never_touched": 19,
+    "owned_recall": 0.5777777777777777,
+    "any_overlap_recall": 0.5777777777777777
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 69,
+    "M": 24,
+    "touched": 71,
+    "never_touched": 22,
+    "owned_recall": 0.7419354838709677,
+    "any_overlap_recall": 0.7634408602150538
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 43,
+   "never_touched": 41,
+   "owned_recall": 0.6884057971014492,
+   "any_overlap_recall": 0.7028985507246377
+  }
+ },
+ "BoT-SORT": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 26,
+    "M": 19,
+    "touched": 26,
+    "never_touched": 19,
+    "owned_recall": 0.5777777777777777,
+    "any_overlap_recall": 0.5777777777777777
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 70,
+    "M": 23,
+    "touched": 71,
+    "never_touched": 22,
+    "owned_recall": 0.7526881720430108,
+    "any_overlap_recall": 0.7634408602150538
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 42,
+   "never_touched": 41,
+   "owned_recall": 0.6956521739130435,
+   "any_overlap_recall": 0.7028985507246377
+  }
+ },
+ "YOLO11s": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 27,
+    "M": 18,
+    "touched": 27,
+    "never_touched": 18,
+    "owned_recall": 0.6,
+    "any_overlap_recall": 0.6
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 69,
+    "M": 24,
+    "touched": 71,
+    "never_touched": 22,
+    "owned_recall": 0.7419354838709677,
+    "any_overlap_recall": 0.7634408602150538
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 42,
+   "never_touched": 40,
+   "owned_recall": 0.6956521739130435,
+   "any_overlap_recall": 0.7101449275362319
+  }
+ },
+ "ByteTrack": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 26,
+    "M": 19,
+    "touched": 26,
+    "never_touched": 19,
+    "owned_recall": 0.5777777777777777,
+    "any_overlap_recall": 0.5777777777777777
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 67,
+    "M": 26,
+    "touched": 69,
+    "never_touched": 24,
+    "owned_recall": 0.7204301075268817,
+    "any_overlap_recall": 0.7419354838709677
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 45,
+   "never_touched": 43,
+   "owned_recall": 0.6739130434782609,
+   "any_overlap_recall": 0.6884057971014492
+  }
+ },
+ "+ ReID": {
+  "videos": [
+   {
+    "video": "PathPlanning_2",
+    "G": 45,
+    "owned": 28,
+    "M": 17,
+    "touched": 28,
+    "never_touched": 17,
+    "owned_recall": 0.6222222222222222,
+    "any_overlap_recall": 0.6222222222222222
+   },
+   {
+    "video": "PathPlanning_4",
+    "G": 93,
+    "owned": 73,
+    "M": 20,
+    "touched": 74,
+    "never_touched": 19,
+    "owned_recall": 0.7849462365591398,
+    "any_overlap_recall": 0.7956989247311828
+   }
+  ],
+  "pooled": {
+   "G": 138,
+   "M": 37,
+   "never_touched": 36,
+   "owned_recall": 0.7318840579710145,
+   "any_overlap_recall": 0.7391304347826086
+  }
+ }
+}

@@ -12,13 +12,14 @@ frame, and reads the count out only on the annotated frames, against the same
 ground truth. Everything except the frame rate the tracker sees is held fixed.
 """
 from __future__ import annotations
+import os
 import argparse, json, re, sys, time
 from collections import Counter
 from pathlib import Path
 
 import cv2, numpy as np, torch
 
-ROOT = Path("/home/kou/my_env/yolo26")
+ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
 sys.path.insert(0, str(ROOT / "tools"))
 from ultralytics import YOLO                                        # noqa: E402
 from ultralytics.engine.results import Boxes                        # noqa: E402

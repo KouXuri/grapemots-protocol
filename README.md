@@ -1,7 +1,7 @@
-# Protocol Sensitivity in Predicted-Track Counting — manifests, results and scripts
+# Protocol Sensitivity of Distinct-Track Counting — manifests, results and scripts
 
-Accompanies the CBDCom 2026 paper *Protocol Sensitivity in Predicted-Track Counting:
-How Reported Grape-Bunch Counts Depend on Undeclared Parameters in UAV Video*.
+Accompanies the CBDCom 2026 paper *Protocol Sensitivity of Distinct-Track Counting:
+Why a Reported Object Count Is Underdetermined Without Its Evaluation Protocol*.
 
 The paper argues that a predicted-track count is only interpretable together with the
 protocol that produced it, and that per-video manifests and per-video results have to
@@ -39,6 +39,11 @@ is purely 3840×2160.
 | `gt_control_turnover.txt` | the COUNT DISTINCT control, per-video turnover and visibility, symmetric-τ sensitivity |
 | `drift_model_validation.txt` | held-out mean absolute error against the no-drift baseline |
 | `per_video_ledger.tex` | Table I of the paper: per-video frames, tracks, cadence, resolution, split roles |
+| `realised_loss_rates.json` | what each observation-loss mode actually removes, per video and per nominal `p` |
+| `coverage_rules.json` | trajectories recovered under dominant-overlap ownership against any-overlap, per arm and per video |
+| `cadence_control_all_taus.json` | the cadence control refitted at every τ, with per-fit R² |
+| `oracle/oracle_count_surface_v2.json.gz` | all 572 oracle rows behind Fig. 3 and the decomposition |
+| `oracle/oracle_frames_*.json.gz` | per-frame predicted and true ids for one seed of each mode |
 
 ### tools/
 
@@ -51,6 +56,12 @@ is purely 3840×2160.
 | `decompose_count_error.py` | the `U + D − M` accounting |
 | `freeze_paper_numbers.py` | applies one frozen definition of a retained cell and writes `paper_numbers.json` |
 | `make_split_manifests.py` | turns a `splits/*.json` assignment into Ultralytics manifests |
+| `oracle_master.py` | the full oracle sweep: all four observation-loss modes, 28 window lengths, prefix / sliding / blocked windows |
+| `measure_actual_loss.py` | replays the thinning without the tracker and reports the realised loss rate of each mode |
+| `measure_coverage_rules.py` | ownership-free object recovery, to check what `M` actually counts |
+| `cadence_all_taus.py` | the cadence control at every τ rather than τ = 1 |
+| `create_grapemots_detection_dataset.py` | MOTS instance maps to the box / track sidecars everything else reads |
+| `rebuild_cbdcom2026_figures.py` | builds the paper's figures from the frozen JSON. It emits five panels; the submitted paper uses four of them (see the note on the AssA scatter below) |
 
 ## The frozen definition of a retained cell
 
@@ -92,10 +103,38 @@ Ultralytics 8.4.46, PyTorch 2.11, single NVIDIA RTX 2000 Ada (16 GB).
 
 ## Reproducing the numbers
 
+Scripts resolve paths from `GRAPEMOTS_ROOT`, which should point at a workspace holding
+`datasets/grapemots_det_721/` (the box and track sidecars, built from the GrapeMOTS
+instance maps by `create_grapemots_detection_dataset.py`) and a `results/` directory.
+No script contains an absolute path to an author machine.
+
 ```bash
-# oracle surfaces over all eleven sequences, four observation-loss modes
-python tools/oracle_count_surface.py --out results/oracle_master_bernoulli.json
-python tools/oracle_count_surface.py --miss-mode block --out results/oracle_master_block.json
+export GRAPEMOTS_ROOT=/path/to/your/workspace
+```
+
+Three groups of results have different requirements:
+
+| group | needs | scripts |
+|---|---|---|
+| oracle counting, all eleven sequences | the sidecars only, no model, no GPU | `oracle_master.py`, `measure_actual_loss.py`, `cadence_control.py`, `cadence_all_taus.py` |
+| the decomposition and coverage rules | the frozen `arm_*.json` in this repository | `decompose_count_error.py`, `measure_coverage_rules.py` |
+| real-detection arms and AP | detector weights, which are not redistributed | `track_grapemots_mot.py`, `evaluate_grapemots_fullframe.py` |
+
+The first two groups reproduce every oracle number, the U/D/M decomposition, the
+coverage comparison and the cadence result from what is in this repository plus the
+public GrapeMOTS release. The third needs weights we do not publish; the frozen
+`arm_*.json` and `oracle/oracle_frames_*.json.gz` are released so those results can be
+checked without rerunning inference.
+
+```bash
+# oracle surfaces over all eleven sequences, all four observation-loss modes
+for mode in bernoulli block identity size; do
+  python tools/oracle_master.py --miss-mode $mode \
+      --out $GRAPEMOTS_ROOT/results/oracle_master_$mode.json
+done
+
+# what each mode actually removes, which is what makes the four comparable
+python tools/measure_actual_loss.py
 
 # the camera-motion-compensation control (BoT-SORT with GMC on real frames)
 python tools/oracle_cmc_check.py
@@ -137,7 +176,9 @@ stock are:
 ## Checkpoints and environment
 
 `configs/train_args_splitA.yaml` is the full Ultralytics training configuration for the
-detector behind every real-detection number. `configs/checkpoints_sha256_and_env.txt`
+detector behind every real-detection number. Its `project` and `save_dir` entries still
+name the machine the run happened on; they are left as written because the file is the
+run's own record, and nothing reads them. `configs/checkpoints_sha256_and_env.txt`
 carries the SHA-256 of the three checkpoints and the frozen package list. The weights
 themselves are not in this repository for size reasons; request them from the
 corresponding author, or retrain from `train_args_splitA.yaml` and the manifests in
@@ -147,7 +188,7 @@ corresponding author, or retrain from `train_args_splitA.yaml` and the manifests
 
 | file | what it is |
 |---|---|
-| `results/oracle_decomposition.json` | `U`, `D`, `M` over the full oracle grid: 11 sequences x 4 miss modes x 5 rates x 3 seeds = 572 configurations. The identity `P-G = U+D-M` closes exactly in all 572. Produced by `tools/oracle_decomp.py`. |
+| `results/oracle_decomposition.json` | `U`, `D`, `M` over the full oracle grid: 11 sequences x 4 miss modes x 5 rates x 3 seeds = 572 rows, and the identity `P-G = U+D-M` closes exactly in all of them. Those 572 rows are not 572 independent runs: the `p = 0` run is one shared baseline recorded once per mode, and the size mode is deterministic so its three seeds repeat. Removing both kinds of duplication leaves **451 distinct runs**, 41 per sequence over 17 mode-rate conditions, which is the figure the paper quotes. Produced by `tools/oracle_decomp.py`. |
 | `results/oracle_cmc_check.json` | the camera-motion-compensation control, three arms on all eleven sequences |
 | `results/cadence_control.json` | thinning the four cadence-1 sequences on the same footage, steps 1/2/3 |
 | `results/fullrate_tracking.json` | tracking every source frame at 30 Hz against the 15 Hz annotated subsequence |
@@ -158,4 +199,16 @@ corresponding author, or retrain from `train_args_splitA.yaml` and the manifests
 
 `tools/gen_cadence_figure.py`, `tools/gen_identity_break_figure.py` and
 `tools/gen_missmode_and_alignment_figures.py` regenerate the paper figures from these
-files.
+files. The last script also emits an AssA-against-count-error scatter that the
+submitted version of the paper does not use: the eight arms share two videos and most
+of the pipeline, so they are nested variants rather than eight replicates, and the
+numbers behind that panel are in Table IV instead.
+
+## Licence
+
+Code in this repository is MIT licensed; see `LICENSE`. The GrapeMOTS imagery it
+analyses is CC BY 4.0 and is distributed by Ariza-Sentís et al., *Data in Brief* **54**
+(2024) 110432. It is not redistributed here.
+
+Absolute paths inside `results/*.json` record the machine each run was executed on and
+are provenance, not inputs; nothing reads them back.

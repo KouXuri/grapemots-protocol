@@ -14,6 +14,7 @@ coverage = G(L)/G(full) >= 0.8; per video take the median retained cell; headlin
 is the median over the eleven per-video values.
 """
 from __future__ import annotations
+import os
 import json, statistics, sys, time
 from pathlib import Path
 
@@ -21,7 +22,7 @@ import numpy as np
 import torch
 import cv2
 
-ROOT = Path("/home/kou/my_env/yolo26")
+ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
 sys.path.insert(0, str(ROOT / "tools"))
 from ultralytics.engine.results import Boxes  # noqa: E402
 from oracle_count_surface import (video_frames, read_resolutions,  # noqa: E402

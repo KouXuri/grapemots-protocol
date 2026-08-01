@@ -12,11 +12,12 @@ paper does for the released cadence-2 videos, so the numbers stay comparable.
 No model inference: ground-truth boxes go straight to the tracker.
 """
 from __future__ import annotations
+import os
 import json, sys
 from pathlib import Path
 import numpy as np
 
-ROOT = Path("/home/kou/my_env/yolo26")
+ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
 sys.path.insert(0, str(ROOT / "tools"))
 from oracle_count_surface import (video_frames, read_resolutions,  # noqa: E402
                                   prefix_surface, fit_drift, run_sequence)

@@ -187,13 +187,19 @@ def main() -> None:
     ap.add_argument("--jitter", type=float, default=0.0,
                     help="box centre noise as a fraction of box size")
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
+    # identity/size need the whole-sequence identity draw, which lives in
+    # oracle_master.py; use that script for those two modes.
     ap.add_argument("--miss-mode", choices=["bernoulli", "block"], default="bernoulli",
                     help="'block' hides an identity for a run of frames, which is "
                          "what occlusion does; i.i.d. dropout is the control")
     ap.add_argument("--block-len", type=int, default=15,
                     help="frames an identity stays hidden once occluded")
+    # The 28 lengths the paper reports. The earlier 11-length default did not
+    # match the manuscript and is kept only in the git history.
     ap.add_argument("--window-lengths", type=int, nargs="+",
-                    default=[10, 20, 30, 50, 75, 100, 150, 200, 300, 400, 500])
+                    default=[5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 125, 150,
+                             175, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+                             650, 700, 750, 800, 850, 900])
     ap.add_argument("--min-track-lens", type=int, nargs="+", default=[1, 2, 3, 5, 8])
     ap.add_argument("--out", type=Path, required=True)
     args = ap.parse_args()
