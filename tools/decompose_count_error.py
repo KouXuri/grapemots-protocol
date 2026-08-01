@@ -149,11 +149,11 @@ def symmetric_tau(video, taus):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results", type=Path, default=Path("runs/cbdcom2026_queue/results"))
+    ap.add_argument("--results", type=Path, default=Path("results"))
     ap.add_argument("--match-iou", type=float, default=0.5)
     ap.add_argument("--taus", type=int, nargs="+", default=[1, 2, 3, 5, 8])
     ap.add_argument("--out", type=Path,
-                    default=Path("runs/cbdcom2026_queue/results/count_decomposition.json"))
+                    default=Path("results/count_decomposition.json"))
     args = ap.parse_args()
 
     print(f"assignment: {'Hungarian (scipy)' if HAVE_SCIPY else 'greedy fallback'}"

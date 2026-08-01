@@ -14,7 +14,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
-RES = ROOT / "runs/cbdcom2026_queue/results"
+RES = ROOT / "results"
 PHI = json.loads((ROOT / "tools/paper_numbers.json").read_text())["phi"]["per_video"]
 CAD = json.loads((RES / "cadence_control.json").read_text())
 CADENCE = {"NoPathPlanning_1": 1, "NoPathPlanning_2": 1, "NoPathPlanning_3": 1,

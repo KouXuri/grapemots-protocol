@@ -24,7 +24,7 @@ ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", ".")).resolve()
 sys.path.insert(0, str(ROOT / "tools"))
 from decompose_count_error import frame_matches  # noqa: E402
 
-RESULTS = ROOT / "runs/cbdcom2026_queue/results"
+RESULTS = ROOT / "results"
 ARMS = {
     "conf 0.55": "arm_conf0.55.json",
     "Resize": "arm_resize.json",

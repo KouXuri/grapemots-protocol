@@ -47,7 +47,7 @@ STATS = {  # turnover, median lifetime in source frames
     "PathPlanning_8": (1.90, 354),
 }
 PHI = json.loads(
-    Path("runs/cbdcom2026_queue/results/paper_numbers.json").read_text()
+    Path("results/paper_numbers.json").read_text()
 )["phi"]["per_video"]
 MAX_FRAMES = 150  # keep columns visually comparable
 

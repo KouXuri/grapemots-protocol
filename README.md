@@ -42,7 +42,8 @@ is purely 3840×2160.
 | `realised_loss_rates.json` | what each observation-loss mode actually removes, per video and per nominal `p` |
 | `coverage_rules.json` | trajectories recovered under dominant-overlap ownership against any-overlap, per arm and per video |
 | `cadence_control_all_taus.json` | the cadence control refitted at every τ, with per-fit R² |
-| `oracle/oracle_count_surface_v2.json.gz` | all 572 oracle rows behind Fig. 3 and the decomposition |
+| `oracle/oracle_master_{bernoulli,block,identity,size}.json.gz` | the four observation-loss sweeps behind Fig. 3 and the decomposition: 143 runs each, 572 rows in total, over the 28-length window grid, each row carrying its `count_error_surface`, `blocked_surface`, `sliding_surface` and `drift_fit` |
+| `oracle/oracle_count_surface_v2.json.gz` | a different sweep, kept because the buffer sensitivity is quoted in the paper: four tracker variants (ByteTrack, BoT-SORT without GMC, `track_buffer` 10 and 60) over a 16-length grid, Bernoulli loss only. It also happens to hold 572 rows; it is **not** the four-mode surface |
 | `oracle/oracle_frames_*.json.gz` | per-frame predicted and true ids for one seed of each mode |
 
 ### tools/
@@ -103,10 +104,32 @@ Ultralytics 8.4.46, PyTorch 2.11, single NVIDIA RTX 2000 Ada (16 GB).
 
 ## Reproducing the numbers
 
-Scripts resolve paths from `GRAPEMOTS_ROOT`, which should point at a workspace holding
-`datasets/grapemots_det_721/` (the box and track sidecars, built from the GrapeMOTS
-instance maps by `create_grapemots_detection_dataset.py`) and a `results/` directory.
-No script contains an absolute path to an author machine.
+Scripts read and write `results/` relative to the working directory, which is the layout
+of this repository, so they run from a fresh checkout without editing. Anything needing
+the imagery resolves it from `GRAPEMOTS_ROOT`, which should point at a workspace holding
+`datasets/grapemots_det_721/` — the box and track sidecars, built from the GrapeMOTS
+instance maps by `create_grapemots_detection_dataset.py`. No script contains an absolute
+path to an author machine.
+
+A smoke test that needs neither imagery nor GPU:
+
+```bash
+python tools/freeze_paper_numbers.py --results results --out /tmp/check.json
+python - <<'EOF'
+import json
+released = json.load(open('results/paper_numbers.json'))
+rebuilt  = json.load(open('/tmp/check.json'))
+for key in released:
+    if key == 'blocked_validation':          # float tails differ by ~1e-16
+        assert released[key]['wins'] == rebuilt[key]['wins']
+        continue
+    assert released[key] == rebuilt[key], key
+print('paper_numbers.json reproduces from the released results')
+EOF
+```
+
+That rebuilds every oracle, dropout, coverage, drift and split number the paper quotes,
+from this repository alone, with no imagery, no weights and no GPU.
 
 ```bash
 export GRAPEMOTS_ROOT=/path/to/your/workspace
@@ -179,7 +202,10 @@ stock are:
 detector behind every real-detection number. Its `project` and `save_dir` entries still
 name the machine the run happened on; they are left as written because the file is the
 run's own record, and nothing reads them. `configs/checkpoints_sha256_and_env.txt`
-carries the SHA-256 of the three checkpoints and the frozen package list. The weights
+carries the SHA-256 of the three checkpoints and the complete `pip freeze` of the
+environment every result was produced in, with the directly relevant versions
+(torch 2.11.0, ultralytics 8.4.46, scipy 1.17.1, trackeval 1.3.0, motmetrics 1.4.0,
+numpy 2.5.1, opencv-python 4.13.0.92) called out at the top. The weights
 themselves are not in this repository for size reasons; request them from the
 corresponding author, or retrain from `train_args_splitA.yaml` and the manifests in
 `splits/`.

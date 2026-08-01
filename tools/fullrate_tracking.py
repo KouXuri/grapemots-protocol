@@ -111,7 +111,7 @@ def main() -> None:
     ap.add_argument("--merge-threshold", type=float, default=0.5)
     ap.add_argument("--steps", type=int, nargs="+", default=[1, 2])
     ap.add_argument("--out", type=Path,
-                    default=ROOT / "runs/cbdcom2026_queue/results/fullrate_tracking.json")
+                    default=ROOT / "results/fullrate_tracking.json")
     args = ap.parse_args()
 
     model = YOLO(str(WEIGHTS))

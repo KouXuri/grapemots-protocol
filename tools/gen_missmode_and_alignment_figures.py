@@ -27,7 +27,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-RES = Path("runs/cbdcom2026_queue/results")
+RES = Path("results")
 OUT = Path("figures")
 COVERAGE = 0.8
 

@@ -51,7 +51,7 @@ def cells(run, gt_full, min_cov):
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else "runs/cbdcom2026_queue/results/oracle_count_surface_v2.json"
+    path = sys.argv[1] if len(sys.argv) > 1 else "results/oracle_count_surface_v2.json"
     min_cov = float(sys.argv[2]) if len(sys.argv) > 2 else 0.8
     runs = load(path)
     gt = full_gt(runs)

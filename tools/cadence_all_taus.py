@@ -70,7 +70,7 @@ def main() -> None:
     print(f"\ntau=1 fit R^2 at step 1: {[round(x,3) for x in r2s]}  "
           f"({len(LENGTHS)} lengths offered)")
 
-    dest = ROOT / "runs/cbdcom2026_queue/results/cadence_control_all_taus.json"
+    dest = ROOT / "results/cadence_control_all_taus.json"
     dest.write_text(json.dumps({"per_video": out, "multipliers": summary}, indent=1))
     print(f"\nwrote {dest}")
 

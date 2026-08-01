@@ -120,7 +120,7 @@ def main():
                     r.update(video=v, mode=mode, p=p, seed=seed)
                     out.append(r)
             print(f"  {mode} p={p}: {len(out)} rows", flush=True)
-    dest = ROOT / "runs/cbdcom2026_queue/results/oracle_decomposition.json"
+    dest = ROOT / "results/oracle_decomposition.json"
     dest.write_text(json.dumps(out, indent=1) + "\n")
     bad = [r for r in out if r["P"] - r["G"] != r["U"] + r["D"] - r["M"]]
     print(f"identity holds on {len(out)-len(bad)}/{len(out)} runs")

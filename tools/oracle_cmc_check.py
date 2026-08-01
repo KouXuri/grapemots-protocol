@@ -98,7 +98,7 @@ def main():
         print(f"== {label}: median-of-medians {head:+.4f}, "
               f"{len(negatives)} videos with a negative cell, "
               f"{out[label]['seconds']}s", flush=True)
-    dest = ROOT / "runs/cbdcom2026_queue/results/oracle_cmc_check.json"
+    dest = ROOT / "results/oracle_cmc_check.json"
     dest.write_text(json.dumps(out, indent=1) + "\n")
     print("wrote", dest)
 

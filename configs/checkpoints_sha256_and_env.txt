@@ -1,6 +1,14 @@
 e2b7e56fb7106c7bc58a846a40ac54d89b1df30c99f22eaeedb5d4079182d6d4  runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt
 62f437fed471695ed69a5e7b5b8e184f87bd679ada9924fe288506d06a114854  runs/detect/cbdcom2026/gm_resize_splitA_matched/weights/best.pt
 18aceb57ba354f7ac56c8f07df058d8285361f84b2ffcd4544a2a6ed88a631eb  runs/detect/cbdcom2026/gm_yolo11s_A/weights/best.pt
+
+# Environment, `pip freeze` of the venv every result in the paper was produced in.
+# The packages the analysis depends on directly:
+#   matplotlib==3.10.9  motmetrics==1.4.0  numpy==2.5.1  opencv-python==4.13.0.92  scipy==1.17.1  torch==2.11.0  torchvision==0.26.0  trackeval==1.3.0
+# ultralytics is installed editable from this project's own fork of the Ultralytics
+# repository, so pip freeze records it as a local path; the version is 8.4.46.
+# Full list follows.
+
 absl-py==2.5.0
 ai-edge-litert==2.1.6
 astunparse==1.6.3
@@ -61,3 +69,46 @@ onnx_graphsurgeon==0.6.1
 onnxruntime==1.28.0
 onnxslim==0.1.94
 opencv-python==4.13.0.92
+opt_einsum==3.4.0
+optree==0.19.1
+packaging==26.2
+pandas==3.0.3
+pi_heif==1.3.0
+pillow==12.2.0
+pluggy==1.6.0
+polars==1.40.1
+polars-runtime-32==1.40.1
+protobuf==5.29.6
+psutil==7.2.2
+pycocotools==2.0.11
+Pygments==2.20.0
+pyparsing==3.3.2
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+requests==2.33.1
+rich==15.0.0
+scipy==1.17.1
+setuptools==81.0.0
+six==1.17.0
+sng4onnx==2.0.1
+sympy==1.14.0
+tabulate==0.10.0
+tensorboard==2.19.0
+tensorboard-data-server==0.7.2
+tensorflow==2.19.0
+termcolor==3.3.0
+tf_keras==2.19.0
+torch==2.11.0
+torchvision==0.26.0
+tqdm==4.69.1
+trackeval==1.3.0
+triton==3.6.0
+typing_extensions==4.15.0
+ultralytics @ file:///home/kou/my_env/yolo26
+ultralytics-thop==2.0.19
+urllib3==2.7.0
+Werkzeug==3.1.8
+wheel==0.47.0
+wrapt==2.2.2
+xmltodict==1.0.4

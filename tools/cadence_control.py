@@ -69,7 +69,7 @@ def main():
     print("phi per SOURCE frame, step3 / step1:",
           {v: round(r, 2) for v, r in zip(CADENCE1, ratios3)},
           f"median {np.median(ratios3):.2f}x")
-    dest = ROOT / "runs/cbdcom2026_queue/results/cadence_control.json"
+    dest = ROOT / "results/cadence_control.json"
     dest.write_text(json.dumps(out, indent=1) + "\n")
     print("wrote", dest)
 

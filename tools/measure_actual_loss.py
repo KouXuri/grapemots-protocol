@@ -93,7 +93,7 @@ def main() -> None:
                 }
         print(f"  {video} done", flush=True)
 
-    dest = ROOT / "runs/cbdcom2026_queue/results/realised_loss_rates.json"
+    dest = ROOT / "results/realised_loss_rates.json"
     dest.write_text(json.dumps(out, indent=1))
     print(f"\nwrote {dest}\n")
     print("nominal p -> realised observation-loss rate (median over 11 videos)")

@@ -44,7 +44,7 @@ def iou(a, b):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--counting", type=Path,
-                    default=Path("runs/cbdcom2026_queue/results/qual_pp2_boxes.json"))
+                    default=Path("results/qual_pp2_boxes.json"))
     ap.add_argument("--images", type=Path,
                     default=Path("datasets/grapemots_det_721/images/test"))
     ap.add_argument("--match-iou", type=float, default=0.3)

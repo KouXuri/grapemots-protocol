@@ -29,6 +29,24 @@ import statistics
 from collections import defaultdict
 from pathlib import Path
 
+
+def _find(results, stem):
+    """Locate a frozen artefact under results/ or results/oracle/, plain or gzipped."""
+    for base in (results, results / "oracle"):
+        for name in (f"{stem}.json", f"{stem}.json.gz"):
+            candidate = base / name
+            if candidate.exists():
+                return candidate
+    return results / f"{stem}.json"
+
+
+def _read_json(path):
+    if path.suffix == ".gz":
+        import gzip
+        with gzip.open(path, "rt") as handle:
+            return json.load(handle)
+    return json.loads(path.read_text())
+
 COVERAGE = 0.8
 MODES = ["bernoulli", "block", "identity", "size"]
 
@@ -56,7 +74,7 @@ def error(cell):
 
 def dropout_table(path: Path, coverage=COVERAGE):
     """{miss rate: summary} under the frozen definition."""
-    data = json.loads(path.read_text())
+    data = _read_json(path)
     per_video = defaultdict(lambda: defaultdict(list))
     for run in data["runs"]:
         for cell in retained(run, coverage):
@@ -86,7 +104,7 @@ def q_ratio(path: Path, coverage=COVERAGE, miss=0.0):
     Reported as a ratio of ratios. It is not a ratio of relative errors, and the
     draft's '4.78x' has been read as one.
     """
-    data = json.loads(path.read_text())
+    data = _read_json(path)
     best = None
     for run in data["runs"]:
         if run["miss_rate"] != miss:
@@ -117,7 +135,7 @@ def q_ratio(path: Path, coverage=COVERAGE, miss=0.0):
 
 def phi_table(path: Path):
     """Fitted slope per source frame, and the spread across sequences."""
-    data = json.loads(path.read_text())
+    data = _read_json(path)
     phi = {}
     for run in data["runs"]:
         if run["miss_rate"] != 0.0:
@@ -148,7 +166,7 @@ def blocked_validation(path: Path):
     generalisation, and the manuscript should not have called it held-out. Here
     the samples are the non-overlapping blocks, which share no frames.
     """
-    data = json.loads(path.read_text())
+    data = _read_json(path)
     wins, rows = 0, []
     for run in sorted(data["runs"], key=lambda r: r["video"]):
         if run["miss_rate"] != 0.0:
@@ -189,8 +207,8 @@ def split_table(results: Path):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results", type=Path, default=Path("runs/cbdcom2026_queue/results"))
-    ap.add_argument("--out", type=Path, default=Path("runs/cbdcom2026_queue/results/paper_numbers.json"))
+    ap.add_argument("--results", type=Path, default=Path("results"))
+    ap.add_argument("--out", type=Path, default=Path("results/paper_numbers.json"))
     args = ap.parse_args()
 
     report = {"definition": {
@@ -203,7 +221,7 @@ def main() -> None:
     print(f"dropout, coverage >= {COVERAGE}, median over videos of per-video medians")
     print("=" * 78)
     for mode in MODES:
-        path = args.results / f"oracle_master_{mode}.json"
+        path = _find(args.results, f"oracle_master_{mode}")
         if not path.exists():
             print(f"  {mode}: missing"); continue
         table = dropout_table(path)
@@ -216,7 +234,7 @@ def main() -> None:
                   f"min {row['min_error']:+.3f}  "
                   f"negatives on {len(row['videos_with_a_negative_cell'])} video(s)")
 
-    base = args.results / "oracle_master_bernoulli.json"
+    base = _find(args.results, "oracle_master_bernoulli")
     if base.exists():
         for coverage in (0.6, 0.7, 0.8, 0.9):
             table = dropout_table(base, coverage)

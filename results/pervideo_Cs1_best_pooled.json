@@ -1,0 +1,25 @@
+{
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_split_C_s1/weights/best.pt",
+  "root": "/home/kou/my_env/yolo26/datasets/grapemots_det_721",
+  "split": "all",
+  "mode": "tiled",
+  "imgsz": 1280,
+  "conf": 0.001,
+  "tile": 1280,
+  "stride": 960,
+  "merge_iou": 0.6,
+  "merge_metric": "iou",
+  "overall": {
+    "ap50_95": 0.2218881632330924,
+    "ap50": 0.4586990231618895,
+    "ap75": 0.18953895577471805,
+    "ap_small": 0.030189535505862192,
+    "ap_medium": 0.188539878011986,
+    "ap_large": 0.3692691391002334,
+    "ar100": 0.37188988883006885,
+    "frames": 1274,
+    "gt": 28335,
+    "detections": 248123
+  },
+  "per_video": {}
+}
