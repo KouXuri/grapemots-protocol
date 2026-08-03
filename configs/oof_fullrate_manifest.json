@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "queue_completed_jst": "2026-08-02T23:30:50+09:00",
+  "oof_results": {
+    "arms": ["conf055", "conf040", "ios", "botsort", "bytetrack", "reid"],
+    "primary_splits": ["A", "B", "C"],
+    "sensitivity_splits": ["D", "E"],
+    "files": "results/oof/raw/oof_{split}_{arm}.json.gz",
+    "json_hash_rule": "SHA-256 is calculated over decompressed JSON bytes"
+  },
+  "checkpoints": {
+    "A": {
+      "run": "gm_ctrl_newsplit_oldcfg",
+      "test_videos": ["PathPlanning_2", "PathPlanning_4"],
+      "sha256": "e2b7e56fb7106c7bc58a846a40ac54d89b1df30c99f22eaeedb5d4079182d6d4"
+    },
+    "B": {
+      "run": "gm_split_B",
+      "test_videos": ["PathPlanning_5", "PathPlanning_7"],
+      "sha256": "20c0ce599e183ef8ada971f794eaca0f0b69279394660d5e15f93519efb02ff5"
+    },
+    "C": {
+      "run": "gm_split_C",
+      "test_videos": ["PathPlanning_6", "PathPlanning_8"],
+      "sha256": "43cf8c0d049ac4dd1b5877234b25ff5813feedabe287132934c2a0796c39c1bd"
+    },
+    "D": {
+      "run": "gm_split_D",
+      "test_videos": ["PathPlanning_4", "PathPlanning_8"],
+      "sha256": "05f874a67538e9d1bb230c5740355ea903afe7ea73f768fb41171a1b4060a936"
+    },
+    "E": {
+      "run": "gm_split_E",
+      "test_videos": ["PathPlanning_6", "PathPlanning_7"],
+      "sha256": "8816d33588cb8e5c4c46c84ca34495efd520eccfee4afd8364b964b6d73719c7"
+    }
+  },
+  "fullrate_video_to_split": {
+    "PathPlanning_2": "A",
+    "PathPlanning_4": "A",
+    "PathPlanning_5": "B",
+    "PathPlanning_6": "C",
+    "PathPlanning_7": "B",
+    "PathPlanning_8": "C"
+  },
+  "source_videos": {
+    "PathPlanning_2": {
+      "released_filename": "PathPlanning_2.mp4",
+      "bytes": 421341359,
+      "sha256": "399f2fd695273338b40c498c70824b76d89050c7fd1cd4d2fa36e230d2ce3b6c"
+    },
+    "PathPlanning_4": {
+      "released_filename": "PathPlanning_4.mp4",
+      "bytes": 749329795,
+      "sha256": "70819d3b8dc57b34841da0d6d49b6c901ac5351737fb5f12cc830f04dbe8f5c5"
+    },
+    "PathPlanning_5": {
+      "released_filename": "PathPlanning_5.mp4",
+      "bytes": 540437151,
+      "sha256": "0d8758ea7265073b4941e5c7aa431eefef810a008d3591869568c02c30c60b03"
+    },
+    "PathPlanning_6": {
+      "released_filename": "PathPlanning_6.mp4",
+      "bytes": 572365762,
+      "sha256": "664502286da89a3a70d6bd7041ad5f81b2154ef470843a484aac78240a6b8fa1"
+    },
+    "PathPlanning_7": {
+      "released_filename": "PathPlanning_7.mp4",
+      "bytes": 95421631,
+      "sha256": "4b4bb75f211829c73c923adc70597fe57f79db8b7a705c6127b5cc84fa0f2d75"
+    },
+    "PathPlanning_8": {
+      "released_filename": "Pathplanning_8.mp4",
+      "bytes": 191343111,
+      "sha256": "e071bc648261f1316fb7aaf6644e01643b180ebd34e7590ebec94db8082a58c2"
+    }
+  }
+}

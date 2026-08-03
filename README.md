@@ -1,7 +1,7 @@
-# Protocol Sensitivity of Distinct-Track Counting — manifests, results and scripts
+# Distinct-Track Counts Are Protocol-Defined in Aerial Vineyard Videos
 
-Accompanies the CBDCom 2026 paper *Protocol Sensitivity of Distinct-Track Counting:
-Why a Reported Object Count Is Underdetermined Without Its Evaluation Protocol*.
+Manifests, frozen results and analysis scripts accompanying the CBDCom 2026 paper
+*Distinct-Track Counts Are Protocol-Defined in Aerial Vineyard Videos*.
 
 The paper argues that a predicted-track count is only interpretable together with the
 protocol that produced it, and that per-video manifests and per-video results have to
@@ -11,12 +11,22 @@ that release for our own numbers.
 The imagery itself is not redistributed here. GrapeMOTS is published under CC-BY by
 Ariza-Sentís et al., *Data in Brief* **54** (2024) 110432.
 
+## Release tags
+
+`cbdcom2026` is the original submission evidence. `cbdcom2026-r2` adds the six-video
+out-of-fold (OOF) analysis and the matched 15/30 Hz source-video control used by the
+final eight-page manuscript, together with the auxiliary paired sampling-policy runs.
+Release tags are treated as immutable snapshots: the original tag is not moved, and any
+later correction receives a new tag.
+
 ## Layout
 
 ```
 splits/     the five video-level assignments A–E, at video granularity
 results/    the frozen JSON every number in the paper is read from
 tools/      the scripts that produce those JSON files
+configs/    run arguments, checkpoint hashes and source-video hashes
+tests/      focused regression tests for the released analyses
 ```
 
 ### splits/
@@ -45,6 +55,12 @@ is purely 3840×2160.
 | `oracle/oracle_master_{bernoulli,block,identity,size}.json.gz` | the four observation-loss sweeps behind Fig. 3 and the decomposition: 143 runs each, 572 rows in total, over the 28-length window grid, each row carrying its `count_error_surface`, `blocked_surface`, `sliding_surface` and `drift_fit` |
 | `oracle/oracle_count_surface_v2.json.gz` | a different sweep, kept because the buffer sensitivity is quoted in the paper: four tracker variants (ByteTrack, BoT-SORT without GMC, `track_buffer` 10 and 60) over a 16-length grid, Bernoulli loss only. It also happens to hold 572 rows; it is **not** the four-mode surface |
 | `oracle/oracle_frames_*.json.gz` | per-frame predicted and true ids for one seed of each mode |
+| `oof/raw/oof_{A..E}_{arm}.json.gz` | 30 compressed split-arm outputs with per-frame IDs and boxes; A--C are six unique model-unseen videos and D--E repeat four videos under different checkpoints |
+| `oof/oof_analysis.{json,md}` | pooled and paired OOF decomposition, including the frozen confidence-0.55/ReID direction |
+| `oof/oof_protocol_surface_analysis.{json,md}` | recomputation of 1,680 prefix cells and the post hoc ranking-sensitivity audit |
+| `fullrate/fullrate_oof_buffer{30,60}.json` | six-video 15/30 Hz controls scored on the same 1,738 annotated times |
+| `fullrate/fullrate_summary.{json,md}` | pooled and per-video rate effects, including the decoded-MP4/released-PNG check |
+| `sampling/` | six validation evaluations, six training curves and the paired-seed sampling-policy summary |
 
 ### tools/
 
@@ -111,6 +127,10 @@ the imagery resolves it from `GRAPEMOTS_ROOT`, which should point at a workspace
 instance maps by `create_grapemots_detection_dataset.py`. No script contains an absolute
 path to an author machine.
 
+Frozen inference outputs retain the original `weights`, `root` and `video_path` strings
+as provenance. The released analysis scripts do not dereference those fields; their
+portable inputs are the frame-level arrays and count surfaces stored in the same files.
+
 A smoke test that needs neither imagery nor GPU:
 
 ```bash
@@ -130,6 +150,48 @@ EOF
 
 That rebuilds every oracle, dropout, coverage, drift and split number the paper quotes,
 from this repository alone, with no imagery, no weights and no GPU.
+
+The revision-specific analyses also run without imagery, weights or a GPU:
+
+```bash
+# Six configurations on A--E held-out videos. TrackEval 1.3.0 is needed to
+# reproduce HOTA; the count decomposition runs when TrackEval is absent.
+python tools/analyse_grapemots_oof.py \
+  --results results/oof/raw --splits A B C D E --primary-splits A B C \
+  --out /tmp/oof_analysis.json
+
+# Exact audit of the A--C prefix surfaces and stored JSON-content hashes.
+python tools/analyse_oof_protocol_surface.py \
+  --results results/oof/raw --splits A B C \
+  --out /tmp/oof_protocol_surface_analysis.json \
+  --markdown /tmp/oof_protocol_surface_analysis.md
+
+# Rebuild the 15/30 Hz and time-matched-buffer summary from frozen inference.
+python tools/summarize_fullrate_controls.py \
+  --default results/fullrate/fullrate_oof_buffer30.json \
+  --buffer60 results/fullrate/fullrate_oof_buffer60.json \
+  --png-baseline results/oof/raw/oof_A_botsort.json.gz \
+  --png-baseline results/oof/raw/oof_B_botsort.json.gz \
+  --png-baseline results/oof/raw/oof_C_botsort.json.gz \
+  --out /tmp/fullrate_summary.json
+
+# Rebuild the paired sampling-policy summary.
+python tools/summarize_sampling_replicates.py \
+  --runs-root results/sampling/runs \
+  --results results/sampling/current \
+  --legacy-results results/sampling/legacy \
+  --out /tmp/sampling_summary.json
+
+pytest -q tests
+```
+
+`results/SHA256SUMS` covers all revision-specific raw and derived artefacts. The OOF
+analysis scripts accept either `.json` or `.json.gz`; provenance hashes are calculated
+over the decompressed JSON bytes, so lossless compression does not change the audit.
+
+```bash
+shasum -a 256 -c results/SHA256SUMS
+```
 
 ```bash
 export GRAPEMOTS_ROOT=/path/to/your/workspace

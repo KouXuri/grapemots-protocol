@@ -1,0 +1,192 @@
+{
+  "scope": {
+    "videos": 6,
+    "processed_source_frames_30hz": 3470,
+    "scored_frames": 1738
+  },
+  "videos": [
+    {
+      "video": "PathPlanning_2",
+      "gt": 45,
+      "conditions": {
+        "15hz_buffer30": {
+          "predicted": 129,
+          "signed_relative_error": 1.8666666666666667
+        },
+        "30hz_buffer30": {
+          "predicted": 167,
+          "signed_relative_error": 2.7111111111111112
+        },
+        "30hz_buffer60": {
+          "predicted": 165,
+          "signed_relative_error": 2.6666666666666665
+        }
+      },
+      "delta_30hz_minus_15hz": 0.8444444444444446,
+      "delta_buffer60_minus_buffer30_at_30hz": -0.04444444444444473,
+      "released_png_baseline": {
+        "predicted": 125,
+        "gt": 45,
+        "signed_relative_error": 1.7777777777777777
+      },
+      "absolute_error_difference_decoded15hz_vs_png": 0.08888888888888902
+    },
+    {
+      "video": "PathPlanning_4",
+      "gt": 93,
+      "conditions": {
+        "15hz_buffer30": {
+          "predicted": 232,
+          "signed_relative_error": 1.4946236559139785
+        },
+        "30hz_buffer30": {
+          "predicted": 299,
+          "signed_relative_error": 2.21505376344086
+        },
+        "30hz_buffer60": {
+          "predicted": 293,
+          "signed_relative_error": 2.150537634408602
+        }
+      },
+      "delta_30hz_minus_15hz": 0.7204301075268815,
+      "delta_buffer60_minus_buffer30_at_30hz": -0.06451612903225801,
+      "released_png_baseline": {
+        "predicted": 230,
+        "gt": 93,
+        "signed_relative_error": 1.4731182795698925
+      },
+      "absolute_error_difference_decoded15hz_vs_png": 0.021505376344086002
+    },
+    {
+      "video": "PathPlanning_5",
+      "gt": 84,
+      "conditions": {
+        "15hz_buffer30": {
+          "predicted": 278,
+          "signed_relative_error": 2.3095238095238093
+        },
+        "30hz_buffer30": {
+          "predicted": 341,
+          "signed_relative_error": 3.0595238095238093
+        },
+        "30hz_buffer60": {
+          "predicted": 334,
+          "signed_relative_error": 2.9761904761904763
+        }
+      },
+      "delta_30hz_minus_15hz": 0.75,
+      "delta_buffer60_minus_buffer30_at_30hz": -0.08333333333333304,
+      "released_png_baseline": {
+        "predicted": 275,
+        "gt": 84,
+        "signed_relative_error": 2.2738095238095237
+      },
+      "absolute_error_difference_decoded15hz_vs_png": 0.03571428571428559
+    },
+    {
+      "video": "PathPlanning_6",
+      "gt": 51,
+      "conditions": {
+        "15hz_buffer30": {
+          "predicted": 389,
+          "signed_relative_error": 6.627450980392157
+        },
+        "30hz_buffer30": {
+          "predicted": 435,
+          "signed_relative_error": 7.529411764705882
+        },
+        "30hz_buffer60": {
+          "predicted": 428,
+          "signed_relative_error": 7.392156862745098
+        }
+      },
+      "delta_30hz_minus_15hz": 0.901960784313725,
+      "delta_buffer60_minus_buffer30_at_30hz": -0.13725490196078383,
+      "released_png_baseline": {
+        "predicted": 381,
+        "gt": 51,
+        "signed_relative_error": 6.470588235294118
+      },
+      "absolute_error_difference_decoded15hz_vs_png": 0.15686274509803955
+    },
+    {
+      "video": "PathPlanning_7",
+      "gt": 65,
+      "conditions": {
+        "15hz_buffer30": {
+          "predicted": 230,
+          "signed_relative_error": 2.5384615384615383
+        },
+        "30hz_buffer30": {
+          "predicted": 290,
+          "signed_relative_error": 3.4615384615384617
+        },
+        "30hz_buffer60": {
+          "predicted": 289,
+          "signed_relative_error": 3.4461538461538463
+        }
+      },
+      "delta_30hz_minus_15hz": 0.9230769230769234,
+      "delta_buffer60_minus_buffer30_at_30hz": -0.01538461538461533,
+      "released_png_baseline": {
+        "predicted": 254,
+        "gt": 65,
+        "signed_relative_error": 2.9076923076923076
+      },
+      "absolute_error_difference_decoded15hz_vs_png": 0.36923076923076925
+    },
+    {
+      "video": "PathPlanning_8",
+      "gt": 77,
+      "conditions": {
+        "15hz_buffer30": {
+          "predicted": 259,
+          "signed_relative_error": 2.3636363636363638
+        },
+        "30hz_buffer30": {
+          "predicted": 332,
+          "signed_relative_error": 3.311688311688312
+        },
+        "30hz_buffer60": {
+          "predicted": 327,
+          "signed_relative_error": 3.2467532467532467
+        }
+      },
+      "delta_30hz_minus_15hz": 0.948051948051948,
+      "delta_buffer60_minus_buffer30_at_30hz": -0.06493506493506507,
+      "released_png_baseline": {
+        "predicted": 256,
+        "gt": 77,
+        "signed_relative_error": 2.324675324675325
+      },
+      "absolute_error_difference_decoded15hz_vs_png": 0.03896103896103886
+    }
+  ],
+  "pooled": {
+    "15hz_buffer30": {
+      "predicted": 1517,
+      "gt": 415,
+      "signed_relative_error": 2.6554216867469878
+    },
+    "30hz_buffer30": {
+      "predicted": 1864,
+      "gt": 415,
+      "signed_relative_error": 3.491566265060241
+    },
+    "30hz_buffer60": {
+      "predicted": 1836,
+      "gt": 415,
+      "signed_relative_error": 3.424096385542169
+    }
+  },
+  "pooled_30hz_minus_15hz": 0.8361445783132533,
+  "pooled_reduction_from_time_matched_buffer": 0.06746987951807215,
+  "buffer_share_of_30hz_difference": 0.08069164265129664,
+  "median_video_delta_30hz_minus_15hz": 0.8732026143790848,
+  "decoded15hz_vs_released_png": {
+    "minimum_absolute_error_difference": 0.021505376344086002,
+    "maximum_absolute_error_difference": 0.36923076923076925,
+    "median_absolute_error_difference": 0.06392496392496394,
+    "maximum_difference_video": "PathPlanning_7"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "comparison": "compute-matched sampling-policy control on split A validation",
+  "common_evaluation_frames": 1160,
+  "runs": [
+    {
+      "policy": "step3",
+      "seed": 0,
+      "run": "gm_ctrl_newsplit_oldcfg",
+      "unique_training_frames": 1338,
+      "args": "configs/args/gm_ctrl_newsplit_oldcfg.yaml",
+      "curve": "results/sampling/runs/gm_ctrl_newsplit_oldcfg/results.csv",
+      "evaluation": "results/sampling/legacy/v1_traintiled_infertiled_val.json",
+      "checkpoint_sha256": "e2b7e56fb7106c7bc58a846a40ac54d89b1df30c99f22eaeedb5d4079182d6d4"
+    },
+    {
+      "policy": "step3",
+      "seed": 1,
+      "run": "gm_step3_A_s1_0802",
+      "unique_training_frames": 1338,
+      "args": "configs/args/gm_step3_A_s1_0802.yaml",
+      "curve": "results/sampling/runs/gm_step3_A_s1_0802/results.csv",
+      "evaluation": "results/sampling/current/sampling_step3_s1_val.json",
+      "checkpoint_sha256": "9465057785f127564670348df088abb978bce6dce43ecd689604b2684d8afc54"
+    },
+    {
+      "policy": "step3",
+      "seed": 2,
+      "run": "gm_step3_A_s2_0802",
+      "unique_training_frames": 1338,
+      "args": "configs/args/gm_step3_A_s2_0802.yaml",
+      "curve": "results/sampling/runs/gm_step3_A_s2_0802/results.csv",
+      "evaluation": "results/sampling/current/sampling_step3_s2_val.json",
+      "checkpoint_sha256": "1681b735eedc4f2e0c1086a149ef304931543cc7092550b0a8fbb40ab969b3aa"
+    },
+    {
+      "policy": "step1",
+      "seed": 0,
+      "run": "gm_step1_matched",
+      "unique_training_frames": 4012,
+      "args": "configs/args/gm_step1_matched.yaml",
+      "curve": "results/sampling/runs/gm_step1_matched/results.csv",
+      "evaluation": "results/sampling/legacy/fair_gm_step1_matched.json",
+      "checkpoint_sha256": "00c3b69445dc48cbfc5ac4d776d8f71e1fc845748be32bd04fc60af9d02717ba"
+    },
+    {
+      "policy": "step1",
+      "seed": 1,
+      "run": "gm_step1_A_s1_0802",
+      "unique_training_frames": 4012,
+      "args": "configs/args/gm_step1_A_s1_0802.yaml",
+      "curve": "results/sampling/runs/gm_step1_A_s1_0802/results.csv",
+      "evaluation": "results/sampling/current/sampling_step1_s1_val.json",
+      "checkpoint_sha256": "255b4df3e0fa87cd21d15498ec90672c37d053f282f6b09d115ad618d6ab0d34"
+    },
+    {
+      "policy": "step1",
+      "seed": 2,
+      "run": "gm_step1_A_s2_0802",
+      "unique_training_frames": 4012,
+      "args": "configs/args/gm_step1_A_s2_0802.yaml",
+      "curve": "results/sampling/runs/gm_step1_A_s2_0802/results.csv",
+      "evaluation": "results/sampling/current/sampling_step1_s2_val.json",
+      "checkpoint_sha256": "0eea109dec7bdf6027373851907ed4f7101d8ed63448d3b024b15dbe5902f539"
+    }
+  ]
+}
