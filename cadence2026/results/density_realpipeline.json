@@ -1,0 +1,105 @@
+{
+ "videos": [
+  "PathPlanning_2",
+  "PathPlanning_4",
+  "PathPlanning_5",
+  "PathPlanning_6",
+  "PathPlanning_7",
+  "PathPlanning_8"
+ ],
+ "video_count": 6,
+ "arms": [
+  "k1",
+  "k16",
+  "k2",
+  "k32",
+  "k4",
+  "k8"
+ ],
+ "identity_failures": [],
+ "taus": [
+  1,
+  2,
+  3,
+  5,
+  8
+ ],
+ "match_iou": 0.5,
+ "pooled_tau1": {
+  "k1": {
+   "videos": 6,
+   "U": 713,
+   "D": 480,
+   "M": 87,
+   "P": 1521,
+   "G": 415,
+   "assigned_fraction": 0.7903614457831325,
+   "signed_error": 2.6650602409638555,
+   "identity_holds": true
+  },
+  "k16": {
+   "videos": 6,
+   "U": 158,
+   "D": 138,
+   "M": 218,
+   "P": 487,
+   "G": 409,
+   "assigned_fraction": 0.4669926650366748,
+   "signed_error": 0.19070904645476772,
+   "identity_holds": true
+  },
+  "k2": {
+   "videos": 6,
+   "U": 478,
+   "D": 420,
+   "M": 104,
+   "P": 1206,
+   "G": 412,
+   "assigned_fraction": 0.7475728155339806,
+   "signed_error": 1.9271844660194175,
+   "identity_holds": true
+  },
+  "k32": {
+   "videos": 6,
+   "U": 81,
+   "D": 49,
+   "M": 247,
+   "P": 274,
+   "G": 391,
+   "assigned_fraction": 0.36828644501278773,
+   "signed_error": -0.29923273657289,
+   "identity_holds": true
+  },
+  "k4": {
+   "videos": 6,
+   "U": 359,
+   "D": 379,
+   "M": 133,
+   "P": 1017,
+   "G": 412,
+   "assigned_fraction": 0.6771844660194175,
+   "signed_error": 1.4684466019417475,
+   "identity_holds": true
+  },
+  "k8": {
+   "videos": 6,
+   "U": 251,
+   "D": 281,
+   "M": 165,
+   "P": 779,
+   "G": 412,
+   "assigned_fraction": 0.5995145631067962,
+   "signed_error": 0.8907766990291263,
+   "identity_holds": true
+  }
+ },
+ "focal_direction": {
+  "pair": [
+   "conf055",
+   "reid"
+  ],
+  "videos": 0,
+  "both_hold": 0,
+  "per_video": []
+ }
+}

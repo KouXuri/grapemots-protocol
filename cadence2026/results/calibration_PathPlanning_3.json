@@ -1,0 +1,87 @@
+{
+ "video": "PathPlanning_3",
+ "source_fps": 30.0,
+ "pilot_step": 2,
+ "pilot_frames": 400,
+ "c_per_second": 3.1761889345943928,
+ "c_spread": 1.036554515424111,
+ "measurements": [
+  {
+   "lag": 1,
+   "dt_seconds": 0.06666666666666667,
+   "source_frames": 2,
+   "step_over_size_median": 0.21156269311904907,
+   "iou_median": 0.5989317893981934,
+   "iou_below_0p3": 0.29674287503914815,
+   "c_per_second": 3.173440396785736,
+   "pairs": 6386
+  },
+  {
+   "lag": 2,
+   "dt_seconds": 0.13333333333333333,
+   "source_frames": 4,
+   "step_over_size_median": 0.4277805685997009,
+   "iou_median": 0.34343481063842773,
+   "iou_below_0p3": 0.48048664875967767,
+   "c_per_second": 3.208354264497757,
+   "pairs": 6329
+  },
+  {
+   "lag": 3,
+   "dt_seconds": 0.2,
+   "source_frames": 6,
+   "step_over_size_median": 0.642981618642807,
+   "iou_median": 0.1673884242773056,
+   "iou_below_0p3": 0.5816326530612245,
+   "c_per_second": 3.214908093214035,
+   "pairs": 6272
+  },
+  {
+   "lag": 4,
+   "dt_seconds": 0.26666666666666666,
+   "source_frames": 8,
+   "step_over_size_median": 0.8477166593074799,
+   "iou_median": 0.048452358692884445,
+   "iou_below_0p3": 0.6632882882882883,
+   "c_per_second": 3.1789374724030495,
+   "pairs": 6216
+  },
+  {
+   "lag": 6,
+   "dt_seconds": 0.4,
+   "source_frames": 12,
+   "step_over_size_median": 1.2630912065505981,
+   "iou_median": 0.0,
+   "iou_below_0p3": 0.7672780871274156,
+   "c_per_second": 3.1577280163764954,
+   "pairs": 6106
+  },
+  {
+   "lag": 8,
+   "dt_seconds": 0.5333333333333333,
+   "source_frames": 16,
+   "step_over_size_median": 1.6541509628295898,
+   "iou_median": 0.0,
+   "iou_below_0p3": 0.8510673782521682,
+   "c_per_second": 3.101533055305481,
+   "pairs": 5996
+  }
+ ],
+ "recommendation": {
+  "comfortable": {
+   "target_step_over_size": 0.2,
+   "dt_max_seconds": 0.062968546304548,
+   "source_frame_step": 1.88905638913644
+  },
+  "workable": {
+   "target_step_over_size": 0.4,
+   "dt_max_seconds": 0.125937092609096,
+   "source_frame_step": 3.77811277827288
+  },
+  "marginal": {
+   "target_step_over_size": 0.75,
+   "dt_max_seconds": 0.236132048642055,
+   "source_frame_step": 7.08396145926165
+  }
+ }
+}

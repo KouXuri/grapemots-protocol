@@ -1,0 +1,87 @@
+{
+ "video": "NoPathPlanning_2",
+ "source_fps": 30.0,
+ "pilot_step": 1,
+ "pilot_frames": 900,
+ "c_per_second": 5.539349019527435,
+ "c_spread": 1.0154234575627912,
+ "measurements": [
+  {
+   "lag": 1,
+   "dt_seconds": 0.03333333333333333,
+   "source_frames": 1,
+   "step_over_size_median": 0.18613320589065552,
+   "iou_median": 0.6349762678146362,
+   "iou_below_0p3": 0.04330586704665138,
+   "c_per_second": 5.5839961767196655,
+   "pairs": 16141
+  },
+  {
+   "lag": 2,
+   "dt_seconds": 0.06666666666666667,
+   "source_frames": 2,
+   "step_over_size_median": 0.37058329582214355,
+   "iou_median": 0.39567267894744873,
+   "iou_below_0p3": 0.33161009031454375,
+   "c_per_second": 5.558749437332153,
+   "pairs": 16055
+  },
+  {
+   "lag": 3,
+   "dt_seconds": 0.1,
+   "source_frames": 3,
+   "step_over_size_median": 0.5546793937683105,
+   "iou_median": 0.22798201441764832,
+   "iou_below_0p3": 0.6503224998434467,
+   "c_per_second": 5.5467939376831055,
+   "pairs": 15969
+  },
+  {
+   "lag": 4,
+   "dt_seconds": 0.13333333333333333,
+   "source_frames": 4,
+   "step_over_size_median": 0.7375872135162354,
+   "iou_median": 0.10400968044996262,
+   "iou_below_0p3": 0.8409620348800605,
+   "c_per_second": 5.531904101371765,
+   "pairs": 15883
+  },
+  {
+   "lag": 6,
+   "dt_seconds": 0.2,
+   "source_frames": 6,
+   "step_over_size_median": 1.1029398441314697,
+   "iou_median": 0.0,
+   "iou_below_0p3": 0.9474253707593406,
+   "c_per_second": 5.514699220657349,
+   "pairs": 15711
+  },
+  {
+   "lag": 8,
+   "dt_seconds": 0.26666666666666666,
+   "source_frames": 8,
+   "step_over_size_median": 1.4664479494094849,
+   "iou_median": 0.0,
+   "iou_below_0p3": 0.9776719644810501,
+   "c_per_second": 5.499179810285568,
+   "pairs": 15541
+  }
+ ],
+ "recommendation": {
+  "comfortable": {
+   "target_step_over_size": 0.2,
+   "dt_max_seconds": 0.03610532560684579,
+   "source_frame_step": 1.0831597682053737
+  },
+  "workable": {
+   "target_step_over_size": 0.4,
+   "dt_max_seconds": 0.07221065121369158,
+   "source_frame_step": 2.1663195364107475
+  },
+  "marginal": {
+   "target_step_over_size": 0.75,
+   "dt_max_seconds": 0.1353949710256717,
+   "source_frame_step": 4.061849130770151
+  }
+ }
+}

@@ -1,0 +1,188 @@
+{
+ "gate": 0.3,
+ "confirmation_frames": 5,
+ "corpora": {
+  "grapemots": {
+   "label": "grapemots",
+   "sequences": 11,
+   "frames": 5755,
+   "trajectories": 757,
+   "consecutive_iou_median": 0.6349762678146362,
+   "consecutive_iou_below_gate_median": 0.1612427399280907,
+   "consecutive_iou_below_gate_min": 0.013736263736263736,
+   "consecutive_iou_below_gate_max": 0.3368816530995617,
+   "step_over_size_median": 0.18549982458353043,
+   "lifetime_median": 158.0,
+   "lifetime_min": 80.0,
+   "visible_mean_median": 23.148325358851675,
+   "gap_frac_median": 0.053763440860215055,
+   "verdict_counts": {
+    "associable": 7,
+    "marginal": 4
+   },
+   "verdict": "associable",
+   "lifetime_over_confirmation": 31.6,
+   "measured": {
+    "whole_sequence_error_median": 1.7142857142857142,
+    "over_counting": 11,
+    "under_counting": 0,
+    "span_ratio_median": 1.5568181818181817
+   }
+  },
+  "bodegas2023": {
+   "label": "bodegas2023",
+   "sequences": 29,
+   "frames": 664,
+   "trajectories": 733,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 0.9518072289156626,
+   "consecutive_iou_below_gate_min": 0.8306451612903226,
+   "consecutive_iou_below_gate_max": 1.0,
+   "step_over_size_median": 4.299938201904297,
+   "lifetime_median": 6.0,
+   "lifetime_min": 2.0,
+   "visible_mean_median": 6.666666666666667,
+   "gap_frac_median": 0.0,
+   "verdict_counts": {
+    "degenerate": 29
+   },
+   "verdict": "degenerate",
+   "lifetime_over_confirmation": 1.2,
+   "measured": {
+    "whole_sequence_error_median": -0.5714285714285714,
+    "over_counting": 1,
+    "under_counting": 26,
+    "span_ratio_median": null
+   }
+  },
+  "mot17": {
+   "label": "mot17",
+   "sequences": 7,
+   "frames": 5316,
+   "trajectories": 546,
+   "consecutive_iou_median": 0.9286832213401794,
+   "consecutive_iou_below_gate_median": 0.0012819143253925862,
+   "consecutive_iou_below_gate_min": 0.0,
+   "consecutive_iou_below_gate_max": 0.035813388831078735,
+   "step_over_size_median": 0.021636037155985832,
+   "lifetime_median": 172.0,
+   "lifetime_min": 30.0,
+   "visible_mean_median": 15.522666666666666,
+   "gap_frac_median": 0.0,
+   "verdict_counts": {
+    "associable": 7
+   },
+   "verdict": "associable",
+   "lifetime_over_confirmation": 34.4,
+   "measured": {
+    "whole_sequence_error_median": -0.02666666666666667,
+    "over_counting": 1,
+    "under_counting": 5,
+    "span_ratio_median": 1.1256354393609296
+   }
+  },
+  "mot20": {
+   "label": "mot20",
+   "sequences": 4,
+   "frames": 8931,
+   "trajectories": 2215,
+   "consecutive_iou_median": 0.9554767310619354,
+   "consecutive_iou_below_gate_median": 0.0,
+   "consecutive_iou_below_gate_min": 0.0,
+   "consecutive_iou_below_gate_max": 1.549967063199907e-06,
+   "step_over_size_median": 0.0163725926540792,
+   "lifetime_median": 433.25,
+   "lifetime_min": 273.0,
+   "visible_mean_median": 93.02085025356054,
+   "gap_frac_median": 0.0,
+   "verdict_counts": {
+    "associable": 4
+   },
+   "verdict": "associable",
+   "lifetime_over_confirmation": 86.65,
+   "measured": {
+    "whole_sequence_error_median": -0.028774928774928772,
+    "over_counting": 1,
+    "under_counting": 3,
+    "span_ratio_median": 1.0199983180687986
+   }
+  }
+ },
+ "named_splits": {
+  "piazolo2026_test": {
+   "label": "piazolo2026_test",
+   "sequences": 6,
+   "frames": 136,
+   "trajectories": 147,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 0.9645658263305321,
+   "consecutive_iou_below_gate_min": 0.9254385964912281,
+   "consecutive_iou_below_gate_max": 0.9920634920634921,
+   "step_over_size_median": 3.722788095474243,
+   "lifetime_median": 6.0,
+   "lifetime_min": 5.0,
+   "visible_mean_median": 8.458333333333332,
+   "gap_frac_median": 0.0,
+   "verdict_counts": {
+    "degenerate": 6
+   },
+   "verdict": "degenerate",
+   "corpus": "bodegas2023",
+   "lifetime_over_confirmation": 1.2,
+   "videos": [
+    "row_4.2_1",
+    "row_6.1_1",
+    "row_6.1_2",
+    "row_7.1_1",
+    "row_7.1_2",
+    "row_8_1"
+   ]
+  },
+  "piazolo2026_train": {
+   "label": "piazolo2026_train",
+   "sequences": 23,
+   "frames": 528,
+   "trajectories": 586,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 0.9479166666666666,
+   "consecutive_iou_below_gate_min": 0.8306451612903226,
+   "consecutive_iou_below_gate_max": 1.0,
+   "step_over_size_median": 4.446291923522949,
+   "lifetime_median": 6.5,
+   "lifetime_min": 2.0,
+   "visible_mean_median": 5.916666666666667,
+   "gap_frac_median": 0.0,
+   "verdict_counts": {
+    "degenerate": 23
+   },
+   "verdict": "degenerate",
+   "corpus": "bodegas2023",
+   "lifetime_over_confirmation": 1.3,
+   "videos": [
+    "row_4.3_2",
+    "row_4.4_2",
+    "row_4.4_4",
+    "row_6.1_3",
+    "row_6.1_4",
+    "row_6.2_1",
+    "row_6.2_2",
+    "row_6.3",
+    "row_7.1_3",
+    "row_7.1_4",
+    "row_7.2_1",
+    "row_7.2_2",
+    "row_7.2_3",
+    "row_7.2_4",
+    "row_7.3_1",
+    "row_7.3_2",
+    "row_7.3_3",
+    "row_7.3_4",
+    "row_7.4_1",
+    "row_7.4_2",
+    "row_8_2",
+    "row_8_3",
+    "row_8_4"
+   ]
+  }
+ }
+}

@@ -1,0 +1,196 @@
+{
+ "videos": [
+  "PathPlanning_2",
+  "PathPlanning_4",
+  "PathPlanning_5",
+  "PathPlanning_6",
+  "PathPlanning_7",
+  "PathPlanning_8"
+ ],
+ "video_count": 6,
+ "arms": [
+  "assoc_buf10",
+  "assoc_buf60",
+  "assoc_nogmc",
+  "botsort",
+  "bytetrack",
+  "conf040",
+  "conf055",
+  "ios",
+  "reid"
+ ],
+ "identity_failures": [],
+ "taus": [
+  1,
+  2,
+  3,
+  5,
+  8
+ ],
+ "match_iou": 0.5,
+ "pooled_tau1": {
+  "assoc_buf10": {
+   "videos": 6,
+   "U": 848,
+   "D": 821,
+   "M": 99,
+   "P": 1985,
+   "G": 415,
+   "assigned_fraction": 0.7614457831325301,
+   "signed_error": 3.783132530120482,
+   "identity_holds": true
+  },
+  "assoc_buf60": {
+   "videos": 6,
+   "U": 719,
+   "D": 822,
+   "M": 96,
+   "P": 1860,
+   "G": 415,
+   "assigned_fraction": 0.7686746987951807,
+   "signed_error": 3.4819277108433737,
+   "identity_holds": true
+  },
+  "assoc_nogmc": {
+   "videos": 6,
+   "U": 714,
+   "D": 859,
+   "M": 96,
+   "P": 1892,
+   "G": 415,
+   "assigned_fraction": 0.7686746987951807,
+   "signed_error": 3.559036144578313,
+   "identity_holds": true
+  },
+  "botsort": {
+   "videos": 6,
+   "U": 713,
+   "D": 480,
+   "M": 87,
+   "P": 1521,
+   "G": 415,
+   "assigned_fraction": 0.7903614457831325,
+   "signed_error": 2.6650602409638555,
+   "identity_holds": true
+  },
+  "bytetrack": {
+   "videos": 6,
+   "U": 785,
+   "D": 813,
+   "M": 97,
+   "P": 1916,
+   "G": 415,
+   "assigned_fraction": 0.7662650602409639,
+   "signed_error": 3.616867469879518,
+   "identity_holds": true
+  },
+  "conf040": {
+   "videos": 6,
+   "U": 528,
+   "D": 411,
+   "M": 113,
+   "P": 1241,
+   "G": 415,
+   "assigned_fraction": 0.727710843373494,
+   "signed_error": 1.9903614457831325,
+   "identity_holds": true
+  },
+  "conf055": {
+   "videos": 6,
+   "U": 323,
+   "D": 331,
+   "M": 150,
+   "P": 919,
+   "G": 415,
+   "assigned_fraction": 0.6385542168674698,
+   "signed_error": 1.2144578313253012,
+   "identity_holds": true
+  },
+  "ios": {
+   "videos": 6,
+   "U": 544,
+   "D": 388,
+   "M": 90,
+   "P": 1257,
+   "G": 415,
+   "assigned_fraction": 0.7831325301204819,
+   "signed_error": 2.0289156626506024,
+   "identity_holds": true
+  },
+  "reid": {
+   "videos": 6,
+   "U": 993,
+   "D": 580,
+   "M": 78,
+   "P": 1910,
+   "G": 415,
+   "assigned_fraction": 0.8120481927710843,
+   "signed_error": 3.602409638554217,
+   "identity_holds": true
+  }
+ },
+ "focal_direction": {
+  "pair": [
+   "conf055",
+   "reid"
+  ],
+  "videos": 6,
+  "both_hold": 6,
+  "per_video": [
+   {
+    "video": "PathPlanning_2",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.3111111111111111,
+    "error_reid": 2.888888888888889,
+    "assigned_conf055": 0.37777777777777777,
+    "assigned_reid": 0.6222222222222222
+   },
+   {
+    "video": "PathPlanning_4",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.16129032258064516,
+    "error_reid": 2.3333333333333335,
+    "assigned_conf055": 0.5053763440860215,
+    "assigned_reid": 0.7849462365591398
+   },
+   {
+    "video": "PathPlanning_5",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 1.0,
+    "error_reid": 2.857142857142857,
+    "assigned_conf055": 0.6666666666666667,
+    "assigned_reid": 0.8690476190476191
+   },
+   {
+    "video": "PathPlanning_6",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 3.803921568627451,
+    "error_reid": 7.784313725490196,
+    "assigned_conf055": 0.8431372549019608,
+    "assigned_reid": 0.9215686274509804
+   },
+   {
+    "video": "PathPlanning_7",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 1.6615384615384616,
+    "error_reid": 4.061538461538461,
+    "assigned_conf055": 0.8153846153846154,
+    "assigned_reid": 0.9230769230769231
+   },
+   {
+    "video": "PathPlanning_8",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 1.155844155844156,
+    "error_reid": 3.207792207792208,
+    "assigned_conf055": 0.6363636363636364,
+    "assigned_reid": 0.7272727272727273
+   }
+  ]
+ }
+}

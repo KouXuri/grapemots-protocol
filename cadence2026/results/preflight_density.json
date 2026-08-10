@@ -1,0 +1,149 @@
+{
+ "gate": 0.3,
+ "confirmation_frames": 5,
+ "corpora": {
+  "k01": {
+   "label": "k01",
+   "sequences": 11,
+   "frames": 5755,
+   "trajectories": 757,
+   "consecutive_iou_median": 0.6349762678146362,
+   "consecutive_iou_below_gate_median": 0.1612427399280907,
+   "consecutive_iou_below_gate_min": 0.013736263736263736,
+   "consecutive_iou_below_gate_max": 0.3368816530995617,
+   "step_over_size_median": 0.18549982458353043,
+   "lifetime_median": 158.0,
+   "lifetime_min": 80.0,
+   "visible_mean_median": 23.148325358851675,
+   "gap_frac_median": 0.053763440860215055,
+   "verdict_counts": {
+    "associable": 7,
+    "marginal": 4
+   },
+   "verdict": "associable",
+   "lifetime_over_confirmation": 31.6
+  },
+  "k02": {
+   "label": "k02",
+   "sequences": 11,
+   "frames": 2880,
+   "trajectories": 754,
+   "consecutive_iou_median": 0.3963243365287781,
+   "consecutive_iou_below_gate_median": 0.38095238095238093,
+   "consecutive_iou_below_gate_min": 0.27170511185811985,
+   "consecutive_iou_below_gate_max": 0.7133220910623946,
+   "step_over_size_median": 0.37021633982658386,
+   "lifetime_median": 79.0,
+   "lifetime_min": 40.0,
+   "visible_mean_median": 23.142857142857142,
+   "gap_frac_median": 0.05434782608695652,
+   "verdict_counts": {
+    "marginal": 11
+   },
+   "verdict": "marginal",
+   "lifetime_over_confirmation": 15.8
+  },
+  "k04": {
+   "label": "k04",
+   "sequences": 11,
+   "frames": 1443,
+   "trajectories": 752,
+   "consecutive_iou_median": 0.10440520197153091,
+   "consecutive_iou_below_gate_median": 0.6559897501601537,
+   "consecutive_iou_below_gate_min": 0.5291127541589649,
+   "consecutive_iou_below_gate_max": 0.9829497016197783,
+   "step_over_size_median": 0.7373273372650146,
+   "lifetime_median": 40.0,
+   "lifetime_min": 21.0,
+   "visible_mean_median": 23.11320754716981,
+   "gap_frac_median": 0.022222222222222223,
+   "verdict_counts": {
+    "marginal": 5,
+    "degenerate": 6
+   },
+   "verdict": "degenerate",
+   "lifetime_over_confirmation": 8.0
+  },
+  "k08": {
+   "label": "k08",
+   "sequences": 11,
+   "frames": 724,
+   "trajectories": 752,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 0.8402684563758389,
+   "consecutive_iou_below_gate_min": 0.7106339468302658,
+   "consecutive_iou_below_gate_max": 1.0,
+   "step_over_size_median": 1.4756077527999878,
+   "lifetime_median": 20.0,
+   "lifetime_min": 10.5,
+   "visible_mean_median": 23.296296296296298,
+   "gap_frac_median": 0.021739130434782608,
+   "verdict_counts": {
+    "degenerate": 11
+   },
+   "verdict": "degenerate",
+   "lifetime_over_confirmation": 4.0
+  },
+  "k16": {
+   "label": "k16",
+   "sequences": 11,
+   "frames": 365,
+   "trajectories": 735,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 0.9384615384615385,
+   "consecutive_iou_below_gate_min": 0.8180039138943248,
+   "consecutive_iou_below_gate_max": 1.0,
+   "step_over_size_median": 2.893816590309143,
+   "lifetime_median": 10.0,
+   "lifetime_min": 6.0,
+   "visible_mean_median": 23.5,
+   "gap_frac_median": 0.012345679012345678,
+   "verdict_counts": {
+    "degenerate": 11
+   },
+   "verdict": "degenerate",
+   "lifetime_over_confirmation": 2.0
+  },
+  "k32": {
+   "label": "k32",
+   "sequences": 11,
+   "frames": 185,
+   "trajectories": 715,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 0.9977272727272727,
+   "consecutive_iou_below_gate_min": 0.8728813559322034,
+   "consecutive_iou_below_gate_max": 1.0,
+   "step_over_size_median": 5.932557106018066,
+   "lifetime_median": 5.0,
+   "lifetime_min": 3.0,
+   "visible_mean_median": 23.0,
+   "gap_frac_median": 0.0125,
+   "verdict_counts": {
+    "degenerate": 11
+   },
+   "verdict": "degenerate",
+   "lifetime_over_confirmation": 1.0
+  },
+  "k64": {
+   "label": "k64",
+   "sequences": 11,
+   "frames": 96,
+   "trajectories": 689,
+   "consecutive_iou_median": 0.0,
+   "consecutive_iou_below_gate_median": 1.0,
+   "consecutive_iou_below_gate_min": 0.8435374149659864,
+   "consecutive_iou_below_gate_max": 1.0,
+   "step_over_size_median": 11.117362976074219,
+   "lifetime_median": 3.0,
+   "lifetime_min": 2.0,
+   "visible_mean_median": 23.0,
+   "gap_frac_median": 0.0,
+   "verdict_counts": {
+    "degenerate": 11
+   },
+   "verdict": "degenerate",
+   "lifetime_over_confirmation": 0.6
+  }
+ },
+ "named_splits": {}
+}

@@ -1,7 +1,15 @@
-# Distinct-Track Counts Are Protocol-Defined in Aerial Vineyard Videos
+# Protocol-defined counting in aerial vineyard video
 
-Manifests, frozen results and analysis scripts accompanying the CBDCom 2026 paper
-*Distinct-Track Counts Are Protocol-Defined in Aerial Vineyard Videos*.
+Manifests, frozen results and analysis scripts for our work on how a video-derived
+count is defined by the conditions under which it was observed.
+
+**`cadence2026/` is the release for the CBDCom 2026 paper *Cadence, Not the Tracker,
+Sets the Sign of Video Count Error*** (tag `cbdcom2026-cadence`). It adds three corpora
+beyond GrapeMOTS, the frame-level alignment of a public release to its source video, the
+cadence contrast over 28 sequences, the annotation-thinning ladder, and the calibration
+tool behind the annotation-interval criterion. It carries its own README.
+
+The rest of this repository is the earlier release, described below.
 
 The paper argues that a predicted-track count is only interpretable together with the
 protocol that produced it, and that per-video manifests and per-video results have to
@@ -16,7 +24,10 @@ Ariza-Sentís et al., *Data in Brief* **54** (2024) 110432.
 `cbdcom2026` is the original submission evidence. `cbdcom2026-r2` adds the six-video
 out-of-fold (OOF) analysis and the matched 15/30 Hz source-video control used by the
 final eight-page manuscript, together with the auxiliary paired sampling-policy runs.
-Release tags are treated as immutable snapshots: the original tag is not moved, and any
+`cbdcom2026-cadence` (2026-08-10) adds `cadence2026/`: four corpora and 51 sequences,
+the zero-residual alignment of the 2023 vineyard release to its source video, the
+28-sequence cadence contrast, the thinning ladder and the annotation-interval criterion.
+Release tags are treated as immutable snapshots: an existing tag is never moved, and any
 later correction receives a new tag.
 
 ## Layout

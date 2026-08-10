@@ -1,0 +1,210 @@
+{
+ "videos": [
+  "NoPathPlanning_1",
+  "NoPathPlanning_2",
+  "NoPathPlanning_3",
+  "PathPlanning_1",
+  "PathPlanning_2",
+  "PathPlanning_3",
+  "PathPlanning_4",
+  "PathPlanning_5",
+  "PathPlanning_6",
+  "PathPlanning_7",
+  "PathPlanning_8"
+ ],
+ "video_count": 11,
+ "arms": [
+  "botsort",
+  "bytetrack",
+  "conf040",
+  "conf055",
+  "ios",
+  "reid"
+ ],
+ "identity_failures": [],
+ "taus": [
+  1,
+  2,
+  3,
+  5,
+  8
+ ],
+ "match_iou": 0.5,
+ "pooled_tau1": {
+  "botsort": {
+   "videos": 11,
+   "U": 950,
+   "D": 590,
+   "M": 247,
+   "P": 2050,
+   "G": 757,
+   "assigned_fraction": 0.6737120211360634,
+   "signed_error": 1.7080581241743724,
+   "identity_holds": true
+  },
+  "bytetrack": {
+   "videos": 11,
+   "U": 1021,
+   "D": 928,
+   "M": 278,
+   "P": 2428,
+   "G": 757,
+   "assigned_fraction": 0.6327608982826949,
+   "signed_error": 2.2073976221928664,
+   "identity_holds": true
+  },
+  "conf040": {
+   "videos": 11,
+   "U": 646,
+   "D": 489,
+   "M": 295,
+   "P": 1597,
+   "G": 757,
+   "assigned_fraction": 0.6103038309114928,
+   "signed_error": 1.1096433289299867,
+   "identity_holds": true
+  },
+  "conf055": {
+   "videos": 11,
+   "U": 378,
+   "D": 360,
+   "M": 370,
+   "P": 1125,
+   "G": 757,
+   "assigned_fraction": 0.5112285336856011,
+   "signed_error": 0.4861294583883752,
+   "identity_holds": true
+  },
+  "ios": {
+   "videos": 11,
+   "U": 749,
+   "D": 505,
+   "M": 252,
+   "P": 1759,
+   "G": 757,
+   "assigned_fraction": 0.667107001321004,
+   "signed_error": 1.323645970937913,
+   "identity_holds": true
+  },
+  "reid": {
+   "videos": 11,
+   "U": 1366,
+   "D": 708,
+   "M": 219,
+   "P": 2612,
+   "G": 757,
+   "assigned_fraction": 0.7107001321003963,
+   "signed_error": 2.450462351387054,
+   "identity_holds": true
+  }
+ },
+ "focal_direction": {
+  "pair": [
+   "conf055",
+   "reid"
+  ],
+  "videos": 11,
+  "both_hold": 10,
+  "per_video": [
+   {
+    "video": "NoPathPlanning_1",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": -0.5903614457831325,
+    "error_reid": 1.2048192771084338,
+    "assigned_conf055": 0.1325301204819277,
+    "assigned_reid": 0.5180722891566265
+   },
+   {
+    "video": "NoPathPlanning_2",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": -0.3953488372093023,
+    "error_reid": 1.430232558139535,
+    "assigned_conf055": 0.32558139534883723,
+    "assigned_reid": 0.5697674418604651
+   },
+   {
+    "video": "NoPathPlanning_3",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.1724137931034483,
+    "error_reid": 2.7241379310344827,
+    "assigned_conf055": 0.6551724137931034,
+    "assigned_reid": 0.8620689655172413
+   },
+   {
+    "video": "PathPlanning_1",
+    "abs_error_lower_for_conf055": false,
+    "assigned_higher_for_reid": true,
+    "error_conf055": -0.8275862068965517,
+    "error_reid": -0.10344827586206896,
+    "assigned_conf055": 0.0,
+    "assigned_reid": 0.03448275862068961
+   },
+   {
+    "video": "PathPlanning_2",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.35555555555555557,
+    "error_reid": 2.533333333333333,
+    "assigned_conf055": 0.48888888888888893,
+    "assigned_reid": 0.5555555555555556
+   },
+   {
+    "video": "PathPlanning_3",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.21052631578947367,
+    "error_reid": 0.8596491228070176,
+    "assigned_conf055": 0.543859649122807,
+    "assigned_reid": 0.6491228070175439
+   },
+   {
+    "video": "PathPlanning_4",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.26881720430107525,
+    "error_reid": 2.6559139784946235,
+    "assigned_conf055": 0.4946236559139785,
+    "assigned_reid": 0.8387096774193549
+   },
+   {
+    "video": "PathPlanning_5",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 1.5,
+    "error_reid": 3.1666666666666665,
+    "assigned_conf055": 0.8095238095238095,
+    "assigned_reid": 0.9285714285714286
+   },
+   {
+    "video": "PathPlanning_6",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 3.176470588235294,
+    "error_reid": 6.9411764705882355,
+    "assigned_conf055": 0.7843137254901961,
+    "assigned_reid": 0.8627450980392157
+   },
+   {
+    "video": "PathPlanning_7",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.7230769230769231,
+    "error_reid": 2.276923076923077,
+    "assigned_conf055": 0.6307692307692307,
+    "assigned_reid": 0.7230769230769231
+   },
+   {
+    "video": "PathPlanning_8",
+    "abs_error_lower_for_conf055": true,
+    "assigned_higher_for_reid": true,
+    "error_conf055": 0.935064935064935,
+    "error_reid": 2.857142857142857,
+    "assigned_conf055": 0.5584415584415585,
+    "assigned_reid": 0.7922077922077921
+   }
+  ]
+ }
+}

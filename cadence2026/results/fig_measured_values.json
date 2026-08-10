@@ -1,0 +1,31 @@
+{
+ "annotation_rate_hz": {
+  "median": 1.6662857142857141,
+  "min": 0.6969767441860465,
+  "max": 4.995,
+  "below_1hz": 6,
+  "sequences": 28
+ },
+ "per_corpus": {
+  "bodegas2023": {
+   "sequences": 29,
+   "r_median": 4.299938201904297,
+   "iou_median": 0.0
+  },
+  "grapemots": {
+   "sequences": 11,
+   "r_median": 0.18549982458353043,
+   "iou_median": 0.6349762678146362
+  },
+  "mot17": {
+   "sequences": 7,
+   "r_median": 0.021636037155985832,
+   "iou_median": 0.9286832213401794
+  },
+  "mot20": {
+   "sequences": 4,
+   "r_median": 0.0163725926540792,
+   "iou_median": 0.9554767310619354
+  }
+ }
+}
