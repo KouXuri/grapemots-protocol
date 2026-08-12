@@ -1,0 +1,16 @@
+# BoT-SORT with GMC and retention effectively unlimited: 3000 processed frames
+# exceeds the longest sequence in either arm of the cadence contrast (1781 source
+# frames), so no track is ever removed for being lost. This is the control that
+# removes state retention as an explanation of the cadence effect.
+tracker_type: botsort
+track_high_thresh: 0.25
+track_low_thresh: 0.1
+new_track_thresh: 0.25
+track_buffer: 3000
+match_thresh: 0.8
+fuse_score: True
+gmc_method: sparseOptFlow
+proximity_thresh: 0.5
+appearance_thresh: 0.8
+with_reid: False
+model: auto

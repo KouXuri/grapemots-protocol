@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 from math import comb
 
-ROOT = Path("/home/kou/my_env/yolo26/runs/decomp_0812/results")
+ROOT = ROOT / "runs/decomp_0812/results"
 FILES = ["decomp_fold1_six.json", "decomp_fold2_eleven.json",
          "decomp_seen_a.json", "decomp_seen_b.json"]
 TAUS = ["1", "3", "5", "8"]
@@ -95,7 +95,7 @@ def main() -> None:
     # release's own image files. Agreement is a second check on the alignment.
     print("\n=== reproduction against the published contrast ===")
     published = json.loads(Path(
-        "/home/kou/my_env/yolo26/runs/bodegas_round2_0809/results/"
+        "runs/bodegas_round2_0809/results/"
         "cadence_contrast_release.json").read_text())
     pub = {r["video"]: r for r in published["sequences"]}
     worst_rel = worst_src = 0.0

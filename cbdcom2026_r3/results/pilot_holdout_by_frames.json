@@ -1,0 +1,83 @@
+{
+ "lags": [
+  1,
+  2,
+  3,
+  4,
+  6,
+  8
+ ],
+ "quantile": 0.5,
+ "by_pilot_frames": {
+  "10": {
+   "pilots": 436,
+   "median_seconds": 0.6673340006673341,
+   "abs_rel_error_median": 0.36129476698592194,
+   "rel_error_median": 0.021219942343370914,
+   "step_ratio_p05": 0.27009514008824925,
+   "step_ratio_p95": 5.60914439110646,
+   "same_step_theta0.2": 0.6444954128440367,
+   "step_is_one_theta0.2": 0.7385321100917431,
+   "conservative_theta0.2": 0.7821100917431193,
+   "same_step_theta0.75": 0.16743119266055045,
+   "step_is_one_theta0.75": 0.02522935779816514,
+   "conservative_theta0.75": 0.6123853211009175
+  },
+  "15": {
+   "pilots": 287,
+   "median_seconds": 1.001001001001001,
+   "abs_rel_error_median": 0.3229803404570629,
+   "rel_error_median": 0.026799633959282143,
+   "step_ratio_p05": 0.2734470581623177,
+   "step_ratio_p95": 5.57811850887372,
+   "same_step_theta0.2": 0.6515679442508711,
+   "step_is_one_theta0.2": 0.7526132404181185,
+   "conservative_theta0.2": 0.8013937282229965,
+   "same_step_theta0.75": 0.18466898954703834,
+   "step_is_one_theta0.75": 0.020905923344947737,
+   "conservative_theta0.75": 0.6306620209059234
+  },
+  "30": {
+   "pilots": 141,
+   "median_seconds": 2.002002002002002,
+   "abs_rel_error_median": 0.32006813241074655,
+   "rel_error_median": 0.05425783793923999,
+   "step_ratio_p05": 0.3422470516245064,
+   "step_ratio_p95": 3.7193108039521703,
+   "same_step_theta0.2": 0.6595744680851063,
+   "step_is_one_theta0.2": 0.7446808510638298,
+   "conservative_theta0.2": 0.8085106382978723,
+   "same_step_theta0.75": 0.16312056737588654,
+   "step_is_one_theta0.75": 0.014184397163120567,
+   "conservative_theta0.75": 0.6170212765957447
+  },
+  "60": {
+   "pilots": 68,
+   "median_seconds": 4.004004004004004,
+   "abs_rel_error_median": 0.32234045879602363,
+   "rel_error_median": 0.006338372746148044,
+   "step_ratio_p05": 0.3571674346618962,
+   "step_ratio_p95": 2.932840955952773,
+   "same_step_theta0.2": 0.6470588235294118,
+   "step_is_one_theta0.2": 0.75,
+   "conservative_theta0.2": 0.7794117647058824,
+   "same_step_theta0.75": 0.14705882352941177,
+   "step_is_one_theta0.75": 0.0,
+   "conservative_theta0.75": 0.5735294117647058
+  },
+  "120": {
+   "pilots": 31,
+   "median_seconds": 8.008008008008009,
+   "abs_rel_error_median": 0.26446306900196387,
+   "rel_error_median": 4.4298328521255327e-05,
+   "step_ratio_p05": 0.46969300746295195,
+   "step_ratio_p95": 2.506404821578829,
+   "same_step_theta0.2": 0.6774193548387096,
+   "step_is_one_theta0.2": 0.7096774193548387,
+   "conservative_theta0.2": 0.8387096774193549,
+   "same_step_theta0.75": 0.1935483870967742,
+   "step_is_one_theta0.75": 0.0,
+   "conservative_theta0.75": 0.6774193548387096
+  }
+ }
+}

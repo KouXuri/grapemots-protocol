@@ -1,0 +1,43 @@
+{
+ "checkpoints": {
+  "bodegas_fold2_yolo26s/weights/best.pt": {
+   "map": "fold2_weights_map.json",
+   "sha256": "02d2d88031aa0391c867ecd9cb8fb69484f7401b63db0fd5ed54881691a553db"
+  },
+  "bodegas_yolo26s/weights/best.pt": {
+   "map": "fold1_weights_map.json",
+   "sha256": "d4e4d9b039ed4a9b1ff229d3a4e669da0907f2c811eee5894b7a9a694727b3b5"
+  }
+ },
+ "images": {},
+ "source_videos": {
+  "row_4.2_1.mp4": "e91c7f9a0384e2ef43395afb905887c21b768539e8f298337960d06511a3842e",
+  "row_4.3_2.mp4": "c9cc879384819ad3e045067a7a7b1be671fe4b52c5f617513fcca831f60c1fa5",
+  "row_4.4_2.mp4": "6e963f7587fe49d9bfad304d4e0063e56ceccc6f64ce2fb88d9740028cb6d679",
+  "row_4.4_4.mp4": "faf9b2a706f6acbfcda32d790b543ae968cf16dc15b01a846bf0a3480b240abc",
+  "row_6.1_1.mp4": "40c9e266b35dcb8f0e9e8ecaa98a62725a84f6f53bf6d7bbda609a90a9135070",
+  "row_6.1_2.mp4": "da6de106c000b26d91d00ce50ea3a84dca067a19bb86131aabba9f2db0c5998c",
+  "row_6.1_3.mp4": "6315d4be64279fec66283e2a38aa07638e4187fba13cd9fd687b3520c612345f",
+  "row_6.1_4.mp4": "77919a74079d7b1d1d1f3a2c281813f10b6e180e3546d2c38b517b92e6678d69",
+  "row_6.2_1.mp4": "fd8e215a85d9d657cdf80f16bed8c5693f9f00df3584ae461b1bba37cfaebbd7",
+  "row_6.2_2.mp4": "a13606ea6c5afc3a8b18ba43a778cd858c757c77b708e2c8d8cbf52d58ebf18f",
+  "row_7.1_1.mp4": "f242bce74db84c8a5ca179c7e8ef26ab85f43a02c3580015af4216e1fe8e296c",
+  "row_7.1_2.mp4": "812d8da4bfe283f09cf765e7c373bf3aa135b46e0e292d439651cbb8091c5285",
+  "row_7.1_3.mp4": "e9ea86bd5eb20332d1cfb2ed12ab958106466270aafbb4dfa32f78ff1b4349eb",
+  "row_7.1_4.mp4": "057dd9fa2dcb0517bdb9ff9f03ea86161fcd13b9f4ebfe9b646286948ae90343",
+  "row_7.2_1.mp4": "676ee56b32e16f6077f5ead52c09b07530b830b71d84ce60ab2394df950c053d",
+  "row_7.2_2.mp4": "47c7af1819a4c5e30bf92bded8b603812a8dddd5de0cf6144dc5f9b42acf8de7",
+  "row_7.2_3.mp4": "ef8d25f01ee98f9ee6208994ff0adb242a05ae3d85f136663c5488c18133d814",
+  "row_7.2_4.mp4": "801a6be707dd5b8112e18ffe02dd54b4cc5e2a56776990b7c94cb85c9979a52c",
+  "row_7.3_1.mp4": "d52feac47b081ff13a23b2d3d2547c8b651bcd902ee92942506663957959d960",
+  "row_7.3_2.mp4": "e60d82d66c037c02eadd87d3081bab5117e0598aaa53e62db1867bc772ffb807",
+  "row_7.3_3.mp4": "c0adede366819d33211895f06bb54a157e2241c38f75ed954f9442746e2b5190",
+  "row_7.3_4.mp4": "6bc7aebaf9cf9fefde6943cd8ad5ec40f50f22747ea52b4f05cff3b8317223cd",
+  "row_7.4_1.mp4": "b472a5f291fe496e67b6a638be26ace86b9dcfcec8dc1485b655208cee68d8d0",
+  "row_7.4_2.mp4": "ccd49ab6dca9786d80fa1445fff862b83721dad564226714e363ecec27a47dd5",
+  "row_8_1.mp4": "4837c15a1794a771f604aee584667a3305f8ed83c2d22dc324836accddd03a4a",
+  "row_8_2.mp4": "a0a5acee3950aa1d71d02e2fc512989bd632ad02e9a210e16caef1819a2afdd4",
+  "row_8_3.mp4": "0e3a284252e548d56d79214a0e31130dba5e245e28545af1e38f02be6afe7fc7",
+  "row_8_4.mp4": "157c81a3fcd1d45b8fd7a2702e2acaee246f52e783fb11082c5135a74ea18a8f"
+ }
+}

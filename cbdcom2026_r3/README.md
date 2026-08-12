@@ -1,8 +1,17 @@
-# cbdcom2026-r3 — evidence for *Two Ways to Reverse the Sign of a Video Count Error*
+# Evidence for *Two Ways to Reverse the Sign of a Video Count Error*
 
-Frozen on 2026-08-12. Checksums in `SHA256SUMS`; verify with
+Tags `cbdcom2026-r3` and `cbdcom2026-r4`, both 2026-08-12. r4 adds the inputs and
+configurations needed to re-run rather than only check r3, and changes nothing in
+it. `CHANGELOG.md` records that, and why Table III changed between the submitted
+draft and r3.
+
+Checksums in `SHA256SUMS`; verify with
 
     shasum -a 256 -c SHA256SUMS
+
+Tools resolve paths from `GRAPEMOTS_ROOT`, defaulting to the working directory:
+
+    export GRAPEMOTS_ROOT=$PWD
 
 ## What this round adds
 
@@ -21,7 +30,12 @@ experiment and not only to the thinning ladder.
 | `results/decomp_buf1_fold1.json`, `_fold2.json` | released arm at one processed frame of retention |
 | `results/cadence_decomposition.json` | Table III and the decomposition, 17 model-unseen |
 | `results/cadence_decomposition_all28.json` | the same over all 28 |
-| `results/hota_panelA.json` | HOTA, DetA, AssA and the re-derived U/D/M for six rows of Table II |
+| `results/hota_panelA.json`, `hota_assoc_rows.json` | HOTA, DetA, AssA and re-derived U/D/M for all eleven rows of Table II |
+| `results/scale_invariance2.json` | the 45,819 size-binned pairs behind Table V |
+| `results/calibration_2023/` | the 28 per-video calibrations behind c = 6.38 |
+| `results/cached_conf/` | per-frame outputs of the confidence 0.70 and 0.85 rows |
+| `results/input_manifest.json` | SHA-256 of the two checkpoints and 28 source videos |
+| `cfg/trackers/` | the tracker configurations every arm names |
 
 Arms are `rel_buf30`, `rel_buf3000`, `src_buf30`, `src_buf3000`; `rel` sees only
 the aligned annotated frames, `src` every source frame.
@@ -41,7 +55,8 @@ the aligned annotated frames, `src` every source frame.
 
     python tools/aggregate_decomp.py        # Table III + decomposition, 17 sequences
     python tools/aggregate_decomp_all28.py  # the same over 28
-    python tools/hota_panelA.py             # HOTA / DetA / AssA for Table II
+    python tools/hota_panelA.py             # HOTA / DetA / AssA, confidence rows
+    python tools/hota_assoc_rows.py         # the same for the association rows
 
 `P − G = U + D − M` is checked on every sequence and every arm before any number
 is used; the aggregate scripts abort if it fails.

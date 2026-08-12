@@ -24,18 +24,17 @@ from scipy.optimize import linear_sum_assignment
 ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", Path.cwd()))
 STRIDE = ROOT / "runs/stride_and_cache_0809/results"
 REBUTTAL = ROOT / "runs/rebuttal_0811/results"
-OUT = ROOT / "runs/decomp_0812/results/hota_panelA.json"
+OUT = ROOT / "runs/decomp_0812/results/hota_assoc_rows.json"
 VIDEOS = ["PathPlanning_2", "PathPlanning_4", "PathPlanning_5",
           "PathPlanning_6", "PathPlanning_7", "PathPlanning_8"]
 
 # label, arm token, directory holding cached_{video}_{arm}.json
 ARMS = [
-    ("Confidence 0.85",      "conf085",      REBUTTAL),
-    ("Confidence 0.70",      "conf070",      REBUTTAL),
-    ("Confidence 0.55",      "conf055",      STRIDE),
-    ("Confidence 0.40",      "conf040",      STRIDE),
-    ("IoS merge",            "ios",          STRIDE),
-    ("BoT-SORT, buffer 30",  "botsort",      STRIDE),
+    ("ByteTrack, buffer 60", "assoc_buf60",  STRIDE),
+    ("BoT-SORT, GMC off",    "assoc_nogmc",  STRIDE),
+    ("BoT-SORT + ReID",      "reid",         STRIDE),
+    ("ByteTrack, buffer 30", "bytetrack",    STRIDE),
+    ("ByteTrack, buffer 10", "assoc_buf10",  STRIDE),
 ]
 
 from trackeval.metrics import HOTA  # noqa: E402

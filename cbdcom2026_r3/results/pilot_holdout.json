@@ -1,0 +1,139 @@
+{
+ "pilot_seconds": 1.0,
+ "lags": [
+  1,
+  2,
+  3
+ ],
+ "quantile": 0.5,
+ "sequences": [
+  {
+   "video": "PathPlanning_2",
+   "pilots": 13,
+   "span_frames": 15,
+   "c_whole_sequence": 4.531220057308674,
+   "c_pilot_median": 4.736007136031985,
+   "rel_error_median": 0.048838737216723535,
+   "rel_error_abs_max": 1.3036142007993041,
+   "step_ratio_median": 0.9534354181593964,
+   "step_ratio_min": 0.43410046684597703,
+   "step_ratio_max": 6.292927420876595,
+   "conservative_fraction": 0.5384615384615384
+  },
+  {
+   "video": "PathPlanning_4",
+   "pilots": 24,
+   "span_frames": 15,
+   "c_whole_sequence": 1.9348700060695407,
+   "c_pilot_median": 2.285051447041332,
+   "rel_error_median": 0.19337512446796334,
+   "rel_error_abs_max": 5.830790961084647,
+   "step_ratio_median": 0.8392480334932093,
+   "step_ratio_min": 0.146395930675825,
+   "step_ratio_max": 8.309188202767876,
+   "conservative_fraction": 0.5416666666666666
+  },
+  {
+   "video": "PathPlanning_5",
+   "pilots": 17,
+   "span_frames": 15,
+   "c_whole_sequence": 2.2195768745988604,
+   "c_pilot_median": 2.74437343865633,
+   "rel_error_median": 0.2812490786007969,
+   "rel_error_abs_max": 5.8471437637904975,
+   "step_ratio_median": 0.7804883661591091,
+   "step_ratio_min": 0.14604629820805923,
+   "step_ratio_max": 14.344605191084778,
+   "conservative_fraction": 0.5294117647058824
+  },
+  {
+   "video": "PathPlanning_6",
+   "pilots": 18,
+   "span_frames": 15,
+   "c_whole_sequence": 1.9161034934967753,
+   "c_pilot_median": 2.271307260878384,
+   "rel_error_median": 0.20529840317160772,
+   "rel_error_abs_max": 3.582783070222862,
+   "step_ratio_median": 0.8305989494804615,
+   "step_ratio_min": 0.21820801567013073,
+   "step_ratio_max": 5.741346536835677,
+   "conservative_fraction": 0.5555555555555556
+  },
+  {
+   "video": "PathPlanning_7",
+   "pilots": 14,
+   "span_frames": 15,
+   "c_whole_sequence": 3.0608784006536003,
+   "c_pilot_median": 5.034152389727533,
+   "rel_error_median": 0.7749231648115429,
+   "rel_error_abs_max": 2.6075190098451735,
+   "step_ratio_median": 0.5702230311832704,
+   "step_ratio_min": 0.27719881649159145,
+   "step_ratio_max": 10.497155087069544,
+   "conservative_fraction": 0.5714285714285714
+  },
+  {
+   "video": "PathPlanning_8",
+   "pilots": 24,
+   "span_frames": 15,
+   "c_whole_sequence": 2.2787580201029773,
+   "c_pilot_median": 2.5843582756072276,
+   "rel_error_median": 0.13849409133787868,
+   "rel_error_abs_max": 5.148250373088887,
+   "step_ratio_median": 0.8799858569275885,
+   "step_ratio_min": 0.1626478980714637,
+   "step_ratio_max": 8.398963365308182,
+   "conservative_fraction": 0.5416666666666666
+  },
+  {
+   "video": "NoPathPlanning_1",
+   "pilots": 29,
+   "span_frames": 30,
+   "c_whole_sequence": 5.5594297427684065,
+   "c_pilot_median": 5.706626198440789,
+   "rel_error_median": 0.027921921345776916,
+   "rel_error_abs_max": 0.49000465926982306,
+   "step_ratio_median": 0.9728365347932061,
+   "step_ratio_min": 0.6711388409282225,
+   "step_ratio_max": 1.6717792128764106,
+   "conservative_fraction": 0.5172413793103449
+  },
+  {
+   "video": "NoPathPlanning_2",
+   "pilots": 29,
+   "span_frames": 30,
+   "c_whole_sequence": 5.558749437332153,
+   "c_pilot_median": 5.46350821852684,
+   "rel_error_median": -0.019159342992433992,
+   "rel_error_abs_max": 0.958665202052382,
+   "step_ratio_median": 1.019533593816234,
+   "step_ratio_min": 0.5105517772777872,
+   "step_ratio_max": 1.902211780633549,
+   "conservative_fraction": 0.3793103448275862
+  },
+  {
+   "video": "NoPathPlanning_3",
+   "pilots": 29,
+   "span_frames": 30,
+   "c_whole_sequence": 5.230231136083603,
+   "c_pilot_median": 5.807004421949387,
+   "rel_error_median": 0.11671724602516145,
+   "rel_error_abs_max": 0.765104109129941,
+   "step_ratio_median": 0.8954818272569852,
+   "step_ratio_min": 0.5665388204738372,
+   "step_ratio_max": 2.8881022180899234,
+   "conservative_fraction": 0.5517241379310345
+  }
+ ],
+ "pooled": {
+  "pilots": 197,
+  "rel_error_median": 0.044173091381107005,
+  "rel_error_p05": -0.824724119481394,
+  "rel_error_p95": 3.502003422536569,
+  "abs_rel_error_median": 0.40672197689740336,
+  "step_ratio_median": 0.9576956236990554,
+  "step_ratio_p05": 0.2221409741145644,
+  "step_ratio_p95": 5.705348066312368,
+  "conservative_fraction": 0.5177664974619289
+ }
+}

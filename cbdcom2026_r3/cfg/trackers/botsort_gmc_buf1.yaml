@@ -1,0 +1,15 @@
+# The reverse balance of the retention control: one processed frame at the
+# released cadence is about 0.65 s, which is what a buffer of 30 buys the
+# source-rate arm at 59.94 fps. Everything else matches botsort_gmc.yaml.
+tracker_type: botsort
+track_high_thresh: 0.25
+track_low_thresh: 0.1
+new_track_thresh: 0.25
+track_buffer: 1
+match_thresh: 0.8
+fuse_score: True
+gmc_method: sparseOptFlow
+proximity_thresh: 0.5
+appearance_thresh: 0.8
+with_reid: False
+model: auto

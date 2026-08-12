@@ -1,0 +1,62 @@
+{
+ "video": "row_7.4_2",
+ "source_fps": 59.94,
+ "pilot_step": 54,
+ "pilot_frames": 26,
+ "c_per_second": 15.535280327796936,
+ "c_spread": 1.2133300195565402,
+ "quantile": 0.5,
+ "c_per_second_p90": 37.80389579772949,
+ "measurements": [
+  {
+   "lag": 1,
+   "dt_seconds": 0.9009009009009009,
+   "source_frames": 54,
+   "step_over_size_median": 15.505373001098633,
+   "iou_median": 0.0,
+   "iou_below_0p3": 1.0,
+   "c_per_second": 17.210964031219483,
+   "c_per_second_p90": 37.80389579772949,
+   "pairs": 76
+  },
+  {
+   "lag": 2,
+   "dt_seconds": 1.8018018018018018,
+   "source_frames": 108,
+   "step_over_size_median": 27.991496086120605,
+   "iou_median": 0.0,
+   "iou_below_0p3": 1.0,
+   "c_per_second": 15.535280327796936,
+   "c_per_second_p90": 44.24861226654053,
+   "pairs": 30
+  },
+  {
+   "lag": 3,
+   "dt_seconds": 2.7027027027027026,
+   "source_frames": 162,
+   "step_over_size_median": 38.337565422058105,
+   "iou_median": 0.0,
+   "iou_below_0p3": 1.0,
+   "c_per_second": 14.1848992061615,
+   "c_per_second_p90": 16.130896467208863,
+   "pairs": 2
+  }
+ ],
+ "recommendation": {
+  "comfortable": {
+   "target_step_over_size": 0.2,
+   "dt_max_seconds": 0.012873922824691126,
+   "source_frame_step": 0.771662934111986
+  },
+  "workable": {
+   "target_step_over_size": 0.4,
+   "dt_max_seconds": 0.02574784564938225,
+   "source_frame_step": 1.543325868223972
+  },
+  "marginal": {
+   "target_step_over_size": 0.75,
+   "dt_max_seconds": 0.04827721059259172,
+   "source_frame_step": 2.8937360029199475
+  }
+ }
+}

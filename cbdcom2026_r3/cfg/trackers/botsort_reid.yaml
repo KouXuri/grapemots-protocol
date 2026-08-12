@@ -1,0 +1,16 @@
+# BoT-SORT without camera-motion compensation.
+# The oracle experiment feeds ground-truth boxes to the tracker and never passes
+# real imagery, so sparseOptFlow would have nothing to estimate motion from.
+# Turning GMC off makes that explicit instead of silently degrading it.
+tracker_type: botsort
+track_high_thresh: 0.25
+track_low_thresh: 0.1
+new_track_thresh: 0.25
+track_buffer: 30
+match_thresh: 0.8
+fuse_score: True
+gmc_method: sparseOptFlow
+proximity_thresh: 0.5
+appearance_thresh: 0.8
+with_reid: True
+model: auto
