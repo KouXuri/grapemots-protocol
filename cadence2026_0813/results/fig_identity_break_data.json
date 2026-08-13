@@ -1,0 +1,49 @@
+{
+ "sequence": "row_8_3",
+ "run": "p3_tiled_row8_3_botsort_stride1",
+ "annotated_frames": 24,
+ "D_in_sequence": 5,
+ "trajectories_with_a_duplicate": 4,
+ "trajectory": 1008,
+ "identities": [
+  32,
+  51
+ ],
+ "first": {
+  "track": 32,
+  "annotated_frame": 9,
+  "source_frame": 236,
+  "reference_box": [
+   267.0,
+   1543.0,
+   383.0,
+   1661.0
+  ],
+  "predicted_box": [
+   273.155,
+   1537.271,
+   385.863,
+   1654.369
+  ]
+ },
+ "last": {
+  "track": 51,
+  "annotated_frame": 17,
+  "source_frame": 476,
+  "reference_box": [
+   2323.0,
+   1307.0,
+   2447.0,
+   1431.0
+  ],
+  "predicted_box": [
+   2340.775,
+   1304.971,
+   2457.527,
+   1426.942
+  ]
+ },
+ "gap_annotated_frames": 8,
+ "gap_source_frames": 240,
+ "reference_boxes_in_first_frame": 4
+}

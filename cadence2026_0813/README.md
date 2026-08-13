@@ -43,7 +43,7 @@ changed rounding shows up.
 | Table VII, on the link | Mbit/s for the three architectures | `results/adaptive_0813/link_*.json` | `tools/edge_cost_bench.py` |
 | Table II, Panel B | eleven sequences, each read by a checkpoint blind to it | `results/decomp_0812/hota_panelB.json` | `tools/hota_panelB.py` |
 | §III-D, flights | flight-clustered bootstrap, $\tau=1$ interval $[+0.84,+1.58]$, 4/4 flights positive | `results/decomp_0812/cluster_bootstrap.json` | `tools/cluster_bootstrap.py` |
-| Fig. 2 | acquisition modes and the mask-to-box derivation | drawn from the GrapeMOTS mask, not redistributed | `tools/make_grapemots_method_figures.py` |
+| Fig. 2 | one reference bunch, two identities, found by the ownership rule rather than by eye | `results/fig_identity_break_data.json` (the instance and both boxes); imagery not redistributed | `tools/make_fig_identity_break.py` |
 
 ## What each layer of support means
 
