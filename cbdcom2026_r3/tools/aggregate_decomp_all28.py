@@ -11,12 +11,29 @@ sign test counts ties out.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import numpy as np
 from math import comb
 
-ROOT = ROOT / "runs/decomp_0812/results"
+# the release ships its frozen outputs in results/; GRAPEMOTS_ROOT points the
+# script at a working tree instead, where the same files sit under runs/
+ROOT = Path(os.environ.get("GRAPEMOTS_ROOT", Path(__file__).resolve().parents[1]))
+RESULTS = ROOT / "results"
+if not RESULTS.is_dir():
+    RESULTS = ROOT / "runs/decomp_0812/results"
+def locate(name: str, *directories: Path) -> Path:
+    """First directory holding `name`, so a release checkout and a working tree
+    can both be read without editing the script."""
+    for directory in directories:
+        candidate = directory / name
+        if candidate.is_file():
+            return candidate
+    searched = ", ".join(str(d) for d in directories)
+    raise SystemExit(f"could not find {name} in any of: {searched}")
+
+
 FILES = ["decomp_fold1_six.json", "decomp_fold2_eleven.json",
          "decomp_seen_a.json", "decomp_seen_b.json"]
 TAUS = ["1", "3", "5", "8"]
@@ -36,7 +53,7 @@ def sign_test(up: int, down: int) -> float:
 def main() -> None:
     runs = []
     for name in FILES:
-        runs.extend(json.loads((ROOT / name).read_text())["runs"])
+        runs.extend(json.loads((RESULTS / name).read_text())["runs"])
     videos = sorted({r["video"] for r in runs})
     arms = sorted({r["arm"] for r in runs})
     print(f"{len(videos)} sequences, arms {arms}\n")
@@ -94,9 +111,12 @@ def main() -> None:
     # the released arm read the decoded video here; the published run read the
     # release's own image files. Agreement is a second check on the alignment.
     print("\n=== reproduction against the published contrast ===")
-    published = json.loads(Path(
-        "runs/bodegas_round2_0809/results/"
-        "cadence_contrast_release.json").read_text())
+    published = json.loads(locate(
+        "cadence_contrast_release.json",
+        ROOT.parent / "cadence2026/results",
+        RESULTS,
+        ROOT / "runs/bodegas_round2_0809/results",
+    ).read_text())
     pub = {r["video"]: r for r in published["sequences"]}
     worst_rel = worst_src = 0.0
     for v in videos:
@@ -107,8 +127,8 @@ def main() -> None:
     print(f"largest per-sequence difference: released {worst_rel:.6f}, source {worst_src:.6f}")
     out["reproduction"] = {"max_abs_diff_released": worst_rel, "max_abs_diff_source": worst_src}
 
-    (ROOT / "cadence_decomposition_all28.json").write_text(json.dumps(out, indent=1) + "\n")
-    print("\nwrote", ROOT / "cadence_decomposition_all28.json")
+    (RESULTS / "cadence_decomposition_all28.json").write_text(json.dumps(out, indent=1) + "\n")
+    print("\nwrote", RESULTS / "cadence_decomposition_all28.json")
 
 
 if __name__ == "__main__":

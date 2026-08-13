@@ -1,5 +1,28 @@
 # Changelog
 
+## r5 — 2026-08-13
+
+Fixes what a reviewer hit running r4 from a fresh checkout, and adds the test that
+would have caught it.
+
+- `tools/aggregate_decomp.py`, `tools/aggregate_decomp_all28.py` — line 19 built a
+  path from an undefined `ROOT`, so both raised `NameError` before doing anything.
+  They now resolve from `GRAPEMOTS_ROOT`, falling back to the release's own
+  `results/`, and locate cross-directory inputs instead of assuming one layout.
+- `tools/hota_panelA.py`, `tools/hota_assoc_rows.py` — read the training machine's
+  `runs/` layout, which a release checkout does not have. They now search the
+  release layout first and, when an input is genuinely not carried here, name the
+  file and the directories searched rather than raising a path error.
+- `tools/smoke_test.py` — new. Verifies every SHA-256 in the manifest, re-runs the
+  analyses that work off the frozen per-frame dumps, and checks their output is
+  byte-identical to what ships. No GPU, no imagery, no weights. It also prints the
+  four layers of support this package actually provides, so the boundary between
+  auditable and rebuildable is stated rather than implied.
+- `SHA256SUMS` — refreshed for the files above.
+
+Nothing in `results/` changed: the two analyses re-run here reproduce their frozen
+outputs byte for byte, which is what the smoke test asserts.
+
 ## r4 — 2026-08-12, later the same day
 
 Nothing in r3 changed. r4 adds the material an auditor needs to go from *checking*

@@ -42,6 +42,17 @@ the aligned annotated frames, `src` every source frame.
 
 ## Reproducing
 
+Start here, from a clean checkout, with nothing but Python and numpy:
+
+    python tools/smoke_test.py
+
+It verifies every SHA-256 in the manifest, re-runs the analyses that work off the
+frozen per-frame dumps, and checks that their output is byte-identical to what
+ships. No GPU, no imagery, no weights. What it prints at the end is the boundary
+between what this package lets you audit and what it lets you rebuild.
+
+The rest needs the corpora, which are not redistributed:
+
     python tools/fullrate_decompose.py \
       --root datasets/protocol_ext/bodegas2023 \
       --video-root datasets/protocol_ext/bodegas2023/videos \
