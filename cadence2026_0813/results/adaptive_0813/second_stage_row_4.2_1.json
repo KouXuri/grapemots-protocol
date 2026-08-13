@@ -1,0 +1,57 @@
+{
+ "video": "row_4.2_1",
+ "tracker": "cfg/trackers/botsort_gmc.yaml",
+ "extraction_floor": 0.1,
+ "arms": {
+  "floor 0.1": {
+   "frames": 417,
+   "detections_at_or_above_0.25": 984,
+   "detections_below_0.25": 690,
+   "stages": {
+    "first": {
+     "calls": 417,
+     "calls_with_a_candidate": 391,
+     "candidates_offered": 982,
+     "assignments_returned": 873
+    },
+    "second": {
+     "calls": 417,
+     "calls_with_a_candidate": 101,
+     "candidates_offered": 256,
+     "assignments_returned": 0
+    },
+    "unconfirmed": {
+     "calls": 417,
+     "calls_with_a_candidate": 37,
+     "candidates_offered": 46,
+     "assignments_returned": 15
+    }
+   }
+  },
+  "floor 0.25": {
+   "frames": 417,
+   "detections_at_or_above_0.25": 984,
+   "detections_below_0.25": 0,
+   "stages": {
+    "first": {
+     "calls": 417,
+     "calls_with_a_candidate": 391,
+     "candidates_offered": 982,
+     "assignments_returned": 873
+    },
+    "second": {
+     "calls": 417,
+     "calls_with_a_candidate": 0,
+     "candidates_offered": 0,
+     "assignments_returned": 0
+    },
+    "unconfirmed": {
+     "calls": 417,
+     "calls_with_a_candidate": 37,
+     "candidates_offered": 46,
+     "assignments_returned": 15
+    }
+   }
+  }
+ }
+}

@@ -1,5 +1,37 @@
 # Changelog
 
+## r6 — 2026-08-13, later the same day
+
+r5 fixed what a reviewer hit running r4, but it carried no new results: a later
+reviewer checked the manuscript's claim that every table and figure is auditable
+here and found the round of experiments the manuscript had just added missing
+from the tag. r6 adds them, in `cadence2026_0813/`.
+
+- `cadence2026_0813/` — new. The external cadence contrast on MOT17/MOT20
+  (Table IV), the thinned geometry of all four corpora and the sign-crossing $r$
+  behind Fig. 3, the adaptive-sampling arms (Table VI), the low-score
+  second-stage audit, the flight-clustered bootstrap, the on-board and link cost
+  benchmark (Table VII), and Panel B of the configuration table. 26 frozen result
+  files, 13 tools, `SHA256SUMS`, and a README carrying a claim-to-file table.
+- `cadence2026_0813/tools/smoke_test.py` — new. Hashes every file, then
+  recomputes each of the 28 table entries this round contributes from the frozen
+  results and compares them with `results/expected_tables.json`, which holds
+  those values as the manuscript typesets them. Fails in both directions. No
+  GPU, no imagery, no weights; stock Python 3.9+, no third-party packages.
+- `cadence2026_0813/tools/verify_tables_0813.py` — the other half of the loop,
+  matching the same numbers against the manuscript source as typeset.
+- The README now states the four layers of support separately — frozen-output
+  audit, released-output re-analysis, tracker replay, end-to-end inference —
+  so "auditable" is not read as covering all four.
+
+One number changed in the manuscript as a result of building this bundle: the
+low-score second-stage audit was reported over four sequences and 365 candidates,
+but five sequences were run. It is 1,155 candidates over five sequences, still
+none accepted. `verify_tables_0813.py` now checks that claim so it cannot drift
+again.
+
+Nothing under `cadence2026/`, `results/` or `cbdcom2026_r3/` changed.
+
 ## r5 — 2026-08-13
 
 Fixes what a reviewer hit running r4 from a fresh checkout, and adds the test that

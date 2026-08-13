@@ -1,0 +1,14 @@
+{
+ "label": "link_row_6.1_1",
+ "link": {
+  "video": "datasets/protocol_ext/bodegas2023/videos/row_6.1_1.mp4",
+  "file_bytes": 253501012,
+  "frames": 1212,
+  "duration_s": 20.220200000000002,
+  "source_mbit_s": 100.29614425178781,
+  "jpeg_quality": 90,
+  "jpeg_frames_encoded": 40,
+  "jpeg_mean_bytes": 3160868.025,
+  "jpeg_mbit_s_at_source_rate": 1515.7009510489509
+ }
+}

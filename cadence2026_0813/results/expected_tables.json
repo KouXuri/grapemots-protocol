@@ -1,0 +1,181 @@
+{
+ "flights/tau=1": {
+  "ci_high": 1.58,
+  "ci_low": 0.84,
+  "flights": 4,
+  "flights_all_positive": 4,
+  "sequence_level_median_delta": 1.111
+ },
+ "second_stage": {
+  "accepted": 0,
+  "candidates_offered": 1155
+ },
+ "tableII-B/BoT-SORT + ReID": {
+  "AssA": 0.389,
+  "D": 708,
+  "HOTA": 0.303,
+  "M": 219,
+  "U": 1366
+ },
+ "tableII-B/BoT-SORT, buffer 30": {
+  "AssA": 0.378,
+  "D": 590,
+  "HOTA": 0.296,
+  "M": 247,
+  "U": 950
+ },
+ "tableII-B/ByteTrack, buffer 30": {
+  "AssA": 0.295,
+  "D": 928,
+  "HOTA": 0.241,
+  "M": 278,
+  "U": 1021
+ },
+ "tableII-B/Confidence 0.40": {
+  "AssA": 0.369,
+  "D": 489,
+  "HOTA": 0.275,
+  "M": 295,
+  "U": 646
+ },
+ "tableII-B/Confidence 0.55": {
+  "AssA": 0.344,
+  "D": 360,
+  "HOTA": 0.234,
+  "M": 370,
+  "U": 378
+ },
+ "tableII-B/IoS merge": {
+  "AssA": 0.389,
+  "D": 505,
+  "HOTA": 0.3,
+  "M": 252,
+  "U": 749
+ },
+ "tableIV/mot17/k=1": {
+  "D": 62,
+  "M": 65,
+  "assigned_released": 0.881,
+  "e_released": -0.005,
+  "e_source": -0.005,
+  "r": 0.022
+ },
+ "tableIV/mot17/k=15": {
+  "D": 187,
+  "M": 216,
+  "assigned_released": 0.577,
+  "e_released": -0.057,
+  "e_source": -0.041,
+  "r": 0.252
+ },
+ "tableIV/mot17/k=4": {
+  "D": 312,
+  "M": 129,
+  "assigned_released": 0.761,
+  "e_released": 0.344,
+  "e_source": -0.037,
+  "r": 0.085
+ },
+ "tableIV/mot17/k=60": {
+  "D": 81,
+  "M": 241,
+  "assigned_released": 0.445,
+  "e_released": -0.366,
+  "e_source": -0.046,
+  "r": 0.679
+ },
+ "tableIV/mot20/k=1": {
+  "D": 21,
+  "M": 53,
+  "assigned_released": 0.976,
+  "e_released": -0.014,
+  "e_source": -0.014,
+  "r": 0.016
+ },
+ "tableIV/mot20/k=15": {
+  "D": 943,
+  "M": 384,
+  "assigned_released": 0.825,
+  "e_released": 0.26,
+  "e_source": -0.017,
+  "r": 0.23
+ },
+ "tableIV/mot20/k=4": {
+  "D": 82,
+  "M": 73,
+  "assigned_released": 0.967,
+  "e_released": 0.042,
+  "e_source": -0.013,
+  "r": 0.064
+ },
+ "tableIV/mot20/k=60": {
+  "D": 473,
+  "M": 1311,
+  "assigned_released": 0.393,
+  "e_released": -0.387,
+  "e_source": -0.02,
+  "r": 0.879
+ },
+ "tableVI/ada2": {
+  "assigned": 0.493,
+  "e": 0.271,
+  "frames": 715
+ },
+ "tableVI/ada4": {
+  "assigned": 0.584,
+  "e": 0.472,
+  "frames": 1403
+ },
+ "tableVI/ada8": {
+  "assigned": 0.628,
+  "e": 0.602,
+  "frames": 2779
+ },
+ "tableVI/rel": {
+  "assigned": 0.354,
+  "e": -0.298,
+  "frames": 371
+ },
+ "tableVI/src": {
+  "assigned": 0.687,
+  "e": 0.965,
+  "frames": 12386
+ },
+ "tableVI/uni2": {
+  "assigned": 0.451,
+  "e": -0.094,
+  "frames": 715
+ },
+ "tableVI/uni4": {
+  "assigned": 0.531,
+  "e": 0.156,
+  "frames": 1403
+ },
+ "tableVI/uni8": {
+  "assigned": 0.608,
+  "e": 0.428,
+  "frames": 2779
+ },
+ "tableVII/link": {
+  "every_frame_mbit_s": 100.3,
+  "sparse_mbit_s": 42.2
+ },
+ "tableVII/yolo26n_8tiles": {
+  "associate_ms": 83,
+  "detect_ms": 105,
+  "fps": 5.2,
+  "joules_per_frame": 7.0
+ },
+ "tableVII/yolo26n_full": {
+  "associate_ms": 84,
+  "detect_ms": 11,
+  "fps": 10.0,
+  "joules_per_frame": 1.8
+ },
+ "tableVII/yolo26s_8tiles": {
+  "associate_ms": 79,
+  "detect_ms": 197,
+  "fps": 3.6,
+  "joules_per_frame": 14.7
+ }
+}

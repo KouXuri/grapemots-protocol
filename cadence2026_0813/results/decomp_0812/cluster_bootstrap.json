@@ -1,0 +1,168 @@
+{
+ "released_arm": "rel_buf30",
+ "source_arm": "src_buf30",
+ "draws": 10000,
+ "seed": 0,
+ "by_tau": {
+  "1": {
+   "sequences": 17,
+   "flights": {
+    "row 4": {
+     "sequences": 4,
+     "median_delta": 1.3196286472148542,
+     "min_delta": 0.5142857142857143,
+     "max_delta": 2.0384615384615383,
+     "all_positive": true
+    },
+    "row 6": {
+     "sequences": 6,
+     "median_delta": 0.7873684210526315,
+     "min_delta": 0.3333333333333333,
+     "max_delta": 1.1176470588235294,
+     "all_positive": true
+    },
+    "row 7": {
+     "sequences": 6,
+     "median_delta": 1.5,
+     "min_delta": 0.7777777777777777,
+     "max_delta": 3.0555555555555554,
+     "all_positive": true
+    },
+    "row 8": {
+     "sequences": 1,
+     "median_delta": 1.5789473684210527,
+     "min_delta": 1.5789473684210527,
+     "max_delta": 1.5789473684210527,
+     "all_positive": true
+    }
+   },
+   "sequence_level_median_delta": 1.1111111111111112,
+   "cluster_bootstrap_ci95": [
+    0.8439201451905627,
+    1.5789473684210527
+   ],
+   "flights_all_positive": 4,
+   "flight_count": 4
+  },
+  "3": {
+   "sequences": 17,
+   "flights": {
+    "row 4": {
+     "sequences": 4,
+     "median_delta": 0.5225274725274724,
+     "min_delta": 0.1724137931034483,
+     "max_delta": 1.153846153846154,
+     "all_positive": true
+    },
+    "row 6": {
+     "sequences": 6,
+     "median_delta": 0.5368421052631579,
+     "min_delta": 0.3333333333333333,
+     "max_delta": 0.8571428571428571,
+     "all_positive": true
+    },
+    "row 7": {
+     "sequences": 6,
+     "median_delta": 0.5912698412698413,
+     "min_delta": 0.22222222222222227,
+     "max_delta": 0.7692307692307693,
+     "all_positive": true
+    },
+    "row 8": {
+     "sequences": 1,
+     "median_delta": 0.763157894736842,
+     "min_delta": 0.763157894736842,
+     "max_delta": 0.763157894736842,
+     "all_positive": true
+    }
+   },
+   "sequence_level_median_delta": 0.6000000000000001,
+   "cluster_bootstrap_ci95": [
+    0.5368421052631579,
+    0.7307692307692307
+   ],
+   "flights_all_positive": 4,
+   "flight_count": 4
+  },
+  "5": {
+   "sequences": 17,
+   "flights": {
+    "row 4": {
+     "sequences": 4,
+     "median_delta": 0.3406593406593407,
+     "min_delta": 0.06896551724137934,
+     "max_delta": 0.5384615384615385,
+     "all_positive": true
+    },
+    "row 6": {
+     "sequences": 6,
+     "median_delta": 0.3508771929824561,
+     "min_delta": 0.23529411764705882,
+     "max_delta": 0.4285714285714286,
+     "all_positive": true
+    },
+    "row 7": {
+     "sequences": 6,
+     "median_delta": 0.2579365079365079,
+     "min_delta": 0.11111111111111116,
+     "max_delta": 1.0,
+     "all_positive": true
+    },
+    "row 8": {
+     "sequences": 1,
+     "median_delta": 0.2894736842105263,
+     "min_delta": 0.2894736842105263,
+     "max_delta": 0.2894736842105263,
+     "all_positive": true
+    }
+   },
+   "sequence_level_median_delta": 0.2894736842105263,
+   "cluster_bootstrap_ci95": [
+    0.2579365079365079,
+    0.3508771929824561
+   ],
+   "flights_all_positive": 4,
+   "flight_count": 4
+  },
+  "8": {
+   "sequences": 17,
+   "flights": {
+    "row 4": {
+     "sequences": 4,
+     "median_delta": 0.07493368700265257,
+     "min_delta": 0.0,
+     "max_delta": 0.23076923076923073,
+     "all_positive": false
+    },
+    "row 6": {
+     "sequences": 6,
+     "median_delta": 0.1702786377708978,
+     "min_delta": 0.0,
+     "max_delta": 0.2857142857142857,
+     "all_positive": false
+    },
+    "row 7": {
+     "sequences": 6,
+     "median_delta": 0.12698412698412703,
+     "min_delta": 0.0,
+     "max_delta": 0.46153846153846156,
+     "all_positive": false
+    },
+    "row 8": {
+     "sequences": 1,
+     "median_delta": 0.02631578947368418,
+     "min_delta": 0.02631578947368418,
+     "max_delta": 0.02631578947368418,
+     "all_positive": true
+    }
+   },
+   "sequence_level_median_delta": 0.11111111111111116,
+   "cluster_bootstrap_ci95": [
+    0.02631578947368418,
+    0.12698412698412703
+   ],
+   "flights_all_positive": 1,
+   "flight_count": 4
+  }
+ }
+}

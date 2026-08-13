@@ -9,6 +9,14 @@ beyond GrapeMOTS, the frame-level alignment of a public release to its source vi
 cadence contrast over 28 sequences, the annotation-thinning ladder, and the calibration
 tool behind the annotation-interval criterion. It carries its own README.
 
+**`cadence2026_0813/` carries the round added after that** (tag `cbdcom2026-r6`): the
+external contrast on MOT17/MOT20, the adaptive-sampling arms, the low-score second-stage
+audit, the flight-clustered bootstrap, the on-board and link cost benchmark, and Panel B
+of the configuration table. Its README carries a claim-to-file table, and
+`cadence2026_0813/tools/smoke_test.py` rebuilds every table value it contributes from the
+frozen results with stock Python and no GPU. Start there for anything the manuscript
+reports from Tables IV, VI or VII.
+
 The rest of this repository is the earlier release, described below.
 
 The paper argues that a predicted-track count is only interpretable together with the
@@ -27,6 +35,11 @@ final eight-page manuscript, together with the auxiliary paired sampling-policy 
 `cbdcom2026-cadence` (2026-08-10) adds `cadence2026/`: four corpora and 51 sequences,
 the zero-residual alignment of the 2023 vineyard release to its source video, the
 28-sequence cadence contrast, the thinning ladder and the annotation-interval criterion.
+`cbdcom2026-r5` (2026-08-13) makes the earlier release runnable from a fresh checkout and
+adds the smoke test that proves it. `cbdcom2026-r6` (2026-08-13) adds `cadence2026_0813/`:
+the external MOT17/MOT20 contrast, the adaptive-sampling arms, the second-stage audit, the
+flight-clustered bootstrap, the edge and link benchmark, and Panel B --- the experiments
+the manuscript reports in Tables IV, VI and VII, which no earlier tag carried.
 Release tags are treated as immutable snapshots: an existing tag is never moved, and any
 later correction receives a new tag.
 

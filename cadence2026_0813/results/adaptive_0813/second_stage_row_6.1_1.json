@@ -1,0 +1,57 @@
+{
+ "video": "row_6.1_1",
+ "tracker": "cfg/trackers/botsort_gmc.yaml",
+ "extraction_floor": 0.1,
+ "arms": {
+  "floor 0.1": {
+   "frames": 1211,
+   "detections_at_or_above_0.25": 436,
+   "detections_below_0.25": 226,
+   "stages": {
+    "first": {
+     "calls": 1211,
+     "calls_with_a_candidate": 418,
+     "candidates_offered": 433,
+     "assignments_returned": 384
+    },
+    "second": {
+     "calls": 1211,
+     "calls_with_a_candidate": 60,
+     "candidates_offered": 79,
+     "assignments_returned": 0
+    },
+    "unconfirmed": {
+     "calls": 1211,
+     "calls_with_a_candidate": 17,
+     "candidates_offered": 17,
+     "assignments_returned": 4
+    }
+   }
+  },
+  "floor 0.25": {
+   "frames": 1211,
+   "detections_at_or_above_0.25": 436,
+   "detections_below_0.25": 0,
+   "stages": {
+    "first": {
+     "calls": 1211,
+     "calls_with_a_candidate": 418,
+     "candidates_offered": 433,
+     "assignments_returned": 384
+    },
+    "second": {
+     "calls": 1211,
+     "calls_with_a_candidate": 0,
+     "candidates_offered": 0,
+     "assignments_returned": 0
+    },
+    "unconfirmed": {
+     "calls": 1211,
+     "calls_with_a_candidate": 17,
+     "candidates_offered": 17,
+     "assignments_returned": 4
+    }
+   }
+  }
+ }
+}

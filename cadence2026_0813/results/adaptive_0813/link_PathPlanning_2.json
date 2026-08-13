@@ -1,0 +1,14 @@
+{
+ "label": "link_PathPlanning_2",
+ "link": {
+  "video": "/home/kou/my_env/MOTS2024/PathPlanning_2.mp4",
+  "file_bytes": 421341359,
+  "frames": 418,
+  "duration_s": 13.947280613947282,
+  "source_mbit_s": 241.67656515272725,
+  "jpeg_quality": 90,
+  "jpeg_frames_encoded": 17,
+  "jpeg_mean_bytes": 3127171.0,
+  "jpeg_mbit_s_at_source_rate": 749.7705189599999
+ }
+}

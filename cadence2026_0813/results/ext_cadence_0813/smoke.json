@@ -1,0 +1,665 @@
+{
+ "config": {
+  "root": "datasets/protocol_ext/mot17",
+  "videos": [
+   "MOT17-02"
+  ],
+  "steps": [
+   1,
+   4,
+   30
+  ],
+  "trackers": [
+   "bytetrack.yaml"
+  ],
+  "frame_rate": 30,
+  "match_iou": 0.5,
+  "taus": [
+   1,
+   3,
+   5,
+   8
+  ],
+  "out": "runs/ext_cadence_0813/results/smoke.json"
+ },
+ "runs": [
+  {
+   "video": "MOT17-02",
+   "corpus": "mot17",
+   "k": 1,
+   "arm": "released",
+   "tracker_cfg": "bytetrack.yaml",
+   "source_frames": 600,
+   "scored_frames": 600,
+   "tracker_frames": 600,
+   "decomposition": {
+    "1": {
+     "video": "MOT17-02",
+     "tau": 1,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    },
+    "3": {
+     "video": "MOT17-02",
+     "tau": 3,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    },
+    "5": {
+     "video": "MOT17-02",
+     "tau": 5,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    },
+    "8": {
+     "video": "MOT17-02",
+     "tau": 8,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    }
+   }
+  },
+  {
+   "video": "MOT17-02",
+   "corpus": "mot17",
+   "k": 1,
+   "arm": "source",
+   "tracker_cfg": "bytetrack.yaml",
+   "source_frames": 600,
+   "scored_frames": 600,
+   "tracker_frames": 600,
+   "decomposition": {
+    "1": {
+     "video": "MOT17-02",
+     "tau": 1,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    },
+    "3": {
+     "video": "MOT17-02",
+     "tau": 3,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    },
+    "5": {
+     "video": "MOT17-02",
+     "tau": 5,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    },
+    "8": {
+     "video": "MOT17-02",
+     "tau": 8,
+     "P": 54,
+     "G": 62,
+     "U": 0,
+     "D": 0,
+     "M": 8,
+     "identity_holds": true,
+     "signed_error": -0.12903225806451613,
+     "covered_trajectories": 54
+    }
+   }
+  },
+  {
+   "video": "MOT17-02",
+   "corpus": "mot17",
+   "k": 4,
+   "arm": "released",
+   "tracker_cfg": "bytetrack.yaml",
+   "source_frames": 600,
+   "scored_frames": 150,
+   "tracker_frames": 150,
+   "decomposition": {
+    "1": {
+     "video": "MOT17-02",
+     "tau": 1,
+     "P": 53,
+     "G": 59,
+     "U": 0,
+     "D": 1,
+     "M": 7,
+     "identity_holds": true,
+     "signed_error": -0.1016949152542373,
+     "covered_trajectories": 52
+    },
+    "3": {
+     "video": "MOT17-02",
+     "tau": 3,
+     "P": 52,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 7,
+     "identity_holds": true,
+     "signed_error": -0.11864406779661017,
+     "covered_trajectories": 52
+    },
+    "5": {
+     "video": "MOT17-02",
+     "tau": 5,
+     "P": 52,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 7,
+     "identity_holds": true,
+     "signed_error": -0.11864406779661017,
+     "covered_trajectories": 52
+    },
+    "8": {
+     "video": "MOT17-02",
+     "tau": 8,
+     "P": 52,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 7,
+     "identity_holds": true,
+     "signed_error": -0.11864406779661017,
+     "covered_trajectories": 52
+    }
+   }
+  },
+  {
+   "video": "MOT17-02",
+   "corpus": "mot17",
+   "k": 4,
+   "arm": "source",
+   "tracker_cfg": "bytetrack.yaml",
+   "source_frames": 600,
+   "scored_frames": 150,
+   "tracker_frames": 600,
+   "decomposition": {
+    "1": {
+     "video": "MOT17-02",
+     "tau": 1,
+     "P": 54,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 5,
+     "identity_holds": true,
+     "signed_error": -0.0847457627118644,
+     "covered_trajectories": 54
+    },
+    "3": {
+     "video": "MOT17-02",
+     "tau": 3,
+     "P": 54,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 5,
+     "identity_holds": true,
+     "signed_error": -0.0847457627118644,
+     "covered_trajectories": 54
+    },
+    "5": {
+     "video": "MOT17-02",
+     "tau": 5,
+     "P": 54,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 5,
+     "identity_holds": true,
+     "signed_error": -0.0847457627118644,
+     "covered_trajectories": 54
+    },
+    "8": {
+     "video": "MOT17-02",
+     "tau": 8,
+     "P": 54,
+     "G": 59,
+     "U": 0,
+     "D": 0,
+     "M": 5,
+     "identity_holds": true,
+     "signed_error": -0.0847457627118644,
+     "covered_trajectories": 54
+    }
+   }
+  },
+  {
+   "video": "MOT17-02",
+   "corpus": "mot17",
+   "k": 30,
+   "arm": "released",
+   "tracker_cfg": "bytetrack.yaml",
+   "source_frames": 600,
+   "scored_frames": 20,
+   "tracker_frames": 20,
+   "decomposition": {
+    "1": {
+     "video": "MOT17-02",
+     "tau": 1,
+     "P": 65,
+     "G": 58,
+     "U": 0,
+     "D": 22,
+     "M": 15,
+     "identity_holds": true,
+     "signed_error": 0.1206896551724138,
+     "covered_trajectories": 43
+    },
+    "3": {
+     "video": "MOT17-02",
+     "tau": 3,
+     "P": 46,
+     "G": 58,
+     "U": 0,
+     "D": 10,
+     "M": 22,
+     "identity_holds": true,
+     "signed_error": -0.20689655172413793,
+     "covered_trajectories": 36
+    },
+    "5": {
+     "video": "MOT17-02",
+     "tau": 5,
+     "P": 38,
+     "G": 58,
+     "U": 0,
+     "D": 6,
+     "M": 26,
+     "identity_holds": true,
+     "signed_error": -0.3448275862068966,
+     "covered_trajectories": 32
+    },
+    "8": {
+     "video": "MOT17-02",
+     "tau": 8,
+     "P": 31,
+     "G": 58,
+     "U": 0,
+     "D": 3,
+     "M": 30,
+     "identity_holds": true,
+     "signed_error": -0.46551724137931033,
+     "covered_trajectories": 28
+    }
+   }
+  },
+  {
+   "video": "MOT17-02",
+   "corpus": "mot17",
+   "k": 30,
+   "arm": "source",
+   "tracker_cfg": "bytetrack.yaml",
+   "source_frames": 600,
+   "scored_frames": 20,
+   "tracker_frames": 600,
+   "decomposition": {
+    "1": {
+     "video": "MOT17-02",
+     "tau": 1,
+     "P": 54,
+     "G": 58,
+     "U": 0,
+     "D": 0,
+     "M": 4,
+     "identity_holds": true,
+     "signed_error": -0.06896551724137931,
+     "covered_trajectories": 54
+    },
+    "3": {
+     "video": "MOT17-02",
+     "tau": 3,
+     "P": 47,
+     "G": 58,
+     "U": 0,
+     "D": 0,
+     "M": 11,
+     "identity_holds": true,
+     "signed_error": -0.1896551724137931,
+     "covered_trajectories": 47
+    },
+    "5": {
+     "video": "MOT17-02",
+     "tau": 5,
+     "P": 43,
+     "G": 58,
+     "U": 0,
+     "D": 0,
+     "M": 15,
+     "identity_holds": true,
+     "signed_error": -0.25862068965517243,
+     "covered_trajectories": 43
+    },
+    "8": {
+     "video": "MOT17-02",
+     "tau": 8,
+     "P": 39,
+     "G": 58,
+     "U": 0,
+     "D": 0,
+     "M": 19,
+     "identity_holds": true,
+     "signed_error": -0.3275862068965517,
+     "covered_trajectories": 39
+    }
+   }
+  }
+ ],
+ "pooled": {
+  "k=1|released|bytetrack": {
+   "1": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   },
+   "3": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   },
+   "5": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   },
+   "8": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   }
+  },
+  "k=1|source|bytetrack": {
+   "1": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   },
+   "3": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   },
+   "5": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   },
+   "8": {
+    "videos": 1,
+    "P": 54,
+    "G": 62,
+    "U": 0,
+    "D": 0,
+    "M": 8,
+    "assigned_fraction": 0.8709677419354839,
+    "signed_error": -0.12903225806451613,
+    "identity_holds": true
+   }
+  },
+  "k=4|released|bytetrack": {
+   "1": {
+    "videos": 1,
+    "P": 53,
+    "G": 59,
+    "U": 0,
+    "D": 1,
+    "M": 7,
+    "assigned_fraction": 0.8813559322033898,
+    "signed_error": -0.1016949152542373,
+    "identity_holds": true
+   },
+   "3": {
+    "videos": 1,
+    "P": 52,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 7,
+    "assigned_fraction": 0.8813559322033898,
+    "signed_error": -0.11864406779661017,
+    "identity_holds": true
+   },
+   "5": {
+    "videos": 1,
+    "P": 52,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 7,
+    "assigned_fraction": 0.8813559322033898,
+    "signed_error": -0.11864406779661017,
+    "identity_holds": true
+   },
+   "8": {
+    "videos": 1,
+    "P": 52,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 7,
+    "assigned_fraction": 0.8813559322033898,
+    "signed_error": -0.11864406779661017,
+    "identity_holds": true
+   }
+  },
+  "k=4|source|bytetrack": {
+   "1": {
+    "videos": 1,
+    "P": 54,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 5,
+    "assigned_fraction": 0.9152542372881356,
+    "signed_error": -0.0847457627118644,
+    "identity_holds": true
+   },
+   "3": {
+    "videos": 1,
+    "P": 54,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 5,
+    "assigned_fraction": 0.9152542372881356,
+    "signed_error": -0.0847457627118644,
+    "identity_holds": true
+   },
+   "5": {
+    "videos": 1,
+    "P": 54,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 5,
+    "assigned_fraction": 0.9152542372881356,
+    "signed_error": -0.0847457627118644,
+    "identity_holds": true
+   },
+   "8": {
+    "videos": 1,
+    "P": 54,
+    "G": 59,
+    "U": 0,
+    "D": 0,
+    "M": 5,
+    "assigned_fraction": 0.9152542372881356,
+    "signed_error": -0.0847457627118644,
+    "identity_holds": true
+   }
+  },
+  "k=30|released|bytetrack": {
+   "1": {
+    "videos": 1,
+    "P": 65,
+    "G": 58,
+    "U": 0,
+    "D": 22,
+    "M": 15,
+    "assigned_fraction": 0.7413793103448276,
+    "signed_error": 0.1206896551724138,
+    "identity_holds": true
+   },
+   "3": {
+    "videos": 1,
+    "P": 46,
+    "G": 58,
+    "U": 0,
+    "D": 10,
+    "M": 22,
+    "assigned_fraction": 0.6206896551724138,
+    "signed_error": -0.20689655172413793,
+    "identity_holds": true
+   },
+   "5": {
+    "videos": 1,
+    "P": 38,
+    "G": 58,
+    "U": 0,
+    "D": 6,
+    "M": 26,
+    "assigned_fraction": 0.5517241379310345,
+    "signed_error": -0.3448275862068966,
+    "identity_holds": true
+   },
+   "8": {
+    "videos": 1,
+    "P": 31,
+    "G": 58,
+    "U": 0,
+    "D": 3,
+    "M": 30,
+    "assigned_fraction": 0.48275862068965514,
+    "signed_error": -0.46551724137931033,
+    "identity_holds": true
+   }
+  },
+  "k=30|source|bytetrack": {
+   "1": {
+    "videos": 1,
+    "P": 54,
+    "G": 58,
+    "U": 0,
+    "D": 0,
+    "M": 4,
+    "assigned_fraction": 0.9310344827586207,
+    "signed_error": -0.06896551724137931,
+    "identity_holds": true
+   },
+   "3": {
+    "videos": 1,
+    "P": 47,
+    "G": 58,
+    "U": 0,
+    "D": 0,
+    "M": 11,
+    "assigned_fraction": 0.8103448275862069,
+    "signed_error": -0.1896551724137931,
+    "identity_holds": true
+   },
+   "5": {
+    "videos": 1,
+    "P": 43,
+    "G": 58,
+    "U": 0,
+    "D": 0,
+    "M": 15,
+    "assigned_fraction": 0.7413793103448276,
+    "signed_error": -0.25862068965517243,
+    "identity_holds": true
+   },
+   "8": {
+    "videos": 1,
+    "P": 39,
+    "G": 58,
+    "U": 0,
+    "D": 0,
+    "M": 19,
+    "assigned_fraction": 0.6724137931034483,
+    "signed_error": -0.3275862068965517,
+    "identity_holds": true
+   }
+  }
+ }
+}

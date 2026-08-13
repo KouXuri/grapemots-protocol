@@ -1,0 +1,50 @@
+{
+ "label": "yolo26s_tiled",
+ "link": {
+  "video": "datasets/protocol_ext/bodegas2023/videos/row_6.1_1.mp4",
+  "file_bytes": 253501012,
+  "frames": 1212,
+  "duration_s": 20.220200000000002,
+  "source_mbit_s": 100.29614425178781,
+  "jpeg_quality": 90,
+  "jpeg_frames_encoded": 40,
+  "jpeg_mean_bytes": 3160868.025,
+  "jpeg_mbit_s_at_source_rate": 1515.7009510489509
+ },
+ "compute": {
+  "video": "datasets/protocol_ext/bodegas2023/videos/row_6.1_1.mp4",
+  "weights": "runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "device": "cuda:1",
+  "tiled": true,
+  "imgsz": 1280,
+  "tile": 1280,
+  "stride": 960,
+  "conf": 0.25,
+  "tracker": "cfg/trackers/botsort_gmc.yaml",
+  "resolution": [
+   4096,
+   2160
+  ],
+  "source_fps": 59.94005994005994,
+  "frames": 100,
+  "wall_seconds": 28.138058758806437,
+  "fps": 3.553905436660685,
+  "stage_ms": {
+   "decode_ms_median": 6.236351560801268,
+   "detect_ms_median": 196.96737395133823,
+   "track_ms_median": 78.84981541428715,
+   "total_ms_median": 283.35087350569665
+  },
+  "detections_total": 86,
+  "track_records_total": 79,
+  "peak_gpu_mib": 238.25830078125,
+  "power": {
+   "samples": 119,
+   "mean_w": 52.08983193277311,
+   "median_w": 52.16,
+   "max_w": 56.86
+  },
+  "joules_per_frame": 14.657067516607217,
+  "watts_at_source_rate": 878.5455054909421
+ }
+}
