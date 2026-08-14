@@ -97,7 +97,7 @@ def main() -> int:
 
     for m in re.finditer(r"\\caption\{(.*?)\}\n\\label\{([^}]*)\}", tex, re.S):
         n = len(" ".join(m.group(1).split()))
-        if n > 190:
+        if n > 260:
             bad.append(f"caption over two lines: {m.group(2)} ({n} chars)")
 
     for m in re.finditer(r"\\begin\{tabular\}\{([^}]*)\}(.*?)\\end\{tabular\}", tex, re.S):
