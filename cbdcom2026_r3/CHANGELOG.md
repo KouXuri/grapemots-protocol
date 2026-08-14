@@ -1,5 +1,26 @@
 # Changelog
 
+## r10 — 2026-08-14
+
+Fixes what two reviewers hit running r9 from a fresh checkout, and closes the gap
+that let a wrong table value survive a round.
+
+- `cbdcom2026_r3/SHA256SUMS` — stale since the r6 CHANGELOG edit, so the older
+  smoke test failed on one hash from a clean checkout. Refreshed; it now returns 0.
+- `cadence2026_0813/tools/verify_tables_0813.py` — resolved inputs from the
+  author's `runs/` layout, which a release checkout does not have, and reported 16
+  spurious mismatches there. It now searches the released `results/` layout too,
+  so the same script serves an auditor and an author.
+- The same verifier now checks `G` and `U` for every row of the external cadence
+  table and asserts `P-G = U+D-M` per row. It previously checked only the printed
+  subset, which is why a wrong pooled `G` in that table's caption survived: 1,169
+  is one video's `G` (MOT20-05), not the four-sequence total of 2,215. The
+  manuscript is corrected, and the check now covers 136 cells rather than 112.
+- The manuscript's claim that annotated boxes leave `U` empty was wrong and is
+  corrected there: oracle boxes remove detector false positives, but a track can
+  still drift off every trajectory. MOT20 has `U=83` at `k=4` and `U=12` at
+  `k=15`; MOT17 stays at 3 or fewer.
+
 ## r6 — 2026-08-13, later the same day
 
 r5 fixed what a reviewer hit running r4, but it carried no new results: a later

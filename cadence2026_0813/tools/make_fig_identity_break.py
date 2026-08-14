@@ -216,7 +216,7 @@ def draw(record: dict, out: Path) -> None:
     reference = load_reference(sequence)
     # one window size for both close-ups, from the larger of the two boxes
     side = max(max(b[2] - b[0], b[3] - b[1])
-               for b in (first["reference_box"], last["reference_box"])) * 4.0
+               for b in (first["reference_box"], last["reference_box"])) * 5.5
     windows = {letter: crop_window(side_data["reference_box"], full.shape, side)
                for letter, side_data in (("b", first), ("c", last))}
 

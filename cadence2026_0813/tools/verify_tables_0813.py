@@ -17,9 +17,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAPER = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "cbdcom2026_paper3_EN_2026-08-14.tex"
-EXT = ROOT / "runs/ext_cadence_0813/results"
-ARMS = ROOT / "runs/adaptive_0813/results"
-DEC = ROOT / "runs/decomp_0812/results"
+
+
+def results_dir(name: str) -> Path:
+    """Locate a result directory in the working tree or in a release checkout.
+
+    The working tree keeps these under runs/; the released bundle flattens them
+    into results/. Searching both lets one script serve an auditor and an author.
+    """
+    for base in (ROOT / "runs", ROOT / "results", Path.cwd() / "results"):
+        candidate = base / name / "results" if base.name == "runs" else base / name
+        if candidate.is_dir():
+            return candidate
+    return ROOT / "runs" / name / "results"
+
+
+EXT = results_dir("ext_cadence_0813")
+ARMS = results_dir("adaptive_0813")
+DEC = results_dir("decomp_0812")
 
 
 def load(path: Path):
@@ -51,12 +66,17 @@ def main() -> int:
                 checked += 1
                 if cell not in tex:
                     bad.append(f"{corpus} k={k}: {cell} not in the paper")
-            for term in ("D", "M"):
+            # G and U are printed too: without them the identity cannot be closed
+            # from the table, which is how a wrong G survived a whole round
+            for term in ("G", "U", "D", "M"):
                 checked += 1
                 value = rel[term]
                 shown = f"{value:,}".replace(",", "{,}") if value >= 1000 else str(value)
                 if shown not in tex:
                     bad.append(f"{corpus} k={k}: {term}={shown} not in the paper")
+            checked += 1
+            if (rel["P"] - rel["G"]) != (rel["U"] + rel["D"] - rel["M"]):
+                bad.append(f"{corpus} k={k}: the row does not close the identity")
 
     # ---- adaptive vs uniform arms ------------------------------------------
     pooled: dict[str, dict[str, int]] = {}
