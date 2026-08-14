@@ -45,5 +45,6 @@
  },
  "gap_annotated_frames": 8,
  "gap_source_frames": 240,
+ "gap_seconds": 4.004004004004004,
  "reference_boxes_in_first_frame": 4
 }

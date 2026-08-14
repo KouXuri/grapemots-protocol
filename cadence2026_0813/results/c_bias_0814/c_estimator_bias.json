@@ -1,0 +1,57 @@
+{
+ "fps": 59.94,
+ "theta": 0.2,
+ "question": "is c measurable from a tracker's own output, without annotation?",
+ "sequences": [
+  {
+   "sequence": "row_8_3",
+   "run": "p3_tiled_row8_3_botsort_stride1",
+   "reference_trajectories": 20,
+   "covered_by_tracker": 7,
+   "lost_by_tracker": 13,
+   "c_all_reference": 4.972,
+   "pairs_all": 124,
+   "c_kept_by_tracker": 3.706,
+   "pairs_kept": 48,
+   "c_lost_by_tracker": 7.195,
+   "pairs_lost": 76,
+   "lost_over_kept": 1.942,
+   "c_from_tracker_output": 4.093,
+   "c_from_tracker_by_lag": {
+    "5": 4.391,
+    "15": 3.828,
+    "30": 3.509,
+    "60": 4.357
+   },
+   "N_from_reference_theta020": 2,
+   "N_from_tracker_theta020": 2
+  },
+  {
+   "sequence": "row_4.3_2",
+   "run": "p3_tiled_row4_3_2_botsort_stride1",
+   "reference_trajectories": 29,
+   "covered_by_tracker": 9,
+   "lost_by_tracker": 20,
+   "c_all_reference": 14.214,
+   "pairs_all": 198,
+   "c_kept_by_tracker": 9.587,
+   "pairs_kept": 74,
+   "c_lost_by_tracker": 22.795,
+   "pairs_lost": 124,
+   "lost_over_kept": 2.378,
+   "c_from_tracker_output": 5.797,
+   "c_from_tracker_by_lag": {
+    "5": 5.841,
+    "15": 5.807,
+    "30": 5.787,
+    "60": 5.625
+   },
+   "N_from_reference_theta020": 0,
+   "N_from_tracker_theta020": 2
+  }
+ ],
+ "ratio_range": [
+  1.942,
+  2.378
+ ]
+}

@@ -171,6 +171,7 @@ def find_duplicate(sequence: str, run: str) -> dict:
                  "predicted_box": boxes_of[(last, trajectory, last_frame)][1]},
         "gap_annotated_frames": last_frame - first_frame,
         "gap_source_frames": annotated_to_source[last_frame] - annotated_to_source[first_frame],
+        "gap_seconds": (annotated_to_source[last_frame] - annotated_to_source[first_frame]) / 59.94,
         "reference_boxes_in_first_frame": len(reference[first_frame]),
     }
 
@@ -196,10 +197,10 @@ def crop_window(box, image_shape, side_px):
     x0, y0, x1, y1 = box
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
     height, width = image_shape[:2]
-    # 4:3, not square: the camera travels along the row, so horizontal context is
+    # wide, not square: the camera travels along the row, so horizontal context is
     # what makes the bunch findable, and a shorter panel costs less page.
     half_w = min(side_px, width) / 2
-    half_h = min(side_px / 1.34, height) / 2
+    half_h = min(side_px / 1.75, height) / 2
     left = int(min(max(cx - half_w, 0), width - 2 * half_w))
     top = int(min(max(cy - half_h, 0), height - 2 * half_h))
     return left, top, int(left + 2 * half_w), int(top + 2 * half_h)
@@ -225,7 +226,7 @@ def draw(record: dict, out: Path) -> None:
     boxes_here = reference[first["annotated_frame"]]
     band_top = min([b[2] for b in boxes_here] + [windows["b"][1]])
     band_bottom = max([b[4] for b in boxes_here] + [windows["b"][3]])
-    pad = 0.10 * (band_bottom - band_top)
+    pad = 0.05 * (band_bottom - band_top)
     band_top = max(0, int(band_top - pad))
     band_bottom = min(full.shape[0], int(band_bottom + pad))
 
@@ -241,9 +242,11 @@ def draw(record: dict, out: Path) -> None:
     left, top, right, bottom = windows["b"]
     axes[0].add_patch(Rectangle((left, top - band_top), right - left, bottom - top,
                                 fill=False, edgecolor=CROP, lw=1.1))
-    axes[0].annotate("(b)", xy=((left + right) / 2, top - band_top), xytext=(0, 3),
+    # anchored past the right edge of the window: the top edge is where another
+    # reference box sits, and a label there hides annotation the panel is showing
+    axes[0].annotate("(b)", xy=(right, top - band_top), xytext=(3, 2),
                      textcoords="offset points", fontsize=5.6, color=PAPER,
-                     va="bottom", ha="center",
+                     va="bottom", ha="left",
                      bbox={"facecolor": CROP, "edgecolor": "none", "pad": 1.2})
     axes[0].set_title(
         f"(a) Released frame, full width, {record['reference_boxes_in_first_frame']} "
@@ -260,10 +263,11 @@ def draw(record: dict, out: Path) -> None:
             x0, y0, x1, y1 = box
             ax.add_patch(Rectangle((x0 - wl, y0 - wt), x1 - x0, y1 - y0, fill=False,
                                    edgecolor=colour, lw=1.2, linestyle=style))
-        ax.text(0.5, 0.045, f"track {side['track']}", transform=ax.transAxes,
-                fontsize=6.4, color=PAPER, ha="center", va="bottom",
-                bbox={"facecolor": C_PRED, "edgecolor": "none", "pad": 1.6})
-        gap = "" if letter == "b" else f", {record['gap_annotated_frames']} annotated frames later"
+        for y, text, colour in ((0.955, f"reference {record['trajectory']}", C_GT),
+                                (0.80, f"tracker: track {side['track']}", C_PRED)):
+            ax.text(0.03, y, text, transform=ax.transAxes, fontsize=5.8, color=PAPER,
+                    va="top", bbox={"facecolor": colour, "edgecolor": "none", "pad": 1.4})
+        gap = "" if letter == "b" else f", {record['gap_seconds']:.1f}\u2009s later"
         ax.set_title(f"({letter}) Frame {side['annotated_frame']}{gap}",
                      loc="left", fontsize=7.2, fontweight="bold", pad=3, color=INK)
 
@@ -273,13 +277,6 @@ def draw(record: dict, out: Path) -> None:
         for spine in ax.spines.values():
             spine.set_color(LINE)
             spine.set_linewidth(0.7)
-
-    axes[1].text(0.03, 0.955, "reference", transform=axes[1].transAxes, fontsize=5.4,
-                 color=PAPER, va="top",
-                 bbox={"facecolor": C_GT, "edgecolor": "none", "pad": 1.2})
-    axes[1].text(0.03, 0.80, "tracker", transform=axes[1].transAxes, fontsize=5.4,
-                 color=PAPER, va="top",
-                 bbox={"facecolor": C_PRED, "edgecolor": "none", "pad": 1.2})
 
     fig.subplots_adjust(left=0.005, right=0.995, top=0.90, bottom=0.015)
     out.parent.mkdir(parents=True, exist_ok=True)
