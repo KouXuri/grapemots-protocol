@@ -1,0 +1,87 @@
+{
+ "note": "out-of-fold, full-frame after tile merge, every 8th annotated frame",
+ "per_video": {
+  "NoPathPlanning_1": {
+   "ap50": 0.1158,
+   "ap50_95": 0.0292,
+   "frames": 112,
+   "gt": 1571
+  },
+  "NoPathPlanning_2": {
+   "ap50": 0.2035,
+   "ap50_95": 0.0687,
+   "frames": 113,
+   "gt": 2039
+  },
+  "NoPathPlanning_3": {
+   "ap50": 0.5382,
+   "ap50_95": 0.2595,
+   "frames": 113,
+   "gt": 2192
+  },
+  "PathPlanning_1": {
+   "ap50": 0.0042,
+   "ap50_95": 0.0009,
+   "frames": 116,
+   "gt": 602
+  },
+  "PathPlanning_2": {
+   "ap50": 0.3348,
+   "ap50_95": 0.0904,
+   "frames": 27,
+   "gt": 629
+  },
+  "PathPlanning_3": {
+   "ap50": 0.1686,
+   "ap50_95": 0.0443,
+   "frames": 50,
+   "gt": 801
+  },
+  "PathPlanning_4": {
+   "ap50": 0.3847,
+   "ap50_95": 0.1216,
+   "frames": 47,
+   "gt": 1383
+  },
+  "PathPlanning_5": {
+   "ap50": 0.3765,
+   "ap50_95": 0.1243,
+   "frames": 34,
+   "gt": 1074
+  },
+  "PathPlanning_6": {
+   "ap50": 0.2999,
+   "ap50_95": 0.0913,
+   "frames": 36,
+   "gt": 1119
+  },
+  "PathPlanning_7": {
+   "ap50": 0.4082,
+   "ap50_95": 0.1394,
+   "frames": 29,
+   "gt": 1157
+  },
+  "PathPlanning_8": {
+   "ap50": 0.4564,
+   "ap50_95": 0.2032,
+   "frames": 47,
+   "gt": 1888
+  }
+ },
+ "groups": {
+  "3840x2160": {
+   "videos": 9,
+   "median_ap50": 0.377,
+   "median_ap50_95": 0.122,
+   "min_ap50": 0.116,
+   "max_ap50": 0.538
+  },
+  "1920x1080": {
+   "videos": 2,
+   "median_ap50": 0.086,
+   "median_ap50_95": 0.023,
+   "min_ap50": 0.004,
+   "max_ap50": 0.169
+  }
+ }
+}

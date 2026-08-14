@@ -1,0 +1,23 @@
+{
+ "video": "Row6.1_1.mp4",
+ "resolution": [
+  4096,
+  2160
+ ],
+ "fps": 59.94,
+ "frames_total": 1212,
+ "duration_s": 20.22,
+ "step": 36,
+ "kept_frames": 34,
+ "sparse_rate_hz": 1.665,
+ "crf": 23,
+ "source_mbit_s": 100.3,
+ "fullrate_same_codec_mbit_s": 68.24,
+ "fullrate_frames_encoded": 120,
+ "allintra_mbit_s_at_sparse_rate": 20.33,
+ "interframe_mbit_s_at_sparse_rate": 25.05,
+ "allintra_bytes_per_frame": 1526297,
+ "byte_saving_vs_source": 0.7973,
+ "byte_saving_same_codec": 0.7021,
+ "frame_saving": 0.9722
+}

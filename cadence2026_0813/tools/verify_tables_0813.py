@@ -90,22 +90,27 @@ def main() -> int:
             entry = pooled.setdefault(arm, {k: 0 for k in ("P", "G", "M", "tracker_frames")})
             for key in entry:
                 entry[key] += one[key]
-    for arm in ("rel", "uni2", "ada2", "uni4", "ada4", "uni8", "ada8", "src"):
-        if arm not in pooled:
-            bad.append(f"arm {arm} missing from the pooled results")
+    # the arms are reported in prose, so check the two claims the prose makes:
+    # adaptive placement reaches more and over-counts more at every budget, and it
+    # crosses zero at half the frames uniform placement needs
+    def stats(arm):
+        b = pooled[arm]
+        return (b["P"] - b["G"]) / b["G"], 1 - b["M"] / b["G"], b["tracker_frames"]
+    for n in (2, 4, 8):
+        if f"uni{n}" not in pooled or f"ada{n}" not in pooled:
+            bad.append(f"budget {n} missing from the pooled results")
             continue
-        block = pooled[arm]
-        e = (block["P"] - block["G"]) / block["G"]
-        assigned = 1 - block["M"] / block["G"]
-        for cell in (f"${e:+.3f}$", f"${assigned:.3f}$"):
-            checked += 1
-            if cell not in tex:
-                bad.append(f"adaptive table, arm {arm}: {cell} not in the paper")
-        frames = block["tracker_frames"]
-        shown = f"{frames:,}".replace(",", "{,}") if frames >= 1000 else str(frames)
-        checked += 1
-        if shown not in tex:
-            bad.append(f"adaptive table, arm {arm}: frames {shown} not in the paper")
+        (ue, ua, _), (ae, aa, _) = stats(f"uni{n}"), stats(f"ada{n}")
+        checked += 2
+        if not aa > ua:
+            bad.append(f"budget {n}: adaptive does not reach more ({aa:.3f} vs {ua:.3f})")
+        if not ae > ue:
+            bad.append(f"budget {n}: adaptive does not over-count more ({ae:+.3f} vs {ue:+.3f})")
+    checked += 1
+    crossing_u = next((n for n in (2, 4, 8) if stats(f"uni{n}")[0] > 0), None)
+    crossing_a = next((n for n in (2, 4, 8) if stats(f"ada{n}")[0] > 0), None)
+    if not (crossing_u and crossing_a and crossing_a * 2 == crossing_u):
+        bad.append(f"crossing budgets are {crossing_a} and {crossing_u}, not a factor of two")
 
     # ---- on-board cost ------------------------------------------------------
     for name, label in (("edge_yolo26s_tiled.json", "YOLO26s tiled"),
@@ -125,14 +130,18 @@ def main() -> int:
             if cell not in tex:
                 bad.append(f"edge table, {label}: {cell} not in the paper")
 
-    link = load(ARMS / "link_row_6.1_1.json")
-    if link:
-        source_mbit = link["link"]["source_mbit_s"]
-        sparse = link["link"]["jpeg_mean_bytes"] * 1.67 * 8 / 1e6
-        for cell in (f"${source_mbit:.1f}$", f"${sparse:.1f}$"):
+    # the link rows are now measured through one encoder, so they come from the
+    # all-intra benchmark rather than the JPEG stand-in
+    intra = load(results_dir("link_allintra_0814") / "link_allintra.json")
+    if intra:
+        for key, label in (("source_mbit_s", "released bitrate"),
+                           ("fullrate_same_codec_mbit_s", "full rate, same codec"),
+                           ("allintra_mbit_s_at_sparse_rate", "sparse, all-intra"),
+                           ("interframe_mbit_s_at_sparse_rate", "sparse, inter")):
             checked += 1
+            cell = f"${intra[key]:.1f}$"
             if cell not in tex:
-                bad.append(f"link table: {cell} not in the paper")
+                bad.append(f"link table, {label}: {cell} not in the paper")
 
     # ---- Panel B of the configuration table ---------------------------------
     panel_b = load(DEC / "hota_panelB.json")
@@ -172,6 +181,18 @@ def main() -> int:
             bad.append(f"second stage: {what} ({cell}) not in the paper")
     if accepted:
         bad.append(f"second stage accepted {accepted}, the paper claims none")
+
+    # ---- out-of-fold detector quality ---------------------------------------
+    ap = load(results_dir("ap_lovo_0814") / "lovo_ap_summary.json")
+    if ap:
+        for res, group in ap["groups"].items():
+            for key in ("median_ap50", "median_ap50_95"):
+                checked += 1
+                if f"${group[key]:.3f}$" not in tex:
+                    bad.append(f"detector AP {res} {key}={group[key]:.3f} not in the paper")
+            checked += 1
+            if str(group["videos"]) not in tex:
+                bad.append(f"detector AP {res}: {group['videos']} videos not stated")
 
     for line in bad:
         print("FAIL:", line)

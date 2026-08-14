@@ -40,10 +40,11 @@ changed rounding shows up.
 | §III-D, low-score arms | +1,415 and +41,443 candidates at extraction floor 0.10, $U,D,M,e$ unchanged | `results/adaptive_0813/arms_*.json` (`rel_low`, `src_low`) | `tools/cadence_arms_0813.py` |
 | §III-D, second stage | five sequences, 1,155 low-score candidates offered, 0 accepted | `results/adaptive_0813/second_stage_*.json` | `tools/second_stage_audit.py` |
 | Table VII, on board | fps, stage latency, J/frame per configuration | `results/adaptive_0813/edge_*.json` | `tools/edge_cost_bench.py` |
-| Table VII, on the link | Mbit/s for the three architectures | `results/adaptive_0813/link_*.json` | `tools/edge_cost_bench.py` |
+| Table VII, on the link | Mbit/s for the three architectures, all through one x264 encoder at CRF 23 | `results/link_allintra_0814/link_allintra.json` | `tools/link_allintra.py` |
 | Table II, Panel B | eleven sequences, each read by a checkpoint blind to it | `results/decomp_0812/hota_panelB.json` | `tools/hota_panelB.py` |
 | §III-D, flights | flight-clustered bootstrap, $\tau=1$ interval $[+0.84,+1.58]$, 4/4 flights positive | `results/decomp_0812/cluster_bootstrap.json` | `tools/cluster_bootstrap.py` |
 | §III-F, estimating $c$ | the trajectories a tracker loses move 1.9 and 2.4 times faster than those it keeps, so its own tracks return about half the true $c$ | `results/c_bias_0814/c_estimator_bias.json` | `tools/c_estimator_bias.py` |
+| §II-B, detector quality | out-of-fold full-frame AP after merge, by source resolution: median AP$_{50}$ 0.377 over nine 4K videos and 0.086 over two 1080p ones | `results/ap_lovo_0814/lovo_ap_summary.json` | `tools/summarise_lovo_ap.py` |
 | Fig. 2 | one reference bunch, two identities, on a frontal 2024 pass read by a leave-one-video-out checkpoint; found by the ownership rule rather than by eye | `results/fig_identity_break_data.json` (the instance and both boxes), `results/gm2024_video/summary_npp1.json` (the run); imagery not redistributed | `tools/make_fig_identity_break.py` |
 
 ## What each layer of support means

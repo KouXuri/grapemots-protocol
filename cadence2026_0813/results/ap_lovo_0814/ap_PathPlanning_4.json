@@ -1,0 +1,38 @@
+{
+  "weights": "/home/kou/my_env/yolo26/runs/detect/grapemots_lovo/lovo_PathPlanning_4/weights/best.pt",
+  "root": "/home/kou/my_env/yolo26/datasets/grapemots_det_721",
+  "split": "all",
+  "mode": "tiled",
+  "imgsz": 1280,
+  "conf": 0.001,
+  "tile": 1280,
+  "stride": 960,
+  "merge_iou": 0.5,
+  "merge_metric": "iou",
+  "overall": {
+    "ap50_95": 0.12158150741948458,
+    "ap50": 0.38469122998354777,
+    "ap75": 0.04694281765895768,
+    "ap_small": 0.0068254858272712516,
+    "ap_medium": 0.1146855255999126,
+    "ap_large": 0.15334932450022074,
+    "ar100": 0.27230657989877083,
+    "frames": 47,
+    "gt": 1383,
+    "detections": 17526
+  },
+  "per_video": {
+    "PathPlanning_4": {
+      "ap50_95": 0.12158150741948458,
+      "ap50": 0.38469122998354777,
+      "ap75": 0.04694281765895768,
+      "ap_small": 0.0068254858272712516,
+      "ap_medium": 0.1146855255999126,
+      "ap_large": 0.15334932450022074,
+      "ar100": 0.27230657989877083,
+      "frames": 47,
+      "gt": 1383,
+      "detections": 17526
+    }
+  }
+}
