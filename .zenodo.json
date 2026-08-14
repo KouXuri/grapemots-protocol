@@ -1,0 +1,22 @@
+{
+  "title": "grapemots-protocol: frozen results and analysis tools for protocol-defined counting in aerial vineyard video",
+  "description": "<p>Manifests, frozen results, analysis scripts and checksums supporting the paper <em>Same Footage, Opposite Sign: Cadence, Coverage and Cancellation in UAV Video Counting</em> (IEEE CBDCom 2026).</p><p>The archive carries the cadence intervention over 28 sequences, the annotation-thinning ladder, the frame-level alignment of a public release to its source video, the external contrast on MOT17 and MOT20, the adaptive-sampling arms, the low-score second-stage audit, the flight-clustered bootstrap, and the on-board and link cost benchmark. Every table value the paper reports is recomputed from these frozen outputs by <code>cadence2026_0813/tools/smoke_test.py</code>, which needs stock Python 3.9+ and no GPU, imagery or model weights.</p><p>Imagery, detector checkpoints and per-frame detection caches are not redistributed. GrapeMOTS is published under CC-BY by Ariza-Sentis et al., Data in Brief 54 (2024) 110432.</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "creators": [
+    {"name": "Kou, Xuri", "affiliation": "Kitami Institute of Technology, Kitami, Japan"},
+    {"name": "Cheng, Musen", "affiliation": "Guru Technologies, Inc., Beijing, China"},
+    {"name": "Liu, Taihui", "affiliation": "Beihua University, Jilin, China"},
+    {"name": "Masui, Hiroshi", "affiliation": "Kitami Institute of Technology, Kitami, Japan"}
+  ],
+  "keywords": [
+    "UAV video analytics",
+    "multiple object tracking",
+    "object counting",
+    "temporal sampling",
+    "precision viticulture",
+    "reproducibility"
+  ],
+  "language": "eng"
+}

@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this archive, please cite the paper it supports."
+title: "grapemots-protocol: frozen results and analysis tools for protocol-defined counting in aerial vineyard video"
+type: software
+license: MIT
+authors:
+  - family-names: Kou
+    given-names: Xuri
+    affiliation: "Kitami Institute of Technology, Kitami, Japan"
+  - family-names: Cheng
+    given-names: Musen
+    affiliation: "Guru Technologies, Inc., Beijing, China"
+  - family-names: Liu
+    given-names: Taihui
+    affiliation: "Beihua University, Jilin, China"
+  - family-names: Masui
+    given-names: Hiroshi
+    affiliation: "Kitami Institute of Technology, Kitami, Japan"
+keywords:
+  - UAV video analytics
+  - multiple object tracking
+  - object counting
+  - temporal sampling
+  - precision viticulture
+preferred-citation:
+  type: conference-paper
+  title: "Same Footage, Opposite Sign: Cadence, Coverage and Cancellation in UAV Video Counting"
+  authors:
+    - family-names: Kou
+      given-names: Xuri
+    - family-names: Cheng
+      given-names: Musen
+    - family-names: Liu
+      given-names: Taihui
+    - family-names: Masui
+      given-names: Hiroshi
+  collection-title: "IEEE Int. Conf. on Cloud and Big Data Computing (CBDCom)"
+  year: 2026
