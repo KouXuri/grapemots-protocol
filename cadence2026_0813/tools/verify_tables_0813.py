@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAPER = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "cbdcom2026_paper3_EN_2026-08-12.tex"
+PAPER = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "cbdcom2026_paper3_EN_2026-08-14.tex"
 EXT = ROOT / "runs/ext_cadence_0813/results"
 ARMS = ROOT / "runs/adaptive_0813/results"
 DEC = ROOT / "runs/decomp_0812/results"
