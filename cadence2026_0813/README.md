@@ -44,7 +44,7 @@ changed rounding shows up.
 | Table II, Panel B | eleven sequences, each read by a checkpoint blind to it | `results/decomp_0812/hota_panelB.json` | `tools/hota_panelB.py` |
 | §III-D, flights | flight-clustered bootstrap, $\tau=1$ interval $[+0.84,+1.58]$, 4/4 flights positive | `results/decomp_0812/cluster_bootstrap.json` | `tools/cluster_bootstrap.py` |
 | §III-F, estimating $c$ | the trajectories a tracker loses move 1.9 and 2.4 times faster than those it keeps, so its own tracks return about half the true $c$ | `results/c_bias_0814/c_estimator_bias.json` | `tools/c_estimator_bias.py` |
-| Fig. 2 | one reference bunch, two identities, found by the ownership rule rather than by eye | `results/fig_identity_break_data.json` (the instance and both boxes); imagery not redistributed | `tools/make_fig_identity_break.py` |
+| Fig. 2 | one reference bunch, two identities, on a frontal 2024 pass read by a leave-one-video-out checkpoint; found by the ownership rule rather than by eye | `results/fig_identity_break_data.json` (the instance and both boxes), `results/gm2024_video/summary_npp1.json` (the run); imagery not redistributed | `tools/make_fig_identity_break.py` |
 
 ## What each layer of support means
 

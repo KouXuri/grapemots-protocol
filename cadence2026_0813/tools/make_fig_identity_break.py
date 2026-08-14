@@ -44,8 +44,10 @@ CROP = "#E8A33D"
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--sequence", default="row_8_3")
-    p.add_argument("--run", default="p3_tiled_row8_3_botsort_stride1")
+    p.add_argument("--corpus", choices=("bodegas2023", "grapemots2024"),
+                   default="grapemots2024")
+    p.add_argument("--sequence", default="NoPathPlanning_1")
+    p.add_argument("--run", default="npp1")
     p.add_argument("--out", type=Path, default=ROOT / "figures/fig_identity_break_data")
     return p.parse_args()
 
@@ -61,9 +63,11 @@ def iou(a, b) -> float:
     return inter / (area_a + area_b - inter)
 
 
-def load_reference(sequence: str) -> dict[int, list[tuple]]:
+def load_reference(sequence: str, corpus: str = "bodegas2023") -> dict[int, list[tuple]]:
     frames: dict[int, list[tuple]] = collections.defaultdict(list)
-    path = ROOT / "datasets/bodegas_grape_bunch_seg/gt_tracks_from_mots.csv"
+    path = (ROOT / f"datasets/grapemots_pp5/gt_tracks_{'npp1' if sequence.startswith('No') else 'pp5'}.csv"
+            if corpus == "grapemots2024"
+            else ROOT / "datasets/bodegas_grape_bunch_seg/gt_tracks_from_mots.csv")
     for row in csv.DictReader(path.open()):
         if row["sequence"] != sequence:
             continue
@@ -73,9 +77,10 @@ def load_reference(sequence: str) -> dict[int, list[tuple]]:
     return frames
 
 
-def load_predictions(run: str) -> dict[int, list[tuple]]:
+def load_predictions(run: str, corpus: str = "bodegas2023") -> dict[int, list[tuple]]:
     frames: dict[int, list[tuple]] = collections.defaultdict(list)
-    path = ROOT / "runs/segment/runs_bodegas_video" / run / "tracks.csv"
+    path = (ROOT / f"runs/gm2024_video/results/tracks_{run}.csv" if corpus == "grapemots2024"
+            else ROOT / "runs/segment/runs_bodegas_video" / run / "tracks.csv")
     for row in csv.DictReader(path.open()):
         frames[int(row["source_frame_zero_based"])].append((
             int(row["track_id"]), float(row["x1"]), float(row["y1"]),
@@ -83,14 +88,18 @@ def load_predictions(run: str) -> dict[int, list[tuple]]:
     return frames
 
 
-def find_duplicate(sequence: str, run: str) -> dict:
+def find_duplicate(sequence: str, run: str, corpus: str = "bodegas2023") -> dict:
     """Apply the paper's ownership rule and return the widest-spanning duplicate."""
-    alignment = json.loads(
-        (ROOT / "grapemots-protocol/cadence2026/results/bodegas_alignment_all28.json").read_text()
-    )["sequences"][sequence]
-    annotated_to_source = {int(k): v for k, v in alignment["annotated_to_source"].items()}
-    reference = load_reference(sequence)
-    predictions = load_predictions(run)
+    reference = load_reference(sequence, corpus)
+    predictions = load_predictions(run, corpus)
+    if corpus == "grapemots2024":
+        # this release names each annotated frame by its own source index
+        annotated_to_source = {f: f for f in sorted(reference)}
+    else:
+        alignment = json.loads(
+            (ROOT / "grapemots-protocol/cadence2026/results/bodegas_alignment_all28.json").read_text()
+        )["sequences"][sequence]
+        annotated_to_source = {int(k): v for k, v in alignment["annotated_to_source"].items()}
 
     covered: collections.Counter = collections.Counter()
     frames_of: dict[tuple[int, int], list[int]] = collections.defaultdict(list)
@@ -128,7 +137,7 @@ def find_duplicate(sequence: str, run: str) -> dict:
     # re-acquired rather than briefly double-claimed --- and require both boxes
     # to sit clear of the frame border, since a bunch at the edge of a 4K frame
     # cannot be shown in a neighbourhood. Of those, take the widest gap.
-    width, height = 4096, 2160
+    width, height = (3840, 2160) if corpus == "grapemots2024" else (4096, 2160)
     candidates = []
     for trajectory, tracks in duplicates.items():
         for early in tracks:
@@ -171,12 +180,18 @@ def find_duplicate(sequence: str, run: str) -> dict:
                  "predicted_box": boxes_of[(last, trajectory, last_frame)][1]},
         "gap_annotated_frames": last_frame - first_frame,
         "gap_source_frames": annotated_to_source[last_frame] - annotated_to_source[first_frame],
-        "gap_seconds": (annotated_to_source[last_frame] - annotated_to_source[first_frame]) / 59.94,
+        "fps": 29.97 if corpus == "grapemots2024" else 59.94,
+        "gap_seconds": (annotated_to_source[last_frame] - annotated_to_source[first_frame]) / (29.97 if corpus == "grapemots2024" else 59.94),
         "reference_boxes_in_first_frame": len(reference[first_frame]),
     }
 
 
-def frame_path(sequence: str, annotated: int) -> Path:
+def frame_path(sequence: str, annotated: int, corpus: str = "bodegas2023") -> Path:
+    if corpus == "grapemots2024":
+        candidate = ROOT / f"datasets/grapemots_pp5/frame_{annotated:06d}.PNG"
+        if candidate.is_file():
+            return candidate
+        raise SystemExit(f"no image for {sequence} frame {annotated}")
     images = ROOT / "datasets/bodegas_grape_bunch_seg/images"
     for split in ("test", "val", "train"):
         candidate = images / split / f"{sequence}_{annotated:06d}.png"
@@ -206,14 +221,14 @@ def crop_window(box, image_shape, side_px):
     return left, top, int(left + 2 * half_w), int(top + 2 * half_h)
 
 
-def draw(record: dict, out: Path) -> None:
+def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
     apply_paper_style()
     plt.rcParams.update({"axes.grid": False})
     sequence = record["sequence"]
     first, last = record["first"], record["last"]
 
-    full = mpimg.imread(frame_path(sequence, first["annotated_frame"]))
-    reference = load_reference(sequence)
+    full = mpimg.imread(frame_path(sequence, first["annotated_frame"], corpus))
+    reference = load_reference(sequence, corpus)
     # one window size for both close-ups, from the larger of the two boxes
     side = max(max(b[2] - b[0], b[3] - b[1])
                for b in (first["reference_box"], last["reference_box"])) * 5.5
@@ -229,6 +244,14 @@ def draw(record: dict, out: Path) -> None:
     pad = 0.05 * (band_bottom - band_top)
     band_top = max(0, int(band_top - pad))
     band_bottom = min(full.shape[0], int(band_bottom + pad))
+    # when the annotation clusters in one stripe the band becomes a sliver, which
+    # reads as a crop artefact rather than a frame; keep it no wider than 3.2:1
+    height, width = full.shape[:2]
+    if width / max(band_bottom - band_top, 1) > 3.2:
+        centre = (band_top + band_bottom) / 2
+        half = min(width / 3.2, height) / 2
+        band_top = int(min(max(centre - half, 0), height - 2 * half))
+        band_bottom = int(band_top + 2 * half)
 
     fig = plt.figure(figsize=(7.16, 1.30), facecolor=PAPER)
     grid = fig.add_gridspec(1, 3, width_ratios=(1.9, 1.0, 1.0), wspace=0.06)
@@ -244,9 +267,13 @@ def draw(record: dict, out: Path) -> None:
                                 fill=False, edgecolor=CROP, lw=1.1))
     # anchored past the right edge of the window: the top edge is where another
     # reference box sits, and a label there hides annotation the panel is showing
-    axes[0].annotate("(b)", xy=(right, top - band_top), xytext=(3, 2),
+    # anchor the label on whichever side of the window has room: at the frame
+    # edge an outward label would sit outside the panel
+    outside_right = right + 0.12 * full.shape[1] < full.shape[1]
+    axes[0].annotate("(b)", xy=(right if outside_right else left, top - band_top),
+                     xytext=(3 if outside_right else -3, 2),
                      textcoords="offset points", fontsize=5.6, color=PAPER,
-                     va="bottom", ha="left",
+                     va="bottom", ha="left" if outside_right else "right",
                      bbox={"facecolor": CROP, "edgecolor": "none", "pad": 1.2})
     axes[0].set_title(
         f"(a) Released frame, full width, {record['reference_boxes_in_first_frame']} "
@@ -255,7 +282,7 @@ def draw(record: dict, out: Path) -> None:
 
     # (b), (c) the same bunch when each identity owned it
     for ax, side, letter in ((axes[1], first, "b"), (axes[2], last, "c")):
-        image = mpimg.imread(frame_path(sequence, side["annotated_frame"]))
+        image = mpimg.imread(frame_path(sequence, side["annotated_frame"], corpus))
         wl, wt, wr, wb = windows[letter]
         ax.imshow(image[wt:wb, wl:wr])
         for box, colour, style in ((side["reference_box"], C_GT, "solid"),
@@ -288,8 +315,8 @@ def draw(record: dict, out: Path) -> None:
 
 def main() -> None:
     args = parse_args()
-    record = find_duplicate(args.sequence, args.run)
-    draw(record, args.out)
+    record = find_duplicate(args.sequence, args.run, args.corpus)
+    draw(record, args.out, args.corpus)
     args.out.with_suffix(".json").write_text(json.dumps(record, indent=1, default=list))
     print(f"sequence {record['sequence']}: D={record['D_in_sequence']} over "
           f"{record['annotated_frames']} annotated frames, "

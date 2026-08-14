@@ -1,50 +1,52 @@
 {
- "sequence": "row_8_3",
- "run": "p3_tiled_row8_3_botsort_stride1",
- "annotated_frames": 24,
- "D_in_sequence": 5,
- "trajectories_with_a_duplicate": 4,
- "trajectory": 1008,
+ "sequence": "NoPathPlanning_1",
+ "run": "npp1",
+ "annotated_frames": 890,
+ "D_in_sequence": 20,
+ "trajectories_with_a_duplicate": 15,
+ "trajectory": 31,
  "identities": [
-  32,
-  51
+  341,
+  446,
+  586
  ],
  "first": {
-  "track": 32,
-  "annotated_frame": 9,
-  "source_frame": 236,
+  "track": 341,
+  "annotated_frame": 361,
+  "source_frame": 361,
   "reference_box": [
-   267.0,
-   1543.0,
-   383.0,
-   1661.0
+   3407.0,
+   1639.0,
+   3520.0,
+   1786.0
   ],
   "predicted_box": [
-   273.155,
-   1537.271,
-   385.863,
-   1654.369
+   3427.273,
+   1628.133,
+   3519.593,
+   1785.023
   ]
  },
  "last": {
-  "track": 51,
-  "annotated_frame": 17,
-  "source_frame": 476,
+  "track": 446,
+  "annotated_frame": 577,
+  "source_frame": 577,
   "reference_box": [
-   2323.0,
-   1307.0,
-   2447.0,
-   1431.0
+   213.0,
+   974.0,
+   295.0,
+   1103.0
   ],
   "predicted_box": [
-   2340.775,
-   1304.971,
-   2457.527,
-   1426.942
+   214.672,
+   979.694,
+   301.425,
+   1084.22
   ]
  },
- "gap_annotated_frames": 8,
- "gap_source_frames": 240,
- "gap_seconds": 4.004004004004004,
- "reference_boxes_in_first_frame": 4
+ "gap_annotated_frames": 216,
+ "gap_source_frames": 216,
+ "fps": 29.97,
+ "gap_seconds": 7.207207207207207,
+ "reference_boxes_in_first_frame": 7
 }
