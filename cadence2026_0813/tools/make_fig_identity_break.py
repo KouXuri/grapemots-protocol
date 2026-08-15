@@ -235,17 +235,52 @@ def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
     windows = {letter: crop_window(side_data["reference_box"], full.shape, side)
                for letter, side_data in (("a", first), ("b", last))}
 
-    # Single column, two panels: the bunch when each identity owned it. The
-    # whole-frame panel this figure once opened with cost two thirds of the
-    # width and showed context the caption can state in a clause, so it went
-    # when the page did.
-    fig = plt.figure(figsize=(3.45, 1.62), facecolor=PAPER)
-    grid = fig.add_gridspec(1, 2, wspace=0.05)
-    axes = [fig.add_subplot(grid[i]) for i in range(2)]
+    # (a) keeps the full width of the source frame but only the vertical band the
+    # annotation occupies: above it is sky and the next row over, below it is bare
+    # ground, and neither carries a bunch.
+    boxes_here = reference[first["annotated_frame"]]
+    band_top = min([b[2] for b in boxes_here] + [windows["a"][1]])
+    band_bottom = max([b[4] for b in boxes_here] + [windows["a"][3]])
+    pad = 0.05 * (band_bottom - band_top)
+    band_top = max(0, int(band_top - pad))
+    band_bottom = min(full.shape[0], int(band_bottom + pad))
+    # a sliver reads as a crop artefact rather than a frame; keep it under 5:1
+    height, width = full.shape[:2]
+    if width / max(band_bottom - band_top, 1) > 5.0:
+        centre = (band_top + band_bottom) / 2
+        half = min(width / 5.0, height) / 2
+        band_top = int(min(max(centre - half, 0), height - 2 * half))
+        band_bottom = int(band_top + 2 * half)
 
-    for ax, side, letter in ((axes[0], first, "a"), (axes[1], last, "b")):
+    # One column, three panels: the frame the first identity was seen in, then
+    # the two close-ups. The band spans both columns so the crop windows can be
+    # located in a frame whose scale the reader can see.
+    fig = plt.figure(figsize=(3.45, 2.08), facecolor=PAPER)
+    grid = fig.add_gridspec(2, 2, height_ratios=(1.0, 1.72), hspace=0.16,
+                            wspace=0.05)
+    band_ax = fig.add_subplot(grid[0, :])
+    axes = [fig.add_subplot(grid[1, i]) for i in range(2)]
+
+    band_ax.imshow(full[band_top:band_bottom])
+    for _, x0, y0, x1, y1 in boxes_here:
+        band_ax.add_patch(Rectangle((x0, y0 - band_top), x1 - x0, y1 - y0,
+                                    fill=False, edgecolor=C_GT, lw=0.9))
+    left, top, right, bottom = windows["a"]
+    band_ax.add_patch(Rectangle((left, top - band_top), right - left,
+                                bottom - top, fill=False, edgecolor=CROP, lw=1.2))
+    band_ax.annotate("(b)", xy=(left, top - band_top), xytext=(-3, 2),
+                     textcoords="offset points", fontsize=5.6, color=PAPER,
+                     va="bottom", ha="right",
+                     bbox={"facecolor": CROP, "edgecolor": "none", "pad": 1.2})
+    band_ax.set_title(
+        f"(a) Frame {first['annotated_frame']}, full width of "
+        f"{full.shape[1]}$\\times${full.shape[0]}, "
+        f"{record['reference_boxes_in_first_frame']} reference bunches",
+        loc="left", fontsize=6.4, fontweight="bold", pad=2.5, color=INK)
+
+    for ax, side, letter in ((axes[0], first, "b"), (axes[1], last, "c")):
         image = mpimg.imread(frame_path(sequence, side["annotated_frame"], corpus))
-        wl, wt, wr, wb = windows[letter]
+        wl, wt, wr, wb = windows["a" if letter == "b" else "b"]
         ax.imshow(image[wt:wb, wl:wr])
         for box, colour, style in ((side["reference_box"], C_GT, "solid"),
                                    (side["predicted_box"], C_PRED, "dashed")):
@@ -256,17 +291,17 @@ def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
                                 (0.80, f"tracker: track {side['track']}", C_PRED)):
             ax.text(0.03, y, text, transform=ax.transAxes, fontsize=5.8, color=PAPER,
                     va="top", bbox={"facecolor": colour, "edgecolor": "none", "pad": 1.4})
-        if letter == "a":
+        if letter == "b":
             ax.text(0.985, 0.03, f"crop {wr - wl}$\\times${wb - wt} px of "
                                  f"{full.shape[1]}$\\times${full.shape[0]}",
                     transform=ax.transAxes, fontsize=5.4, color=PAPER, ha="right",
                     va="bottom", bbox={"facecolor": INK, "edgecolor": "none",
                                        "alpha": 0.65, "pad": 1.2})
-        gap = "" if letter == "a" else f", {record['gap_seconds']:.1f}\u2009s later"
+        gap = "" if letter == "b" else f", {record['gap_seconds']:.1f}\u2009s later"
         ax.set_title(f"({letter}) Frame {side['annotated_frame']}{gap}",
                      loc="left", fontsize=7.2, fontweight="bold", pad=3, color=INK)
 
-    for ax in axes:
+    for ax in axes + [band_ax]:
         ax.set_xticks([])
         ax.set_yticks([])
         for spine in ax.spines.values():
