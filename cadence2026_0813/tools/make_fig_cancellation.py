@@ -101,7 +101,7 @@ def main() -> None:
                  "detector confidence": crossing(confidence)}
     low, high = min(crossings.values()), max(crossings.values())
 
-    fig, ax = plt.subplots(figsize=(3.45, 2.35))
+    fig, ax = plt.subplots(figsize=(3.45, 2.18))
     ax.axhspan(-0.05, 0.05, color=C_NEUTRAL, alpha=0.10, lw=0)
     ax.axhline(0.0, color=C_NEUTRAL, lw=0.6, zorder=1)
     ax.axvspan(low, high, color=C_NEUTRAL, alpha=0.13, lw=0, zorder=0)

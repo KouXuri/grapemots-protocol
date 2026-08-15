@@ -256,6 +256,12 @@ def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
                                 (0.80, f"tracker: track {side['track']}", C_PRED)):
             ax.text(0.03, y, text, transform=ax.transAxes, fontsize=5.8, color=PAPER,
                     va="top", bbox={"facecolor": colour, "edgecolor": "none", "pad": 1.4})
+        if letter == "a":
+            ax.text(0.985, 0.03, f"crop {wr - wl}$\\times${wb - wt} px of "
+                                 f"{full.shape[1]}$\\times${full.shape[0]}",
+                    transform=ax.transAxes, fontsize=5.4, color=PAPER, ha="right",
+                    va="bottom", bbox={"facecolor": INK, "edgecolor": "none",
+                                       "alpha": 0.65, "pad": 1.2})
         gap = "" if letter == "a" else f", {record['gap_seconds']:.1f}\u2009s later"
         ax.set_title(f"({letter}) Frame {side['annotated_frame']}{gap}",
                      loc="left", fontsize=7.2, fontweight="bold", pad=3, color=INK)
