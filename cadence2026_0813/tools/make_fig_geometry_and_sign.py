@@ -122,7 +122,10 @@ for x, y, colour, marker, label in series:
         bx.plot([crossed], [0.0], marker="|", color=colour, markersize=6.5,
                 markeredgewidth=1.3, zorder=4)
 bx.set_ylabel("signed count error $e$")
-bx.set_ylim(-0.72, 3.25)
+bx.set_yscale("symlog", linthresh=0.5, linscale=0.9)
+bx.set_ylim(-0.9, 4.0)
+bx.set_yticks([-0.5, 0, 0.5, 1, 2, 3])
+bx.set_yticklabels(["$-0.5$", "0", "0.5", "1", "2", "3"])
 bx.set_xscale("log")
 bx.set_xlim(0.012, 14)
 bx.set_xticks([0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10])
@@ -131,8 +134,10 @@ bx.tick_params(axis="x", which="minor", bottom=False)
 bx.set_xlabel("displacement in units of target size,  $r$")
 bx.legend(frameon=False, fontsize=5.9, loc="upper left", handletextpad=0.35,
           borderpad=0.15, labelspacing=0.2,
-          title="corpus, detection, $(U{+}D)/G$ densest", title_fontsize=5.9)
-bx.text(0.283, -0.60, "$\\theta$ bands", fontsize=6.2, color=C_NEUTRAL, ha="center")
+          title="$(U{+}D)/G$ at the densest cadence", title_fontsize=5.9)
+bx.text(0.283, -0.72, "$\\theta$ bands", fontsize=6.2, color=C_NEUTRAL, ha="center")
+ax.text(0.013, 1.00, "(a)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
+bx.text(0.013, -0.55, "(b)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
 for side in ("top", "right"):
     bx.spines[side].set_visible(False)
 

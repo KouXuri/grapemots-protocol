@@ -34,7 +34,8 @@ changed rounding shows up.
 | --- | --- | --- | --- |
 | Table IV | cadence contrast on densely annotated corpora, $e$ and $1{-}M/G$ per $k$, both arms | `results/ext_cadence_0813/cadence_mot17.json`, `cadence_mot20.json` | `tools/cadence_intervention_mot.py` |
 | Table IV, $r$ column | sequence-median $r$ at each $k$ | `results/ext_cadence_0813/geometry_mot17.json`, `geometry_mot20.json` | `tools/thinned_geometry.py` |
-| Fig. 3 (bottom), §III-D | sign-crossing $r$ for four corpora; aspect ratios; share of pairs above (2) | `results/ext_cadence_0813/geometry_*.json` | `tools/thinned_geometry.py`, `tools/make_fig_geometry_and_sign.py` |
+| Fig. 1 | three paths to a zero count error, each reaching 0.37--0.48 of the reference; crossings interpolated between the bracketing measured points | `results/fig_cancellation_data.json` (points and crossings), rebuilt from `results/final_analyses_0809`, `cbdcom2026_r3/hota_panelA.json` and `results/adaptive_0813` | `tools/make_fig_cancellation.py` |
+| Fig. 2 (bottom), §III-D | sign-crossing $r$ for four corpora; aspect ratios; share of pairs above (2) | `results/ext_cadence_0813/geometry_*.json` | `tools/thinned_geometry.py`, `tools/make_fig_geometry_and_sign.py` |
 | §III-C, adaptive arms | one frame budget spent uniformly or by frame difference, 17 model-unseen sequences | `results/adaptive_0813/arms_fold1_six.json`, `arms_fold2_eleven.json` | `tools/cadence_arms_0813.py`, `tools/adaptive_frame_selection.py` |
 | §III-C, frame sets | which frames each arm processed | `results/adaptive_0813/frame_sets_17.json` | `tools/adaptive_frame_selection.py` |
 | §III-C, low-score arms | +1,415 and +41,443 candidates at extraction floor 0.10, $U,D,M,e$ unchanged | `results/adaptive_0813/arms_*.json` (`rel_low`, `src_low`) | `tools/cadence_arms_0813.py` |
@@ -50,7 +51,6 @@ changed rounding shows up.
 | §III-C, flights | flight-clustered bootstrap, $\tau=1$ interval $[+0.84,+1.58]$, 4/4 flights positive | `results/decomp_0812/cluster_bootstrap.json` | `tools/cluster_bootstrap.py` |
 | §IV-B, estimating $c$ | the trajectories a tracker loses move 1.9 and 2.4 times faster than those it keeps, so its own tracks return about half the true $c$ | `results/c_bias_0814/c_estimator_bias.json` | `tools/c_estimator_bias.py` |
 | §II-B, detector quality | out-of-fold full-frame AP after merge, by source resolution: median AP$_{50}$ 0.377 over nine 4K videos and 0.086 over two 1080p ones | `results/ap_lovo_0814/lovo_ap_summary.json` | `tools/summarise_lovo_ap.py` |
-| Fig. 2 | one reference bunch, two identities, on a frontal 2024 pass read by a leave-one-video-out checkpoint; found by the ownership rule rather than by eye | `results/fig_identity_break_data.json` (the instance and both boxes), `results/gm2024_video/summary_npp1.json` (the run); imagery not redistributed | `tools/make_fig_identity_break.py` |
 
 ## What each layer of support means
 
