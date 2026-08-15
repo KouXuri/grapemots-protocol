@@ -81,10 +81,30 @@ bodegas_base = ((decomposition["src_buf30"]["U"] + decomposition["src_buf30"]["D
 structure = json.loads((ROOT / "runs/grapemots_journal_0805/results/sequence_structure.json")
                        .read_text())["sequences"]
 
-fig, bx = plt.subplots(figsize=(3.45, 1.75))
-ax = None
+fig, (ax, bx) = plt.subplots(2, 1, figsize=(3.45, 2.62), sharex=True,
+                             gridspec_kw={"height_ratios": [0.88, 1.15], "hspace": 0.10})
 
-bx.axvspan(0.20, 0.40, color="#dddddd", alpha=0.6, linewidth=0, zorder=0)
+for panel in (ax, bx):
+    panel.axvspan(0.20, 0.40, color="#dddddd", alpha=0.6, linewidth=0, zorder=0)
+
+grid = np.linspace(1e-3, 1.0, 400)
+ax.plot(grid, (1 - grid) / (1 + grid), color="black", linewidth=1.0, zorder=2)
+ax.plot([1.0, 30.0], [0.0, 0.0], color="black", linewidth=1.0, zorder=2)
+ax.text(0.55, 0.30, "$(1-r)/(1+r)$", fontsize=6.3, color="black", ha="left")
+ax.axvline(2 ** 0.5, color=C_NEUTRAL, linewidth=0.5, linestyle=":", zorder=1)
+ax.text(1.52, 0.86, "$\\sqrt{2}$", fontsize=6.3, color=C_NEUTRAL, ha="left")
+for key, (colour, marker, label) in STYLE.items():
+    rows = [s for s in structure if s.get("corpus") == key]
+    ax.scatter([s["step_over_size_median"] for s in rows],
+               [s["consecutive_iou_median"] for s in rows],
+               s=13, c=colour, marker=marker, edgecolors="white",
+               linewidths=0.35, label=f"{label} ({len(rows)})", zorder=3)
+ax.set_ylabel("consecutive\nreference IoU")
+ax.set_ylim(-0.05, 1.08)
+ax.legend(frameon=False, fontsize=6.0, loc="center left", handletextpad=0.3,
+          borderpad=0.15, labelspacing=0.2)
+for side in ("top", "right"):
+    ax.spines[side].set_visible(False)
 
 bx.axhline(0, color=C_NEUTRAL, linewidth=0.6, zorder=1)
 series = [
@@ -116,6 +136,8 @@ bx.legend(frameon=False, fontsize=5.9, loc="upper left", handletextpad=0.35,
           borderpad=0.15, labelspacing=0.2,
           title="$(U{+}D)/G$ at the densest cadence", title_fontsize=5.9)
 bx.text(0.283, -0.72, "$\\theta$ bands", fontsize=6.2, color=C_NEUTRAL, ha="center")
+ax.text(0.013, 1.02, "(a)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
+bx.text(0.013, -0.55, "(b)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
 for side in ("top", "right"):
     bx.spines[side].set_visible(False)
 
