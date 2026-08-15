@@ -311,9 +311,9 @@ def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
     fig.subplots_adjust(left=0.005, right=0.995, top=0.90, bottom=0.015)
     out.parent.mkdir(parents=True, exist_ok=True)
     for suffix in (".pdf", ".png"):
-        # the band is 3840 px of source; 400 dpi threw two thirds of it away
+        # the band is 3840 px of source: 1150 dpi keeps all of it
         fig.savefig(out.with_suffix(suffix), bbox_inches="tight", pad_inches=0.025,
-                    facecolor=PAPER, dpi=700)
+                    facecolor=PAPER, dpi=1150)
     plt.close(fig)
 
 
