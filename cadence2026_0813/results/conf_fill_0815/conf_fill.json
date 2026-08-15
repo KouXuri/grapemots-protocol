@@ -1,0 +1,30 @@
+{
+ "videos": [
+  "PathPlanning_2",
+  "PathPlanning_4",
+  "PathPlanning_5",
+  "PathPlanning_6",
+  "PathPlanning_7",
+  "PathPlanning_8"
+ ],
+ "rows": {
+  "Confidence 0.80": {
+   "P": 268,
+   "G": 415,
+   "U": 44,
+   "D": 101,
+   "M": 292,
+   "signed_error": -0.3542168674698795,
+   "assigned_fraction": 0.29638554216867474
+  },
+  "Confidence 0.75": {
+   "P": 453,
+   "G": 415,
+   "U": 105,
+   "D": 175,
+   "M": 242,
+   "signed_error": 0.09156626506024096,
+   "assigned_fraction": 0.41686746987951806
+  }
+ }
+}

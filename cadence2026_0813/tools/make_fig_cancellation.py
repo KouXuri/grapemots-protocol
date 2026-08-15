@@ -32,6 +32,7 @@ LADDER = ROOT / "runs/final_analyses_0809/results/density_realpipeline.json"
 PANEL_A = ROOT / "grapemots-protocol/cbdcom2026_r3/results/hota_panelA.json"
 ARMS = [ROOT / "runs/adaptive_0813/results/arms_fold1_six.json",
         ROOT / "runs/adaptive_0813/results/arms_fold2_eleven.json"]
+CONF_FILL = ROOT / "runs/conf_fill_0815/results/conf_fill.json"
 
 
 def cadence_series() -> list[tuple[float, float, str]]:
@@ -66,9 +67,16 @@ def ladder_series() -> list[tuple[float, float, str]]:
 
 
 def confidence_series() -> list[tuple[float, float, str]]:
-    """The detector operating point, over one cache of detections."""
-    rows = json.loads(PANEL_A.read_text())["rows"]
-    wanted = [("Confidence 0.85", "0.85"), ("Confidence 0.70", "0.70"),
+    """The detector operating point, over one cache of detections.
+
+    0.75 and 0.80 were replayed later, from the same caches and checkpoints, so
+    that the sign change between 0.70 and 0.85 is bracketed by measurements
+    0.12 of coverage apart instead of 0.42.
+    """
+    rows = dict(json.loads(PANEL_A.read_text())["rows"])
+    rows.update(json.loads(CONF_FILL.read_text())["rows"])
+    wanted = [("Confidence 0.85", "0.85"), ("Confidence 0.80", "0.80"),
+              ("Confidence 0.75", "0.75"), ("Confidence 0.70", "0.70"),
               ("Confidence 0.55", "0.55"), ("Confidence 0.40", "0.40"),
               ("BoT-SORT, buffer 30", "0.25")]
     return [(rows[key]["assigned_fraction"], rows[key]["signed_error"], label)
@@ -100,7 +108,7 @@ def main() -> None:
 
     for series, colour, marker, style, label in (
         (cadence, C_ERR, "o", "-", "processing cadence, 2023"),
-        (ladder, C_GT, "s", "--", "annotation thinning, 2024"),
+        (ladder, C_GT, "s", "--", "annotation thinning, 2024$^{*}$"),
         (confidence, C_PRED, "^", ":", "detector confidence, 2024"),
     ):
         xs = [point[0] for point in series]
@@ -113,12 +121,15 @@ def main() -> None:
                 markeredgecolor=C_NEUTRAL, markeredgewidth=0.9, zorder=4)
 
     ax.annotate(f"zero error at {low:.2f}\u2013{high:.2f}\nof the reference reached",
-                xy=(high, -0.30), xytext=(0.55, -0.78),
+                xy=(high, -0.22), xytext=(0.56, -0.62),
                 textcoords="data", ha="left", va="center", fontsize=6.6,
                 color=C_NEUTRAL,
                 arrowprops=dict(arrowstyle="->", lw=0.6, color=C_NEUTRAL,
                                 shrinkA=2, shrinkB=2))
 
+    ax.text(0.015, 0.075, r"$^{*}$reference thins with the processing",
+            transform=ax.transAxes, ha="left", va="bottom", fontsize=6.0,
+            color=C_NEUTRAL)
     ax.set_xlabel(r"annotated trajectories reached, $1-M/G$")
     ax.set_ylabel(r"signed count error $e$")
     ax.set_xlim(0.03, 0.86)
