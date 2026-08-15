@@ -81,8 +81,8 @@ bodegas_base = ((decomposition["src_buf30"]["U"] + decomposition["src_buf30"]["D
 structure = json.loads((ROOT / "runs/grapemots_journal_0805/results/sequence_structure.json")
                        .read_text())["sequences"]
 
-fig, (ax, bx) = plt.subplots(2, 1, figsize=(3.45, 2.44), sharex=True,
-                             gridspec_kw={"height_ratios": [0.88, 1.15], "hspace": 0.10})
+fig, (ax, bx) = plt.subplots(2, 1, figsize=(3.45, 3.25), sharex=True,
+                             gridspec_kw={"height_ratios": [1.0, 1.05], "hspace": 0.10})
 
 for panel in (ax, bx):
     panel.axvspan(0.20, 0.40, color="#dddddd", alpha=0.6, linewidth=0, zorder=0)
