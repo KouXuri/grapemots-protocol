@@ -108,10 +108,10 @@ for side in ("top", "right"):
 
 bx.axhline(0, color=C_NEUTRAL, linewidth=0.6, zorder=1)
 series = [
-    (grape_r, grape_e, C_GT, "s", f"vineyard 2024, detector, {grape_base:.1f}"),
-    (bodegas_r, bodegas_e, C_PRED, "o", f"vineyard 2023, detector, {bodegas_base:.1f}"),
-    (mot17_r, mot17_e, "#7f7f7f", "^", f"MOT17, oracle, {mot17_base:.2f}"),
-    (mot20_r, mot20_e, "#bcbd22", "v", f"MOT20, oracle, {mot20_base:.2f}"),
+    (grape_r, grape_e, C_GT, "s", f"vineyard 2024, {grape_base:.1f}"),
+    (bodegas_r, bodegas_e, C_PRED, "o", f"vineyard 2023, {bodegas_base:.1f}"),
+    (mot17_r, mot17_e, "#7f7f7f", "^", f"MOT17, {mot17_base:.2f}"),
+    (mot20_r, mot20_e, "#bcbd22", "v", f"MOT20, {mot20_base:.2f}"),
 ]
 for x, y, colour, marker, label in series:
     bx.plot(x, y, "--" if len(x) == 2 else "-", marker=marker, color=colour,
@@ -132,12 +132,12 @@ bx.set_xticks([0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10])
 bx.set_xticklabels(["0.02", "0.05", "0.1", "0.2", "0.5", "1", "2", "5", "10"])
 bx.tick_params(axis="x", which="minor", bottom=False)
 bx.set_xlabel("displacement in units of target size,  $r$")
-bx.legend(frameon=False, fontsize=5.9, loc="upper left", handletextpad=0.35,
-          borderpad=0.15, labelspacing=0.2,
-          title="$(U{+}D)/G$ at the densest cadence", title_fontsize=5.9)
+bx.legend(frameon=False, fontsize=5.7, loc="upper left", handletextpad=0.3,
+          borderpad=0.1, labelspacing=0.18, handlelength=1.6,
+          title="corpus, $(U{+}D)/G$ densest", title_fontsize=5.7)
 bx.text(0.283, -0.72, "$\\theta$ bands", fontsize=6.2, color=C_NEUTRAL, ha="center")
-ax.text(0.013, 1.02, "(a)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
-bx.text(0.013, -0.55, "(b)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
+ax.text(0.0145, 0.92, "(a)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
+bx.text(0.0145, -0.62, "(b)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
 for side in ("top", "right"):
     bx.spines[side].set_visible(False)
 
