@@ -99,7 +99,7 @@ def rebuild() -> dict:
                 "M": rel["M"],
             }
 
-    # Table VI: one frame budget spent uniformly or by frame difference.
+    # Section III-C: one frame budget spent uniformly or by frame difference.
     pooled: dict[str, dict[str, int]] = {}
     for name in ("arms_fold1_six.json", "arms_fold2_eleven.json"):
         payload = load(ARMS / name)
@@ -114,13 +114,13 @@ def rebuild() -> dict:
         if arm not in pooled:
             continue
         block = pooled[arm]
-        out[f"tableVI/{arm}"] = {
+        out[f"sec3C-adaptive/{arm}"] = {
             "frames": block["tracker_frames"],
             "e": round((block["P"] - block["G"]) / block["G"], 3),
             "assigned": round(1 - block["M"] / block["G"], 3),
         }
 
-    # Table VII: the two cuts priced, on board and on the link.
+    # Table VI: the two cuts priced, on board and on the link.
     for name, label in (("edge_yolo26s_tiled.json", "yolo26s_8tiles"),
                         ("edge_yolo26n_tiled.json", "yolo26n_8tiles"),
                         ("edge_yolo26n_full.json", "yolo26n_full")):
@@ -128,19 +128,80 @@ def rebuild() -> dict:
         if not payload:
             continue
         compute = payload["compute"]
-        out[f"tableVII/{label}"] = {
+        out[f"tableVI/{label}"] = {
             "fps": round(compute["fps"], 1),
             "detect_ms": round(compute["stage_ms"]["detect_ms_median"]),
             "associate_ms": round(compute["stage_ms"]["track_ms_median"]),
             "joules_per_frame": round(compute["joules_per_frame"], 1),
         }
-    link = load(ARMS / "link_row_6.1_1.json")
+    # The link row is measured through one x264 encoder at CRF 23, so the two
+    # frame architectures differ in the frames sent and in nothing else. The
+    # delivered bitrate of the release is kept beside them because it is a
+    # different encode, not a third architecture.
+    link = load(RESULTS / "link_allintra_0814" / "link_allintra.json")
     if link:
-        out["tableVII/link"] = {
-            "every_frame_mbit_s": round(link["link"]["source_mbit_s"], 1),
-            # 1.67 Hz is the measured median effective rate of the 2023 release
-            "sparse_mbit_s": round(link["link"]["jpeg_mean_bytes"] * 1.67 * 8 / 1e6, 1),
+        out["tableVI/link"] = {
+            "delivered_mbit_s": round(link["source_mbit_s"], 1),
+            "every_frame_mbit_s": round(link["fullrate_same_codec_mbit_s"], 1),
+            "sparse_mbit_s": round(link["allintra_mbit_s_at_sparse_rate"], 1),
+            "sparse_interframe_mbit_s": round(link["interframe_mbit_s_at_sparse_rate"], 1),
+            "frame_saving": round(link["frame_saving"], 3),
+            "byte_saving_same_codec": round(link["byte_saving_same_codec"], 2),
         }
+
+    # Table II: IDF1 replaces AssA, recomputed from the same per-frame boxes.
+    idf1 = load(RESULTS / "definition_0815" / "idf1_table2.json")
+    # the manuscript tabulates nine of the eleven association rows in panel A
+    PANEL_A_ROWS = ("Confidence 0.85", "Confidence 0.70", "Confidence 0.55",
+                    "Confidence 0.40", "IoS merge", "BoT-SORT, buffer 30",
+                    "BoT-SORT, GMC off", "BoT-SORT + ReID", "ByteTrack, buffer 60")
+    if idf1:
+        for label, row in idf1["panelA"].items():
+            if label in PANEL_A_ROWS:
+                out[f"tableII-A-idf1/{label}"] = {"IDF1": round(row["IDF1"], 3)}
+        for label, row in idf1["panelB"].items():
+            out[f"tableII-B-idf1/{label}"] = {"IDF1": round(row["IDF1"], 3)}
+
+    # The decomposition read at three ownership gates: the count does not move
+    # with the gate, the coverage does, and the ordering of the arms does not.
+    sensitivity = load(RESULTS / "definition_0815" / "definition_sensitivity.json")
+    if sensitivity:
+        for gate in ("0.3", "0.5", "0.7"):
+            for arm in ("rel", "src"):
+                cell = sensitivity["gate"].get(f"iou{gate}_tau1_{arm}")
+                if cell:
+                    out[f"ownership-gate/iou{gate}/{arm}"] = {
+                        "e": round(cell["signed_error"], 3),
+                        "assigned": round(cell["assigned_fraction"], 2),
+                    }
+        for tau in ("3",):
+            for arm in ("rel", "src"):
+                cell = sensitivity["tau_symmetry"].get(f"tau{tau}_{arm}")
+                if cell:
+                    out[f"symmetric-tau/tau{tau}/{arm}"] = {
+                        "G_symmetric": cell["G_symmetric"],
+                        "e_symmetric": round(cell["e_symmetric"], 3),
+                    }
+
+    # U, D and M beside the identity family on the same two arms.
+    identity = load(RESULTS / "definition_0815" / "identity_metrics.json")
+    if identity:
+        for arm, row in identity["rows"].items():
+            out[f"identity-family/{arm}"] = {
+                "D": row["D"], "M": row["M"], "IDSW": row["IDSW"],
+                "ML": row["ML"], "IDF1": round(row["IDF1"], 3),
+            }
+
+    # The timescale and gate controls on the cadence arms.
+    timescale = load(RESULTS / "timescale_0815" / "timescale_summary.json")
+    if timescale:
+        for key, cell in timescale["pairs"].items():
+            if not key.endswith("/tau1"):
+                continue
+            out[f"timescale/{key}"] = {
+                "delta_median": round(cell["delta_median"], 3),
+                "up": cell["up"], "down": cell["down"], "tie": cell["tie"],
+            }
 
     # Table II panel B: eleven sequences, each read by a checkpoint blind to it.
     panel_b = load(DEC / "hota_panelB.json")

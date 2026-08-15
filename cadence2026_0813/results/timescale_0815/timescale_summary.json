@@ -1,0 +1,832 @@
+{
+ "videos": [
+  "row_4.2_1",
+  "row_4.3_2",
+  "row_4.4_2",
+  "row_4.4_4",
+  "row_6.1_1",
+  "row_6.1_2",
+  "row_6.1_3",
+  "row_6.1_4",
+  "row_6.2_1",
+  "row_6.2_2",
+  "row_7.1_1",
+  "row_7.1_2",
+  "row_7.1_3",
+  "row_7.1_4",
+  "row_7.2_1",
+  "row_7.2_2",
+  "row_8_1"
+ ],
+ "arms": [
+  "rel",
+  "rel_dt",
+  "rel_g03",
+  "rel_g05",
+  "src",
+  "src_g03",
+  "src_g05"
+ ],
+ "pooled": {
+  "rel/tau1": {
+   "arm": "rel",
+   "tau": 1,
+   "P": 238,
+   "G": 339,
+   "U": 99,
+   "D": 19,
+   "M": 219,
+   "signed_error": -0.29793510324483774,
+   "assigned_fraction": 0.35398230088495575
+  },
+  "rel/tau3": {
+   "arm": "rel",
+   "tau": 3,
+   "P": 95,
+   "G": 339,
+   "U": 27,
+   "D": 4,
+   "M": 275,
+   "signed_error": -0.7197640117994101,
+   "assigned_fraction": 0.1887905604719764
+  },
+  "rel/tau5": {
+   "arm": "rel",
+   "tau": 5,
+   "P": 60,
+   "G": 339,
+   "U": 19,
+   "D": 0,
+   "M": 298,
+   "signed_error": -0.8230088495575221,
+   "assigned_fraction": 0.12094395280235992
+  },
+  "rel/tau8": {
+   "arm": "rel",
+   "tau": 8,
+   "P": 36,
+   "G": 339,
+   "U": 7,
+   "D": 0,
+   "M": 310,
+   "signed_error": -0.8938053097345132,
+   "assigned_fraction": 0.08554572271386429
+  },
+  "rel_dt/tau1": {
+   "arm": "rel_dt",
+   "tau": 1,
+   "P": 254,
+   "G": 339,
+   "U": 100,
+   "D": 31,
+   "M": 216,
+   "signed_error": -0.25073746312684364,
+   "assigned_fraction": 0.36283185840707965
+  },
+  "rel_dt/tau3": {
+   "arm": "rel_dt",
+   "tau": 3,
+   "P": 96,
+   "G": 339,
+   "U": 28,
+   "D": 10,
+   "M": 281,
+   "signed_error": -0.7168141592920354,
+   "assigned_fraction": 0.17109144542772858
+  },
+  "rel_dt/tau5": {
+   "arm": "rel_dt",
+   "tau": 5,
+   "P": 52,
+   "G": 339,
+   "U": 12,
+   "D": 3,
+   "M": 302,
+   "signed_error": -0.8466076696165191,
+   "assigned_fraction": 0.10914454277286134
+  },
+  "rel_dt/tau8": {
+   "arm": "rel_dt",
+   "tau": 8,
+   "P": 33,
+   "G": 339,
+   "U": 4,
+   "D": 2,
+   "M": 312,
+   "signed_error": -0.9026548672566371,
+   "assigned_fraction": 0.07964601769911506
+  },
+  "rel_g03/tau1": {
+   "arm": "rel_g03",
+   "tau": 1,
+   "P": 260,
+   "G": 339,
+   "U": 115,
+   "D": 27,
+   "M": 221,
+   "signed_error": -0.23303834808259588,
+   "assigned_fraction": 0.3480825958702065
+  },
+  "rel_g03/tau3": {
+   "arm": "rel_g03",
+   "tau": 3,
+   "P": 83,
+   "G": 339,
+   "U": 25,
+   "D": 5,
+   "M": 286,
+   "signed_error": -0.7551622418879056,
+   "assigned_fraction": 0.15634218289085544
+  },
+  "rel_g03/tau5": {
+   "arm": "rel_g03",
+   "tau": 5,
+   "P": 41,
+   "G": 339,
+   "U": 9,
+   "D": 1,
+   "M": 308,
+   "signed_error": -0.8790560471976401,
+   "assigned_fraction": 0.09144542772861353
+  },
+  "rel_g03/tau8": {
+   "arm": "rel_g03",
+   "tau": 8,
+   "P": 23,
+   "G": 339,
+   "U": 4,
+   "D": 0,
+   "M": 320,
+   "signed_error": -0.9321533923303835,
+   "assigned_fraction": 0.05604719764011801
+  },
+  "rel_g05/tau1": {
+   "arm": "rel_g05",
+   "tau": 1,
+   "P": 330,
+   "G": 339,
+   "U": 144,
+   "D": 69,
+   "M": 222,
+   "signed_error": -0.02654867256637168,
+   "assigned_fraction": 0.34513274336283184
+  },
+  "rel_g05/tau3": {
+   "arm": "rel_g05",
+   "tau": 3,
+   "P": 45,
+   "G": 339,
+   "U": 11,
+   "D": 4,
+   "M": 309,
+   "signed_error": -0.8672566371681416,
+   "assigned_fraction": 0.08849557522123896
+  },
+  "rel_g05/tau5": {
+   "arm": "rel_g05",
+   "tau": 5,
+   "P": 22,
+   "G": 339,
+   "U": 6,
+   "D": 1,
+   "M": 324,
+   "signed_error": -0.9351032448377581,
+   "assigned_fraction": 0.04424778761061943
+  },
+  "rel_g05/tau8": {
+   "arm": "rel_g05",
+   "tau": 8,
+   "P": 11,
+   "G": 339,
+   "U": 1,
+   "D": 1,
+   "M": 330,
+   "signed_error": -0.967551622418879,
+   "assigned_fraction": 0.026548672566371723
+  },
+  "src/tau1": {
+   "arm": "src",
+   "tau": 1,
+   "P": 666,
+   "G": 339,
+   "U": 347,
+   "D": 86,
+   "M": 106,
+   "signed_error": 0.9646017699115044,
+   "assigned_fraction": 0.6873156342182891
+  },
+  "src/tau3": {
+   "arm": "src",
+   "tau": 3,
+   "P": 281,
+   "G": 339,
+   "U": 81,
+   "D": 27,
+   "M": 166,
+   "signed_error": -0.1710914454277286,
+   "assigned_fraction": 0.5103244837758112
+  },
+  "src/tau5": {
+   "arm": "src",
+   "tau": 5,
+   "P": 164,
+   "G": 339,
+   "U": 37,
+   "D": 12,
+   "M": 224,
+   "signed_error": -0.5162241887905604,
+   "assigned_fraction": 0.3392330383480826
+  },
+  "src/tau8": {
+   "arm": "src",
+   "tau": 8,
+   "P": 74,
+   "G": 339,
+   "U": 11,
+   "D": 3,
+   "M": 279,
+   "signed_error": -0.7817109144542773,
+   "assigned_fraction": 0.17699115044247793
+  },
+  "src_g03/tau1": {
+   "arm": "src_g03",
+   "tau": 1,
+   "P": 709,
+   "G": 339,
+   "U": 361,
+   "D": 131,
+   "M": 122,
+   "signed_error": 1.0914454277286136,
+   "assigned_fraction": 0.640117994100295
+  },
+  "src_g03/tau3": {
+   "arm": "src_g03",
+   "tau": 3,
+   "P": 211,
+   "G": 339,
+   "U": 52,
+   "D": 21,
+   "M": 201,
+   "signed_error": -0.3775811209439528,
+   "assigned_fraction": 0.4070796460176991
+  },
+  "src_g03/tau5": {
+   "arm": "src_g03",
+   "tau": 5,
+   "P": 114,
+   "G": 339,
+   "U": 19,
+   "D": 7,
+   "M": 251,
+   "signed_error": -0.6637168141592921,
+   "assigned_fraction": 0.25958702064896755
+  },
+  "src_g03/tau8": {
+   "arm": "src_g03",
+   "tau": 8,
+   "P": 55,
+   "G": 339,
+   "U": 9,
+   "D": 1,
+   "M": 294,
+   "signed_error": -0.8377581120943953,
+   "assigned_fraction": 0.1327433628318584
+  },
+  "src_g05/tau1": {
+   "arm": "src_g05",
+   "tau": 1,
+   "P": 684,
+   "G": 339,
+   "U": 321,
+   "D": 173,
+   "M": 149,
+   "signed_error": 1.0176991150442478,
+   "assigned_fraction": 0.56047197640118
+  },
+  "src_g05/tau3": {
+   "arm": "src_g05",
+   "tau": 3,
+   "P": 121,
+   "G": 339,
+   "U": 27,
+   "D": 13,
+   "M": 258,
+   "signed_error": -0.6430678466076696,
+   "assigned_fraction": 0.23893805309734517
+  },
+  "src_g05/tau5": {
+   "arm": "src_g05",
+   "tau": 5,
+   "P": 64,
+   "G": 339,
+   "U": 12,
+   "D": 4,
+   "M": 291,
+   "signed_error": -0.8112094395280236,
+   "assigned_fraction": 0.1415929203539823
+  },
+  "src_g05/tau8": {
+   "arm": "src_g05",
+   "tau": 8,
+   "P": 26,
+   "G": 339,
+   "U": 4,
+   "D": 0,
+   "M": 317,
+   "signed_error": -0.9233038348082596,
+   "assigned_fraction": 0.06489675516224191
+  }
+ },
+ "pairs": {
+  "rel->src/tau1": {
+   "first": "rel",
+   "second": "src",
+   "note": "published contrast",
+   "tau": 1,
+   "sequences": 17,
+   "first_median": -0.3157894736842105,
+   "second_median": 0.8125,
+   "delta_median": 1.1111111111111112,
+   "ci95_sequence": [
+    0.7777777777777777,
+    1.5789473684210527
+   ],
+   "ci95_flight": [
+    0.8439201451905627,
+    1.5789473684210527
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel->src/tau3": {
+   "first": "rel",
+   "second": "src",
+   "note": "published contrast",
+   "tau": 3,
+   "sequences": 17,
+   "first_median": -0.7931034482758621,
+   "second_median": -0.15789473684210525,
+   "delta_median": 0.6000000000000001,
+   "ci95_sequence": [
+    0.33333333333333337,
+    0.7307692307692307
+   ],
+   "ci95_flight": [
+    0.5368421052631579,
+    0.7307692307692307
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel->src/tau5": {
+   "first": "rel",
+   "second": "src",
+   "note": "published contrast",
+   "tau": 5,
+   "sequences": 17,
+   "first_median": -0.8888888888888888,
+   "second_median": -0.5714285714285714,
+   "delta_median": 0.2894736842105263,
+   "ci95_sequence": [
+    0.23529411764705882,
+    0.4285714285714286
+   ],
+   "ci95_flight": [
+    0.2579365079365079,
+    0.3508771929824561
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel->src/tau8": {
+   "first": "rel",
+   "second": "src",
+   "note": "published contrast",
+   "tau": 8,
+   "sequences": 17,
+   "first_median": -1.0,
+   "second_median": -0.7692307692307693,
+   "delta_median": 0.11111111111111116,
+   "ci95_sequence": [
+    0.02631578947368418,
+    0.23076923076923073
+   ],
+   "ci95_flight": [
+    0.02631578947368418,
+    0.12698412698412703
+   ],
+   "up": 13,
+   "down": 0,
+   "tie": 4,
+   "flights": 4,
+   "flights_all_positive": 1
+  },
+  "rel->rel_dt/tau1": {
+   "first": "rel",
+   "second": "rel_dt",
+   "note": "elapsed-time prediction, sparse arm only",
+   "tau": 1,
+   "sequences": 17,
+   "first_median": -0.3157894736842105,
+   "second_median": -0.28,
+   "delta_median": 0.02631578947368418,
+   "ci95_sequence": [
+    0.0,
+    0.05555555555555558
+   ],
+   "ci95_flight": [
+    0.0,
+    0.054093567251462
+   ],
+   "up": 9,
+   "down": 1,
+   "tie": 7,
+   "flights": 4,
+   "flights_all_positive": 1
+  },
+  "rel->rel_dt/tau3": {
+   "first": "rel",
+   "second": "rel_dt",
+   "note": "elapsed-time prediction, sparse arm only",
+   "tau": 3,
+   "sequences": 17,
+   "first_median": -0.7931034482758621,
+   "second_median": -0.7586206896551724,
+   "delta_median": 0.0,
+   "ci95_sequence": [
+    -0.02631578947368418,
+    0.0
+   ],
+   "ci95_flight": [
+    -0.02631578947368418,
+    0.0
+   ],
+   "up": 3,
+   "down": 5,
+   "tie": 9,
+   "flights": 4,
+   "flights_all_positive": 0
+  },
+  "rel->rel_dt/tau5": {
+   "first": "rel",
+   "second": "rel_dt",
+   "note": "elapsed-time prediction, sparse arm only",
+   "tau": 5,
+   "sequences": 17,
+   "first_median": -0.8888888888888888,
+   "second_median": -0.9230769230769231,
+   "delta_median": 0.0,
+   "ci95_sequence": [
+    -0.05882352941176472,
+    0.0
+   ],
+   "ci95_flight": [
+    -0.015625,
+    0.0
+   ],
+   "up": 2,
+   "down": 7,
+   "tie": 8,
+   "flights": 4,
+   "flights_all_positive": 0
+  },
+  "rel->rel_dt/tau8": {
+   "first": "rel",
+   "second": "rel_dt",
+   "note": "elapsed-time prediction, sparse arm only",
+   "tau": 8,
+   "sequences": 17,
+   "first_median": -1.0,
+   "second_median": -1.0,
+   "delta_median": 0.0,
+   "ci95_sequence": [
+    0.0,
+    0.0
+   ],
+   "ci95_flight": [
+    0.0,
+    0.0
+   ],
+   "up": 2,
+   "down": 3,
+   "tie": 12,
+   "flights": 4,
+   "flights_all_positive": 0
+  },
+  "rel_dt->src/tau1": {
+   "first": "rel_dt",
+   "second": "src",
+   "note": "contrast with both arms on one clock",
+   "tau": 1,
+   "sequences": 17,
+   "first_median": -0.28,
+   "second_median": 0.8125,
+   "delta_median": 1.0,
+   "ci95_sequence": [
+    0.7647058823529412,
+    1.5714285714285714
+   ],
+   "ci95_flight": [
+    0.7647058823529412,
+    1.5526315789473686
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel_dt->src/tau3": {
+   "first": "rel_dt",
+   "second": "src",
+   "note": "contrast with both arms on one clock",
+   "tau": 3,
+   "sequences": 17,
+   "first_median": -0.7586206896551724,
+   "second_median": -0.15789473684210525,
+   "delta_median": 0.6000000000000001,
+   "ci95_sequence": [
+    0.3333333333333333,
+    0.7307692307692307
+   ],
+   "ci95_flight": [
+    0.5105263157894737,
+    0.7307692307692307
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel_dt->src/tau5": {
+   "first": "rel_dt",
+   "second": "src",
+   "note": "contrast with both arms on one clock",
+   "tau": 5,
+   "sequences": 17,
+   "first_median": -0.9230769230769231,
+   "second_median": -0.5714285714285714,
+   "delta_median": 0.31578947368421056,
+   "ci95_sequence": [
+    0.2777777777777778,
+    0.4285714285714286
+   ],
+   "ci95_flight": [
+    0.2894736842105263,
+    0.32456140350877194
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel_dt->src/tau8": {
+   "first": "rel_dt",
+   "second": "src",
+   "note": "contrast with both arms on one clock",
+   "tau": 8,
+   "sequences": 17,
+   "first_median": -1.0,
+   "second_median": -0.7692307692307693,
+   "delta_median": 0.11111111111111116,
+   "ci95_sequence": [
+    0.02631578947368418,
+    0.23809523809523814
+   ],
+   "ci95_flight": [
+    0.02631578947368418,
+    0.13392857142857145
+   ],
+   "up": 13,
+   "down": 0,
+   "tie": 4,
+   "flights": 4,
+   "flights_all_positive": 1
+  },
+  "rel_g03->src_g03/tau1": {
+   "first": "rel_g03",
+   "second": "src_g03",
+   "note": "association gate IoU 0.3",
+   "tau": 1,
+   "sequences": 17,
+   "first_median": -0.2857142857142857,
+   "second_median": 1.2857142857142858,
+   "delta_median": 1.2857142857142858,
+   "ci95_sequence": [
+    0.9473684210526315,
+    1.7692307692307692
+   ],
+   "ci95_flight": [
+    1.0,
+    1.763157894736842
+   ],
+   "up": 17,
+   "down": 0,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 4
+  },
+  "rel_g03->src_g03/tau3": {
+   "first": "rel_g03",
+   "second": "src_g03",
+   "note": "association gate IoU 0.3",
+   "tau": 3,
+   "sequences": 17,
+   "first_median": -0.8275862068965517,
+   "second_median": -0.3076923076923077,
+   "delta_median": 0.42307692307692313,
+   "ci95_sequence": [
+    0.19999999999999996,
+    0.5263157894736842
+   ],
+   "ci95_flight": [
+    0.37820512820512825,
+    0.5263157894736842
+   ],
+   "up": 16,
+   "down": 0,
+   "tie": 1,
+   "flights": 4,
+   "flights_all_positive": 3
+  },
+  "rel_g03->src_g03/tau5": {
+   "first": "rel_g03",
+   "second": "src_g03",
+   "note": "association gate IoU 0.3",
+   "tau": 5,
+   "sequences": 17,
+   "first_median": -0.96875,
+   "second_median": -0.7142857142857143,
+   "delta_median": 0.21052631578947367,
+   "ci95_sequence": [
+    0.11428571428571432,
+    0.28
+   ],
+   "ci95_flight": [
+    0.17857142857142855,
+    0.22702205882352938
+   ],
+   "up": 16,
+   "down": 0,
+   "tie": 1,
+   "flights": 4,
+   "flights_all_positive": 3
+  },
+  "rel_g03->src_g03/tau8": {
+   "first": "rel_g03",
+   "second": "src_g03",
+   "note": "association gate IoU 0.3",
+   "tau": 8,
+   "sequences": 17,
+   "first_median": -1.0,
+   "second_median": -0.8620689655172413,
+   "delta_median": 0.05555555555555547,
+   "ci95_sequence": [
+    0.0,
+    0.15384615384615385
+   ],
+   "ci95_flight": [
+    0.0,
+    0.10435571687840295
+   ],
+   "up": 10,
+   "down": 0,
+   "tie": 7,
+   "flights": 4,
+   "flights_all_positive": 0
+  },
+  "rel_g05->src_g05/tau1": {
+   "first": "rel_g05",
+   "second": "src_g05",
+   "note": "association gate IoU 0.5",
+   "tau": 1,
+   "sequences": 17,
+   "first_median": -0.14285714285714285,
+   "second_median": 1.0,
+   "delta_median": 1.1428571428571428,
+   "ci95_sequence": [
+    0.71875,
+    1.368421052631579
+   ],
+   "ci95_flight": [
+    0.7804276315789473,
+    1.368421052631579
+   ],
+   "up": 16,
+   "down": 1,
+   "tie": 0,
+   "flights": 4,
+   "flights_all_positive": 3
+  },
+  "rel_g05->src_g05/tau3": {
+   "first": "rel_g05",
+   "second": "src_g05",
+   "note": "association gate IoU 0.5",
+   "tau": 3,
+   "sequences": 17,
+   "first_median": -0.9444444444444444,
+   "second_median": -0.6666666666666666,
+   "delta_median": 0.1724137931034483,
+   "ci95_sequence": [
+    0.11428571428571432,
+    0.31578947368421056
+   ],
+   "ci95_flight": [
+    0.15142857142857147,
+    0.26315789473684215
+   ],
+   "up": 15,
+   "down": 1,
+   "tie": 1,
+   "flights": 4,
+   "flights_all_positive": 2
+  },
+  "rel_g05->src_g05/tau5": {
+   "first": "rel_g05",
+   "second": "src_g05",
+   "note": "association gate IoU 0.5",
+   "tau": 5,
+   "sequences": 17,
+   "first_median": -1.0,
+   "second_median": -0.8333333333333334,
+   "delta_median": 0.09523809523809523,
+   "ci95_sequence": [
+    0.05555555555555547,
+    0.17647058823529416
+   ],
+   "ci95_flight": [
+    0.08973214285714287,
+    0.13157894736842102
+   ],
+   "up": 13,
+   "down": 0,
+   "tie": 4,
+   "flights": 4,
+   "flights_all_positive": 1
+  },
+  "rel_g05->src_g05/tau8": {
+   "first": "rel_g05",
+   "second": "src_g05",
+   "note": "association gate IoU 0.5",
+   "tau": 8,
+   "sequences": 17,
+   "first_median": -1.0,
+   "second_median": -0.9655172413793104,
+   "delta_median": 0.0,
+   "ci95_sequence": [
+    0.0,
+    0.05882352941176472
+   ],
+   "ci95_flight": [
+    0.0,
+    0.02777777777777779
+   ],
+   "up": 8,
+   "down": 0,
+   "tie": 9,
+   "flights": 4,
+   "flights_all_positive": 0
+  }
+ },
+ "kalman_steps": {
+  "rel": {
+   "tracker_frames": 371,
+   "kalman_steps": 371
+  },
+  "rel_dt": {
+   "tracker_frames": 371,
+   "kalman_steps": 12381
+  },
+  "rel_g03": {
+   "tracker_frames": 371,
+   "kalman_steps": 371
+  },
+  "rel_g05": {
+   "tracker_frames": 371,
+   "kalman_steps": 371
+  },
+  "src": {
+   "tracker_frames": 12386,
+   "kalman_steps": 12386
+  },
+  "src_g03": {
+   "tracker_frames": 12386,
+   "kalman_steps": 12386
+  },
+  "src_g05": {
+   "tracker_frames": 12386,
+   "kalman_steps": 12386
+  }
+ }
+}

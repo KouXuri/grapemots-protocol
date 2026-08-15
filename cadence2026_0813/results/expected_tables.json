@@ -6,9 +6,140 @@
   "flights_all_positive": 4,
   "sequence_level_median_delta": 1.111
  },
+ "identity-family/rel": {
+  "D": 19,
+  "IDF1": 0.284,
+  "IDSW": 18,
+  "M": 219,
+  "ML": 259
+ },
+ "identity-family/src": {
+  "D": 86,
+  "IDF1": 0.421,
+  "IDSW": 101,
+  "M": 106,
+  "ML": 139
+ },
+ "ownership-gate/iou0.3/rel": {
+  "assigned": 0.41,
+  "e": -0.298
+ },
+ "ownership-gate/iou0.3/src": {
+  "assigned": 0.74,
+  "e": 0.965
+ },
+ "ownership-gate/iou0.5/rel": {
+  "assigned": 0.35,
+  "e": -0.298
+ },
+ "ownership-gate/iou0.5/src": {
+  "assigned": 0.69,
+  "e": 0.965
+ },
+ "ownership-gate/iou0.7/rel": {
+  "assigned": 0.25,
+  "e": -0.298
+ },
+ "ownership-gate/iou0.7/src": {
+  "assigned": 0.53,
+  "e": 0.965
+ },
+ "sec3C-adaptive/ada2": {
+  "assigned": 0.493,
+  "e": 0.271,
+  "frames": 715
+ },
+ "sec3C-adaptive/ada4": {
+  "assigned": 0.584,
+  "e": 0.472,
+  "frames": 1403
+ },
+ "sec3C-adaptive/ada8": {
+  "assigned": 0.628,
+  "e": 0.602,
+  "frames": 2779
+ },
+ "sec3C-adaptive/rel": {
+  "assigned": 0.354,
+  "e": -0.298,
+  "frames": 371
+ },
+ "sec3C-adaptive/src": {
+  "assigned": 0.687,
+  "e": 0.965,
+  "frames": 12386
+ },
+ "sec3C-adaptive/uni2": {
+  "assigned": 0.451,
+  "e": -0.094,
+  "frames": 715
+ },
+ "sec3C-adaptive/uni4": {
+  "assigned": 0.531,
+  "e": 0.156,
+  "frames": 1403
+ },
+ "sec3C-adaptive/uni8": {
+  "assigned": 0.608,
+  "e": 0.428,
+  "frames": 2779
+ },
  "second_stage": {
   "accepted": 0,
   "candidates_offered": 1155
+ },
+ "symmetric-tau/tau3/rel": {
+  "G_symmetric": 299,
+  "e_symmetric": -0.682
+ },
+ "symmetric-tau/tau3/src": {
+  "G_symmetric": 299,
+  "e_symmetric": -0.06
+ },
+ "tableII-A-idf1/BoT-SORT + ReID": {
+  "IDF1": 0.335
+ },
+ "tableII-A-idf1/BoT-SORT, GMC off": {
+  "IDF1": 0.23
+ },
+ "tableII-A-idf1/BoT-SORT, buffer 30": {
+  "IDF1": 0.334
+ },
+ "tableII-A-idf1/ByteTrack, buffer 60": {
+  "IDF1": 0.227
+ },
+ "tableII-A-idf1/Confidence 0.40": {
+  "IDF1": 0.323
+ },
+ "tableII-A-idf1/Confidence 0.55": {
+  "IDF1": 0.292
+ },
+ "tableII-A-idf1/Confidence 0.70": {
+  "IDF1": 0.205
+ },
+ "tableII-A-idf1/Confidence 0.85": {
+  "IDF1": 0.023
+ },
+ "tableII-A-idf1/IoS merge": {
+  "IDF1": 0.351
+ },
+ "tableII-B-idf1/BoT-SORT + ReID": {
+  "IDF1": 0.329
+ },
+ "tableII-B-idf1/BoT-SORT, buffer 30": {
+  "IDF1": 0.318
+ },
+ "tableII-B-idf1/ByteTrack, buffer 30": {
+  "IDF1": 0.249
+ },
+ "tableII-B-idf1/Confidence 0.40": {
+  "IDF1": 0.295
+ },
+ "tableII-B-idf1/Confidence 0.55": {
+  "IDF1": 0.246
+ },
+ "tableII-B-idf1/IoS merge": {
+  "IDF1": 0.326
  },
  "tableII-B/BoT-SORT + ReID": {
   "AssA": 0.389,
@@ -116,66 +247,60 @@
   "e_source": -0.02,
   "r": 0.879
  },
- "tableVI/ada2": {
-  "assigned": 0.493,
-  "e": 0.271,
-  "frames": 715
+ "tableVI/link": {
+  "byte_saving_same_codec": 0.7,
+  "delivered_mbit_s": 100.3,
+  "every_frame_mbit_s": 68.2,
+  "frame_saving": 0.972,
+  "sparse_interframe_mbit_s": 25.1,
+  "sparse_mbit_s": 20.3
  },
- "tableVI/ada4": {
-  "assigned": 0.584,
-  "e": 0.472,
-  "frames": 1403
- },
- "tableVI/ada8": {
-  "assigned": 0.628,
-  "e": 0.602,
-  "frames": 2779
- },
- "tableVI/rel": {
-  "assigned": 0.354,
-  "e": -0.298,
-  "frames": 371
- },
- "tableVI/src": {
-  "assigned": 0.687,
-  "e": 0.965,
-  "frames": 12386
- },
- "tableVI/uni2": {
-  "assigned": 0.451,
-  "e": -0.094,
-  "frames": 715
- },
- "tableVI/uni4": {
-  "assigned": 0.531,
-  "e": 0.156,
-  "frames": 1403
- },
- "tableVI/uni8": {
-  "assigned": 0.608,
-  "e": 0.428,
-  "frames": 2779
- },
- "tableVII/link": {
-  "every_frame_mbit_s": 100.3,
-  "sparse_mbit_s": 42.2
- },
- "tableVII/yolo26n_8tiles": {
+ "tableVI/yolo26n_8tiles": {
   "associate_ms": 83,
   "detect_ms": 105,
   "fps": 5.2,
   "joules_per_frame": 7.0
  },
- "tableVII/yolo26n_full": {
+ "tableVI/yolo26n_full": {
   "associate_ms": 84,
   "detect_ms": 11,
   "fps": 10.0,
   "joules_per_frame": 1.8
  },
- "tableVII/yolo26s_8tiles": {
+ "tableVI/yolo26s_8tiles": {
   "associate_ms": 79,
   "detect_ms": 197,
   "fps": 3.6,
   "joules_per_frame": 14.7
+ },
+ "timescale/rel->rel_dt/tau1": {
+  "delta_median": 0.026,
+  "down": 1,
+  "tie": 7,
+  "up": 9
+ },
+ "timescale/rel->src/tau1": {
+  "delta_median": 1.111,
+  "down": 0,
+  "tie": 0,
+  "up": 17
+ },
+ "timescale/rel_dt->src/tau1": {
+  "delta_median": 1.0,
+  "down": 0,
+  "tie": 0,
+  "up": 17
+ },
+ "timescale/rel_g03->src_g03/tau1": {
+  "delta_median": 1.286,
+  "down": 0,
+  "tie": 0,
+  "up": 17
+ },
+ "timescale/rel_g05->src_g05/tau1": {
+  "delta_median": 1.143,
+  "down": 1,
+  "tie": 0,
+  "up": 16
  }
 }

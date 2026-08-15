@@ -3,19 +3,24 @@
 Manifests, frozen results and analysis scripts for our work on how a video-derived
 count is defined by the conditions under which it was observed.
 
-**`cadence2026/` is the release for the CBDCom 2026 paper *Cadence, Not the Tracker,
-Sets the Sign of Video Count Error*** (tag `cbdcom2026-cadence`). It adds three corpora
-beyond GrapeMOTS, the frame-level alignment of a public release to its source video, the
-cadence contrast over 28 sequences, the annotation-thinning ladder, and the calibration
-tool behind the annotation-interval criterion. It carries its own README.
+The submitted manuscript is *Same Footage, Opposite Sign: Cadence, Coverage and
+Cancellation in UAV Video Counting* (CBDCom 2026). Two directories carry its evidence,
+and the second supersedes the first wherever they overlap.
 
-**`cadence2026_0813/` carries the round added after that** (tag `cbdcom2026-r6`): the
-external contrast on MOT17/MOT20, the adaptive-sampling arms, the low-score second-stage
-audit, the flight-clustered bootstrap, the on-board and link cost benchmark, and Panel B
-of the configuration table. Its README carries a claim-to-file table, and
-`cadence2026_0813/tools/smoke_test.py` rebuilds every table value it contributes from the
-frozen results with stock Python and no GPU. Start there for anything the manuscript
-reports from Tables IV, VI or VII.
+**`cadence2026/`** (first frozen at tag `cbdcom2026-cadence`) adds three corpora beyond
+GrapeMOTS, the frame-level alignment of a public release to its source video, the cadence
+contrast over 28 sequences, the annotation-thinning ladder, and the calibration tool
+behind the annotation-interval criterion. It carries its own README.
+
+**`cadence2026_0813/` carries every round added since**, up to the tag this checkout is
+on: the external contrast on MOT17/MOT20, the adaptive-sampling arms, the low-score
+second-stage audit, the flight-clustered bootstrap, the on-board and link cost benchmark,
+Panel B of the configuration table, the detector's own out-of-fold quality, the
+timescale and gate controls on the cadence arms, and the definition sensitivity of the
+decomposition. Its README carries a claim-to-file table keyed to the tables as the
+submitted manuscript numbers them, and `cadence2026_0813/tools/smoke_test.py` rebuilds
+every table value it contributes from the frozen results with stock Python and no GPU.
+Start there for anything the manuscript reports from Tables II, III, IV or VI.
 
 The rest of this repository is the earlier release, described below.
 
