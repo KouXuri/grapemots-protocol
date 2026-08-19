@@ -55,30 +55,36 @@ def main() -> int:
     elif any(first[keys[i]] > first[keys[i + 1]] for i in range(len(keys) - 1)):
         bad.append("bibliography is not in order of first citation")
 
+    idf1_path = ROOT / "runs/definition_0815/results/idf1_table2.json"
     hota = {}
     for name in ("hota_panelA.json", "hota_assoc_rows.json"):
         if (FROZEN / name).is_file():
             hota.update(json.loads((FROZEN / name).read_text())["rows"])
     # a row is located by its U, D, M triple, which is unique across both panels;
     # rows the paper no longer tabulates are skipped, the ones it keeps are checked
+    panel_a_idf1 = json.loads(idf1_path.read_text())["panelA"] if idf1_path.is_file() else {}
     for label, row in hota.items():
         anchor = f"& {row['U']} & {row['D']} & {row['M']} &"
         if anchor not in tex:
             continue
+        if label not in panel_a_idf1:
+            bad.append(f"Table I panel A {label}: no IDF1 in idf1_table2.json")
+            continue
         block = tex[tex.index(anchor):tex.index(anchor) + 200]
         cells = (f"${row['assigned_fraction']:.3f}$ & ${row['signed_error']:+.3f}$ "
-                 f"& ${row['HOTA']:.3f}$ & ${row['AssA']:.3f}$")
+                 f"& ${panel_a_idf1[label]['IDF1']:.3f}$ & ${row['HOTA']:.3f}$")
         if cells not in block:
             bad.append(f"Table I panel A row absent or stale: {label}")
 
     # the cadence contrast is now carried in the running text, so every paired
     # median it reports is checked wherever it appears
     panelb = ROOT / "runs/decomp_0812/results/hota_panelB.json"
+    idf1 = json.loads(idf1_path.read_text())["panelB"] if idf1_path.is_file() else {}
     if panelb.is_file():
         for label, r in json.loads(panelb.read_text())["rows"].items():
             cell = (f"& {r['U']:,} & {r['D']:,} & {r['M']:,} "
                     f"& ${r['assigned_fraction']:.3f}$ & ${r['signed_error']:+.3f}$ "
-                    f"& ${r['HOTA']:.3f}$ & ${r['AssA']:.3f}$").replace(",", "{,}")
+                    f"& ${idf1[label]['IDF1']:.3f}$ & ${r['HOTA']:.3f}$").replace(",", "{,}")
             if cell not in tex:
                 bad.append(f"Table I panel B row absent or stale: {label}")
 

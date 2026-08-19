@@ -49,7 +49,8 @@ def main() -> int:
     checked = 0
 
     # ---- external cadence contrast -----------------------------------------
-    for corpus, rows in (("mot17", [1, 4, 15, 60]), ("mot20", [1, 4, 15, 60])):
+    # k=1 is the implementation check the text states rather than a table row
+    for corpus, rows in (("mot17", [4, 15, 60]), ("mot20", [4, 15, 60])):
         cadence = load(EXT / f"cadence_{corpus}.json")
         geometry = load(EXT / f"geometry_{corpus}.json")
         if not cadence or not geometry:
@@ -145,9 +146,14 @@ def main() -> int:
 
     # ---- Panel B of the configuration table ---------------------------------
     panel_b = load(DEC / "hota_panelB.json")
+    identity = load(results_dir("definition_0815") / "idf1_table2.json")
     if panel_b:
         for label, row in panel_b["rows"].items():
-            cell = f"${row['HOTA']:.3f}$ & ${row['AssA']:.3f}$"
+            idf1 = identity["panelB"][label]["IDF1"] if identity else None
+            if idf1 is None:
+                bad.append(f"Panel B {label}: no IDF1 in idf1_table2.json")
+                continue
+            cell = f"${idf1:.3f}$ & ${row['HOTA']:.3f}$"
             checked += 1
             if cell not in tex:
                 bad.append(f"Panel B row absent or stale: {label}")
@@ -157,6 +163,81 @@ def main() -> int:
                 checked += 1
                 if shown not in tex:
                     bad.append(f"Panel B {label}: {term}={shown} not in the paper")
+
+    # ---- the two confidence replays that bracket the crossing ----------------
+    fill = load(results_dir("conf_fill_0815") / "conf_fill.json")
+    figure = load(ROOT / "figures/fig_cancellation_data.json")
+    if fill:
+        for label in ("Confidence 0.75", "Confidence 0.80"):
+            row = fill["rows"][label]
+            for shown in (f"${row['signed_error']:+.3f}$",
+                          f"${row['assigned_fraction']:.2f}$"):
+                checked += 1
+                if shown not in tex:
+                    bad.append(f"{label}: {shown} not in the paper")
+    if figure:
+        for name, value in figure["crossings"].items():
+            checked += 1
+            if f"${value:.2f}$" not in tex:
+                bad.append(f"Fig. 1 crossing for {name}, {value:.2f}, not in the paper")
+
+    # ---- the timescale and gate controls of Table III ------------------------
+    timescale = load(results_dir("timescale_0815") / "timescale_summary.json")
+    if timescale:
+        for key in ("rel_dt->src/tau1", "rel_g03->src_g03/tau1", "rel_g05->src_g05/tau1"):
+            cell = timescale["pairs"][key]
+            for shown in (f"${cell['first_median']:+.3f}$",
+                          f"${cell['second_median']:+.3f}$",
+                          f"${cell['delta_median']:+.3f}$",
+                          f"$[{cell['ci95_sequence'][0]:+.2f},{cell['ci95_sequence'][1]:+.2f}]$"):
+                checked += 1
+                if shown not in tex:
+                    bad.append(f"control row {key}: {shown} not in the paper")
+            counts = f"{cell['up']}\\,/\\,{cell['down']}\\,/\\,{cell['tie']}"
+            checked += 1
+            if counts not in tex:
+                bad.append(f"control row {key}: {cell['up']}/{cell['down']}/{cell['tie']} not in the paper")
+        # the sparse arm's own move once its filter runs on elapsed time
+        own = timescale["pairs"]["rel->rel_dt/tau1"]
+        checked += 1
+        if f"${own['delta_median']:+.3f}$" not in tex:
+            bad.append(f"elapsed-time arm: own median move {own['delta_median']:+.3f} not in the paper")
+        for arm in ("rel_dt", "src"):
+            steps = timescale["kalman_steps"][arm]["kalman_steps"]
+            checked += 1
+            if f"{steps:,}".replace(",", "{,}") not in tex:
+                bad.append(f"{arm}: {steps} Kalman steps not in the paper")
+
+    # ---- the definition controls quoted in Section II-D ----------------------
+    sens = load(results_dir("definition_0815") / "definition_sensitivity.json")
+    if sens:
+        for gate, arm in [(g, a) for g in ("0.3", "0.5", "0.7") for a in ("rel", "src")]:
+            cell = sens["gate"][f"iou{gate}_tau1_{arm}"]
+            shown = f"${cell['assigned_fraction']:.2f}$".replace("$0.", "$0.")
+            checked += 1
+            if f"{cell['assigned_fraction']:.2f}"[1:] not in tex:
+                bad.append(f"ownership gate {gate}, {arm}: "
+                           f"{cell['assigned_fraction']:.2f} not in the paper")
+        for arm in ("rel", "src"):
+            cell = sens["tau_symmetry"][f"tau3_{arm}"]
+            checked += 1
+            if f"${cell['e_symmetric']:+.3f}$" not in tex:
+                bad.append(f"symmetric tau=3, {arm}: {cell['e_symmetric']:+.3f} not in the paper")
+        checked += 1
+        if str(sens["gate"]["iou0.5_tau1_rel"]["P"] + sens["gate"]["iou0.5_tau1_src"]["P"]) not in tex:
+            bad.append("the predicted-track total behind the purity claim is not in the paper")
+
+    identity = load(results_dir("definition_0815") / "identity_metrics.json")
+    if identity:
+        for arm in ("rel", "src"):
+            row = identity["rows"][arm]
+            for key in ("D", "IDSW", "M", "ML"):
+                checked += 1
+                if str(row[key]) not in tex:
+                    bad.append(f"identity family, {arm}: {key}={row[key]} not in the paper")
+            checked += 1
+            if f"${row['IDF1']:.3f}$" not in tex:
+                bad.append(f"identity family, {arm}: IDF1 {row['IDF1']:.3f} not in the paper")
 
     # ---- the low-score second stage -----------------------------------------
     # prose rather than a table cell, which is how it drifted once: the audit

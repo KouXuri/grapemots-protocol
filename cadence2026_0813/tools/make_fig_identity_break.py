@@ -49,6 +49,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--sequence", default="NoPathPlanning_1")
     p.add_argument("--run", default="npp1")
     p.add_argument("--out", type=Path, default=ROOT / "figures/fig_identity_break_data")
+    p.add_argument("--dpi", type=int, default=600,
+                   help="rasterisation resolution for the PDF/PNG outputs")
     return p.parse_args()
 
 
@@ -221,7 +223,7 @@ def crop_window(box, image_shape, side_px):
     return left, top, int(left + 2 * half_w), int(top + 2 * half_h)
 
 
-def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
+def draw(record: dict, out: Path, corpus: str = "bodegas2023", dpi: int = 600) -> None:
     apply_paper_style()
     plt.rcParams.update({"axes.grid": False})
     sequence = record["sequence"]
@@ -311,17 +313,19 @@ def draw(record: dict, out: Path, corpus: str = "bodegas2023") -> None:
     fig.subplots_adjust(left=0.005, right=0.995, top=0.90, bottom=0.015)
     out.parent.mkdir(parents=True, exist_ok=True)
     for suffix in (".pdf", ".png"):
-        # 600 dpi puts 1880 px of the 3840 px band on the page, twice what
-        # a 300 dpi plate needs, and keeps the paper near 3 MB
+        # 600 dpi is the compact default; 1200 dpi preserves nearly all of the
+        # 3840 px source width when the full-width panel is placed in a column.
         fig.savefig(out.with_suffix(suffix), bbox_inches="tight", pad_inches=0.025,
-                    facecolor=PAPER, dpi=600)
+                    facecolor=PAPER, dpi=dpi)
     plt.close(fig)
 
 
 def main() -> None:
     args = parse_args()
     record = find_duplicate(args.sequence, args.run, args.corpus)
-    draw(record, args.out, args.corpus)
+    if args.dpi < 300:
+        raise SystemExit("--dpi must be at least 300 for IEEE submission figures")
+    draw(record, args.out, args.corpus, args.dpi)
     args.out.with_suffix(".json").write_text(json.dumps(record, indent=1, default=list))
     print(f"sequence {record['sequence']}: D={record['D_in_sequence']} over "
           f"{record['annotated_frames']} annotated frames, "

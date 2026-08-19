@@ -119,8 +119,10 @@ for x, y, colour, marker, label in series:
             label=label, zorder=3)
     crossed = crossing(x, y)
     if crossed:
-        bx.plot([crossed], [0.0], marker="|", color=colour, markersize=6.5,
-                markeredgewidth=1.3, zorder=4)
+        # Long enough to clear a data marker that lands on the zero line, as
+        # the 2024 series does at r = 3.89; a 6.5 pt tick hid under the square.
+        bx.plot([crossed], [0.0], marker="|", color=colour, markersize=9.5,
+                markeredgewidth=1.3, zorder=5)
 bx.set_ylabel("signed count error $e$")
 bx.set_yscale("symlog", linthresh=0.5, linscale=0.9)
 bx.set_ylim(-0.9, 4.0)
@@ -134,7 +136,7 @@ bx.tick_params(axis="x", which="minor", bottom=False)
 bx.set_xlabel("displacement in units of target size,  $r$")
 bx.legend(frameon=False, fontsize=5.7, loc="upper left", handletextpad=0.3,
           borderpad=0.1, labelspacing=0.18, handlelength=1.6,
-          title="corpus, $(U{+}D)/G$ densest", title_fontsize=5.7)
+          title="corpus, $(U{+}D)/G$ at the densest cadence", title_fontsize=5.7)
 bx.text(0.283, -0.72, "$\\theta$ bands", fontsize=6.2, color=C_NEUTRAL, ha="center")
 ax.text(0.0145, 0.92, "(a)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
 bx.text(0.0145, -0.62, "(b)", fontsize=6.6, color=C_NEUTRAL, ha="left", va="top")
