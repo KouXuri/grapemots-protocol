@@ -1,0 +1,218 @@
+{
+ "full1536/1": {
+  "ms_per_annotated": [
+   104.2,
+   102.2,
+   101.3
+  ],
+  "median": 102.2,
+  "ms_per_processed_median": 102.2
+ },
+ "full1536/2": {
+  "ms_per_annotated": [
+   52.1,
+   51.7,
+   50.3
+  ],
+  "median": 51.7,
+  "ms_per_processed_median": 103.1
+ },
+ "full1536/4": {
+  "ms_per_annotated": [
+   26.9,
+   25.1,
+   24.6
+  ],
+  "median": 25.1,
+  "ms_per_processed_median": 99.4
+ },
+ "full1536/8": {
+  "ms_per_annotated": [
+   13.2,
+   14.4,
+   13.9
+  ],
+  "median": 13.9,
+  "ms_per_processed_median": 109.3
+ },
+ "full2048/1": {
+  "ms_per_annotated": [
+   125.0,
+   122.3,
+   122.7
+  ],
+  "median": 122.7,
+  "ms_per_processed_median": 122.7
+ },
+ "full2048/2": {
+  "ms_per_annotated": [
+   61.6,
+   60.9,
+   60.2
+  ],
+  "median": 60.9,
+  "ms_per_processed_median": 121.5
+ },
+ "full2048/4": {
+  "ms_per_annotated": [
+   31.0,
+   30.4,
+   32.0
+  ],
+  "median": 31.0,
+  "ms_per_processed_median": 122.8
+ },
+ "full2048/8": {
+  "ms_per_annotated": [
+   17.2,
+   16.0,
+   17.4
+  ],
+  "median": 17.2,
+  "ms_per_processed_median": 135.6
+ },
+ "full2560/1": {
+  "ms_per_annotated": [
+   154.1,
+   154.7,
+   153.3
+  ],
+  "median": 154.1,
+  "ms_per_processed_median": 154.1
+ },
+ "full2560/2": {
+  "ms_per_annotated": [
+   77.9,
+   73.7,
+   77.2
+  ],
+  "median": 77.2,
+  "ms_per_processed_median": 154.1
+ },
+ "full2560/4": {
+  "ms_per_annotated": [
+   38.7,
+   38.6,
+   40.0
+  ],
+  "median": 38.7,
+  "ms_per_processed_median": 153.3
+ },
+ "full2560/8": {
+  "ms_per_annotated": [
+   20.2,
+   21.0,
+   21.0
+  ],
+  "median": 21.0,
+  "ms_per_processed_median": 165.1
+ },
+ "full3072/1": {
+  "ms_per_annotated": [
+   195.4,
+   194.7,
+   194.3
+  ],
+  "median": 194.7,
+  "ms_per_processed_median": 194.7
+ },
+ "full3072/2": {
+  "ms_per_annotated": [
+   98.4,
+   96.4,
+   97.9
+  ],
+  "median": 97.9,
+  "ms_per_processed_median": 195.4
+ },
+ "full3072/4": {
+  "ms_per_annotated": [
+   50.6,
+   50.6,
+   50.0
+  ],
+  "median": 50.6,
+  "ms_per_processed_median": 200.5
+ },
+ "full3072/8": {
+  "ms_per_annotated": [
+   26.5,
+   26.3,
+   26.2
+  ],
+  "median": 26.3,
+  "ms_per_processed_median": 207.4
+ },
+ "full3840/1": {
+  "ms_per_annotated": [
+   277.4,
+   294.9,
+   292.1
+  ],
+  "median": 292.1,
+  "ms_per_processed_median": 292.1
+ },
+ "full3840/2": {
+  "ms_per_annotated": [
+   147.7,
+   147.2,
+   143.0
+  ],
+  "median": 147.2,
+  "ms_per_processed_median": 293.8
+ },
+ "full3840/4": {
+  "ms_per_annotated": [
+   74.3,
+   74.0,
+   74.4
+  ],
+  "median": 74.3,
+  "ms_per_processed_median": 294.6
+ },
+ "full3840/8": {
+  "ms_per_annotated": [
+   38.1,
+   38.0,
+   37.9
+  ],
+  "median": 38.0,
+  "ms_per_processed_median": 299.0
+ },
+ "tiled1280/1": {
+  "ms_per_annotated": [
+   275.0,
+   279.9,
+   274.8
+  ],
+  "median": 275.0,
+  "ms_per_processed_median": 275.0
+ },
+ "tiled1280/2": {
+  "ms_per_annotated": [
+   139.3,
+   141.0,
+   140.7
+  ],
+  "median": 140.7,
+  "ms_per_processed_median": 280.9
+ },
+ "tiled1280/4": {
+  "ms_per_annotated": [
+   71.8,
+   71.6,
+   71.9
+  ],
+  "median": 71.8,
+  "ms_per_processed_median": 284.7
+ },
+ "tiled1280/8": {
+  "ms_per_annotated": [
+   37.2,
+   35.9,
+   37.1
+  ],
+  "median": 37.1,
+  "ms_per_processed_median": 292.4
+ }
+}

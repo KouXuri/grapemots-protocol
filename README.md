@@ -3,9 +3,19 @@
 Manifests, frozen results and analysis scripts for our work on how a video-derived
 count is defined by the conditions under which it was observed.
 
-The submitted manuscript is *Same Footage, Opposite Sign: Cadence, Coverage and
-Cancellation in UAV Video Counting* (CBDCom 2026). Two directories carry its evidence,
-and the second supersedes the first wherever they overlap.
+The paper is *Same Footage, Opposite Sign: Cadence, Coverage and Cancellation in UAV
+Video Counting* (CBDCom 2026).
+
+**For the camera-ready version, start at [`cadence2026_0919/`](cadence2026_0919/)**
+(release `cbdcom2026-r24`). It carries every number of the final paper: the
+scale-cadence surface on ten out-of-fold GrapeMOTS sequences, the phase, retention
+and motion-clock controls, the same-session cost timing of the held-out pair, and the
+AppleMOT grid, as frozen per-frame outputs with a script that recomputes each number
+and checks it against the paper. The directories below hold the evidence of the
+submitted version and are kept unchanged.
+
+For the submitted version, two directories carry the evidence, and the second
+supersedes the first wherever they overlap.
 
 **`cadence2026/`** (first frozen at tag `cbdcom2026-cadence`) adds three corpora beyond
 GrapeMOTS, the frame-level alignment of a public release to its source video, the cadence
