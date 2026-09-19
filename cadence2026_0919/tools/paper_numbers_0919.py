@@ -91,12 +91,15 @@ def main() -> None:
         surf = {(v, s): [err(tb(v, s, 1), v)] + [err(get(v, s, d), v) for d in DELTAS[1:]]
                 for v in VIDEOS for s in SIGMAS}
         steps = sum(1 for es in surf.values() for a, b in zip(es, es[1:]) if b <= a)
+        strict = sum(1 for es in surf.values() for a, b in zip(es, es[1:]) if b < a)
+        ties = sum(1 for es in surf.values() for a, b in zip(es, es[1:]) if b == a)
         cmap = {k: bracket(es) for k, es in surf.items()}
         rows = sum(1 for b in cmap.values() if b.startswith("("))
         seqs = len({v for (v, s), b in cmap.items() if b.startswith("(")})
         ordered = sum(all(ORDER[cmap[(v, a)]] <= ORDER[cmap[(v, b)]] for a, b in zip(SIGMAS, SIGMAS[1:]))
                       for v in VIDEOS)
-        return surf, cmap, dict(monotone_steps=steps, sign_change_rows=rows,
+        return surf, cmap, dict(monotone_steps=steps, strict_steps=strict, tie_steps=ties,
+                                reversed_steps=len(surf) * 3 - steps, sign_change_rows=rows,
                                 sign_change_sequences=seqs, ordered_sequences=ordered)
 
     N = {}
@@ -125,7 +128,7 @@ def main() -> None:
         if b.startswith("("):
             lo, hi = (int(x) for x in b[1:-1].split(","))
             cs += [cov(tb(v, s, lo), v), cov(tb(v, s, hi), v)]
-    N["coverage_at_sign_change"] = dict(max=round(max(cs), 3), median=round(statistics.median(cs), 3), n=len(cs))
+    N["coverage_at_sign_change"] = dict(max=round(max(cs), 4), median=round(statistics.median(cs), 3), n=len(cs))
     N["G_full"] = GF
 
     # controls
@@ -151,12 +154,31 @@ def main() -> None:
                       max_span=round(max(max(es) - min(es) for es, _ in cells.values()), 3),
                       sign_flip_cells=sum((min(es) < 0) != (max(es) < 0) for es, _ in cells.values()),
                       max_G_proc_drop=max(GF[v] - g for (v, s, d), (_, g) in cells.items()))
+    import itertools
+    def phase_err(v, s, d, k):
+        return err(tb(v, s, d) if k == 0 else pooled(phase[f"{v}_s{s}_d{d}_o{k}.json"]), v)
+    def ordered_under(v, k2, k4, k8):
+        m = [bracket([err(tb(v, s, 1), v), phase_err(v, s, 2, k2), phase_err(v, s, 4, k4),
+                      phase_err(v, s, 8, k8)]) for s in SIGMAS]
+        return all(ORDER[a] <= ORDER[b] for a, b in zip(m, m[1:]))
+    combos = [(v, c) for v in VIDEOS for c in itertools.product(range(2), range(4), range(8))]
+    bad = [(v, c) for v, c in combos if not ordered_under(v, *c)]
+    uni = [(v, k) for v in VIDEOS for k in range(8) if not ordered_under(v, k % 2, k % 4, k % 8)]
+    N["phase_combinations"] = dict(combinations=len(combos), ordering_violations=len(bad),
+                                   sequences_with_violations=sorted({v for v, _ in bad}),
+                                   uniform_remainder=f"{len(uni)}/{len(VIDEOS) * 8}",
+                                   PP2_remainder2_counts={s: [tb("PathPlanning_2", s, 1)["P"]] + [
+                                       (tb("PathPlanning_2", s, d)["P"] if 2 % d == 0 else
+                                        pooled(phase[f"PathPlanning_2_s{s}_d{d}_o{2 % d}.json"])["P"])
+                                       for d in DELTAS[1:]] for s in (2560, 3072)})
     for tag, pick in (("phase_low", min), ("phase_high", max)):
         lookup = {k: pick(es) for k, (es, _) in cells.items()}
         surf = {(v, s): [err(tb(v, s, 1), v)] + [lookup[(v, s, d)] for d in DELTAS[1:]]
                 for v in VIDEOS for s in SIGMAS}
         cm = {k: bracket(es) for k, es in surf.items()}
         N[tag] = dict(monotone_steps=sum(1 for es in surf.values() for a, b in zip(es, es[1:]) if b <= a),
+                      strict_steps=sum(1 for es in surf.values() for a, b in zip(es, es[1:]) if b < a),
+                      tie_steps=sum(1 for es in surf.values() for a, b in zip(es, es[1:]) if b == a),
                       sign_change_rows=sum(1 for b in cm.values() if b.startswith("(")),
                       sign_change_sequences=len({v for (v, s), b in cm.items() if b.startswith("(")}),
                       ordered_sequences=sum(all(ORDER[cm[(v, a)]] <= ORDER[cm[(v, b)]]
@@ -170,7 +192,7 @@ def main() -> None:
             if abs(err(t, v)) <= 0.1:
                 near.append(cov(t, v))
     N["near_zero_arms"] = dict(n_arms=len(base) + len(phase) + sum(len(d) for d in fam.values()),
-                               within_0p1=len(near), max_coverage=round(max(near), 3),
+                               within_0p1=len(near), max_coverage=round(max(near), 4),
                                median_coverage=round(statistics.median(near), 3))
 
     # held-out pair: count terms against G_full = 138

@@ -77,7 +77,7 @@
   "tiled1280/8": 37.1
  },
  "coverage_at_sign_change": {
-  "max": 0.575,
+  "max": 0.5747,
   "median": 0.421,
   "n": 32
  },
@@ -139,8 +139,11 @@
   "median_error_change": 0.011,
   "monotone_steps": 144,
   "ordered_sequences": 10,
+  "reversed_steps": 6,
   "sign_change_rows": 16,
-  "sign_change_sequences": 6
+  "sign_change_sequences": 6,
+  "strict_steps": 143,
+  "tie_steps": 1
  },
  "delta1_error_range": [
   -0.86,
@@ -287,7 +290,7 @@
   }
  },
  "near_zero_arms": {
-  "max_coverage": 0.632,
+  "max_coverage": 0.6322,
   "median_coverage": 0.448,
   "n_arms": 1200,
   "within_0p1": 152
@@ -302,13 +305,37 @@
   },
   "sign_flip_cells": 17
  },
+ "phase_combinations": {
+  "PP2_remainder2_counts": {
+   "2560": [
+    72,
+    64,
+    46,
+    32
+   ],
+   "3072": [
+    64,
+    53,
+    37,
+    24
+   ]
+  },
+  "combinations": 640,
+  "ordering_violations": 32,
+  "sequences_with_violations": [
+   "PathPlanning_2"
+  ],
+  "uniform_remainder": "4/80"
+ },
  "phase_high": {
   "cells_moved_denser": 0,
   "cells_moved_sparser": 2,
   "monotone_steps": 145,
   "ordered_sequences": 10,
   "sign_change_rows": 14,
-  "sign_change_sequences": 5
+  "sign_change_sequences": 5,
+  "strict_steps": 141,
+  "tie_steps": 4
  },
  "phase_low": {
   "cells_moved_denser": 12,
@@ -316,7 +343,9 @@
   "monotone_steps": 150,
   "ordered_sequences": 10,
   "sign_change_rows": 23,
-  "sign_change_sequences": 6
+  "sign_change_sequences": 6,
+  "strict_steps": 150,
+  "tie_steps": 0
  },
  "pooled_sigma_monotone": {
   "circling": {
@@ -334,8 +363,11 @@
   "median_error_change": 0.031,
   "monotone_steps": 146,
   "ordered_sequences": 10,
+  "reversed_steps": 4,
   "sign_change_rows": 16,
-  "sign_change_sequences": 6
+  "sign_change_sequences": 6,
+  "strict_steps": 144,
+  "tie_steps": 2
  },
  "rt": {
   "cells_moved_denser": 0,
@@ -343,14 +375,20 @@
   "median_error_change": 0.035,
   "monotone_steps": 142,
   "ordered_sequences": 10,
+  "reversed_steps": 8,
   "sign_change_rows": 16,
-  "sign_change_sequences": 6
+  "sign_change_sequences": 6,
+  "strict_steps": 140,
+  "tie_steps": 2
  },
  "sigma_steps_raising": "132/160",
  "surface": {
   "monotone_steps": 148,
   "ordered_sequences": 10,
+  "reversed_steps": 2,
   "sign_change_rows": 16,
-  "sign_change_sequences": 6
+  "sign_change_sequences": 6,
+  "strict_steps": 147,
+  "tie_steps": 1
  }
 }
