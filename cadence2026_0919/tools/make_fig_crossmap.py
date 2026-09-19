@@ -18,8 +18,8 @@ from matplotlib.patches import Rectangle
 HERE = pathlib.Path(__file__).resolve().parent
 SIGMAS = (1536, 2048, 2560, 3072, 3840)
 DELTAS = (1, 2, 4, 8)
-ROWS = [(f"PathPlanning_{i}", f"C{i}") for i in range(2, 9)] + \
-       [(f"NoPathPlanning_{i}", f"F{i}") for i in range(1, 4)]
+ROWS = [(f"PathPlanning_{i}", f"PP{i}") for i in range(2, 9)] + \
+       [(f"NoPathPlanning_{i}", f"NP{i}") for i in range(1, 4)]
 CATS = ["<1", "1–2", "2–4", "4–8", ">8"]
 RAMP = ("#86b6ef", "#5598e7", "#2a78d6", "#1c5cab", "#0d366b")
 INK = ("#111111", "#111111", "#ffffff", "#ffffff", "#ffffff")
@@ -38,8 +38,8 @@ def main() -> None:
     data = json.load(open(HERE.parent / "results" / "lovo_surface_terms.json"))
     plt.rcParams.update({"font.family": "serif",
                          "font.serif": ["Times New Roman", "Nimbus Roman", "DejaVu Serif"],
-                         "font.size": 7.0, "pdf.fonttype": 42})
-    fig, ax = plt.subplots(figsize=(3.4, 2.45))
+                         "font.size": 8.0, "pdf.fonttype": 42})
+    fig, ax = plt.subplots(figsize=(3.45, 2.75))
     gap = 0.35  # visual break between circling and frontal passes
     for r, (seq, lab) in enumerate(ROWS):
         y = -(r + (gap if r >= 7 else 0))
@@ -47,14 +47,14 @@ def main() -> None:
             es = [data["cells"][f"{seq}|{s}|{d}"]["e"] for d in DELTAS]
             k = bracket(es)
             ax.add_patch(Rectangle((c + 0.04, y - 0.46), 0.92, 0.92, color=RAMP[k], lw=0))
-            ax.text(c + 0.5, y, CATS[k], ha="center", va="center", fontsize=6.4, color=INK[k])
-        ax.text(-0.12, y, lab, ha="right", va="center", fontsize=6.6)
+            ax.text(c + 0.5, y, CATS[k], ha="center", va="center", fontsize=8.0, color=INK[k])
+        ax.text(-0.12, y, lab, ha="right", va="center", fontsize=8.0)
     for c, s in enumerate(SIGMAS):
-        ax.text(c + 0.5, 0.72, str(s), ha="center", va="bottom", fontsize=6.6)
-    ax.text(2.5, 1.28, "Inference scale (pixels, long side)", ha="center", va="bottom", fontsize=6.8)
-    ax.text(-1.05, -3.0, "circling", rotation=90, ha="center", va="center", fontsize=6.6, color="#555555")
-    ax.text(-1.05, -8.35 - gap + 0.35, "frontal", rotation=90, ha="center", va="center", fontsize=6.6, color="#555555")
-    ax.set_xlim(-1.3, 5.05)
+        ax.text(c + 0.5, 0.72, str(s), ha="center", va="bottom", fontsize=8.0)
+    ax.text(2.5, 1.32, "Inference scale (pixels, long side)", ha="center", va="bottom", fontsize=8.0)
+    ax.text(-1.25, -3.0, "multi-view", rotation=90, ha="center", va="center", fontsize=8.0, color="#555555")
+    ax.text(-1.25, -8.35 - gap + 0.35, "frontal", rotation=90, ha="center", va="center", fontsize=8.0, color="#555555")
+    ax.set_xlim(-1.5, 5.05)
     ax.set_ylim(-(len(ROWS) - 1 + gap) - 0.6, 1.75)
     ax.axis("off")
     fig.savefig(HERE / "fig_crossmap.pdf", bbox_inches="tight", pad_inches=0.01)

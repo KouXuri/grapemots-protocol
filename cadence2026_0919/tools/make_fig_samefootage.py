@@ -28,9 +28,9 @@ def main() -> None:
     data = json.load(open(HERE.parent / "results" / "lovo_surface_terms.json"))
     plt.rcParams.update({"font.family": "serif",
                          "font.serif": ["Times New Roman", "Nimbus Roman", "DejaVu Serif"],
-                         "font.size": 7.2, "axes.linewidth": 0.5, "xtick.major.width": 0.5,
+                         "font.size": 8.0, "axes.linewidth": 0.5, "xtick.major.width": 0.5,
                          "ytick.major.width": 0.5, "pdf.fonttype": 42})
-    fig, ax = plt.subplots(figsize=(3.4, 2.05))
+    fig, ax = plt.subplots(figsize=(3.45, 2.3))
     ax.axhline(0, color="#222222", lw=0.7, zorder=1)
     ends = []
     for s, c in zip(SIGMAS, RAMP):
@@ -42,19 +42,19 @@ def main() -> None:
     ends.sort()
     placed = []
     for y, s, c in ends:
-        y_lab = y if not placed else max(y, placed[-1] + 0.075)
+        y_lab = y if not placed else max(y, placed[-1] + 0.095)
         placed.append(y_lab)
-        ax.text(8 * 1.09, y_lab, f"{s}", va="center", ha="left", fontsize=6.6, color="#222222")
-    ax.text(8 * 1.09, max(placed) + 0.13, "scale", va="center", ha="left", fontsize=6.6,
+        ax.text(8 * 1.09, y_lab, f"{s}", va="center", ha="left", fontsize=8.0, color="#222222")
+    ax.text(8 * 1.09, max(placed) + 0.15, "scale", va="center", ha="left", fontsize=8.0,
             color="#555555", style="italic")
     ax.set_xscale("log", base=2)
     ax.set_xticks(DELTAS, [str(d) for d in DELTAS])
     ax.minorticks_off()
     ax.set_xlim(0.85, 8 * 1.55)
-    ax.set_xlabel("Processing interval, annotated frames per processed frame")
+    ax.set_xlabel("Processing interval (annotated frames per processed frame)")
     ax.set_ylabel("Count error, (P $-$ G) / G")
-    ax.text(0.92, -0.04, "under-count", fontsize=6.2, color="#555555", va="top")
-    ax.text(0.92, 0.04, "over-count", fontsize=6.2, color="#555555", va="bottom")
+    ax.text(0.95, -0.42, "under-count", fontsize=8.0, color="#555555", va="center")
+    ax.text(2.9, 0.66, "over-count", fontsize=8.0, color="#555555", va="center")
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     ax.grid(axis="y", color="#E6E6E6", lw=0.4, zorder=0)

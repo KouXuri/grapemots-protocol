@@ -214,6 +214,22 @@ def main() -> None:
                 P = sum(x["P"] for x in apple[key]["terms"])
                 a_e[f"{s}/{d}"] = round((P - ag) / ag, 3)
     N["apple_error"] = a_e
+    # The published split lists six test sequences; 0006/0010, 0007/0011 and
+    # 0008/0012 carry identical annotations. Score one of each pair as a check.
+    u3 = {}
+    for s in (640, 960, 1280):
+        keep = ("0006", "0007", "0008")
+        g1 = sum(x["G"] for x in apple[f"apple_s{s}_d1.json"]["terms"] if x["video"] in keep)
+        for d in DELTAS:
+            P = sum(x["P"] for x in apple[f"apple_s{s}_d{d}.json"]["terms"] if x["video"] in keep)
+            u3[f"{s}/{d}"] = round((P - g1) / g1, 3)
+    N["apple_error_unique3"] = u3
+    def apple_summary(tab):
+        rows = {s: [tab[f"{s}/{d}"] for d in DELTAS] for s in (640, 960, 1280)}
+        return dict(brackets={s: bracket(v) for s, v in rows.items()},
+                    rows_monotone=all(all(b <= a for a, b in zip(v, v[1:])) for v in rows.values()),
+                    columns_rising=all(rows[640][i] < rows[960][i] < rows[1280][i] for i in range(4)))
+    N["apple_structure"] = {"six": apple_summary(a_e), "unique3": apple_summary(u3)}
 
     out = ROOT / "results" / "paper_numbers.json"
     out.write_text(json.dumps(N, indent=1, sort_keys=True))

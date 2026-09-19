@@ -1,4 +1,4 @@
-# Camera-ready evidence, 2026-09-19 (release `cbdcom2026-r24`)
+# Camera-ready evidence, 2026-09-19 (releases `cbdcom2026-r24`, `-r25`)
 
 This directory supersedes every earlier directory in this repository for the
 camera-ready version of *Same Footage, Opposite Sign: Cadence, Coverage and
@@ -7,6 +7,10 @@ corpus, GrapeMOTS (Ariza-Sentís et al., *Data in Brief* 54 (2024) 110432), read
 full frame, plus AppleMOT as the external check. Earlier directories hold the
 submitted version's evidence (the 2023 vineyard release, MOT17/MOT20) and are kept
 unchanged.
+
+`cbdcom2026-r25` (same day) changes no number: the figure scripts draw 8-pt text
+and label sequences by their release names, and the check adds the AppleMOT
+duplicate-pair comparison.
 
 ## Check it
 
@@ -44,16 +48,16 @@ the analysis server and the SHA-256 of both the source and the stub.
 | III-A | U falls / D falls / M rises from Δ=1 to Δ=8 in 50/49/50 rows | `U_falls_rows`, `D_falls_rows`, `M_rises_rows` |
 | III-A | larger scale raises the count in 132 of 160 steps; pooled per flight pattern, error and coverage rise with σ at every interval | `sigma_steps_raising`, `pooled_sigma_monotone` |
 | III-A | error at Δ=1 ranges from −0.86 (F2) to +4.75 (C6) | `delta1_error_range` |
-| III-A | ByteTrack on annotated boxes over-counts the eight circling sequences, median +2.49 | `../cadence2026/results/regime_analysis.json`, `sequences[*].whole_sequence_error` for `PathPlanning_*` |
-| Fig. 1, Fig. 4, III-B | sign-change brackets, 16 rows in six sequences, ordered in 10/10 | `crossing_map`, `surface` |
-| III-C, Table II | control rows | `phase_low`, `phase_high`, `ret`, `cu`, `rt` |
+| III-A | ByteTrack on annotated boxes over-counts the eight multi-view sequences, median +2.49 | `../cadence2026/results/regime_analysis.json`, `sequences[*].whole_sequence_error` for `PathPlanning_*` |
+| Fig. 1, Fig. 4, III-B | sign-change brackets, 16 rows in six sequences, ordered in 10/10 (sequences labelled PP2–PP8 and NP1–NP3 after the release's `PathPlanning_*` and `NoPathPlanning_*`) | `crossing_map`, `surface` |
+| III-C, Table I | control rows | `phase_low`, `phase_high`, `ret`, `cu`, `rt` |
 | III-C | phase spans 0.07/0.11/0.20, 17 cells flip sign, G on processed frames loses up to 10 | `phase` |
 | Abstract, III-D | coverage at every sign change ≤ 0.57, median 0.42 | `coverage_at_sign_change` |
 | III-D | 152 of 1,200 arms within ±0.1 reach at most 63 % | `near_zero_arms` |
-| Table III | held-out count terms and HOTA | `heldout`; HOTA in `results/hota_timing_session.json` (same session) and `results/hota_heldout.json` (earlier runs, identical) |
-| Table III, IV-B | cost per annotated frame | `cost_ms_per_annotated_frame`, `cost_repeat_spread` |
-| Table IV | AppleMOT errors | `apple_error` |
-| Table V | c = 2.65 (circling), 5.54 (frontal) | `../cadence2026/results/calibration_*.json` |
+| Table II | held-out count terms and HOTA | `heldout`; HOTA in `results/hota_timing_session.json` (same session) and `results/hota_heldout.json` (earlier runs, identical) |
+| Table II, IV-B | cost per annotated frame | `cost_ms_per_annotated_frame`, `cost_repeat_spread` |
+| Table III (AppleMOT) | errors on the six published test sequences; scoring one of each identically annotated pair (0006/0010, 0007/0011, 0008/0012) changes no sign and no ordering | `apple_error`, `apple_error_unique3`, `apple_structure` |
+| Table IV | c = 2.65 (multi-view), 5.54 (frontal) | `../cadence2026/results/calibration_*.json` |
 | IV-B | size slopes −0.82 / −0.69; 197 pilots, median error 41 % | `../cbdcom2026_r3/results/scale_invariance.json`, `pilot_holdout.json` |
 | III-E | AppleMOT HOTA 0.550 against 0.455 published | `results/hota_applemot_calibration.json` (`applemot_test_asPublished`) |
 
