@@ -28,7 +28,7 @@ def main() -> None:
     data = json.load(open(HERE.parent / "results" / "lovo_surface_terms.json"))
     plt.rcParams.update({"font.family": "serif",
                          "font.serif": ["Times New Roman", "Nimbus Roman", "DejaVu Serif"],
-                         "font.size": 8.0, "axes.linewidth": 0.5, "xtick.major.width": 0.5,
+                         "font.size": 8.0, "mathtext.fontset": "stix", "axes.linewidth": 0.5, "xtick.major.width": 0.5,
                          "ytick.major.width": 0.5, "pdf.fonttype": 42})
     fig, ax = plt.subplots(figsize=(3.45, 2.3))
     ax.axhline(0, color="#222222", lw=0.7, zorder=1)
