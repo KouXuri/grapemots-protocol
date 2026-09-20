@@ -1,4 +1,4 @@
-# Camera-ready evidence, 2026-09-19 (releases `cbdcom2026-r24` to `-r26`)
+# Camera-ready evidence, 2026-09-19/21 (releases `cbdcom2026-r24` to `-r27`)
 
 This directory supersedes every earlier directory in this repository for the
 camera-ready version of *Same Footage, Opposite Sign: Cadence, Coverage and
@@ -7,6 +7,18 @@ corpus, GrapeMOTS (Ariza-Sentís et al., *Data in Brief* 54 (2024) 110432), read
 full frame, plus AppleMOT as the external check. Earlier directories hold the
 submitted version's evidence (the 2023 vineyard release, MOT17/MOT20) and are kept
 unchanged.
+
+`cbdcom2026-r27` adds the robustness round of 2026-09-21: 540 arms from 27
+retrained detectors (three seeds; for the seven multi-view sequences trained on
+multi-view videos only, so no vine is shared with the test video), 200 arms with
+ByteTrack and 200 with StrongSORT on the same detections, the AppleMOT grid read
+with the detector validated on sequence 0000, and the analyses that turned five
+of the paper's limitations into measurements (mask-cutoff sensitivity, ownership
+threshold, common-timeline HOTA, the ownerless-track audit, the phase mean).
+`tools/robustness_0921.py --check` recomputes every row of the paper's Table I
+from the stubs. Note `results/hota_applemot_calibration.json`: the 0.5497 stored
+in August was the pooled convention this project retracted on 2026-08-30, and the
+per-sequence value the paper cites is 0.5243.
 
 `cbdcom2026-r26` adds the tracker configs, the strict/tie split of the direction
 counts and the phase-combination check, and states what the check covers.
@@ -49,6 +61,9 @@ the analysis server and the SHA-256 of both the source and the stub.
 
 | family | arms | what it is |
 |---|---:|---|
+| `retrain` | 540 | 27 retrained detectors (seeds 0-2; multi-view folds trained on multi-view videos only), each read on its own test video over the same grid |
+| `bytetrack`, `strongsort` | 200 + 200 | the ten-sequence surface with two other trackers on the same detections |
+| `apple_val0000` | 12 | the AppleMOT grid with the detector validated on sequence 0000 |
 | `lovo_surface` | 200 | ten out-of-fold sequences × σ ∈ {1536, 2048, 2560, 3072, 3840} × Δ ∈ {1, 2, 4, 8}, phase 0, 30-frame buffer; each sequence read by a leave-one-video-out checkpoint |
 | `phase` | 550 | the same cells at every other phase k = 1..Δ−1 |
 | `ret` | 150 | Δ ≥ 2 with the buffer scaled to 15/8/4 processed frames (retention ≈ 2 s) |

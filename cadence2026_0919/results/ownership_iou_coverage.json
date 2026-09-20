@@ -1,0 +1,26 @@
+{
+ "0.2": {
+  "max_cov_sign_change": 0.6552,
+  "median": 0.484,
+  "near_zero_max": 0.6782,
+  "n_near": 21,
+  "U_at_d1": 1279,
+  "D_at_d1": 2905
+ },
+ "0.3": {
+  "max_cov_sign_change": 0.6552,
+  "median": 0.473,
+  "near_zero_max": 0.6782,
+  "n_near": 21,
+  "U_at_d1": 1557,
+  "D_at_d1": 2674
+ },
+ "0.5": {
+  "max_cov_sign_change": 0.5747,
+  "median": 0.421,
+  "near_zero_max": 0.6322,
+  "n_near": 21,
+  "U_at_d1": 2451,
+  "D_at_d1": 1976
+ }
+}

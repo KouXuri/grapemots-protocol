@@ -1,0 +1,40 @@
+{
+ "per_seed": {
+  "0": {
+   "strict": 147,
+   "ties": 2,
+   "rev": 1,
+   "rows": 21,
+   "seqs": 8,
+   "ordered": 8,
+   "cells_vs_base": 15,
+   "cov_max": 0.5747,
+   "cov_med": 0.412
+  },
+  "1": {
+   "strict": 141,
+   "ties": 0,
+   "rev": 9,
+   "rows": 21,
+   "seqs": 8,
+   "ordered": 8,
+   "cells_vs_base": 25,
+   "cov_max": 0.6092,
+   "cov_med": 0.405
+  },
+  "2": {
+   "strict": 145,
+   "ties": 2,
+   "rev": 3,
+   "rows": 27,
+   "seqs": 9,
+   "ordered": 9,
+   "cells_vs_base": 22,
+   "cov_max": 0.6207,
+   "cov_med": 0.388
+  }
+ },
+ "seed_sd_median": 0.1582856681671213,
+ "seed_sd_max": 0.9891547405172609,
+ "sign_flip_cells": 54
+}
