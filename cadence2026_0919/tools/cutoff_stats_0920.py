@@ -1,8 +1,18 @@
-import json, statistics
+"""Summarise results/cutoff_sensitivity.json (per-arm terms of the frozen predictions
+scored against references rebuilt at 1/20/100/400 mask pixels by
+tools/cutoff_sensitivity_0920.py, which needs the GrapeMOTS masks).
+
+    python3 tools/cutoff_stats_0920.py [path/to/cutoff_sensitivity.json]
+
+With no argument it reads the archived file. tools/robustness_0921.py --check
+recomputes the two cutoff rows of Table I from the same file.
+"""
+import json, statistics, sys
+from pathlib import Path
 V = [f"PathPlanning_{i}" for i in range(2, 9)] + [f"NoPathPlanning_{i}" for i in range(1, 4)]
 S = (1536, 2048, 2560, 3072, 3840); D = (1, 2, 4, 8)
 ORDER = {"<1": 0, "(1,2)": 1, "(2,4)": 2, "(4,8)": 3, ">8": 4}
-res = json.load(open("runs/rev_0920/cpu/cutoff_sensitivity.json"))
+res = json.load(open(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent / "results" / "cutoff_sensitivity.json"))
 for c in (1, 20, 100, 400):
     strict = ties = rev = 0; cmap = {}; cs = []; gfull = {}
     for v in V:
