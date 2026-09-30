@@ -128,7 +128,7 @@ def main() -> None:
                 arrowprops=dict(arrowstyle="->", lw=0.6, color=C_NEUTRAL,
                                 shrinkA=2, shrinkB=2))
 
-    ax.text(0.015, 0.075, r"$^{*}$reference thins with the processing",
+    ax.text(0.015, 0.50, r"$^{*}$reference thins with the processing",
             transform=ax.transAxes, ha="left", va="bottom", fontsize=6.0,
             color=C_NEUTRAL)
     ax.set_xlabel(r"annotated trajectories reached, $1-M/G$")

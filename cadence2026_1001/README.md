@@ -1,8 +1,9 @@
 # cadence2026_1001 — camera-ready revision of 1 October 2026
 
-Archived snapshot: tag `cbdcom2026-r30`. The identical content was first released
-as `cbdcom2026-r29`, whose Zenodo archiving stalled after the webhook was accepted;
-r30 re-triggers it and adds only this note.
+Cited snapshot: tag `cbdcom2026-r31`. Zenodo accepted the webhooks for r29 and
+r30 (HTTP 202) but archived neither, so the manuscript cites this GitHub release
+until a Zenodo version exists. r31 differs from r29 only in this note and in the
+position of one in-figure footnote in `tools/make_fig_cancellation_1001.py`.
 
 Evidence added for the camera-ready version of *Same Footage, Opposite Sign:
 Cadence, Coverage and Cancellation in UAV Video Counting* (CBDCom 2026), the
