@@ -22,6 +22,12 @@ GrapeMOTS, the frame-level alignment of a public release to its source video, th
 contrast over 28 sequences, the annotation-thinning ladder, and the calibration tool
 behind the annotation-interval criterion. It carries its own README.
 
+**`cadence2026_1001/` holds the camera-ready revision of 1 October 2026**, built on
+the 2021 vineyard campaign: AppleMOT re-scored under the intervention's own design,
+the full-resolution alignment audit and the re-scoring without the frames it could
+not certify, and the tools for the new figures. It carries its own README, claim
+table and smoke test.
+
 **`cadence2026_0813/` carries every round added since**, up to the tag this checkout is
 on: the external contrast on MOT17/MOT20, the adaptive-sampling arms, the low-score
 second-stage audit, the flight-clustered bootstrap, the on-board and link cost benchmark,

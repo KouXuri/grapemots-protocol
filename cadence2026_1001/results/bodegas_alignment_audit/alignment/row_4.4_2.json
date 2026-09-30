@@ -1,0 +1,197 @@
+{
+  "exact_matches": 0,
+  "fps": 59.94005994005994,
+  "mappings": {
+    "000000.png": {
+      "exact": false,
+      "full_mae": 2.4652187017746914,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 12.83029556274414,
+      "source_index": 0,
+      "thumbnail_mae": 2.953125
+    },
+    "000001.png": {
+      "exact": false,
+      "full_mae": 31.593005408769773,
+      "labelled": true,
+      "max_abs": 255,
+      "nonadjacent_margin": 9.858072280883789,
+      "source_index": 1,
+      "thumbnail_mae": 5.642795085906982
+    },
+    "000002.png": {
+      "exact": false,
+      "full_mae": 2.4251060956790123,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 9.9765625,
+      "source_index": 16,
+      "thumbnail_mae": 2.9348957538604736
+    },
+    "000003.png": {
+      "exact": false,
+      "full_mae": 2.406358167860243,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 9.3515625,
+      "source_index": 36,
+      "thumbnail_mae": 2.914496421813965
+    },
+    "000004.png": {
+      "exact": false,
+      "full_mae": 2.4011081648461614,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 9.26388931274414,
+      "source_index": 56,
+      "thumbnail_mae": 2.9197049140930176
+    },
+    "000005.png": {
+      "exact": false,
+      "full_mae": 2.3890190218701775,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 9.373263359069824,
+      "source_index": 76,
+      "thumbnail_mae": 2.9049479961395264
+    },
+    "000006.png": {
+      "exact": false,
+      "full_mae": 2.3657796223958334,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 10.35763931274414,
+      "source_index": 96,
+      "thumbnail_mae": 2.9075520038604736
+    },
+    "000007.png": {
+      "exact": false,
+      "full_mae": 2.344980837975019,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 10.44921875,
+      "source_index": 116,
+      "thumbnail_mae": 2.8880207538604736
+    },
+    "000008.png": {
+      "exact": false,
+      "full_mae": 2.3390809235749424,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 9.723090171813965,
+      "source_index": 136,
+      "thumbnail_mae": 2.8932292461395264
+    },
+    "000009.png": {
+      "exact": false,
+      "full_mae": 2.299448083948206,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 9.971354484558105,
+      "source_index": 156,
+      "thumbnail_mae": 2.8450520038604736
+    },
+    "000010.png": {
+      "exact": false,
+      "full_mae": 2.556514071240837,
+      "labelled": true,
+      "max_abs": 27,
+      "nonadjacent_margin": 10.450087547302246,
+      "source_index": 176,
+      "thumbnail_mae": 3.2122395038604736
+    },
+    "000011.png": {
+      "exact": false,
+      "full_mae": 2.521375604323399,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 11.000433921813965,
+      "source_index": 196,
+      "thumbnail_mae": 3.147569417953491
+    },
+    "000012.png": {
+      "exact": false,
+      "full_mae": 2.497821949146412,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 11.330728530883789,
+      "source_index": 216,
+      "thumbnail_mae": 3.0842013359069824
+    },
+    "000013.png": {
+      "exact": false,
+      "full_mae": 2.457639906141493,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 10.698784828186035,
+      "source_index": 236,
+      "thumbnail_mae": 3.0143229961395264
+    },
+    "000014.png": {
+      "exact": false,
+      "full_mae": 2.433323575243538,
+      "labelled": true,
+      "max_abs": 27,
+      "nonadjacent_margin": 11.03038215637207,
+      "source_index": 256,
+      "thumbnail_mae": 2.968316078186035
+    },
+    "000015.png": {
+      "exact": false,
+      "full_mae": 2.3788136423369983,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 11.565971374511719,
+      "source_index": 276,
+      "thumbnail_mae": 2.8302950859069824
+    },
+    "000016.png": {
+      "exact": false,
+      "full_mae": 2.342325205861786,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 10.981771469116211,
+      "source_index": 296,
+      "thumbnail_mae": 2.7204861640930176
+    },
+    "000017.png": {
+      "exact": false,
+      "full_mae": 2.190755811149691,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 10.336372375488281,
+      "source_index": 316,
+      "thumbnail_mae": 2.4631075859069824
+    },
+    "000018.png": {
+      "exact": false,
+      "full_mae": 2.154490492078993,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 10.000434875488281,
+      "source_index": 336,
+      "thumbnail_mae": 2.3576388359069824
+    },
+    "000019.png": {
+      "exact": false,
+      "full_mae": 2.153424335997782,
+      "labelled": true,
+      "max_abs": 26,
+      "nonadjacent_margin": 5.428385257720947,
+      "source_index": 356,
+      "thumbnail_mae": 2.3103299140930176
+    }
+  },
+  "policy": "Independent appearance match, sequential full-resolution verification; never clamped",
+  "source_frames": 371,
+  "strictly_increasing": true,
+  "total": 20,
+  "video": "Row4.4_2.mp4",
+  "video_digests": {
+    "bytes": 77974442,
+    "crc32": 2066507138,
+    "md5": "944b6a91d8e0a90ec43735687fd20af4",
+    "sha256": "6e963f7587fe49d9bfad304d4e0063e56ceccc6f64ce2fb88d9740028cb6d679"
+  }
+}

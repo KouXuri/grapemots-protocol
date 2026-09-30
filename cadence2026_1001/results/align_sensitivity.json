@@ -1,0 +1,74 @@
+{
+ "all frames": {
+  "rel": {
+   "P": 238,
+   "G": 339,
+   "U": 99,
+   "D": 19,
+   "M": 219,
+   "e": -0.2979,
+   "coverage": 0.354,
+   "identity": true
+  },
+  "src": {
+   "P": 666,
+   "G": 339,
+   "U": 346,
+   "D": 87,
+   "M": 106,
+   "e": 0.9646,
+   "coverage": 0.6873,
+   "identity": true
+  },
+  "paired_median": 1.1111,
+  "up/down/tie": "17/0/0",
+  "frames_removed_per_arm": 0,
+  "sequences": 17
+ },
+ "suspect frames dropped": {
+  "rel": {
+   "P": 238,
+   "G": 337,
+   "U": 99,
+   "D": 19,
+   "M": 217,
+   "e": -0.2938,
+   "coverage": 0.3561,
+   "identity": true
+  },
+  "src": {
+   "P": 655,
+   "G": 337,
+   "U": 342,
+   "D": 82,
+   "M": 106,
+   "e": 0.9436,
+   "coverage": 0.6855,
+   "identity": true
+  },
+  "paired_median": 1.0625,
+  "up/down/tie": "17/0/0",
+  "frames_removed_per_arm": 13,
+  "sequences": 17
+ },
+ "table_ii_rows": {
+  "all frames": {
+   "sparse_median": -0.316,
+   "source_median": 0.812,
+   "delta_median": 1.1111111111111112,
+   "ci95": [
+    0.78,
+    1.58
+   ]
+  },
+  "suspect frames dropped": {
+   "sparse_median": -0.316,
+   "source_median": 0.812,
+   "delta_median": 1.0625,
+   "ci95": [
+    0.78,
+    1.67
+   ]
+  }
+ }
+}

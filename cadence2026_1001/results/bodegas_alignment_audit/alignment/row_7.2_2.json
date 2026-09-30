@@ -1,0 +1,224 @@
+{
+  "exact_matches": 0,
+  "fps": 59.94005994005994,
+  "mappings": {
+    "000001.png": {
+      "exact": false,
+      "full_mae": 32.6915613245081,
+      "labelled": true,
+      "max_abs": 255,
+      "nonadjacent_margin": 5.065104007720947,
+      "source_index": 1,
+      "thumbnail_mae": 2.7868924140930176
+    },
+    "000002.png": {
+      "exact": false,
+      "full_mae": 1.7694683310426311,
+      "labelled": true,
+      "max_abs": 19,
+      "nonadjacent_margin": 5.070746421813965,
+      "source_index": 52,
+      "thumbnail_mae": 1.8159722089767456
+    },
+    "000003.png": {
+      "exact": false,
+      "full_mae": 1.7808377112871334,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 4.6640625,
+      "source_index": 112,
+      "thumbnail_mae": 1.8311631679534912
+    },
+    "000004.png": {
+      "exact": false,
+      "full_mae": 1.7747734540774498,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 4.333766937255859,
+      "source_index": 172,
+      "thumbnail_mae": 1.8133680820465088
+    },
+    "000005.png": {
+      "exact": false,
+      "full_mae": 1.774846018096547,
+      "labelled": true,
+      "max_abs": 19,
+      "nonadjacent_margin": 4.45703125,
+      "source_index": 232,
+      "thumbnail_mae": 1.8064236640930176
+    },
+    "000006.png": {
+      "exact": false,
+      "full_mae": 1.725649760681906,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 4.57725715637207,
+      "source_index": 292,
+      "thumbnail_mae": 1.8046875
+    },
+    "000007.png": {
+      "exact": false,
+      "full_mae": 1.741747632438754,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 3.9240453243255615,
+      "source_index": 352,
+      "thumbnail_mae": 1.8485243320465088
+    },
+    "000008.png": {
+      "exact": false,
+      "full_mae": 1.6703983636549962,
+      "labelled": true,
+      "max_abs": 19,
+      "nonadjacent_margin": 4.224392414093018,
+      "source_index": 412,
+      "thumbnail_mae": 1.6419271230697632
+    },
+    "000009.png": {
+      "exact": false,
+      "full_mae": 1.7771294864607445,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 4.328558921813965,
+      "source_index": 472,
+      "thumbnail_mae": 1.6996527910232544
+    },
+    "000010.png": {
+      "exact": false,
+      "full_mae": 1.6697080258969907,
+      "labelled": true,
+      "max_abs": 19,
+      "nonadjacent_margin": 4.247829914093018,
+      "source_index": 532,
+      "thumbnail_mae": 1.5729166269302368
+    },
+    "000011.png": {
+      "exact": false,
+      "full_mae": 1.731810619212963,
+      "labelled": false,
+      "max_abs": 18,
+      "nonadjacent_margin": 3.921875,
+      "source_index": 592,
+      "thumbnail_mae": 1.6176215410232544
+    },
+    "000012.png": {
+      "exact": false,
+      "full_mae": 1.7516051869333527,
+      "labelled": false,
+      "max_abs": 19,
+      "nonadjacent_margin": 3.098090171813965,
+      "source_index": 652,
+      "thumbnail_mae": 1.62890625
+    },
+    "000013.png": {
+      "exact": false,
+      "full_mae": 1.7770686020085842,
+      "labelled": false,
+      "max_abs": 19,
+      "nonadjacent_margin": 2.7326388359069824,
+      "source_index": 712,
+      "thumbnail_mae": 1.6814236640930176
+    },
+    "000014.png": {
+      "exact": false,
+      "full_mae": 1.828898338035301,
+      "labelled": false,
+      "max_abs": 18,
+      "nonadjacent_margin": 3.25,
+      "source_index": 772,
+      "thumbnail_mae": 1.7912325859069824
+    },
+    "000015.png": {
+      "exact": false,
+      "full_mae": 1.7791683244116512,
+      "labelled": false,
+      "max_abs": 19,
+      "nonadjacent_margin": 3.1189236640930176,
+      "source_index": 832,
+      "thumbnail_mae": 1.7083333730697632
+    },
+    "000016.png": {
+      "exact": false,
+      "full_mae": 1.772055016034915,
+      "labelled": false,
+      "max_abs": 13,
+      "nonadjacent_margin": 2.917534828186035,
+      "source_index": 892,
+      "thumbnail_mae": 1.7109375
+    },
+    "000017.png": {
+      "exact": false,
+      "full_mae": 1.7947891046971451,
+      "labelled": false,
+      "max_abs": 16,
+      "nonadjacent_margin": 2.612847328186035,
+      "source_index": 952,
+      "thumbnail_mae": 1.7330728769302368
+    },
+    "000018.png": {
+      "exact": false,
+      "full_mae": 1.8030267786096643,
+      "labelled": true,
+      "max_abs": 16,
+      "nonadjacent_margin": 2.444878578186035,
+      "source_index": 1011,
+      "thumbnail_mae": 1.76171875
+    },
+    "000019.png": {
+      "exact": false,
+      "full_mae": 1.8067296911168982,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 2.3875865936279297,
+      "source_index": 1071,
+      "thumbnail_mae": 1.7612847089767456
+    },
+    "000020.png": {
+      "exact": false,
+      "full_mae": 1.8315067244164738,
+      "labelled": true,
+      "max_abs": 17,
+      "nonadjacent_margin": 4.932291507720947,
+      "source_index": 1131,
+      "thumbnail_mae": 1.8372396230697632
+    },
+    "000021.png": {
+      "exact": false,
+      "full_mae": 1.8285415837794174,
+      "labelled": true,
+      "max_abs": 18,
+      "nonadjacent_margin": 5.401909828186035,
+      "source_index": 1191,
+      "thumbnail_mae": 1.8090277910232544
+    },
+    "000022.png": {
+      "exact": false,
+      "full_mae": 1.832110708731192,
+      "labelled": true,
+      "max_abs": 16,
+      "nonadjacent_margin": 4.5989580154418945,
+      "source_index": 1251,
+      "thumbnail_mae": 1.8133680820465088
+    },
+    "000023.png": {
+      "exact": false,
+      "full_mae": 1.8244397198712383,
+      "labelled": true,
+      "max_abs": 16,
+      "nonadjacent_margin": 2.9353299140930176,
+      "source_index": 1311,
+      "thumbnail_mae": 1.80859375
+    }
+  },
+  "policy": "Independent appearance match, sequential full-resolution verification; never clamped",
+  "source_frames": 1346,
+  "strictly_increasing": true,
+  "total": 23,
+  "video": "Row7.2_2.mp4",
+  "video_digests": {
+    "bytes": 280653903,
+    "crc32": 1055129361,
+    "md5": "cba88e57d8e16d78010e3df8810ca826",
+    "sha256": "47c7af1819a4c5e30bf92bded8b603812a8dddd5de0cf6144dc5f9b42acf8de7"
+  }
+}

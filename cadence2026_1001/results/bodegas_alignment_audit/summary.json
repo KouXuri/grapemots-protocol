@@ -1,0 +1,291 @@
+{
+  "flight_row_groups": {
+    "4": 4,
+    "6": 7,
+    "7": 14,
+    "8": 4
+  },
+  "local_files_match_official_crc_and_size": true,
+  "missing_mask_images": {
+    "row_7.1_2": [
+      "000020.png",
+      "000021.png",
+      "000022.png",
+      "000023.png",
+      "000024.png",
+      "000025.png",
+      "000026.png"
+    ],
+    "row_7.2_2": [
+      "000011.png",
+      "000012.png",
+      "000013.png",
+      "000014.png",
+      "000015.png",
+      "000016.png",
+      "000017.png"
+    ],
+    "row_7.3_4": [
+      "000012.png"
+    ]
+  },
+  "primary_annotation_replay": {
+    "interval_unit": "available labelled-frame index",
+    "missing_masks_are_not_negative_examples": true,
+    "source_mapping_required": false,
+    "status": "prepared_not_submitted",
+    "target_training": false,
+    "usable_labelled_frames": 664
+  },
+  "raw_file_status": "passed",
+  "source_alignment": {
+    "audited_images": 679,
+    "audited_sequences": 29,
+    "decoder": {
+      "colour_differences_not_resolved": true,
+      "opencv": "4.13.0",
+      "platform": "local macOS"
+    },
+    "exact_rgb_matches": 0,
+    "full_rgb_mae_above_diagnostic_levels": {
+      "10": 19,
+      "20": 16,
+      "5": 19
+    },
+    "full_rgb_mae_quantiles": {
+      "0": 1.4102590678650655,
+      "0.5": 2.1631669032720873,
+      "0.9": 2.737246500651042,
+      "0.95": 2.945917445053289,
+      "1": 41.552070674189814
+    },
+    "large_residual_frames": [
+      {
+        "exact": false,
+        "full_mae": 38.43508470323351,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 15.13671875,
+        "sequence": "row_8_4",
+        "source_index": 1,
+        "thumbnail_mae": 7.58680534362793
+      },
+      {
+        "exact": false,
+        "full_mae": 21.792380288206502,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 236,
+        "nonadjacent_margin": 2.1328125,
+        "sequence": "row_7.2_1",
+        "source_index": 1,
+        "thumbnail_mae": 1.7838541269302368
+      },
+      {
+        "exact": false,
+        "full_mae": 31.014606466411074,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 2.7439236640930176,
+        "sequence": "row_6.2_1",
+        "source_index": 0,
+        "thumbnail_mae": 2.484808921813965
+      },
+      {
+        "exact": false,
+        "full_mae": 41.552070674189814,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 10.337675094604492,
+        "sequence": "row_7.1_4",
+        "source_index": 1,
+        "thumbnail_mae": 5.881510257720947
+      },
+      {
+        "exact": false,
+        "full_mae": 31.593005408769773,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 9.858072280883789,
+        "sequence": "row_4.4_2",
+        "source_index": 1,
+        "thumbnail_mae": 5.642795085906982
+      },
+      {
+        "exact": false,
+        "full_mae": 34.79498098867911,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 8.944878578186035,
+        "sequence": "row_7.1_3",
+        "source_index": 1,
+        "thumbnail_mae": 4.637152671813965
+      },
+      {
+        "exact": false,
+        "full_mae": 13.69038101007909,
+        "image": "000003.png",
+        "labelled": true,
+        "max_abs": 240,
+        "nonadjacent_margin": 0.11197924613952637,
+        "sequence": "row_8_3",
+        "source_index": 60,
+        "thumbnail_mae": 3.112413167953491
+      },
+      {
+        "exact": false,
+        "full_mae": 24.784434528115355,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 7.115885257720947,
+        "sequence": "row_8_2",
+        "source_index": 0,
+        "thumbnail_mae": 4.955295085906982
+      },
+      {
+        "exact": false,
+        "full_mae": 35.62511883017458,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 10.864583015441895,
+        "sequence": "row_7.1_2",
+        "source_index": 1,
+        "thumbnail_mae": 5.797308921813965
+      },
+      {
+        "exact": false,
+        "full_mae": 33.895751840096935,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 6.282118320465088,
+        "sequence": "row_6.1_2",
+        "source_index": 1,
+        "thumbnail_mae": 3.9006075859069824
+      },
+      {
+        "exact": false,
+        "full_mae": 38.10041797779225,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 7.114149570465088,
+        "sequence": "row_7.4_1",
+        "source_index": 0,
+        "thumbnail_mae": 5.033854007720947
+      },
+      {
+        "exact": false,
+        "full_mae": 13.755374974380304,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 233,
+        "nonadjacent_margin": 2.2842884063720703,
+        "sequence": "row_8_1",
+        "source_index": 0,
+        "thumbnail_mae": 2.7170138359069824
+      },
+      {
+        "exact": false,
+        "full_mae": 35.78304718394338,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 7.588107109069824,
+        "sequence": "row_7.2_4",
+        "source_index": 0,
+        "thumbnail_mae": 5.49131965637207
+      },
+      {
+        "exact": false,
+        "full_mae": 31.66246085461275,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 5.4947919845581055,
+        "sequence": "row_6.1_1",
+        "source_index": 1,
+        "thumbnail_mae": 3.519097328186035
+      },
+      {
+        "exact": false,
+        "full_mae": 27.277447811173804,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 6.2161455154418945,
+        "sequence": "row_7.1_1",
+        "source_index": 1,
+        "thumbnail_mae": 3.309027671813965
+      },
+      {
+        "exact": false,
+        "full_mae": 23.807201960057387,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 4.258246421813965,
+        "sequence": "row_4.2_1",
+        "source_index": 1,
+        "thumbnail_mae": 3.2439236640930176
+      },
+      {
+        "exact": false,
+        "full_mae": 17.703572478117767,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 254,
+        "nonadjacent_margin": 3.183159589767456,
+        "sequence": "row_7.3_1",
+        "source_index": 0,
+        "thumbnail_mae": 3.503038167953491
+      },
+      {
+        "exact": false,
+        "full_mae": 32.6915613245081,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 5.065104007720947,
+        "sequence": "row_7.2_2",
+        "source_index": 1,
+        "thumbnail_mae": 2.7868924140930176
+      },
+      {
+        "exact": false,
+        "full_mae": 39.63720488371673,
+        "image": "000001.png",
+        "labelled": true,
+        "max_abs": 255,
+        "nonadjacent_margin": 9.402776718139648,
+        "sequence": "row_4.3_2",
+        "source_index": 1,
+        "thumbnail_mae": 5.317708492279053
+      }
+    ],
+    "nonmonotone_sequences": [
+      "row_6.2_1",
+      "row_7.2_4",
+      "row_7.3_1",
+      "row_7.4_1",
+      "row_8_2"
+    ],
+    "note": "No frame indices were clamped. Small RGB residuals may be decoder-dependent; large residuals and non-injective mappings still require diagnosis.",
+    "status": "not_accepted_for_source_rate_experiments",
+    "video_md5_matches_official": true
+  },
+  "totals": {
+    "images": 679,
+    "instances": 4889,
+    "masks": 664,
+    "sequence_scoped_tracks": 733,
+    "sequences": 29
+  }
+}

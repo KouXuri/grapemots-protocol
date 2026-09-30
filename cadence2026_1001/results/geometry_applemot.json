@@ -1,0 +1,105 @@
+{
+ "by_step": {
+  "1": {
+   "sequence_median_r": 0.5917346361456142,
+   "sequence_median_iou": 0.20924294907355379,
+   "pairs": 44664,
+   "sequences": 6
+  },
+  "2": {
+   "sequence_median_r": 1.1669004950194544,
+   "sequence_median_iou": 0.0,
+   "pairs": 21754,
+   "sequences": 6
+  },
+  "4": {
+   "sequence_median_r": 2.285351917879838,
+   "sequence_median_iou": 0.0,
+   "pairs": 10251,
+   "sequences": 6
+  },
+  "8": {
+   "sequence_median_r": 4.420536368209236,
+   "sequence_median_iou": 0.0,
+   "pairs": 4534,
+   "sequences": 6
+  }
+ },
+ "sequences": [
+  {
+   "corpus": "applemot",
+   "video": "0006",
+   "step_over_size_median": 0.6087740180770511,
+   "consecutive_iou_median": 0.19622463534827345
+  },
+  {
+   "corpus": "applemot",
+   "video": "0007",
+   "step_over_size_median": 0.5917346361456142,
+   "consecutive_iou_median": 0.20924294907355379
+  },
+  {
+   "corpus": "applemot",
+   "video": "0008",
+   "step_over_size_median": 0.4830744269816563,
+   "consecutive_iou_median": 0.3645494276726059
+  },
+  {
+   "corpus": "applemot",
+   "video": "0010",
+   "step_over_size_median": 0.6137149350004001,
+   "consecutive_iou_median": 0.19185238919473013
+  },
+  {
+   "corpus": "applemot",
+   "video": "0011",
+   "step_over_size_median": 0.5917346361456142,
+   "consecutive_iou_median": 0.20924294907355379
+  },
+  {
+   "corpus": "applemot",
+   "video": "0012",
+   "step_over_size_median": 0.4830744269816563,
+   "consecutive_iou_median": 0.3645494276726059
+  }
+ ],
+ "curve_s1280": {
+  "1": {
+   "P": 1438,
+   "G": 1396,
+   "U": 124,
+   "D": 287,
+   "M": 369,
+   "signed_error": 0.03008595988538682,
+   "assigned_fraction": 0.7356733524355301
+  },
+  "2": {
+   "P": 1153,
+   "G": 1378,
+   "U": 84,
+   "D": 264,
+   "M": 573,
+   "signed_error": -0.1632801161103048,
+   "assigned_fraction": 0.5841799709724238
+  },
+  "4": {
+   "P": 700,
+   "G": 1361,
+   "U": 54,
+   "D": 86,
+   "M": 801,
+   "signed_error": -0.4856722997795738,
+   "assigned_fraction": 0.41146216017634096
+  },
+  "8": {
+   "P": 447,
+   "G": 1310,
+   "U": 38,
+   "D": 18,
+   "M": 919,
+   "signed_error": -0.6587786259541984,
+   "assigned_fraction": 0.29847328244274807
+  }
+ },
+ "base_UD_over_G_s1280_k1": 0.29441260744985676
+}

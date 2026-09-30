@@ -1,0 +1,224 @@
+{
+  "exact_matches": 0,
+  "fps": 59.94005994005994,
+  "mappings": {
+    "000000.png": {
+      "exact": false,
+      "full_mae": 2.0009707227165316,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.565972328186035,
+      "source_index": 0,
+      "thumbnail_mae": 1.9730902910232544
+    },
+    "000001.png": {
+      "exact": false,
+      "full_mae": 1.9993546850887345,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.61328125,
+      "source_index": 1,
+      "thumbnail_mae": 1.9683159589767456
+    },
+    "000002.png": {
+      "exact": false,
+      "full_mae": 2.014571277006173,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.885850667953491,
+      "source_index": 29,
+      "thumbnail_mae": 2.038194417953491
+    },
+    "000003.png": {
+      "exact": false,
+      "full_mae": 2.0101078739872684,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.8854167461395264,
+      "source_index": 63,
+      "thumbnail_mae": 2.012586832046509
+    },
+    "000004.png": {
+      "exact": false,
+      "full_mae": 1.9840395703727816,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.7096354961395264,
+      "source_index": 96,
+      "thumbnail_mae": 1.9913194179534912
+    },
+    "000005.png": {
+      "exact": false,
+      "full_mae": 1.967686782648534,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 3.710503578186035,
+      "source_index": 129,
+      "thumbnail_mae": 1.9765625
+    },
+    "000006.png": {
+      "exact": false,
+      "full_mae": 1.9597667929566938,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 3.542534828186035,
+      "source_index": 163,
+      "thumbnail_mae": 1.9535590410232544
+    },
+    "000007.png": {
+      "exact": false,
+      "full_mae": 1.9499928415557484,
+      "labelled": true,
+      "max_abs": 27,
+      "nonadjacent_margin": 3.5221357345581055,
+      "source_index": 196,
+      "thumbnail_mae": 1.9205728769302368
+    },
+    "000008.png": {
+      "exact": false,
+      "full_mae": 1.9379232147593557,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 4.06163215637207,
+      "source_index": 229,
+      "thumbnail_mae": 1.8819444179534912
+    },
+    "000009.png": {
+      "exact": false,
+      "full_mae": 1.924615478515625,
+      "labelled": true,
+      "max_abs": 25,
+      "nonadjacent_margin": 4.215277671813965,
+      "source_index": 263,
+      "thumbnail_mae": 1.8637152910232544
+    },
+    "000010.png": {
+      "exact": false,
+      "full_mae": 1.9400840099946952,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 4.638888835906982,
+      "source_index": 296,
+      "thumbnail_mae": 1.9040799140930176
+    },
+    "000011.png": {
+      "exact": false,
+      "full_mae": 1.9548963758680555,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.9171009063720703,
+      "source_index": 329,
+      "thumbnail_mae": 1.953125
+    },
+    "000012.png": {
+      "exact": false,
+      "full_mae": 1.9607590663580248,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.593315839767456,
+      "source_index": 362,
+      "thumbnail_mae": 1.9618055820465088
+    },
+    "000013.png": {
+      "exact": false,
+      "full_mae": 1.9428134494357638,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.0881075859069824,
+      "source_index": 396,
+      "thumbnail_mae": 1.9418402910232544
+    },
+    "000014.png": {
+      "exact": false,
+      "full_mae": 1.9570927372685185,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.272569179534912,
+      "source_index": 429,
+      "thumbnail_mae": 1.9878472089767456
+    },
+    "000015.png": {
+      "exact": false,
+      "full_mae": 2.029582949037905,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 4.38758659362793,
+      "source_index": 462,
+      "thumbnail_mae": 2.128038167953491
+    },
+    "000016.png": {
+      "exact": false,
+      "full_mae": 2.095816718207465,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 4.58116340637207,
+      "source_index": 496,
+      "thumbnail_mae": 2.2161457538604736
+    },
+    "000017.png": {
+      "exact": false,
+      "full_mae": 2.2053768581814235,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 4.79774284362793,
+      "source_index": 529,
+      "thumbnail_mae": 2.368055582046509
+    },
+    "000018.png": {
+      "exact": false,
+      "full_mae": 2.259426352418499,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.980034828186035,
+      "source_index": 562,
+      "thumbnail_mae": 2.480034828186035
+    },
+    "000019.png": {
+      "exact": false,
+      "full_mae": 2.2890781732253087,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 4.796441078186035,
+      "source_index": 596,
+      "thumbnail_mae": 2.512586832046509
+    },
+    "000020.png": {
+      "exact": false,
+      "full_mae": 2.3033887321566358,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 3.9231772422790527,
+      "source_index": 629,
+      "thumbnail_mae": 2.543402671813965
+    },
+    "000021.png": {
+      "exact": false,
+      "full_mae": 2.307113609784915,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 3.741319179534912,
+      "source_index": 662,
+      "thumbnail_mae": 2.5212674140930176
+    },
+    "000022.png": {
+      "exact": false,
+      "full_mae": 2.3205320005063657,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 0.9014756679534912,
+      "source_index": 695,
+      "thumbnail_mae": 2.54296875
+    }
+  },
+  "policy": "Independent appearance match, sequential full-resolution verification; never clamped",
+  "source_frames": 702,
+  "strictly_increasing": true,
+  "total": 23,
+  "video": "Row6.2_2.mp4",
+  "video_digests": {
+    "bytes": 146711817,
+    "crc32": 93675504,
+    "md5": "ba92b39c8691a9443de1deece4e24cc6",
+    "sha256": "a13606ea6c5afc3a8b18ba43a778cd858c757c77b708e2c8d8cbf52d58ebf18f"
+  }
+}

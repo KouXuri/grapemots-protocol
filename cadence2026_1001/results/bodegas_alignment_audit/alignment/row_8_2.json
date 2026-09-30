@@ -1,0 +1,233 @@
+{
+  "exact_matches": 0,
+  "fps": 59.94005994005994,
+  "mappings": {
+    "000000.png": {
+      "exact": false,
+      "full_mae": 2.505876479914159,
+      "labelled": true,
+      "max_abs": 21,
+      "nonadjacent_margin": 12.38671875,
+      "source_index": 0,
+      "thumbnail_mae": 2.83984375
+    },
+    "000001.png": {
+      "exact": false,
+      "full_mae": 24.784434528115355,
+      "labelled": true,
+      "max_abs": 255,
+      "nonadjacent_margin": 7.115885257720947,
+      "source_index": 0,
+      "thumbnail_mae": 4.955295085906982
+    },
+    "000002.png": {
+      "exact": false,
+      "full_mae": 2.5071756621937693,
+      "labelled": true,
+      "max_abs": 20,
+      "nonadjacent_margin": 8.711371421813965,
+      "source_index": 40,
+      "thumbnail_mae": 2.879340171813965
+    },
+    "000003.png": {
+      "exact": false,
+      "full_mae": 2.562843793704186,
+      "labelled": true,
+      "max_abs": 21,
+      "nonadjacent_margin": 9.59852409362793,
+      "source_index": 86,
+      "thumbnail_mae": 3.0138888359069824
+    },
+    "000004.png": {
+      "exact": false,
+      "full_mae": 2.5653573118610145,
+      "labelled": true,
+      "max_abs": 21,
+      "nonadjacent_margin": 9.088541984558105,
+      "source_index": 132,
+      "thumbnail_mae": 3.051215171813965
+    },
+    "000005.png": {
+      "exact": false,
+      "full_mae": 2.629870530116705,
+      "labelled": true,
+      "max_abs": 22,
+      "nonadjacent_margin": 9.904513359069824,
+      "source_index": 178,
+      "thumbnail_mae": 3.198784828186035
+    },
+    "000006.png": {
+      "exact": false,
+      "full_mae": 2.6931024998794366,
+      "labelled": true,
+      "max_abs": 22,
+      "nonadjacent_margin": 11.167534828186035,
+      "source_index": 224,
+      "thumbnail_mae": 3.3528645038604736
+    },
+    "000007.png": {
+      "exact": false,
+      "full_mae": 3.0172628897207754,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 8.55078125,
+      "source_index": 271,
+      "thumbnail_mae": 3.8806424140930176
+    },
+    "000008.png": {
+      "exact": false,
+      "full_mae": 3.0369281910083914,
+      "labelled": true,
+      "max_abs": 22,
+      "nonadjacent_margin": 7.23914909362793,
+      "source_index": 317,
+      "thumbnail_mae": 3.8971354961395264
+    },
+    "000009.png": {
+      "exact": false,
+      "full_mae": 3.0996505548924578,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 7.917968273162842,
+      "source_index": 363,
+      "thumbnail_mae": 4.021267414093018
+    },
+    "000010.png": {
+      "exact": false,
+      "full_mae": 3.1549598222897375,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 7.911458492279053,
+      "source_index": 409,
+      "thumbnail_mae": 4.108072757720947
+    },
+    "000011.png": {
+      "exact": false,
+      "full_mae": 3.149058363172743,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 10.373698234558105,
+      "source_index": 455,
+      "thumbnail_mae": 4.094183921813965
+    },
+    "000012.png": {
+      "exact": false,
+      "full_mae": 3.096014592676987,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 7.35069465637207,
+      "source_index": 501,
+      "thumbnail_mae": 4.02039909362793
+    },
+    "000013.png": {
+      "exact": false,
+      "full_mae": 3.1263436399860147,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 7.297743320465088,
+      "source_index": 547,
+      "thumbnail_mae": 4.088541507720947
+    },
+    "000014.png": {
+      "exact": false,
+      "full_mae": 3.067229847849151,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 13.01649284362793,
+      "source_index": 593,
+      "thumbnail_mae": 4.044270992279053
+    },
+    "000015.png": {
+      "exact": false,
+      "full_mae": 2.976789422682774,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 12.13585090637207,
+      "source_index": 639,
+      "thumbnail_mae": 3.8828125
+    },
+    "000016.png": {
+      "exact": false,
+      "full_mae": 2.9471983356240354,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 11.617621421813965,
+      "source_index": 686,
+      "thumbnail_mae": 3.839409828186035
+    },
+    "000017.png": {
+      "exact": false,
+      "full_mae": 2.8126585407021607,
+      "labelled": true,
+      "max_abs": 24,
+      "nonadjacent_margin": 13.02734375,
+      "source_index": 732,
+      "thumbnail_mae": 3.616319417953491
+    },
+    "000018.png": {
+      "exact": false,
+      "full_mae": 2.7112032289858217,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 10.49131965637207,
+      "source_index": 778,
+      "thumbnail_mae": 3.418836832046509
+    },
+    "000019.png": {
+      "exact": false,
+      "full_mae": 2.565022824134356,
+      "labelled": true,
+      "max_abs": 23,
+      "nonadjacent_margin": 9.57421875,
+      "source_index": 824,
+      "thumbnail_mae": 3.1419270038604736
+    },
+    "000020.png": {
+      "exact": false,
+      "full_mae": 2.27319573296441,
+      "labelled": true,
+      "max_abs": 22,
+      "nonadjacent_margin": 8.413193702697754,
+      "source_index": 870,
+      "thumbnail_mae": 2.6510417461395264
+    },
+    "000021.png": {
+      "exact": false,
+      "full_mae": 2.131345546392747,
+      "labelled": true,
+      "max_abs": 22,
+      "nonadjacent_margin": 6.8203125,
+      "source_index": 916,
+      "thumbnail_mae": 2.3619792461395264
+    },
+    "000022.png": {
+      "exact": false,
+      "full_mae": 1.9826741913218557,
+      "labelled": true,
+      "max_abs": 21,
+      "nonadjacent_margin": 9.12717056274414,
+      "source_index": 962,
+      "thumbnail_mae": 2.101996421813965
+    },
+    "000023.png": {
+      "exact": false,
+      "full_mae": 1.9394679693528163,
+      "labelled": true,
+      "max_abs": 20,
+      "nonadjacent_margin": 13.467013359069824,
+      "source_index": 1008,
+      "thumbnail_mae": 2.010850667953491
+    }
+  },
+  "policy": "Independent appearance match, sequential full-resolution verification; never clamped",
+  "source_frames": 1046,
+  "strictly_increasing": false,
+  "total": 24,
+  "video": "Row8_2.mp4",
+  "video_digests": {
+    "bytes": 218250193,
+    "crc32": 2217039803,
+    "md5": "4382b902acfca8abf68fe18b086e6ecf",
+    "sha256": "a0a5acee3950aa1d71d02e2fc512989bd632ad02e9a210e16caef1819a2afdd4"
+  }
+}
