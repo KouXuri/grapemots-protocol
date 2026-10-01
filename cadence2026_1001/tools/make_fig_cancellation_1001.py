@@ -102,10 +102,11 @@ def main() -> None:
                  "detector confidence": crossing(confidence)}
     low, high = min(crossings.values()), max(crossings.values())
 
-    fig, ax = plt.subplots(figsize=(3.45, 2.18))
+    fig, ax = plt.subplots(figsize=(3.45, 2.45))
     ax.axhspan(-0.05, 0.05, color=C_NEUTRAL, alpha=0.10, lw=0)
     ax.axhline(0.0, color=C_NEUTRAL, lw=0.6, zorder=1)
-    ax.axvspan(low, high, color=C_NEUTRAL, alpha=0.13, lw=0, zorder=0)
+    # the band marks where the three paths cross zero, so it is drawn around zero only
+    ax.fill_between([low, high], -0.32, 0.32, color=C_NEUTRAL, alpha=0.13, lw=0, zorder=0)
 
     for series, colour, marker, style, label in (
         (cadence, C_ERR, "o", "-", "processing cadence, 2021 flights"),
@@ -122,20 +123,21 @@ def main() -> None:
                 markeredgecolor=C_NEUTRAL, markeredgewidth=0.9, zorder=4)
 
     ax.annotate(f"interpolated zero crossings\nat coverage {low:.2f}\u2013{high:.2f}",
-                xy=(high, -0.22), xytext=(0.545, -0.62),
-                textcoords="data", ha="left", va="center", fontsize=6.6,
+                xy=(high, -0.22), xytext=(0.525, -0.66),
+                textcoords="data", ha="left", va="center", fontsize=8,
                 color=C_NEUTRAL,
                 arrowprops=dict(arrowstyle="->", lw=0.6, color=C_NEUTRAL,
                                 shrinkA=2, shrinkB=2))
 
-    ax.text(0.015, 0.50, r"$^{*}$reference thins with the processing",
-            transform=ax.transAxes, ha="left", va="bottom", fontsize=6.0,
+    ax.text(0.015, 0.63, r"$^{*}$reference thins with the processing",
+            transform=ax.transAxes, ha="left", va="bottom", fontsize=8,
             color=C_NEUTRAL)
-    ax.set_xlabel(r"assigned coverage, $1-M/G$")
-    ax.set_ylabel(r"signed count error $e$")
+    ax.set_xlabel(r"assigned coverage, $1-M/G$", fontsize=8)
+    ax.set_ylabel(r"signed count error $e$", fontsize=8)
+    ax.tick_params(labelsize=8)
     ax.set_xlim(0.03, 0.86)
     ax.set_ylim(-1.05, 2.9)
-    ax.legend(loc="upper left", frameon=False, handlelength=2.0,
+    ax.legend(loc="upper left", frameon=False, handlelength=2.0, fontsize=8,
               borderaxespad=0.3, labelspacing=0.3)
     fig.tight_layout(pad=0.15)
 

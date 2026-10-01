@@ -29,13 +29,13 @@ structure = [row for row in json.loads(
     (ROOT / "runs/grapemots_journal_0805/results/sequence_structure.json").read_text())["sequences"]
     if row.get("corpus") in STYLE]
 
-fig, ax = plt.subplots(figsize=(3.45, 1.55))
+fig, ax = plt.subplots(figsize=(3.45, 1.8))
 grid = np.linspace(1e-3, 1.0, 400)
 ax.plot(grid, (1 - grid) / (1 + grid), color="black", linewidth=1.0, zorder=2)
 ax.plot([1.0, 30.0], [0.0, 0.0], color="black", linewidth=1.0, zorder=2)
-ax.text(0.50, 0.36, "$(1-r)/(1+r)$", fontsize=6.3, color="black", ha="left")
+ax.text(0.47, 0.40, "$(1-r)/(1+r)$", fontsize=8, color="black", ha="left")
 ax.axvline(2 ** 0.5, color=C_NEUTRAL, linewidth=0.5, linestyle=":", zorder=1)
-ax.text(1.36, 0.93, "$r=\\sqrt{2}$", fontsize=6.3, color=C_NEUTRAL, ha="right")
+ax.text(1.36, 0.93, "$r=\\sqrt{2}$", fontsize=8, color=C_NEUTRAL, ha="right")
 for key, (colour, marker, label) in STYLE.items():
     rows = [s for s in structure if s.get("corpus") == key]
     ax.scatter([s["step_over_size_median"] for s in rows], [s["consecutive_iou_median"] for s in rows],
@@ -50,9 +50,10 @@ ax.set_xticks([0.1, 0.2, 0.5, 1, 2, 5, 10, 20])
 ax.set_xticklabels(["0.1", "0.2", "0.5", "1", "2", "5", "10", "20"])
 ax.tick_params(axis="x", which="minor", bottom=False)
 ax.set_ylim(-0.05, 1.05)
-ax.set_xlabel("displacement in units of target size, $r$")
-ax.set_ylabel("IoU of consecutive\nlabelled boxes")
-ax.legend(frameon=False, fontsize=6.0, loc="upper right", handletextpad=0.3,
+ax.set_xlabel("displacement in units of target size, $r$", fontsize=8)
+ax.set_ylabel("IoU of consecutive\nlabelled boxes", fontsize=8)
+ax.tick_params(labelsize=8)
+ax.legend(frameon=False, fontsize=8, loc="center right", bbox_to_anchor=(1.0, 0.6), handletextpad=0.3,
           borderpad=0.15, labelspacing=0.2)
 for side in ("top", "right"):
     ax.spines[side].set_visible(False)
