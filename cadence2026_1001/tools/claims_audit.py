@@ -276,6 +276,14 @@ check("Table III: confidence 0.75 IDF1 0.156 HOTA 0.152; 0.80 IDF1 0.090 HOTA 0.
       tuple(round(cf[k][m], 3) for k in ("Confidence 0.75", "Confidence 0.80") for m in ("IDF1", "HOTA"))
       == (0.156, 0.152, 0.090, 0.107), cf)
 
+# ---------------------------------------------------------------- reference box size (pipeline paragraph)
+boxes = [b for r in runs if r["arm"] == "rel" for f in r["frame_gt_boxes"] for b in f]
+boxes += [b for f in ("decomp_seen_a.json", "decomp_seen_b.json") for r in J(R3 / f)["runs"]
+          if r["arm"] == "rel_buf30" for fr in r["frame_gt_boxes"] for b in fr]
+bw = st.median(x1 - x0 for x0, y0, x1, y1 in boxes); bh = st.median(y1 - y0 for x0, y0, x1, y1 in boxes)
+check("median reference box 54 by 70 px on the 28 sequences; about 17 by 22 if 4096 is resized to 1280",
+      (round(bw), round(bh), round(bw * 1280 / 4096), round(bh * 1280 / 4096)) == (54, 70, 17, 22), (bw, bh))
+
 # ---------------------------------------------------------------- withdrawn
 near = {s: round(e_of(rel[s]), 3) for s in rel if abs(e_of(rel[s])) <= 0.10}
 withdrawn.append(("'three sequences within 0.10 of zero at the released cadence'", near or "no such sequence"))

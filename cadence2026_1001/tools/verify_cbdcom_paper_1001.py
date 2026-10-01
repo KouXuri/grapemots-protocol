@@ -25,7 +25,7 @@ for line in out.splitlines():
     if line.startswith("FAIL"):
         if "panel B row absent" in line:
             continue                                   # summarised in the text
-        if re.search(r"row has 1 fields, spec has 6: (\\textbf\{)?(circling|frontal)", line):
+        if re.search(r"row has 1 fields, spec has 6: (\\textbf\{)?(circling|multi-view|frontal)", line):
             continue                                   # \shortstack header line
         if "caption over two lines" in line:
             continue                                   # re-checked below, brace-matched
@@ -189,7 +189,7 @@ for key, body in re.findall(r"\\bibitem\{([^}]*)\}(.*)", tex):
     if "et al." in body and key not in SIX_OR_MORE:
         bad.append(f"{key}: et al. for fewer than six authors")
 # conclusion answers 'so what'; it should not repeat the abstract's numbers
-concl = tex.split("\\section{Conclusion}")[1].split("\\section*")[0]
+concl = tex.split("\\section{Conclusion}")[1].split("\\section*")[0].split("\\begin{thebibliography}")[0]
 num = lambda t: set(re.findall(r"\d+(?:\.\d+)?", t))
 shared = num(abstract) & num(concl)
 if shared:

@@ -10,7 +10,7 @@ are in `cadence2026_0813/`, `cbdcom2026_r3/` and `cadence2026/`, unchanged.
 
 rebuilds every result below from archived per-frame outputs, with no imagery,
 weights or GPU, compares each with its frozen file, and re-checks every number the
-manuscript prints outside its tables (`tools/claims_audit.py`, 48 claims).
+manuscript prints outside its tables (`tools/claims_audit.py`, 49 claims).
 
 | Manuscript claim | Frozen result | Tool and input |
 |---|---|---|
