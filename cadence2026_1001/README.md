@@ -10,7 +10,7 @@ are in `cadence2026_0813/`, `cbdcom2026_r3/` and `cadence2026/`, unchanged.
 
 rebuilds every result below from archived per-frame outputs, with no imagery,
 weights or GPU, compares each with its frozen file, and re-checks every number the
-manuscript prints outside its tables (`tools/claims_audit.py`, 36 claims).
+manuscript prints outside its tables (`tools/claims_audit.py`, 40 claims).
 
 | Manuscript claim | Frozen result | Tool and input |
 |---|---|---|
@@ -20,8 +20,24 @@ manuscript prints outside its tables (`tools/claims_audit.py`, 36 claims).
 | §III-C: StrongSORT, 100 of 150, 58 of 105 on circling videos | `results/gm_matched_strongsort.json` | same tool, `strongsort.tar.gz` |
 | §III-C: on the held-out pair, 8 tiles and the native whole frame both rise in all eight comparisons; at k=8 both give `PathPlanning_2` opposite signs | `results/heldout_readmode.json` | `tools/heldout_readmode.py`, `heldout.tar.gz` |
 | §II-A and Table I "Alignment out": 19 labelled images off their assigned source frame, 13 in the evaluated set; without them every sequence still rises, Δ = +1.063 (exactly 1.0625), [+0.78, +1.67] | `results/align_sensitivity.json`, `results/bodegas_alignment_audit/` | `tools/align_sensitivity.py`; the audit is `tools/audit_bodegas_0922.py` |
+| §III-B and Table I "Whole frame": the 2021 intervention with each frame read in one letterboxed pass at imgsz 4096 instead of eight 1280 tiles; the count rises on all 17 held-out sequences, Δ = +0.824 [+0.68, +1.15]; pooled e −0.351 → +0.552 (U 94→273, D 16→44, M 229→130); a tiled re-run of `row_4.3_2` on the same machine gives 40 and 18 tracks against the server's 42 and 19 | `results/wholeframe_2021.json`, `results/wholeframe_2021/repro_tiled_row_4.3_2_{mps,cpu}.json` | `tools/wholeframe_table.py` on `raw/wholeframe_2021.tar.gz`; produced by `runner/` |
 | Fig. 1 | `cadence2026_0813/results/decomp_0812/cadence_decomposition.json` | `tools/make_fig_overview_1001.py` |
 | Fig. 3: 2021 arms cross zero at r = 1.85, the GrapeMOTS ladder at 3.89 | `cadence2026_0813/results/ext_cadence_0813/geometry_*.json` | `tools/make_fig_geometry_and_sign_1001.py` |
+
+**Whole-frame read of the 2021 intervention.** The 2021 checkpoints
+(SHA-256 as `cbdcom2026_r3/results/input_manifest.json`) and the 28 source videos
+(same manifest) were re-run on a second machine (Apple M4, MPS; Ultralytics 8.4.46,
+as on the server) with `runner/fullrate_decompose_1001.py`, the archived
+`tools/fullrate_decompose.py` plus `--detector-mode resize` (one whole-frame pass
+through `track_grapemots_mot.resize_raw`, then the same IoU-0.5 merge) and
+`--device`. Frame map, tracker file, arms and scoring are the frozen run's
+(`runner/inputs/`, `runner/run_*.sh`). Both arms of a sequence come from one decode
+and one detection pass, so the row's contrast changes the cadence alone. The
+machine is not the server: on `row_4.3_2` the tiled read there gives 40 and 18
+tracks against 42 and 19 (CPU and MPS agree with each other), so the row is read
+within itself, not digit by digit against the tiled rows. The MPS allocator ran
+with watermarks 0.6/1.4: at imgsz 4096 one attention product needs a 4 GB buffer;
+the setting governs memory, not arithmetic.
 
 **Design of the GrapeMOTS replication.** The archived surface scores each arm at
 the frames it processed. The 2021 intervention reads both arms at the same

@@ -25,8 +25,10 @@ for line in out.splitlines():
     if line.startswith("FAIL"):
         if "panel B row absent" in line:
             continue                                   # summarised in the text
-        if re.search(r"row has 1 fields, spec has 6: (circling|frontal)", line):
+        if re.search(r"row has 1 fields, spec has 6: (\\textbf\{)?(circling|frontal)", line):
             continue                                   # \shortstack header line
+        if "caption over two lines" in line:
+            continue                                   # re-checked below, brace-matched
         bad.append(line[6:])
 print(out.splitlines()[0])
 
@@ -91,12 +93,82 @@ if S["suspect frames dropped"]["frames_removed_per_arm"] != 13:
     bad.append("alignment: frames removed is not 13")
 need(" 13 fall in the evaluated set", "alignment frame count")
 
+# 3b. the whole-frame row and its paragraph (runs/wholeframe_2021_1001)
+WF = json.loads((ROOT / "runs/wholeframe_2021_1001/results/wholeframe_2021.json").read_text())
+w = WF["whole frame, imgsz 4096 / unseen"]["tau=1"]
+d3 = f"{int(w['delta_median'] * 1000 + 0.5) / 1000:+.3f}"
+need(f"Whole frame & ${w['sparse_median']:+.3f}$ & ${w['source_median']:+.3f}$ & ${d3}$ & "
+     f"$[{w['ci95'][0]:+.2f},{w['ci95'][1]:+.2f}]$ & 17\\,/\\,0\\,/\\,0", "whole-frame row")
+if w["up/down/tie"] != "17/0/0" or w["sequences"] != 17:
+    bad.append("whole frame: not 17 of 17 rising")
+need(f"rises on all 17 sequences by a paired ${d3}$", "whole-frame paired median")
+need(f"from ${w['pooled_rel']['e']:+.3f}$ to ${w['pooled_src']['e']:+.3f}$", "whole-frame pooled e")
+if not (w["pooled_src"]["U"] > w["pooled_rel"]["U"] and w["pooled_src"]["D"] > w["pooled_rel"]["D"]
+        and w["pooled_src"]["M"] < w["pooled_rel"]["M"]
+        and w["pooled_rel"]["P"] < 238 and w["pooled_src"]["P"] < 666):
+    bad.append("whole frame: U/D/M or 'fewer tracks in both arms' not as stated")
+R = lambda f: {r["arm"]: r["decomposition"]["1"]["P"] for r in json.loads(
+    (ROOT / f).read_text())["runs"] if r["video"] == "row_4.3_2" and r["arm"] in ("src_buf30", "rel_buf30")}
+srv = R("grapemots-protocol/cbdcom2026_r3/results/decomp_fold2_eleven.json")
+mac = R("runs/wholeframe_2021_1001/results/repro_tiled_row_4.3_2_mps.json")
+need(f"from {srv['src_buf30']} to {mac['src_buf30']} tracks and from {srv['rel_buf30']} to {mac['rel_buf30']}", "Mac tiled re-run")
+
 # 4. Fig. 1 and the mechanism paragraph
 D = json.loads((ROOT / "runs/decomp_0812/results/cadence_decomposition.json").read_text())["decomposition"]
 rel, src = D["rel_buf30"], D["src_buf30"]
 need(f"$U$ rises from {rel['U']} to {src['U']} and $D$ from {rel['D']} to {src['D']}", "U/D in mechanism")
 need(f"$M$ falls from {rel['M']} to\n{src['M']}", "M in mechanism") if f"$M$ falls from {rel['M']} to\n{src['M']}" in tex else need(f"$M$ falls from {rel['M']} to {src['M']}", "M in mechanism")
 need(f"{src['P'] - rel['P']} identities", "identities added")
+
+# captions, brace-matched (in the template layout a table's \\label follows its tabular)
+def braced(t, start):
+    depth, i = 0, start
+    while True:
+        if t[i] == "{": depth += 1
+        elif t[i] == "}":
+            depth -= 1
+            if depth == 0: return t[start + 1:i]
+        i += 1
+for m in re.finditer(r"\\caption\{", tex):
+    cap = " ".join(braced(tex, m.end() - 1).split())
+    if len(cap) > 260:
+        bad.append(f"caption over two lines ({len(cap)} chars): {cap[:40]}")
+
+# 5. the IEEE template, conference_101719.tex, as the authors were told to follow it
+TEMPLATE = (ROOT / "conference_101719.tex").read_text()
+def preamble(t):
+    head = t.split("\\begin{document}")[0]
+    head = head[head.index("\\documentclass"):]
+    return [l.strip() for l in head.splitlines() if l.strip()]
+if preamble(tex) != preamble(TEMPLATE):
+    bad.append("preamble differs from conference_101719.tex")
+for phrase in ("This document is a model", "Identify applicable funding", "Given Name Surname",
+               "IEEE conference templates contain guidance text", "\\section*{Reproducibility}"):
+    if phrase in tex:
+        bad.append(f"template or retired text left in: {phrase}")
+abstract = tex.split("\\begin{abstract}")[1].split("\\end{abstract}")[0]
+title = tex.split("\\title{")[1].split("\\thanks")[0]
+for name, part in (("abstract", abstract), ("title", title)):
+    if "$" in part or "\\cite" in part or "\\footnote" in part:
+        bad.append(f"{name} holds mathematics, a citation or a footnote (template forbids)")
+# authors listed one by one, in reading order, never grouped by affiliation
+if "\\IEEEauthorrefmark" in tex or tex.count("\\IEEEauthorblockN") != 4:
+    bad.append("author blocks are not one per author as in the template")
+# "Unless there are six authors or more give all authors' names; do not use et al."
+SIX_OR_MORE = {"zhang2022", "luiten2021", "feng2024", "jocher2026", "du2023"}
+for key, body in re.findall(r"\\bibitem\{([^}]*)\}(.*)", tex):
+    if "et al." in body and key not in SIX_OR_MORE:
+        bad.append(f"{key}: et al. for fewer than six authors")
+# conclusion answers 'so what'; it should not repeat the abstract's numbers
+concl = tex.split("\\section{Conclusion}")[1].split("\\section*")[0]
+num = lambda t: set(re.findall(r"\d+(?:\.\d+)?", t))
+shared = num(abstract) & num(concl)
+if shared:
+    bad.append(f"conclusion repeats abstract numbers: {sorted(shared)}")
+if "%" in abstract.replace("\\%", ""):
+    pass
+if any(t in tex for t in ("%WHOLEFRAME", "%CONCLUSION%", "%ARCHIVE_BIB%")):
+    bad.append("placeholder left in the text")
 
 print("\n".join("FAIL: " + b for b in bad) if bad else "all checks pass")
 sys.exit(1 if bad else 0)

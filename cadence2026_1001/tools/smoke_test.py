@@ -50,6 +50,9 @@ with tempfile.TemporaryDirectory() as tmp:
         if seed == 0:
             for f in (tmp / "lovo_surface").glob("NoPathPlanning_*.json"):
                 (d / f.name).write_bytes(f.read_bytes())
+    (tmp / "wholeframe").mkdir()
+    with tarfile.open(HERE / "raw/wholeframe_2021.tar.gz") as t:
+        t.extractall(tmp / "wholeframe")
     apple = next(tmp.rglob("apple_s1280_d1.json")).parent
     gm = HERE / "tools/gm_matched.py"
     print("== rebuilt from frozen inputs ==")
@@ -61,6 +64,7 @@ with tempfile.TemporaryDirectory() as tmp:
           for s in (0, 1, 2)],
         ([HERE / "tools/heldout_readmode.py", DEC, tmp / "heldout", tmp / "h.json"], "heldout_readmode.json", tmp / "h.json"),
         ([HERE / "tools/align_sensitivity.py", tmp / "a.json"], "align_sensitivity.json", tmp / "a.json"),
+        ([HERE / "tools/wholeframe_table.py", tmp / "wholeframe", tmp / "w.json"], "wholeframe_2021.json", tmp / "w.json"),
         ([HERE / "tools/apple_matched.py", DEC, apple, tmp / "m.json"], "apple_matched.json", tmp / "m.json"),
         ([HERE / "tools/apple_geometry.py", DEC, apple, tmp / "g.json"], "geometry_applemot.json", tmp / "g.json"),
     ]

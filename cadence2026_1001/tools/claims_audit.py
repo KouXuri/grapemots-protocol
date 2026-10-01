@@ -223,6 +223,26 @@ check("link: 97.2% of frames, 70% of bytes, 68.2 -> 20.3 Mbit/s, inter-coded 25.
        round(lk["allintra_mbit_s_at_sparse_rate"], 1), round(lk["interframe_mbit_s_at_sparse_rate"] + 1e-9, 1))
       == (97.2, 70, 68.2, 20.3, 25.1), lk)
 
+# ---------------------------------------------------------------- whole frames (2021)
+wf = J(H / "wholeframe_2021.json")["whole frame, imgsz 4096 / unseen"]["tau=1"]
+rl, sr = wf["pooled_rel"], wf["pooled_src"]
+check("whole frame: count rises on all 17 sequences, paired +0.824, pooled -0.351 -> +0.552",
+      (wf["up/down/tie"], f"{int(wf['delta_median'] * 1000 + 0.5) / 1000:+.3f}", f"{rl['e']:+.3f}", f"{sr['e']:+.3f}")
+      == ("17/0/0", "+0.824", "-0.351", "+0.552"), wf["up/down/tie"])
+check("whole frame: fewer tracks in both arms than the tiled read (220 < 238, 526 < 666)",
+      rl["P"] < 238 and sr["P"] < 666, (rl["P"], sr["P"]))
+check("whole frame: U and D grow faster than M shrinks (U 94->273, D 16->44, M 229->130)",
+      (rl["U"], sr["U"], rl["D"], sr["D"], rl["M"], sr["M"]) == (94, 273, 16, 44, 229, 130)
+      and sr["U"] - rl["U"] + sr["D"] - rl["D"] > rl["M"] - sr["M"], (rl, sr))
+P = lambda runs: {r["arm"]: r["decomposition"]["1"]["P"] for r in runs if r["video"] == "row_4.3_2"
+                  and r["arm"] in ("src_buf30", "rel_buf30")}
+srv = P(J(R3 / "decomp_fold2_eleven.json")["runs"])
+mac = P(J(H / "wholeframe_2021/repro_tiled_row_4.3_2_mps.json")["runs"])
+cpu = P(J(H / "wholeframe_2021/repro_tiled_row_4.3_2_cpu.json")["runs"])
+check("second machine, tiled re-run of row_4.3_2: 42 -> 40 and 19 -> 18 tracks (CPU and MPS agree)",
+      (srv["src_buf30"], mac["src_buf30"], srv["rel_buf30"], mac["rel_buf30"]) == (42, 40, 19, 18) and mac == cpu,
+      (srv, mac, cpu))
+
 # ---------------------------------------------------------------- withdrawn
 near = {s: round(e_of(rel[s]), 3) for s in rel if abs(e_of(rel[s])) <= 0.10}
 withdrawn.append(("'three sequences within 0.10 of zero at the released cadence'", near or "no such sequence"))
