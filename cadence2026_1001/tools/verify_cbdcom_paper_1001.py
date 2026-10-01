@@ -113,6 +113,35 @@ srv = R("grapemots-protocol/cbdcom2026_r3/results/decomp_fold2_eleven.json")
 mac = R("runs/wholeframe_2021_1001/results/repro_tiled_row_4.3_2_mps.json")
 need(f"from {srv['src_buf30']} to {mac['src_buf30']} tracks and from {srv['rel_buf30']} to {mac['rel_buf30']}", "Mac tiled re-run")
 
+# 3c. numbers added for the Track 3 review (archive: cadence2026_1001/results)
+AR = ROOT / "grapemots-protocol/cadence2026_1001/results"
+CF = json.loads((AR / "conf_fill_identity.json").read_text())
+for lab in ("Confidence 0.80", "Confidence 0.75"):
+    r = CF[lab]
+    need(f"& {r['U']} & {r['D']} & {r['M']} & ${r['assigned_fraction']:.3f}$ & ${r['signed_error']:+.3f}$ "
+         f"& ${r['IDF1']:.3f}$ & ${r['HOTA']:.3f}$", f"Table III {lab}")
+r75 = CF["Confidence 0.75"]
+need(f"IDF1 of {r75['IDF1']:.3f} and a HOTA of {r75['HOTA']:.3f}", "0.75 identity in IV-A")
+need(f"an IDF1 of {r75['IDF1']:.3f}, while IDF1", "0.75 IDF1 in III-E")
+RC = json.loads((AR / "review_checks.json").read_text())
+c = RC["2021_held_out"]
+need(f"gives {c['rel']['contact_coverage']:.3f} and {c['src']['contact_coverage']:.3f} for the two 2021",
+     "contact coverage")
+need(f"assigned coverages of {c['rel']['ownership_coverage']:.3f} and {c['src']['ownership_coverage']:.3f}",
+     "ownership coverage")
+WORDN = {4: "four"}
+need(f"because only {WORDN[c['src']['multi_trajectory_tracks'] + c['rel']['multi_trajectory_tracks']]} tracks",
+     "multi-trajectory tracks")
+lo = RC["2021_leave_one_flight_out"].values()
+sp = sorted(x["pooled_e_sparse"] for x in lo); so = sorted(x["pooled_e_source"] for x in lo)
+if not all(x["rises"] == x["sequences_left"] for x in lo):
+    bad.append("leave-one-flight-out: not every remaining sequence rises")
+need(f"between ${sp[0]:+.2f}$ and ${sp[-1]:+.2f}$ and the source rate between ${so[0]:+.2f}$ and ${so[-1]:+.2f}$",
+     "leave-one-flight-out ranges")
+pv = RC["grapemots_per_video"].values()
+md = sorted(x["median_delta_e"] for x in pv)
+need(f"each video rises in at least {min(x['rises'] for x in pv)} of its 15, with a median paired change in $e$ "
+     f"between ${md[0]:+.2f}$ and ${md[-1]:+.2f}$", "per-video replication")
 # 4. Fig. 1 and the mechanism paragraph
 D = json.loads((ROOT / "runs/decomp_0812/results/cadence_decomposition.json").read_text())["decomposition"]
 rel, src = D["rel_buf30"], D["src_buf30"]
@@ -155,7 +184,7 @@ for name, part in (("abstract", abstract), ("title", title)):
 if "\\IEEEauthorrefmark" in tex or tex.count("\\IEEEauthorblockN") != 4:
     bad.append("author blocks are not one per author as in the template")
 # "Unless there are six authors or more give all authors' names; do not use et al."
-SIX_OR_MORE = {"zhang2022", "luiten2021", "feng2024", "jocher2026", "du2023"}
+SIX_OR_MORE = {"zhang2022", "luiten2021", "jocher2026", "du2023"}   # feng2024 has five (Crossref)
 for key, body in re.findall(r"\\bibitem\{([^}]*)\}(.*)", tex):
     if "et al." in body and key not in SIX_OR_MORE:
         bad.append(f"{key}: et al. for fewer than six authors")

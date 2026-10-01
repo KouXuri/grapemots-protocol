@@ -84,7 +84,7 @@ for side in ("top", "right", "left"):
     bot.spines[side].set_visible(False)
 bot.legend(handles=[Patch(color=C_ORANGE, label="$U$ ownerless"),
                     Patch(color=C_MAGENTA, label="$D$ duplicate"),
-                    Patch(color=C_COOL, label="$M$ unreached"),
+                    Patch(color=C_COOL, label="$M$ unassigned"),
                     plt.Line2D([], [], marker="D", color="black", lw=0, markersize=4, label="$P-G$")],
            frameon=False, fontsize=6.0, ncol=4, loc="lower center", bbox_to_anchor=(0.46, 1.0),
            handlelength=1.0, handletextpad=0.3, columnspacing=0.7, borderaxespad=0.1)

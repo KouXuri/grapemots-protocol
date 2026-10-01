@@ -10,7 +10,7 @@ are in `cadence2026_0813/`, `cbdcom2026_r3/` and `cadence2026/`, unchanged.
 
 rebuilds every result below from archived per-frame outputs, with no imagery,
 weights or GPU, compares each with its frozen file, and re-checks every number the
-manuscript prints outside its tables (`tools/claims_audit.py`, 40 claims).
+manuscript prints outside its tables (`tools/claims_audit.py`, 48 claims).
 
 | Manuscript claim | Frozen result | Tool and input |
 |---|---|---|
@@ -21,6 +21,8 @@ manuscript prints outside its tables (`tools/claims_audit.py`, 40 claims).
 | §III-C: on the held-out pair, 8 tiles and the native whole frame both rise in all eight comparisons; at k=8 both give `PathPlanning_2` opposite signs | `results/heldout_readmode.json` | `tools/heldout_readmode.py`, `heldout.tar.gz` |
 | §II-A and Table I "Alignment out": 19 labelled images off their assigned source frame, 13 in the evaluated set; without them every sequence still rises, Δ = +1.063 (exactly 1.0625), [+0.78, +1.67] | `results/align_sensitivity.json`, `results/bodegas_alignment_audit/` | `tools/align_sensitivity.py`; the audit is `tools/audit_bodegas_0922.py` |
 | §III-B and Table I "Whole frame": the 2021 intervention with each frame read in one letterboxed pass at imgsz 4096 instead of eight 1280 tiles; the count rises on all 17 held-out sequences, Δ = +0.824 [+0.68, +1.15]; pooled e −0.351 → +0.552 (U 94→273, D 16→44, M 229→130); a tiled re-run of `row_4.3_2` on the same machine gives 40 and 18 tracks against the server's 42 and 19 | `results/wholeframe_2021.json`, `results/wholeframe_2021/repro_tiled_row_4.3_2_{mps,cpu}.json` | `tools/wholeframe_table.py` on `raw/wholeframe_2021.tar.gz`; produced by `runner/` |
+| §II-D: matched at least once 0.354 / 0.690 against assigned coverage 0.354 / 0.687 (four tracks matched to more than one trajectory); §III-A: leaving out any one flight, every remaining sequence rises, sparse −0.33…−0.28, source +0.79…+1.10; §III-C: each GrapeMOTS video rises in ≥14 of its 15 settings, median paired change in e +0.16…+0.51; near-zero arms: assigned 0.44 / contact 0.45 (medians) | `results/review_checks.json` | `tools/review_checks.py` on `cadence2026_0919/raw/lovo_surface.tar.gz` and the archived 2021 arms |
+| Table III, confidence 0.75 and 0.80: IDF1 0.156 / 0.090, HOTA 0.152 / 0.107 (the 0.70 and 0.85 rows are recomputed first and match the published values) | `results/conf_fill_identity.json` | `tools/conf_fill_identity.py` (TrackEval 1.3.0) on `results/conf_fill_identity/cached_*_conf07{5,0}*.json` |
 | Fig. 1 | `cadence2026_0813/results/decomp_0812/cadence_decomposition.json` | `tools/make_fig_overview_1001.py` |
 | Fig. 3: 2021 arms cross zero at r = 1.85, the GrapeMOTS ladder at 3.89 | `cadence2026_0813/results/ext_cadence_0813/geometry_*.json` | `tools/make_fig_geometry_and_sign_1001.py` |
 

@@ -121,8 +121,8 @@ def main() -> None:
         ax.plot([value], [0.0], marker="o", markersize=5.2, markerfacecolor="white",
                 markeredgecolor=C_NEUTRAL, markeredgewidth=0.9, zorder=4)
 
-    ax.annotate(f"zero error at {low:.2f}\u2013{high:.2f}\nof the reference reached",
-                xy=(high, -0.22), xytext=(0.56, -0.62),
+    ax.annotate(f"interpolated zero crossings\nat coverage {low:.2f}\u2013{high:.2f}",
+                xy=(high, -0.22), xytext=(0.545, -0.62),
                 textcoords="data", ha="left", va="center", fontsize=6.6,
                 color=C_NEUTRAL,
                 arrowprops=dict(arrowstyle="->", lw=0.6, color=C_NEUTRAL,
@@ -131,7 +131,7 @@ def main() -> None:
     ax.text(0.015, 0.50, r"$^{*}$reference thins with the processing",
             transform=ax.transAxes, ha="left", va="bottom", fontsize=6.0,
             color=C_NEUTRAL)
-    ax.set_xlabel(r"annotated trajectories reached, $1-M/G$")
+    ax.set_xlabel(r"assigned coverage, $1-M/G$")
     ax.set_ylabel(r"signed count error $e$")
     ax.set_xlim(0.03, 0.86)
     ax.set_ylim(-1.05, 2.9)

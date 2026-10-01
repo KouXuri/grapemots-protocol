@@ -65,9 +65,15 @@ with tempfile.TemporaryDirectory() as tmp:
         ([HERE / "tools/heldout_readmode.py", DEC, tmp / "heldout", tmp / "h.json"], "heldout_readmode.json", tmp / "h.json"),
         ([HERE / "tools/align_sensitivity.py", tmp / "a.json"], "align_sensitivity.json", tmp / "a.json"),
         ([HERE / "tools/wholeframe_table.py", tmp / "wholeframe", tmp / "w.json"], "wholeframe_2021.json", tmp / "w.json"),
+        ([HERE / "tools/review_checks.py", tmp / "lovo_surface", tmp / "rc.json"], "review_checks.json", tmp / "rc.json"),
         ([HERE / "tools/apple_matched.py", DEC, apple, tmp / "m.json"], "apple_matched.json", tmp / "m.json"),
         ([HERE / "tools/apple_geometry.py", DEC, apple, tmp / "g.json"], "geometry_applemot.json", tmp / "g.json"),
     ]
+    try:                       # TrackEval 1.3.0 computes IDF1 and HOTA; skipped if absent
+        import trackeval  # noqa: F401
+        jobs.append(([HERE / "tools/conf_fill_identity.py", tmp / "cf.json"], "conf_fill_identity.json", tmp / "cf.json"))
+    except ImportError:
+        print("  conf_fill_identity.json        skipped (TrackEval not installed)")
     for cmd, frozen, built in jobs:
         subprocess.run([sys.executable, *map(str, cmd)], check=True, capture_output=True, cwd=ROOT)
         match = same(built, HERE / "results" / frozen)

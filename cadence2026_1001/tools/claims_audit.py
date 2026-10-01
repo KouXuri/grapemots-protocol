@@ -243,6 +243,39 @@ check("second machine, tiled re-run of row_4.3_2: 42 -> 40 and 19 -> 18 tracks (
       (srv["src_buf30"], mac["src_buf30"], srv["rel_buf30"], mac["rel_buf30"]) == (42, 40, 19, 18) and mac == cpu,
       (srv, mac, cpu))
 
+# ---------------------------------------------------------------- Track 3 review additions
+check("pilots: 197 one-second pilots; prescribed step sparser than the held-out one in 48%",
+      ph["pilots"] == 197 and round(100 * (1 - ph["conservative_fraction"])) == 48, ph)
+uni, ada = pool(arm("uni2")), pool(arm("ada2"))
+check("at 715 frames: coverage 0.49 (frame difference) against 0.45 (uniform)",
+      (round(1 - ada["M"] / ada["G"], 2), round(1 - uni["M"] / uni["G"], 2)) == (0.49, 0.45), (ada, uni))
+tiled_s = J(R13 / "adaptive_0813/edge_yolo26s_tiled.json")["compute"]
+check("timing: decode 6 ms, eight-tile detection 197 ms, on CUDA, median of 100 frames",
+      (round(tiled_s["stage_ms"]["decode_ms_median"]), round(tiled_s["stage_ms"]["detect_ms_median"]),
+       tiled_s["frames"], tiled_s["device"].startswith("cuda")) == (6, 197, 100, True), tiled_s["stage_ms"])
+check("bitrate: x264 CRF 23, rates per second of source footage (20.22 s, 1,212 frames)",
+      (lk["crf"], lk["frames_total"], lk["step"]) == (23, 1212, 36), lk)
+rc = J(H / "review_checks.json")
+c21 = rc["2021_held_out"]
+check("matched at least once: 0.354 / 0.690 against assigned 0.354 / 0.687; four multi-trajectory tracks",
+      (c21["rel"]["contact_coverage"], c21["src"]["contact_coverage"], c21["rel"]["ownership_coverage"],
+       round(c21["src"]["ownership_coverage"], 3), c21["rel"]["multi_trajectory_tracks"] + c21["src"]["multi_trajectory_tracks"])
+      == (0.354, 0.6903, 0.354, 0.687, 4), c21)
+lo = list(rc["2021_leave_one_flight_out"].values())
+check("leave one flight out: all remaining rise; sparse -0.33..-0.28, source +0.79..+1.10",
+      all(x["rises"] == x["sequences_left"] for x in lo)
+      and (round(min(x["pooled_e_sparse"] for x in lo), 2), round(max(x["pooled_e_sparse"] for x in lo), 2),
+           round(min(x["pooled_e_source"] for x in lo), 2), round(max(x["pooled_e_source"] for x in lo), 2))
+      == (-0.33, -0.28, 0.79, 1.10), lo)
+pv = list(rc["grapemots_per_video"].values())
+check("GrapeMOTS per video: each rises in >= 14 of 15; median paired change +0.16..+0.51",
+      min(x["rises"] for x in pv) == 14 and (round(min(x["median_delta_e"] for x in pv), 2),
+                                              round(max(x["median_delta_e"] for x in pv), 2)) == (0.16, 0.51), pv)
+cf = J(H / "conf_fill_identity.json")
+check("Table III: confidence 0.75 IDF1 0.156 HOTA 0.152; 0.80 IDF1 0.090 HOTA 0.107",
+      tuple(round(cf[k][m], 3) for k in ("Confidence 0.75", "Confidence 0.80") for m in ("IDF1", "HOTA"))
+      == (0.156, 0.152, 0.090, 0.107), cf)
+
 # ---------------------------------------------------------------- withdrawn
 near = {s: round(e_of(rel[s]), 3) for s in rel if abs(e_of(rel[s])) <= 0.10}
 withdrawn.append(("'three sequences within 0.10 of zero at the released cadence'", near or "no such sequence"))

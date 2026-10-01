@@ -38,7 +38,7 @@ OUT = ROOT / "cadence_1001" / "figures"
 EXT = ROOT / "runs/ext_cadence_0813/results"
 
 STYLE = {"grapemots": (C_GT, "s", "GrapeMOTS"),
-         "bodegas2023": (C_PRED, "o", "vineyard 2021")}
+         "bodegas2023": (C_PRED, "o", "2021 flights")}
 
 ladder = json.loads((ROOT / "runs/final_analyses_0809/results/density_realpipeline.json")
                     .read_text())["pooled_tau1"]
@@ -113,7 +113,7 @@ for side in ("top", "right"):
 bx.axhline(0, color=C_NEUTRAL, linewidth=0.6, zorder=1)
 series = [
     (grape_r, grape_e, C_GT, "s", f"GrapeMOTS, {grape_base:.1f}"),
-    (bodegas_r, bodegas_e, C_PRED, "o", f"vineyard 2021, {bodegas_base:.1f}"),
+    (bodegas_r, bodegas_e, C_PRED, "o", f"2021 flights, {bodegas_base:.1f}"),
 ]
 for x, y, colour, marker, label in series:
     bx.plot(x, y, "--" if len(x) == 2 else "-", marker=marker, color=colour,
