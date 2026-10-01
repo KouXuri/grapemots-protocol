@@ -51,7 +51,7 @@ ax.set_xticklabels(["0.1", "0.2", "0.5", "1", "2", "5", "10", "20"])
 ax.tick_params(axis="x", which="minor", bottom=False)
 ax.set_ylim(-0.05, 1.05)
 ax.set_xlabel("displacement in units of target size, $r$", fontsize=8)
-ax.set_ylabel("IoU of consecutive\nlabelled boxes", fontsize=8)
+ax.set_ylabel("overlap of consecutive\nlabeled boxes, IoU", fontsize=8)
 ax.tick_params(labelsize=8)
 ax.legend(frameon=False, fontsize=8, loc="center right", bbox_to_anchor=(1.0, 0.6), handletextpad=0.3,
           borderpad=0.15, labelspacing=0.2)
