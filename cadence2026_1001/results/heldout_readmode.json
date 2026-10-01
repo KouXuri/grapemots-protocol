@@ -1,0 +1,122 @@
+{
+ "8 tiles, k=4": {
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "G": 137,
+  "P_dense": 316,
+  "P_sparse": 205,
+  "e_dense": 1.307,
+  "e_sparse": 0.496,
+  "per_sequence": {
+   "PathPlanning_2": [
+    109,
+    67,
+    45
+   ],
+   "PathPlanning_4": [
+    207,
+    138,
+    92
+   ]
+  }
+ },
+ "8 tiles, k=8": {
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "G": 137,
+  "P_dense": 285,
+  "P_sparse": 143,
+  "e_dense": 1.08,
+  "e_sparse": 0.044,
+  "per_sequence": {
+   "PathPlanning_2": [
+    97,
+    40,
+    45
+   ],
+   "PathPlanning_4": [
+    188,
+    103,
+    92
+   ]
+  }
+ },
+ "whole frame 3840, k=4": {
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "G": 137,
+  "P_dense": 242,
+  "P_sparse": 173,
+  "e_dense": 0.766,
+  "e_sparse": 0.263,
+  "per_sequence": {
+   "PathPlanning_2": [
+    92,
+    67,
+    45
+   ],
+   "PathPlanning_4": [
+    150,
+    106,
+    92
+   ]
+  }
+ },
+ "whole frame 3840, k=8": {
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "G": 137,
+  "P_dense": 223,
+  "P_sparse": 133,
+  "e_dense": 0.628,
+  "e_sparse": -0.029,
+  "per_sequence": {
+   "PathPlanning_2": [
+    86,
+    39,
+    45
+   ],
+   "PathPlanning_4": [
+    137,
+    94,
+    92
+   ]
+  }
+ },
+ "whole frame 3072, k=4": {
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "G": 137,
+  "P_dense": 210,
+  "P_sparse": 143,
+  "e_dense": 0.533,
+  "e_sparse": 0.044,
+  "per_sequence": {
+   "PathPlanning_2": [
+    71,
+    54,
+    45
+   ],
+   "PathPlanning_4": [
+    139,
+    89,
+    92
+   ]
+  }
+ },
+ "whole frame 3072, k=8": {
+  "weights": "/home/kou/my_env/yolo26/runs/detect/cbdcom2026/gm_ctrl_newsplit_oldcfg/weights/best.pt",
+  "G": 137,
+  "P_dense": 187,
+  "P_sparse": 130,
+  "e_dense": 0.365,
+  "e_sparse": -0.051,
+  "per_sequence": {
+   "PathPlanning_2": [
+    64,
+    44,
+    45
+   ],
+   "PathPlanning_4": [
+    123,
+    86,
+    92
+   ]
+  }
+ }
+}

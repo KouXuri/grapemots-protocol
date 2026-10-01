@@ -5,7 +5,7 @@ Runs tools/verify_cbdcom_paper.py's checks, with two deliberate differences --
 Panel B of the configuration table is summarised in the text rather than
 tabulated, and a multi-line \\shortstack header is not a table row -- then checks
 everything this revision adds against the frozen files it was read from:
-the AppleMOT table and sentences (runs/apple_matched_1001), the alignment row
+the GrapeMOTS replication (runs/gm_matched_1001), the alignment row
 (runs/align_sens_1001) and the Fig. 1 decomposition (runs/decomp_0812).
 
     python3 tools/verify_cbdcom_paper_1001.py cadence_1001/main.tex
@@ -36,35 +36,49 @@ def need(s, what):
     if " ".join(s.split()) not in FLAT:
         bad.append(f"{what}: '{s}' not in text")
 
-# 2. AppleMOT table: every cell, dense/sparse, rises, coverage
-A = json.loads((ROOT / "runs/apple_matched_1001/results/apple_matched.json").read_text())
-for s in (640, 960, 1280):
-    cells = []
-    rises = 0
-    for k in (2, 4, 8):
-        r = A[f"s{s}_k{k}_six"]
-        cells.append(f"${r['dense']['e']:+.3f}/{r['sparse']['e']:+.3f}$".replace("+", "") if False else
-                     f"${r['dense']['e']:.3f}/{r['sparse']['e']:.3f}$".replace("-", "-"))
-        rises += int(r["up/down/tie"].split("/")[0])
-    row = f"{s}" + ("  " if s < 1000 else " ") + " & " + " & ".join(cells) + f" & {rises}/18 \\\\"
-    need(row, f"AppleMOT row sigma={s}")
-cov = " & ".join(f"${A[f's1280_k{k}_six']['dense']['coverage']:.3f}/{A[f's1280_k{k}_six']['sparse']['coverage']:.3f}$" for k in (2, 4, 8))
-need(cov, "AppleMOT coverage row")
-up6 = sum(int(A[f"s{s}_k{k}_six"]["up/down/tie"].split("/")[0]) for s in (640, 960, 1280) for k in (2, 4, 8))
-up3 = sum(int(A[f"s{s}_k{k}_unique3"]["up/down/tie"].split("/")[0]) for s in (640, 960, 1280) for k in (2, 4, 8))
-need(f"{up6} of\n54", "AppleMOT comparisons rising") if f"{up6} of\n54" in tex else need(f"{up6} of 54", "AppleMOT comparisons rising")
-need(f"all {up3} on the", "AppleMOT unique3 rising")
-u3 = A["s1280_k2_unique3"]["dense"]["e"]
-need(f"${u3:+.3f}$", "AppleMOT unique3 dense k=2")
-d1280 = [A[f"s1280_k{k}_six"] for k in (2, 4, 8)]
-need(f"${d1280[0]['dense']['e']:+.3f}$ to ${d1280[2]['dense']['e']:+.3f}$", "AppleMOT dense range")
-need(f"${d1280[0]['sparse']['e']:+.3f}$ to ${d1280[2]['sparse']['e']:+.3f}$", "AppleMOT sparse range")
-if any(A[f"s{s}_k{k}_six"][arm]["e"] >= 0 for s in (640, 960, 1280) for k in (2, 4, 8) for arm in ("dense", "sparse")):
-    bad.append("abstract says the pooled AppleMOT error stays negative, but a six-sequence cell is >= 0")
-
-G = json.loads((ROOT / "runs/apple_matched_1001/results/geometry_applemot.json").read_text())
-need(f"(U+D)/G={G['base_UD_over_G_s1280_k1']:.2f}$", "AppleMOT base surplus")
-need(f"{G['by_step']['1']['sequence_median_r']:.2f} target sizes", "AppleMOT r at full rate")
+# 2. GrapeMOTS replication: every cell of Table III and every number in its text
+GM = ROOT / "runs/gm_matched_1001/results"
+B = json.loads((GM / "gm_matched.json").read_text())
+for s_ in (1536, 2048, 2560, 3072, 3840):
+    cells = [f"${B['by_sigma_k'][f's{s_}_k{k}']['pooled_e_dense']:+.3f}/{B['by_sigma_k'][f's{s_}_k{k}']['pooled_e_sparse']:+.3f}$" for k in (2, 4, 8)]
+    rises = sum(B['by_sigma_k'][f's{s_}_k{k}']['rises'] for k in (2, 4, 8))
+    opp = sum(B['by_sigma_k'][f's{s_}_k{k}']['opposite_sign'] for k in (2, 4, 8))
+    need(f"{s_} & " + " & ".join(cells) + f" & {rises}/30 & {opp} \\\\", f"GrapeMOTS row sigma={s_}")
+a = B["all"]
+need(f"raises the count in {a['rises']} of the {a['n']} paired comparisons", "replication rises")
+WORD = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen']
+need(f"In {a['opposite_sign']} comparisons, on {WORD[len(a['opposite_sign_sequences'])]} of the ten", "opposite-sign count")
+falls = [c for c in B["cells"] if c["dense"]["P"] < c["sparse"]["P"]]
+if len(falls) != 1 or falls[0]["sparse"]["P"] - falls[0]["dense"]["P"] != 4 or a["ties"] != 1:
+    bad.append("replication: not one fall of four tracks and one tie")
+near = [(c, arm) for c in B["cells"] for arm in ("dense", "sparse") if abs((c[arm]["P"] - c["G"]) / c["G"]) <= 0.10]
+cov = sorted(1 - c[arm]["M"] / c["G"] for c, arm in near)
+import statistics as st
+if round(100 * st.median(cov)) != 44 or round(100 * cov[-1]) != 64:
+    bad.append(f"near-zero coverage median/max {st.median(cov):.3f}/{cov[-1]:.3f}, text says 44%/64%")
+BT = json.loads((GM / "gm_matched_bytetrack.json").read_text())["all"]
+need(f"ByteTrack on the same detections raises the count in {BT['rises']} of", "ByteTrack rises")
+RT = [json.loads((GM / f"gm_matched_retrain_s{i}.json").read_text()) for i in (0, 1, 2)]
+need("raise it in " + ", ".join(str(r["all"]["rises"]) for r in RT[:2]) + f" and {RT[2]['all']['rises']}", "retrained rises")
+exc = sum(r["all"]["n"] - r["all"]["rises"] for r in RT)
+np1 = sum(1 for c in RT[1]["cells"] if c["video"] == "NoPathPlanning_1" and c["dense"]["P"] <= c["sparse"]["P"])
+need(f"{WORD[np1]} of the {WORD[exc]} exceptions are one frontal sequence", "retrain exceptions")
+if (exc, np1) != (16, 10):
+    bad.append(f"retrain exceptions {exc}, on NP1 seed 1 {np1}; text says 16 and 10")
+mv = sum(r["by_group"]["multi-view"]["rises"] for r in RT); mvn = sum(r["by_group"]["multi-view"]["n"] for r in RT)
+need(f"{mv} of {mvn} comparisons rise", "plant-disjoint circling rises")
+SS = json.loads((GM / "gm_matched_strongsort.json").read_text())
+if (SS["all"]["rises"], SS["by_group"]["multi-view"]["rises"], SS["by_group"]["multi-view"]["n"]) != (100, 58, 105):
+    bad.append("StrongSORT counts changed")
+need(f"only {SS['all']['rises']} of the 150 comparisons", "StrongSORT rises")
+H = json.loads((GM / "heldout_readmode.json").read_text())
+eight = [v for k, v in H.items() if k.startswith(("8 tiles", "whole frame 3840"))]
+if sum(d > s2 for v in eight for d, s2, _ in v["per_sequence"].values()) != 8:
+    bad.append("held-out read modes: not 8 of 8 rising")
+for k in ("8 tiles, k=8", "whole frame 3840, k=8"):
+    d, sp, g = H[k]["per_sequence"]["PathPlanning_2"]
+    if not (d > g > sp):
+        bad.append(f"{k}: PP2 not opposite signs")
 
 # 3. the alignment row
 S = json.loads((ROOT / "runs/align_sens_1001/results/align_sensitivity.json").read_text())

@@ -1,39 +1,65 @@
 # cadence2026_1001 — camera-ready revision of 1 October 2026
 
-Cited snapshot: tag `cbdcom2026-r31`. Zenodo accepted the webhooks for r29 and
-r30 (HTTP 202) but archived neither, so the manuscript cites this GitHub release
-until a Zenodo version exists. r31 differs from r29 only in this note and in the
-position of one in-figure footnote in `tools/make_fig_cancellation_1001.py`.
-
 Evidence added for the camera-ready version of *Same Footage, Opposite Sign:
 Cadence, Coverage and Cancellation in UAV Video Counting* (CBDCom 2026), the
 version built on the 2021 vineyard campaign (the earlier release) that the two
-Accept reviews read. Everything else the manuscript reports is in
-`cadence2026_0813/` and `cbdcom2026_r3/`, unchanged.
+Accept reviews read. The 2021 intervention itself and everything not listed below
+are in `cadence2026_0813/`, `cbdcom2026_r3/` and `cadence2026/`, unchanged.
 
-    python3 cadence2026_1001/tools/smoke_test.py     # from the archive root
+    python3 cadence2026_1001/tools/smoke_test.py     # from the archive root; needs SciPy
 
-rebuilds every result below from archived inputs with stock Python and no GPU.
+rebuilds every result below from archived per-frame outputs, with no imagery,
+weights or GPU, compares each with its frozen file, and re-checks every number the
+manuscript prints outside its tables (`tools/claims_audit.py`, 36 claims).
 
-| Manuscript claim | Frozen result | Tool |
+| Manuscript claim | Frozen result | Tool and input |
 |---|---|---|
-| Table III and §III-D: AppleMOT with both arms scored at every kth frame against the same reference; 53 of 54 comparisons rise (27 of 27 on the three independently annotated sequences); the pooled error stays negative in every cell; +0.001 on the unique three at σ=1280, k=2 | `results/apple_matched.json` | `tools/apple_matched.py` on `cadence2026_0919/raw/apple_val0000.tar.gz` |
-| Fig. 3 AppleMOT points and curve; r = 0.59 at full rate; (U+D)/G = 0.29; crossing at r = 0.66 | `results/geometry_applemot.json` | `tools/apple_geometry.py`, same input |
-| §II-A and Table I "Alignment out": 19 labelled images off their assigned source frame, 13 in the evaluated set; without them every sequence still rises, Δ = +1.063, [+0.78, +1.67] | `results/align_sensitivity.json`, `results/bodegas_alignment_audit/` | `tools/align_sensitivity.py`; the audit is `tools/audit_bodegas_0922.py` |
+| §III-C and Table III: ten GrapeMOTS sequences, both arms scored at every kth labelled frame against the same reference; the count rises in 148 of 150 comparisons, one falls by four tracks, one ties; opposite signs in 20, on six sequences; arms within ±0.10 reach a median 44% of the reference, at most 64% | `results/gm_matched.json` | `tools/gm_matched.py` on `cadence2026_0919/raw/lovo_surface.tar.gz` |
+| §III-C: ByteTrack on the same detections, 149 of 150 | `results/gm_matched_bytetrack.json` | same tool, `bytetrack.tar.gz` |
+| §III-C: retrained detectors, 148 / 139 / 147; ten of the sixteen exceptions on `NoPathPlanning_1`, seed 1; circling sequences (plant-disjoint training) 309 of 315 | `results/gm_matched_retrain_s{0,1,2}.json` | same tool, `retrain.tar.gz` split by seed; the frontal folds' seed 0 is the `lovo_surface` arms |
+| §III-C: StrongSORT, 100 of 150, 58 of 105 on circling videos | `results/gm_matched_strongsort.json` | same tool, `strongsort.tar.gz` |
+| §III-C: on the held-out pair, 8 tiles and the native whole frame both rise in all eight comparisons; at k=8 both give `PathPlanning_2` opposite signs | `results/heldout_readmode.json` | `tools/heldout_readmode.py`, `heldout.tar.gz` |
+| §II-A and Table I "Alignment out": 19 labelled images off their assigned source frame, 13 in the evaluated set; without them every sequence still rises, Δ = +1.063 (exactly 1.0625), [+0.78, +1.67] | `results/align_sensitivity.json`, `results/bodegas_alignment_audit/` | `tools/align_sensitivity.py`; the audit is `tools/audit_bodegas_0922.py` |
 | Fig. 1 | `cadence2026_0813/results/decomp_0812/cadence_decomposition.json` | `tools/make_fig_overview_1001.py` |
+| Fig. 3: 2021 arms cross zero at r = 1.85, the GrapeMOTS ladder at 3.89 | `cadence2026_0813/results/ext_cadence_0813/geometry_*.json` | `tools/make_fig_geometry_and_sign_1001.py` |
 
-**Why AppleMOT was re-scored.** The archived AppleMOT surface
-(`cadence2026_0919/results/apple_val0000_surface.json`) scores every arm at the
-frames it processed, so its dense arm is read at more instants than its sparse
-arm. The vineyard intervention reads both arms at the same instants. Re-scored
-that way, the dense arm's pooled error at σ=1280 falls from +0.030 to −0.025 at
-k=2 and the sign change the archived surface shows disappears; the rise remains.
+**Design of the GrapeMOTS replication.** The archived surface scores each arm at
+the frames it processed. The 2021 intervention reads both arms at the same
+instants, so here the dense arm (every labelled frame) is scored only at frames
+0, k, 2k, … — exactly the frames the sparse arm processed — against the same
+reference. `PathPlanning_1` has no row: it is a 1080p video on which its held-out
+checkpoint reaches AP50 0.004 (`cadence2026_0813/results/ap_lovo_0814/`), and the
+surface was run on the other ten. The video-disjoint checkpoints share vines with
+their test video through the frontal passes; for the seven circling sequences the
+retrained detectors are trained on circling videos only, each of which films a
+different vine. No plant-disjoint training set exists for the three frontal
+sequences. The held-out pair is read by the split-A checkpoint, whose training set
+includes two frontal videos, so it too is video-disjoint, not plant-disjoint.
+
+**Matching.** `decompose_count_error.py` assigns boxes by maximum total IoU when
+SciPy is present and greedily otherwise. Counts, signs and pooled errors depend
+only on P and G and are identical either way; U and D can move by one track. All
+frozen files here were built with SciPy and reproduce every decomposition the
+server embedded in `cbdcom2026_r3/results/decomp_fold*.json`.
+
+**Claims withdrawn from the accepted text** (each with the value that ruled it
+out, printed by `tools/claims_audit.py`): three sequences within 0.10 of zero at
+the released cadence (there is none); a tracker's own tracks returning "about
+half" the true c (0.82 and 0.41 of it); the frame-difference budget "crossing
+zero at half the frames" (an interpolation, replaced by the measured pair at 715
+frames, +0.271 against −0.094); "association rather than detection limits" a
+cut-last platform (8-tile YOLO26s detects in 197 ms and tracks in 79 ms; the
+tracking step alone caps it near 12 fps).
+
+**AppleMOT** (`apple_matched.json`, `geometry_applemot.json`, `tools/apple_*.py`)
+was the replication in r29–r31. It is no longer in the manuscript, which uses
+GrapeMOTS instead; the files stay so those tags remain reproducible.
 
 **Why the alignment was re-checked.** The accepted text said every labelled frame
 aligned "at a median residual of exactly 0.000". The aligner's monotone repair
 replaces a duplicate or decreasing match with the previous index plus one without
 recomputing its residual, so that figure did not certify the stored mapping. A
 full-resolution re-decode puts 660 of 679 images within a mean absolute RGB
-difference of 5 of their assigned frame; 19, nearly all the second label of a
-sequence, differ by 14–42. The manuscript now says so and reports the
-intervention without them.
+difference of 5 of their assigned frame; 19, all but one the second image of a
+sequence, differ by 14–42. The manuscript says so and reports the intervention
+without them.

@@ -23,10 +23,12 @@ contrast over 28 sequences, the annotation-thinning ladder, and the calibration 
 behind the annotation-interval criterion. It carries its own README.
 
 **`cadence2026_1001/` holds the camera-ready revision of 1 October 2026**, built on
-the 2021 vineyard campaign: AppleMOT re-scored under the intervention's own design,
-the full-resolution alignment audit and the re-scoring without the frames it could
-not certify, and the tools for the new figures. It carries its own README, claim
-table and smoke test.
+the 2021 vineyard campaign: GrapeMOTS re-scored under the intervention's own design
+(with ByteTrack, StrongSORT, retrained detectors and both read modes), the
+full-resolution alignment audit and the re-scoring without the frames it could not
+certify, an audit of every manuscript number outside the tables, and the tools for
+the new figures. It carries its own README, claim table and smoke test (SciPy
+required).
 
 **`cadence2026_0813/` carries every round added since**, up to the tag this checkout is
 on: the external contrast on MOT17/MOT20, the adaptive-sampling arms, the low-score

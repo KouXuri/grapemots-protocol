@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Geometry and consequence on one axis -- 2026-10-01 version, AppleMOT for MOT17/20.
+"""Geometry and consequence on one axis -- 2026-10-01 version: the 2021 flights and GrapeMOTS.
 
-The accepted paper read MOT17 and MOT20 from annotated boxes. This version replaces
-them with AppleMOT read by its own detector and the same BoT-SORT tracker, from the
-frozen outputs in runs/apple_matched_1001 (computed on the definitions below).
+The accepted paper also plotted MOT17 and MOT20, read from annotated boxes. This
+version keeps the two vineyard corpora only: the 2021 flights (two cadence arms) and
+the GrapeMOTS thinning ladder.
 
 Original notes:
 
@@ -29,18 +29,16 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-from paperstyle import apply, C_ALT, C_GT, C_PRED, C_NEUTRAL  # noqa: E402
+from paperstyle import apply, C_GT, C_PRED, C_NEUTRAL  # noqa: E402
 
 apply()
 import matplotlib.pyplot as plt  # noqa: E402
 
 OUT = ROOT / "cadence_1001" / "figures"
-APPLE = ROOT / "runs/apple_matched_1001/results/geometry_applemot.json"
 EXT = ROOT / "runs/ext_cadence_0813/results"
 
 STYLE = {"grapemots": (C_GT, "s", "GrapeMOTS"),
-         "bodegas2023": (C_PRED, "o", "vineyard 2021"),
-         "applemot": (C_ALT, "^", "AppleMOT")}
+         "bodegas2023": (C_PRED, "o", "vineyard 2021")}
 
 ladder = json.loads((ROOT / "runs/final_analyses_0809/results/density_realpipeline.json")
                     .read_text())["pooled_tau1"]
@@ -70,11 +68,7 @@ def crossing(r_values, e_values):
     return None
 
 
-apple = json.loads(APPLE.read_text())
-apple_steps = ["1", "2", "4", "8"]
-apple_r = [apple["by_step"][k]["sequence_median_r"] for k in apple_steps]
-apple_e = [apple["curve_s1280"][k]["signed_error"] for k in apple_steps]
-apple_base = apple["base_UD_over_G_s1280_k1"]
+
 
 decomposition = json.loads(
     (ROOT / "runs/decomp_0812/results/cadence_decomposition.json").read_text()
@@ -89,7 +83,7 @@ bodegas_base = ((decomposition["src_buf30"]["U"] + decomposition["src_buf30"]["D
 
 structure = [row for row in json.loads(
     (ROOT / "runs/grapemots_journal_0805/results/sequence_structure.json").read_text())["sequences"]
-    if row.get("corpus") in ("grapemots", "bodegas2023")] + apple["sequences"]
+    if row.get("corpus") in ("grapemots", "bodegas2023")]
 
 fig, (ax, bx) = plt.subplots(2, 1, figsize=(3.45, 3.25), sharex=True,
                              gridspec_kw={"height_ratios": [1.0, 1.05], "hspace": 0.10})
@@ -120,7 +114,6 @@ bx.axhline(0, color=C_NEUTRAL, linewidth=0.6, zorder=1)
 series = [
     (grape_r, grape_e, C_GT, "s", f"GrapeMOTS, {grape_base:.1f}"),
     (bodegas_r, bodegas_e, C_PRED, "o", f"vineyard 2021, {bodegas_base:.1f}"),
-    (apple_r, apple_e, C_ALT, "^", f"AppleMOT, {apple_base:.2f}"),
 ]
 for x, y, colour, marker, label in series:
     bx.plot(x, y, "--" if len(x) == 2 else "-", marker=marker, color=colour,
@@ -157,5 +150,5 @@ fig.savefig(OUT / "fig_geometry_and_sign.png", dpi=400)
 print("wrote", OUT / "fig_geometry_and_sign.pdf")
 for label, x, y in (("vineyard2024", grape_r, grape_e),
                     ("vineyard2023", bodegas_r, bodegas_e),
-                    ("applemot", apple_r, apple_e)):
+                    ):
     print(label, "crossing r =", crossing(x, y))
