@@ -10,7 +10,7 @@ are in `cadence2026_0813/`, `cbdcom2026_r3/` and `cadence2026/`, unchanged.
 
 rebuilds every result below from archived per-frame outputs, with no imagery,
 weights or GPU, compares each with its frozen file, and re-checks every number the
-manuscript prints outside its tables (`tools/claims_audit.py`, 49 claims).
+manuscript prints outside its tables (`tools/claims_audit.py`, 50 claims).
 
 | Manuscript claim | Frozen result | Tool and input |
 |---|---|---|
@@ -24,7 +24,7 @@ manuscript prints outside its tables (`tools/claims_audit.py`, 49 claims).
 | §II-D: matched at least once 0.354 / 0.690 against assigned coverage 0.354 / 0.687 (four tracks matched to more than one trajectory); §III-A: leaving out any one flight, every remaining sequence rises, sparse −0.33…−0.28, source +0.79…+1.10; §III-C: each GrapeMOTS video rises in ≥14 of its 15 settings, median paired change in e +0.16…+0.51; near-zero arms: assigned 0.44 / contact 0.45 (medians) | `results/review_checks.json` | `tools/review_checks.py` on `cadence2026_0919/raw/lovo_surface.tar.gz` and the archived 2021 arms |
 | Table III, confidence 0.75 and 0.80: IDF1 0.156 / 0.090, HOTA 0.152 / 0.107 (the 0.70 and 0.85 rows are recomputed first and match the published values) | `results/conf_fill_identity.json` | `tools/conf_fill_identity.py` (TrackEval 1.3.0) on `results/conf_fill_identity/cached_*_conf07{5,0}*.json` |
 | Fig. 1 | `cadence2026_0813/results/decomp_0812/cadence_decomposition.json` | `tools/make_fig_overview_1001.py` |
-| Fig. 3: 2021 arms cross zero at r = 1.85, the GrapeMOTS ladder at 3.89 | `cadence2026_0813/results/ext_cadence_0813/geometry_*.json` | `tools/make_fig_geometry_and_sign_1001.py` |
+| Fig. 3: median IoU of consecutive labelled boxes against median r, one point per sequence; GrapeMOTS at r 0.13–0.30 with overlaps 0.47–0.73, every 2021 sequence past √2 at zero overlap. (The earlier lower panel, a zero crossing interpolated between the two 2021 arms, is withdrawn.) | `cadence2026/results/sequence_structure.json` | `tools/make_fig_geometry_1001.py` |
 
 **Whole-frame read of the 2021 intervention.** The 2021 checkpoints
 (SHA-256 as `cbdcom2026_r3/results/input_manifest.json`) and the 28 source videos

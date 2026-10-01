@@ -200,8 +200,6 @@ ks = [1, 2, 4, 8, 16, 32]
 cgx = crossing([geo["2"]["sequence_median_r"] * k for k in ks], [lad[f"k{k}"]["signed_error"] for k in ks])
 s21 = (dec["src_buf30"]["U"] + dec["src_buf30"]["D"]) / dec["src_buf30"]["G"]
 sgm = (lad["k1"]["U"] + lad["k1"]["D"]) / lad["k1"]["G"]
-check("Fig. 3: 2021 arms cross at r = 1.85, ladder at 3.89; surplus 2.9 against 1.3",
-      (round(c21x, 2), round(cgx, 2), round(sgm, 1), round(s21, 1)) == (1.85, 3.89, 2.9, 1.3), (c21x, cgx, sgm, s21))
 
 # ---------------------------------------------------------------- frame budget, edge
 pooled = lambda a: e_of(pool(arm(a)))
@@ -284,6 +282,15 @@ bw = st.median(x1 - x0 for x0, y0, x1, y1 in boxes); bh = st.median(y1 - y0 for 
 check("median reference box 54 by 70 px on the 28 sequences; about 17 by 22 if 4096 is resized to 1280",
       (round(bw), round(bh), round(bw * 1280 / 4096), round(bh * 1280 / 4096)) == (54, 70, 17, 22), (bw, bh))
 
+# ---------------------------------------------------------------- Fig. 3 (single panel)
+ss = [s for s in J(R26 / "sequence_structure.json")["sequences"] if s.get("corpus") == "grapemots"]
+check("GrapeMOTS at its labelling step: r 0.13-0.30, consecutive overlap 0.47-0.73 (11 sequences)",
+      len(ss) == 11 and (round(min(s["step_over_size_median"] for s in ss), 2), round(max(s["step_over_size_median"] for s in ss), 2),
+                         round(min(s["consecutive_iou_median"] for s in ss), 2), round(max(s["consecutive_iou_median"] for s in ss), 2))
+      == (0.13, 0.30, 0.47, 0.73), None)
+check("2021 arms in Fig. 2: uniform arms of 715, 1,403 and 2,779 frames between 371 and 12,386",
+      (frames["rel"], frames["uni2"], frames["uni4"], frames["uni8"], frames["src"]) == (371, 715, 1403, 2779, 12386), frames)
+
 # ---------------------------------------------------------------- withdrawn
 near = {s: round(e_of(rel[s]), 3) for s in rel if abs(e_of(rel[s])) <= 0.10}
 withdrawn.append(("'three sequences within 0.10 of zero at the released cadence'", near or "no such sequence"))
@@ -291,6 +298,7 @@ withdrawn.append(("'its own tracks return about half the true c'",
                   [round(s["c_from_tracker_output"] / s["c_all_reference"], 2) for s in cb2]))
 withdrawn.append(("'crossing zero at half the frames' (an interpolation, replaced by the measured 715-frame pair)", None))
 withdrawn.append(("'association rather than detection limits' (8-tile YOLO26s detects in 197 ms, tracks in 79 ms)", None))
+withdrawn.append(("'the 2021 arms cross zero at r = 1.85' (interpolated between the two arms, 35 times apart in r; the panel was dropped)", None))
 
 bad = 0
 for claim, ok, got in results:
