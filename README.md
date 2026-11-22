@@ -7,7 +7,7 @@ The paper is *Same Footage, Opposite Sign: Cadence, Coverage and Cancellation in
 Video Counting* (CBDCom 2026).
 
 **For the journal extension submitted to *Precision Agriculture*, start at [`journal2026_pa/`](journal2026_pa/)**
-(release `pa2026-r1`): per-frame outputs of the five-associator oracle, the error substitution, the
+(release `pa2026-r2`): per-frame outputs of the five-associator oracle, the error substitution, the
 interventions and the whole-frame detectors, the analysis scripts, a claim-to-file table for every number in
 the article, and a smoke test that rebuilds the results from the archived outputs.
 

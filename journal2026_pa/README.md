@@ -14,7 +14,7 @@ from multi-view UAV video*, by Xuri Kou, Wen Qiu, Musen Cheng, Taihui Liu and Hi
 | `tools/` | The analysis scripts, run from a workspace laid out by `setup_workspace.sh`; `claims_pa_1121.py` checks every number printed in the article; `make_figures_pa119_1121.py` draws the figures from `results/` alone. |
 | `runner/` | The scripts that produced the per-frame outputs on the GPU server (Ultralytics 8.4.46, BoxMOT 23.0.0): detection dumps, replay and substitution (`error_sources_1120.py`), the BoxMOT associators, the queues. They need the GrapeMOTS imagery and the detector weights. |
 | `cfg/` | The two BoT-SORT configurations of the interventions, each one value changed from `cfg/trackers/botsort_gmc.yaml`. |
-| `figures/` | Figures 1-4 and S1-S2 as submitted. |
+| `figures/` | Figures 1-4 of the article; FigS1 (interval bracket of the sign change per video, scale and detector set) and FigS2 (HOTA by interval; highest-HOTA against smallest-error arm) show results the article quotes in its text without a figure. |
 
 ## Rebuilding the results
 
