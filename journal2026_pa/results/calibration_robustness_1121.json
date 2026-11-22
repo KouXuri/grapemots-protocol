@@ -1,0 +1,67 @@
+{
+ "best5_configs_median_lovo": [
+  {
+   "config": "whole|1|2048|2",
+   "median_lovo": 0.121
+  },
+  {
+   "config": "crop|0|2560|2",
+   "median_lovo": 0.122
+  },
+  {
+   "config": "whole|1|3840|2",
+   "median_lovo": 0.123
+  },
+  {
+   "config": "whole|1|2048|1",
+   "median_lovo": 0.138
+  },
+  {
+   "config": "whole|1|2560|2",
+   "median_lovo": 0.143
+  }
+ ],
+ "config_median_lovo_distribution": {
+  "min": 0.121,
+  "q25": 0.242,
+  "median": 0.295
+ },
+ "nested_choice": {
+  "per_vine": {
+   "n": 7,
+   "median": 0.127,
+   "p90": 1.33,
+   "max": 2.657,
+   "share_gt_010": 0.714,
+   "share_gt_020": 0.286,
+   "share_gt_030": 0.286
+  },
+  "chosen": {
+   "PathPlanning_2": "whole|1|2048|2",
+   "PathPlanning_3": "whole|1|2048|2",
+   "PathPlanning_4": "whole|1|2048|1",
+   "PathPlanning_5": "whole|1|2048|2",
+   "PathPlanning_6": "crop|1|2048|2",
+   "PathPlanning_7": "whole|1|2048|2",
+   "PathPlanning_8": "whole|1|2048|1"
+  }
+ },
+ "seed_ensemble_lovo": {
+  "n": 280,
+  "median": 0.261,
+  "p90": 1.184,
+  "max": 3.15,
+  "share_gt_010": 0.818,
+  "share_gt_020": 0.643,
+  "share_gt_030": 0.414
+ },
+ "single_seed_lovo_same_recipes": {
+  "n": 840,
+  "median": 0.304,
+  "p90": 1.204,
+  "max": 3.536,
+  "share_gt_010": 0.862,
+  "share_gt_020": 0.688,
+  "share_gt_030": 0.511
+ }
+}

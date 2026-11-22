@@ -6,6 +6,11 @@ count is defined by the conditions under which it was observed.
 The paper is *Same Footage, Opposite Sign: Cadence, Coverage and Cancellation in UAV
 Video Counting* (CBDCom 2026).
 
+**For the journal extension submitted to *Precision Agriculture*, start at [`journal2026_pa/`](journal2026_pa/)**
+(release `pa2026-r1`): per-frame outputs of the five-associator oracle, the error substitution, the
+interventions and the whole-frame detectors, the analysis scripts, a claim-to-file table for every number in
+the article, and a smoke test that rebuilds the results from the archived outputs.
+
 **For the camera-ready version, start at [`cadence2026_0919/`](cadence2026_0919/)**
 (release `cbdcom2026-r24`). It carries every number of the final paper: the
 scale-cadence surface on ten out-of-fold GrapeMOTS sequences, the phase, retention

@@ -1,0 +1,153 @@
+{
+ "G_full": {
+  "PathPlanning_2": 45,
+  "PathPlanning_3": 57,
+  "PathPlanning_4": 93,
+  "PathPlanning_5": 84,
+  "PathPlanning_6": 51,
+  "PathPlanning_7": 65,
+  "PathPlanning_8": 77
+ },
+ "botsort": {
+  "lovo_median": 0.546,
+  "lovo_share_gt_030": 0.714,
+  "rho_median": 0.0,
+  "rho_share_ge_0786": 0.0,
+  "pooled_e_median_by_interval": {
+   "1": 0.591,
+   "2": 0.227,
+   "4": -0.089,
+   "8": -0.341
+  },
+  "terms_per_G_by_interval": {
+   "1": {
+    "U": 0.513,
+    "D": 0.539,
+    "M": 0.55
+   },
+   "2": {
+    "U": 0.343,
+    "D": 0.394,
+    "M": 0.605
+   },
+   "4": {
+    "U": 0.248,
+    "D": 0.293,
+    "M": 0.67
+   },
+   "8": {
+    "U": 0.161,
+    "D": 0.179,
+    "M": 0.725
+   }
+  }
+ },
+ "strongsort": {
+  "lovo_median": 0.557,
+  "lovo_share_gt_030": 0.65,
+  "rho_median": 0.107,
+  "rho_share_ge_0786": 0.0,
+  "pooled_e_median_by_interval": {
+   "1": 0.331,
+   "2": 0.197,
+   "4": -0.11,
+   "8": -0.559
+  },
+  "terms_per_G_by_interval": {
+   "1": {
+    "U": 0.393,
+    "D": 0.331,
+    "M": 0.53
+   },
+   "2": {
+    "U": 0.3,
+    "D": 0.425,
+    "M": 0.589
+   },
+   "4": {
+    "U": 0.208,
+    "D": 0.313,
+    "M": 0.679
+   },
+   "8": {
+    "U": 0.097,
+    "D": 0.103,
+    "M": 0.79
+   }
+  }
+ },
+ "ocsort": {
+  "lovo_median": 0.509,
+  "lovo_share_gt_030": 0.657,
+  "rho_median": 0.0,
+  "rho_share_ge_0786": 0.0,
+  "pooled_e_median_by_interval": {
+   "1": 0.854,
+   "2": 0.307,
+   "4": -0.136,
+   "8": -0.475
+  },
+  "terms_per_G_by_interval": {
+   "1": {
+    "U": 0.55,
+    "D": 0.744,
+    "M": 0.558
+   },
+   "2": {
+    "U": 0.388,
+    "D": 0.511,
+    "M": 0.632
+   },
+   "4": {
+    "U": 0.217,
+    "D": 0.277,
+    "M": 0.71
+   },
+   "8": {
+    "U": 0.128,
+    "D": 0.136,
+    "M": 0.785
+   }
+  }
+ },
+ "deepocsort": {
+  "lovo_median": 0.484,
+  "lovo_share_gt_030": 0.7,
+  "rho_median": -0.036,
+  "rho_share_ge_0786": 0.0,
+  "pooled_e_median_by_interval": {
+   "1": 0.39,
+   "2": 0.057,
+   "4": -0.239,
+   "8": -0.392
+  },
+  "terms_per_G_by_interval": {
+   "1": {
+    "U": 0.435,
+    "D": 0.367,
+    "M": 0.544
+   },
+   "2": {
+    "U": 0.304,
+    "D": 0.258,
+    "M": 0.6
+   },
+   "4": {
+    "U": 0.197,
+    "D": 0.152,
+    "M": 0.653
+   },
+   "8": {
+    "U": 0.15,
+    "D": 0.126,
+    "M": 0.703
+   }
+  }
+ },
+ "H4b_reading": {
+  "botsort": "holds across families (> 0.243)",
+  "strongsort": "holds across families (> 0.243)",
+  "ocsort": "holds across families (> 0.243)",
+  "deepocsort": "holds across families (> 0.243)"
+ }
+}
