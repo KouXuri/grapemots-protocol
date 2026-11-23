@@ -12,6 +12,7 @@ from __future__ import annotations
 import csv
 import json
 import runpy
+import statistics as st
 import sys
 from pathlib import Path
 
@@ -272,6 +273,85 @@ oth = [lv[k] for k in ("strongsort", "ocsort", "deepocsort")]
 add("Results 4", "Other associators on the same detections: median vine 48-56% off, against 55% for BoT-SORT", "48-56%; 55%",
     f"{100*min(oth):.1f}-{100*max(oth):.1f}%; {100*lv['botsort']:.1f}%", (pct(min(oth)), pct(max(oth)), pct(lv["botsort"])) == (48, 56, 55),
     "real_trackers_vine_1121.json: <tracker>/lovo_median", "real_trackers_vine_1121.py")
+
+# ---------------------------------------------------------------- 2026-11-22 additions (ledger 10.28.16)
+# no-video baseline: each vine predicted by the mean reference count of the other six
+G7 = CT["G_full"]
+base = [abs((sum(G7.values()) - g) / 6 - g) / g for g in G7.values()]
+calc_q = NS["q"]
+add("Results 4; Table 2", "Mean of the other six vines, no video: median 0.23, 90th percentile 0.46", "0.23; 0.46",
+    f"{st.median(base):.4f}; {calc_q(base, 0.9):.4f}", (r2(st.median(base)), r2(calc_q(base, 0.9))) == (0.23, 0.46),
+    "calibration_transfer_1120.json: G_full", "claims_pa_1121.py (recomputed, q() of calibration_transfer_1120.py)")
+rows_cal = [CT["A_lovo_uncalibrated"], CT["A_lovo_ratio"], CT["B_lovo_line"], CR["best_single_factor_in_sample"]
+            if "best_single_factor_in_sample" in CR else CT["A_lovo_ratio"]]
+real_beats = [d for d in (CT["A_lovo_uncalibrated"], CT["A_lovo_ratio"], CT["B_lovo_line"])
+              if d["median"] < st.median(base) and d["p90"] < calc_q(base, 0.9)]
+eo1 = CT["E_oracle_botsort_phase0"]["1"]["lovo_ratio"]
+add("Results 4; abstract; conclusions", "No real-detection calibration beats the baseline at both median and p90; the line "
+    "matches it in the median; reference boxes beat it on both", "line 0.23 vs 0.23; reference boxes 0.12/0.32",
+    f"line {CT['B_lovo_line']['median']} vs {st.median(base):.4f}; ref {eo1['median']}/{eo1['p90']}; real beating both: {len(real_beats)}",
+    not real_beats and r2(CT["B_lovo_line"]["median"]) == r2(st.median(base)) and CT["B_lovo_line"]["median"] >= st.median(base)
+    and eo1["median"] < st.median(base) and eo1["p90"] < calc_q(base, 0.9),
+    "calibration_transfer_1120.json (the chosen configuration, 0.13/1.33, is checked above)", "claims_pa_1121.py (recomputed)")
+
+# association alone and error substitution on APPLE MOTS and LettuceMOTS
+EX = J("external_checks_1122.json")
+TK = ("botsort_gmc", "bytetrack", "strongsort", "ocsort", "deepocsort")
+og = lambda ds, t, grp: EX["oracle"][ds][f"{t}|d1|{grp}"]
+for (ds, grp), printed in {("lettuce", "return"): [58, 90, 90, 57, 51], ("lettuce", "single"): [-1, 9, -1, -1, -1],
+                            ("apple", "all"): [19, 72, 20, 37, 13]}.items():
+    got = [pct(ex(og(ds, t, grp))) for t in TK]
+    add("Table 3", f"Oracle count error (%), {ds} {grp}, BoT-SORT/ByteTrack/StrongSORT/OC-SORT/Deep OC-SORT", str(printed),
+        str(got), got == printed, f"external_checks_1122.json: oracle/{ds}/<tracker>|d1|{grp}", "external_summary_1122.py")
+Gs = (og("lettuce", "botsort_gmc", "return")["G"], og("lettuce", "botsort_gmc", "single")["G"], og("apple", "botsort_gmc", "all")["G"])
+ab = lambda ds, vids: sum(EX["reference"][ds][v]["absent_ge30"] for v in vids)
+absent = (ab("lettuce", EX["groups_lettuce"]["return"]), ab("lettuce", EX["groups_lettuce"]["single"]), ab("apple", EX["reference"]["apple"]))
+add("Table 3; Results 5", "Trajectories 180/134/2,311; absent for >=30 frames 85/0/0", "180 134 2311; 85 0 0",
+    f"{Gs}; {absent}", Gs == (180, 134, 2311) and absent == (85, 0, 0), "external_checks_1122.json: reference, oracle", "external_summary_1122.py")
+ret = [ex(og("lettuce", t, "return")) for t in TK]
+sing = [ex(og("lettuce", t, "single")) for t in TK]
+app = [ex(og("apple", t, "all")) for t in TK]
+add("Abstract; Results 5", "Lettuce return passes over-counted by 51-90%; single passes 1.5% below to 9% above; apple 13-72%",
+    "51-90; -1.5 to +9; 13-72", f"{100*min(ret):.2f}-{100*max(ret):.2f}; {100*min(sing):.2f} to {100*max(sing):.2f}; {100*min(app):.2f}-{100*max(app):.2f}",
+    (pct(min(ret)), pct(max(ret))) == (51, 90) and (pct(min(sing), 1), pct(max(sing))) == (-1.5, 9) and (pct(min(app)), pct(max(app))) == (13, 72),
+    "external_checks_1122.json: oracle", "external_summary_1122.py")
+reent = [og("lettuce", t, "return")["duplicate_origin"].get("reentry_beyond_buffer", 0) for t in TK]
+shr = [r / og("lettuce", t, "return")["D"] for r, t in zip(reent, TK)]
+sw = [og("apple", t, "all")["duplicate_origin"].get("switch_while_visible", 0) / og("apple", t, "all")["D"] for t in TK]
+add("Results 5", "76-84 of the 85 returning plants got a new identity (52-89% of duplicates); apple switches in view 89-99% of duplicates",
+    "76-84; 52-89%; 89-99%", f"{min(reent)}-{max(reent)}; {100*min(shr):.1f}-{100*max(shr):.1f}%; {100*min(sw):.1f}-{100*max(sw):.1f}%",
+    (min(reent), max(reent)) == (76, 84) and (pct(min(shr)), pct(max(shr))) == (52, 89) and (pct(min(sw)), pct(max(sw))) == (89, 99),
+    "external_checks_1122.json: oracle/<ds>/<tracker>|d1|<group>/duplicate_origin", "external_summary_1122.py (reentry_analysis_1120.py rule)")
+SB = EX["substitution_apple"]
+rec = [SB[f"s{s}|d1"]["tp"] / SB[f"s{s}|d1"]["reference_boxes"] for s in (640, 960, 1280)]
+add("Results 5", "APPLE MOTS detector matched 15%, 45% and 68% of the reference boxes", "15 45 68",
+    " ".join(f"{100*x:.2f}" for x in rec), [pct(x) for x in rec] == [15, 45, 68],
+    "external_checks_1122.json: substitution_apple/<s>|d1/tp, reference_boxes", "external_summary_1122.py")
+ee = {k: ((r["P_none"] - r["G"]) / r["G"], (r["P_miss"] - r["G"]) / r["G"], r["D_none"], r["D_miss"]) for k, r in SB.items()}
+rose = [k for k, (a, b, _, _) in ee.items() if abs(b) > abs(a)]
+flips = sorted((pct(a), pct(b)) for k, (a, b, _, _) in ee.items() if a * b < 0 and abs(abs(b) - abs(a)) < 0.03)
+fell = [k for k, (a, b, _, _) in ee.items() if abs(b) < abs(a) and (pct(a), pct(b)) not in flips]
+under = [ee[k][0] for k in fell]
+add("Results 5", "Supplying misses added duplicates in all 12; |e| rose only at s1280/annotated rate (+7 -> +45); sign reversed in two "
+    "(-37 -> +37, -21 -> +19); fell in nine that had under-counted by 50-94%", "12; s1280|d1 +7->+45; (-37,+37) (-21,+19); 9, 50-94",
+    f"D up in {sum(d1 > d0 for _, _, d0, d1 in ee.values())}; rose {rose} {[(pct(ee[k][0]), pct(ee[k][1])) for k in rose]}; flips {flips}; "
+    f"fell {len(fell)}, {100*max(under):.2f} to {100*min(under):.2f}",
+    sum(d1 > d0 for _, _, d0, d1 in ee.values()) == 12 and rose == ["s1280|d1"] and (pct(ee["s1280|d1"][0]), pct(ee["s1280|d1"][1])) == (7, 45)
+    and flips == [(-37, 37), (-21, 19)] and len(fell) == 9 and (pct(-max(under)), pct(-min(under))) == (50, 94),
+    "external_checks_1122.json: substitution_apple", "external_summary_1122.py")
+
+# AgriSORT (Lazio) grape sequences, queued by Codex as runs/pa_lazio_1122 (same five associators, reference boxes at 0.9)
+LZ, LR = J("lazio_oracle_1122.json"), J("lazio_reference_1122.json")
+lz = {t: dict(P=0, G=0) for t in TK}
+for r in LZ["results"]:
+    if r["interval"] == 1 and r["min_track_frames"] == 1:
+        lz[r["tracker"]]["P"] += r["P"]; lz[r["tracker"]]["G"] += r["G"]
+got = [pct(ex(lz[t])) for t in TK]
+add("Table 3; Results 5", "AgriSORT count error (%) at the recorded rate, five associators; 96 bunches, none absent >=30 frames",
+    "[4, 20, 8, 9, 8]; 96; 0", f"{got}; {lz['botsort_gmc']['G']}; {sum(v['absent_ge30'] for v in LR.values())}",
+    got == [4, 20, 8, 9, 8] and lz["botsort_gmc"]["G"] == 96 and sum(v["absent_ge30"] for v in LR.values()) == 0
+    and sum(v["frames"] for v in LR.values()) == 800,
+    "lazio_oracle_1122.json: results (interval 1, min_track_frames 1); lazio_reference_1122.json", "queue_lazio_oracle_1122.py")
 
 out_csv = RES / "claims_pa_1121.csv"
 with out_csv.open("w", newline="") as fh:

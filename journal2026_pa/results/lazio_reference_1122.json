@@ -1,0 +1,30 @@
+{
+ "CloseUp1": {
+  "frames": 300,
+  "G": 23,
+  "absent_ge30": 0,
+  "reappear_after_gt10": 0,
+  "reappear_any": 0
+ },
+ "CloseUp2": {
+  "frames": 300,
+  "G": 22,
+  "absent_ge30": 0,
+  "reappear_after_gt10": 1,
+  "reappear_any": 1
+ },
+ "Overview1": {
+  "frames": 100,
+  "G": 20,
+  "absent_ge30": 0,
+  "reappear_after_gt10": 0,
+  "reappear_any": 2
+ },
+ "Overview2": {
+  "frames": 100,
+  "G": 31,
+  "absent_ge30": 0,
+  "reappear_after_gt10": 0,
+  "reappear_any": 0
+ }
+}

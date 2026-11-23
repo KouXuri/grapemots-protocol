@@ -60,5 +60,16 @@ for cmd, outs in STEPS:
     print(("ok   " if ok else "FAIL ") + " ".join(cmd), flush=True)
     if p.returncode != 0:
         bad.append(f"{' '.join(cmd)} exited {p.returncode}: {p.stderr[-400:]}")
+# APPLE MOTS parts of the external check (the LettuceMOTS outputs are not redistributed; see README)
+reb = RES / "external_checks_1122_apple_rebuilt.json"
+p = subprocess.run([PY, str(T / "external_summary_1122.py"), "--root", str(W), "--only", "apple", "--out", str(reb)],
+                   cwd=W, capture_output=True, text=True)
+old = json.loads((FROZEN / "external_checks_1122.json").read_text())
+new = json.loads(reb.read_text()) if p.returncode == 0 and reb.is_file() else {}
+same = bool(new) and new["reference"]["apple"] == old["reference"]["apple"] and new["oracle"]["apple"] == old["oracle"]["apple"] \
+    and new["groups_apple"] == old["groups_apple"] and new["substitution_apple"] == old["substitution_apple"]
+print(("ok   " if same else "FAIL ") + "external_summary_1122.py --only apple", flush=True)
+if not same:
+    bad.append(f"external_checks_1122.json (APPLE MOTS parts) differs or the rebuild failed: {p.stderr[-400:]}")
 print("all frozen results reproduced and all claims pass" if not bad else "\n".join(bad))
 sys.exit(1 if bad else 0)
