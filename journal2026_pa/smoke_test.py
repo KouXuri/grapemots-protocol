@@ -42,6 +42,7 @@ STEPS = [  # (command, frozen outputs it rewrites)
     (["real_trackers_vine_1121.py"], ["real_trackers_vine_1121.json"]),
     (["gate_buffer_summary_1121.py"], ["gate_buffer_summary_1121.json"]),
     (["supplementary_checks_1121.py"], ["supplementary_checks_1121.json"]),
+    (["vine_calibration_1122.py"], ["vine_calibration_1122.json"]),
     (["claims_pa_1121.py"], ["claims_pa_1121.csv"]),
 ]
 bad = []

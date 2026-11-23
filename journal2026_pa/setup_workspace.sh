@@ -11,7 +11,8 @@ mkdir -p "$W/cadence_journal_1119"
 cp -R "$J/tools" "$W/cadence_journal_1119/tools"
 cp -R "$J/results" "$W/cadence_journal_1119/results"
 ln -sfn "$REPO" "$W/grapemots-protocol"
-for name in oracle_cadence_1119 wholeframe_strongsort_1119 fullframe_pponly_0922 error_sources_1120 external_1122_apple; do
+for name in oracle_cadence_1119 wholeframe_strongsort_1119 fullframe_pponly_0922 error_sources_1120 external_1122_apple \
+            vine_calibration_1122; do
   if [ -f "$J/raw/$name.tar.xz" ]; then
     xz -dc "$J/raw/$name.tar.xz" | tar -x -C "$W"
   else

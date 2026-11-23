@@ -172,7 +172,7 @@ add("Results 2", "15 Hz: +0.70..+1.67 -> +2.45..+3.11; 1.9 Hz: -0.31..+0.36 -> +
     "; ".join(f"{a:+.2f}..{b:+.2f} -> {c:+.2f}..{dd:+.2f}" for a, b, c, dd in (rng["1"], rng["8"])),
     tuple(map(r2, rng["1"])) == (0.70, 1.67, 2.45, 3.11) and tuple(map(r2, rng["8"])) == (-0.31, 0.36, 0.68, 1.29),
     "supplementary_checks_1121.json: exact/miss_alone_sigma3072 (error_sources_summary_s3072.json, rounded)", "supplementary_checks_1121.py")
-add("Results 2", "Reference boxes leave the count 66% too high at 15 Hz and 117% at 1.9 Hz", "66%; 117%",
+add("Results 1; Fig. 2 dashed line", "Reference boxes leave the count 66% too high at 15 Hz and 117% at 1.9 Hz", "66%; 117%",
     f"{100*ex(O['botsort']['d1|tau1']['groups']['PP2-8']):.2f}%; {100*ex(O['botsort']['d8|tau1']['groups']['PP2-8']):.2f}%",
     (pct(ex(O["botsort"]["d1|tau1"]["groups"]["PP2-8"])), pct(ex(O["botsort"]["d8|tau1"]["groups"]["PP2-8"]))) == (66, 117),
     "oracle_trackers_summary_1120.json: botsort d1, d8", "oracle_trackers_summary_1120.py")
@@ -282,8 +282,6 @@ calc_q = NS["q"]
 add("Results 4; Table 2", "Mean of the other six vines, no video: median 0.23, 90th percentile 0.46", "0.23; 0.46",
     f"{st.median(base):.4f}; {calc_q(base, 0.9):.4f}", (r2(st.median(base)), r2(calc_q(base, 0.9))) == (0.23, 0.46),
     "calibration_transfer_1120.json: G_full", "claims_pa_1121.py (recomputed, q() of calibration_transfer_1120.py)")
-rows_cal = [CT["A_lovo_uncalibrated"], CT["A_lovo_ratio"], CT["B_lovo_line"], CR["best_single_factor_in_sample"]
-            if "best_single_factor_in_sample" in CR else CT["A_lovo_ratio"]]
 real_beats = [d for d in (CT["A_lovo_uncalibrated"], CT["A_lovo_ratio"], CT["B_lovo_line"])
               if d["median"] < st.median(base) and d["p90"] < calc_q(base, 0.9)]
 eo1 = CT["E_oracle_botsort_phase0"]["1"]["lovo_ratio"]
@@ -352,6 +350,34 @@ add("Table 3; Results 5", "AgriSORT count error (%) at the recorded rate, five a
     got == [4, 20, 8, 9, 8] and lz["botsort_gmc"]["G"] == 96 and sum(v["absent_ge30"] for v in LR.values()) == 0
     and sum(v["frames"] for v in LR.values()) == 800,
     "lazio_oracle_1122.json: results (interval 1, min_track_frames 1); lazio_reference_1122.json", "queue_lazio_oracle_1122.py")
+
+# vine-level calibration with independent detectors (runs/pa_vine_calibration_1122, 2026-11-23)
+VC = J("vine_calibration_1122.json")
+vm, vd = VC["metrics"], VC["design"]
+fd = VC["folds"]
+add("Methods", "Independent detectors: seven targets, seed 0, sigma 3072; PP1 + three test vines for training, one for "
+    "checkpoint selection, two calibration vines", "7; 0; 3072; 4 (PP1+3); 1; 2",
+    f"{vd['targets']}; {vd['seed']}; {vd['sigma']}; {vd['training_vines']}; {vd['validation_vines']}; {vd['calibration_vines']}",
+    (vd["targets"], vd["seed"], vd["sigma"], vd["training_vines"], vd["validation_vines"], vd["calibration_vines"]) == (7, 0, 3072, 4, 1, 2)
+    and all(f["training"][0] == "PathPlanning_1" and f["target"] not in f["training"] + [f["validation"]] + f["calibration"] for f in fd),
+    "vine_calibration_1122.json: design, folds", "vine_calibration_1122.py")
+for name, key, (med, p90) in (("Ratio on two vines, independent detector, 15 Hz", "ratio_d1", (0.34, 1.42)),
+                              ("Ratio on two vines, independent detector, 1.9 Hz", "ratio_d8", (0.37, 1.14)),
+                              ("Mean reference count of the two vines, no video", "mean_two", (0.34, 0.60))):
+    d = vm[key]
+    add("Table 2", f"{name}: median / 90th percentile", f"{med:.2f} / {p90:.2f}", f"{d['median']:.4f} / {d['p90']:.4f}",
+        (r2(d["median"]), r2(d["p90"])) == (med, p90), f"vine_calibration_1122.json: metrics/{key}", "vine_calibration_1122.py")
+no_better = all(vm[k]["median"] >= vm["mean_two"]["median"] and vm[k]["p90"] >= vm["mean_two"]["p90"] for k in ("ratio_d1", "ratio_d8"))
+add("Results 4; Discussion", "Independent detectors: at 15 Hz and 1.9 Hz the two-vine ratio does no better than the two-vine mean "
+    "(median and p90)", "no better at either rate",
+    "; ".join(f"{k} {vm[k]['median']:.4f}/{vm[k]['p90']:.4f}" for k in ("ratio_d1", "ratio_d8", "mean_two")), no_better,
+    "vine_calibration_1122.json: metrics", "vine_calibration_1122.py")
+add("Results 4", "Same two calibration vines: cross-validated seed-0 counts 39% and 28%, independent detectors 34% and 37%",
+    "39%, 28%; 34%, 37%", f"{vm['xval_ratio_d1']['median']:.4f}, {vm['xval_ratio_d8']['median']:.4f}; "
+    f"{vm['ratio_d1']['median']:.4f}, {vm['ratio_d8']['median']:.4f}",
+    (pct(vm["xval_ratio_d1"]["median"]), pct(vm["xval_ratio_d8"]["median"]), pct(vm["ratio_d1"]["median"]),
+     pct(vm["ratio_d8"]["median"])) == (39, 28, 34, 37),
+    "vine_calibration_1122.json: metrics/xval_ratio_d1, xval_ratio_d8, ratio_d1, ratio_d8", "vine_calibration_1122.py")
 
 out_csv = RES / "claims_pa_1121.csv"
 with out_csv.open("w", newline="") as fh:
