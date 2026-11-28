@@ -71,6 +71,9 @@ for seed in SEEDS:
             for d in DELTAS:
                 REC[("whole", seed, v, s, d)] = json.loads(
                     (RUN / f"surface_seed{seed}" / f"{v}_s{s}_d{d}.json").read_text())["videos"][0]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import crop_batch8_1127  # noqa: E402  batch-8 retrain of crop PathPlanning_4_s2 (ledger 10.28.17, R rule)
+crop_batch8_1127.apply(REC)
 T = {k: decompose(r, 0.5, 1) for k, r in REC.items()}
 assert len(T) == 2 * 3 * 7 * 5 * 4
 GF = {v: T[("whole", 0, v, 3072, 1)]["G"] for v in VIDEOS}

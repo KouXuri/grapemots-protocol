@@ -1,0 +1,41 @@
+{
+ "default_0.5_tau1": {
+  "arms": 840,
+  "near_zero": 103,
+  "gross_min": 0.9846,
+  "gross_median": 1.228,
+  "coverage_max": 0.5357
+ },
+ "gated_0.5_tau1": {
+  "arms": 840,
+  "near_zero": 103,
+  "gross_min": 0.9846,
+  "gross_median": 1.228,
+  "coverage_max": 0.5357
+ },
+ "gated_vs_default": {
+  "arms_changed": 4,
+  "max_abs_change_in_U_D_or_M": 1
+ },
+ "default_0.3_tau1": {
+  "arms": 840,
+  "near_zero": 103,
+  "gross_min": 0.8387,
+  "gross_median": 1.089,
+  "coverage_max": 0.619
+ },
+ "default_0.7_tau1": {
+  "arms": 840,
+  "near_zero": 103,
+  "gross_min": 1.1846,
+  "gross_median": 1.422,
+  "coverage_max": 0.4
+ },
+ "default_0.5_tau3": {
+  "arms": 840,
+  "near_zero": 93,
+  "gross_min": 0.8214,
+  "gross_median": 1.14,
+  "coverage_max": 0.5952
+ }
+}

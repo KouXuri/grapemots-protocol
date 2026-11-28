@@ -20,6 +20,9 @@ import json
 import math
 import statistics as st
 from pathlib import Path
+import sys  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import crop_batch8_1127  # noqa: E402  batch-8 retrain of crop PathPlanning_4_s2 (ledger 10.28.17, R rule)
 
 from scipy.stats import spearmanr
 
@@ -39,7 +42,7 @@ R = {}
 for p in sorted(SUB.glob(f"*/{a.set}__PathPlanning_*_s*.json")):   # whole_s0/ and other/
     if p.stem.endswith(("_none", "_all")):
         continue
-    r = json.loads(p.read_text())
+    r = crop_batch8_1127.read_substitution(p)
     if a.sigma and r["imgsz"] != a.sigma:
         continue
     R[(r["video"], r["imgsz"])] = r

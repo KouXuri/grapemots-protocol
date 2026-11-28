@@ -21,6 +21,9 @@ import json
 import statistics as st
 from collections import defaultdict
 from pathlib import Path
+import sys  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import crop_batch8_1127  # noqa: E402  batch-8 retrain of crop PathPlanning_4_s2 (ledger 10.28.17, R rule)
 
 ROOT = Path(__file__).resolve().parents[2]
 SUB = ROOT / "runs/error_sources_1120/substitution"
@@ -38,7 +41,7 @@ arms = {}
 for p in sorted(SUB.glob("*/*.json")):
     if p.stem.endswith(("_none", "_all")) or "_d" in p.stem.split("__")[-1].split("_s")[-1]:
         continue
-    r = json.loads(p.read_text())
+    r = crop_batch8_1127.read_substitution(p)
     if "arms" not in r:
         continue
     fam = p.stem.split("__")[0]

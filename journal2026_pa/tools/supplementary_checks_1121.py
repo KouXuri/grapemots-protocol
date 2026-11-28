@@ -20,6 +20,9 @@ import itertools as it
 import json
 import statistics as st
 from pathlib import Path
+import sys  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import crop_batch8_1127  # noqa: E402  batch-8 retrain of crop PathPlanning_4_s2 (ledger 10.28.17, R rule)
 
 HERE = Path(__file__).resolve().parents[1]
 ROOT = HERE.parent
@@ -38,7 +41,7 @@ out = {"recall_s3072": {}, "reversal": {}, "validation_vs_count": {}}
 for s in SETS:
     fs = files(f"{s}__PathPlanning_*_s3072.json")
     assert len(fs) == 7, (s, len(fs))
-    st_ = [json.loads(Path(f).read_text())["detection_stats"] for f in fs]
+    st_ = [crop_batch8_1127.read_substitution(f)["detection_stats"] for f in fs]
     out["recall_s3072"][s] = dict(pooled=round(sum(x["tp"] for x in st_) / sum(x["reference_boxes"] for x in st_), 4),
                                   per_video_min=min(x["recall_iou50"] for x in st_),
                                   per_video_max=max(x["recall_iou50"] for x in st_),
@@ -52,7 +55,7 @@ def reversal(fs):
         k = KEY(S)
         down = up = tie = 0
         for f in fs:
-            r = json.loads(Path(f).read_text())
+            r = crop_batch8_1127.read_substitution(f)
             P = [r["arms"][d]["values"][k]["P"] for d in ("1", "2", "4", "8")]
             for a, b in zip(P, P[1:]):
                 down += b < a; up += b > a; tie += b == a
@@ -123,7 +126,7 @@ import math
 ARM = {}
 for st_name in SETS:
     for f in files(f"{st_name}__PathPlanning_*_s3072.json"):
-        r = json.loads(Path(f).read_text())
+        r = crop_batch8_1127.read_substitution(f)
         ARM[(st_name, r["video"])] = r
 def e_arm(r, d, k):
     return (r["arms"][d]["values"][k]["P"] - r["G_full"]) / r["G_full"]

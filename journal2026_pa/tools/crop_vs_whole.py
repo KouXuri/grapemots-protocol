@@ -55,6 +55,11 @@ for seed in SEEDS:
             for d in DELTAS:
                 x = json.loads((RUN / f"surface_seed{seed}" / f"{v}_s{s}_d{d}.json").read_text())["videos"][0]
                 terms[("whole", seed, v, s, d)] = decompose(x, 0.5, 1)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import crop_batch8_1127  # noqa: E402  batch-8 retrain of crop PathPlanning_4_s2 (ledger 10.28.17, R rule)
+for k, rec in crop_batch8_1127.items():
+    assert k in terms, k
+    terms[k] = decompose(rec, 0.5, 1)
 missing = [(f, sd, v, s, d) for f in ("crop", "whole") for sd in SEEDS for v in VIDEOS for s in SIGMAS for d in DELTAS
            if (f, sd, v, s, d) not in terms]
 assert not missing, missing[:5]

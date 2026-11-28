@@ -70,10 +70,11 @@ add("Methods", "2,138 annotated frames on PP2-PP8", "2138", str(fr), fr == 2138,
 # ---------------------------------------------------------------- association alone
 ds = RE["dataset"]
 fr0 = [ds[f"NoPathPlanning_{i}"]["reappear_after_ge_2s"] for i in (1, 2, 3)]
-re_ = [(ds[v]["reappear_after_ge_2s"], ds[v]["trajectories"]) for v in VIDS[3:]]
-add("Results 1", "Re-entry after >=2 s: none on frontal passes; 14/84, 18/51, 22/65, 42/77 on PP5-PP8",
-    "0; 14/84 18/51 22/65 42/77", f"{sum(fr0)}; " + " ".join(f"{a}/{b}" for a, b in re_),
-    sum(fr0) == 0 and re_ == [(14, 84), (18, 51), (22, 65), (42, 77)], "reentry_analysis_1120.json: dataset", "reentry_analysis_1120.py")
+re_ = [(ds[v]["reappear_after_ge_2s"], ds[v]["trajectories"]) for v in VIDS[2:]]
+add("Results 1", "Re-entry after >=2 s: none on frontal passes; 2/93, 14/84, 18/51, 22/65, 42/77 on PP4-PP8 (none on PP2, PP3)",
+    "0; 2/93 14/84 18/51 22/65 42/77", f"{sum(fr0)}; " + " ".join(f"{a}/{b}" for a, b in re_),
+    sum(fr0) == 0 and re_ == [(2, 93), (14, 84), (18, 51), (22, 65), (42, 77)]
+    and all(ds[v]["reappear_after_ge_2s"] == 0 for v in VIDS[:2]), "reentry_analysis_1120.json: dataset", "reentry_analysis_1120.py")
 tot_re = sum(ds[v]["reappear_after_ge_2s"] for v in VIDS)
 add("Results 1", "98 trajectories left the view for at least 2 s on PP2-PP8 (against 97-98 re-entry duplicates)", "98",
     str(tot_re), tot_re == 98, "reentry_analysis_1120.json: dataset[PP2-8].reappear_after_ge_2s", "reentry_analysis_1120.py")
@@ -132,7 +133,7 @@ add("Fig. 1 caption", "G = 472 (PP2-PP8) and G = 256 (NP1-NP3)", "472; 256",
 # ---------------------------------------------------------------- misses
 rc = SX["recall_s3072"]
 pooled = [rc[s]["pooled"] for s in SETS]
-add("Abstract; Results 2", "Detectors matched 22-36% of reference boxes in a frame at sigma 3072, 10-54% per video",
+add("Results 2", "Detectors matched 22-36% of reference boxes in a frame at sigma 3072, 10-54% per video",
     "22-36%; 10-54%", f"{100*min(pooled):.1f}-{100*max(pooled):.1f}%; {100*min(rc[s]['per_video_min'] for s in SETS):.1f}-{100*max(rc[s]['per_video_max'] for s in SETS):.1f}%",
     (pct(min(pooled)), pct(max(pooled)), pct(min(rc[s]["per_video_min"] for s in SETS)), pct(max(rc[s]["per_video_max"] for s in SETS))) == (22, 36, 10, 54),
     "supplementary_checks_1121.json: recall_s3072", "supplementary_checks_1121.py")
@@ -165,7 +166,7 @@ for d in ("1", "2", "4", "8"):
     for s in SETS:
         b = S3[s]["by_interval"][d]
         worse += abs(b["none"]["e"] + b["alone"]["miss"]["e"]) > abs(b["none"]["e"])
-add("Abstract; Results 2; Fig. 2", "Missed boxes supplied alone: |e| larger in all 24 set x interval combinations", "24/24", f"{worse}/24", worse == 24,
+add("Results 2; Fig. 2", "Missed boxes supplied alone: |e| larger in all 24 set x interval combinations", "24/24", f"{worse}/24", worse == 24,
     "error_sources_summary_s3072.json: none/e and alone/miss/e", "error_sources_summary.py")
 add("Results 2", "15 Hz: +0.70..+1.67 -> +2.45..+3.11; 1.9 Hz: -0.31..+0.36 -> +0.68..+1.29",
     "+0.70..+1.67 -> +2.45..+3.11; -0.31..+0.36 -> +0.68..+1.29",
@@ -185,17 +186,17 @@ add("Results 2", "More rises than falls only with miss and confidence fixed, tog
     rv["every_reversing_subset_has_miss_and_score"] and rv["every_reversing_subset_also_fixes_loc_or_bkg"] and not rv["miss_plus_score_alone_reverses_anywhere"],
     "supplementary_checks_1121.json: reversal", "supplementary_checks_1121.py")
 H2 = SX["exact"]["seed_spread_sigma3072"]
-add("Results 2", "Seed spread under the miss fix: 0.39 -> 0.28 (crop), 0.97 -> 0.49 (whole frame); less than halved",
-    "0.39->0.28; 0.97->0.49",
+add("Results 2", "Seed spread under the miss fix: 0.44 -> 0.28 (crop), 0.97 -> 0.49 (whole frame); less than halved",
+    "0.44->0.28; 0.97->0.49",
     f"{H2['crop|none']['median_range']:.4f}->{H2['crop|miss']['median_range']:.4f}; {H2['whole|none']['median_range']:.4f}->{H2['whole|miss']['median_range']:.4f}",
-    (r2(H2["crop|none"]["median_range"]), r2(H2["crop|miss"]["median_range"]), r2(H2["whole|none"]["median_range"]), r2(H2["whole|miss"]["median_range"])) == (0.39, 0.28, 0.97, 0.49)
+    (r2(H2["crop|none"]["median_range"]), r2(H2["crop|miss"]["median_range"]), r2(H2["whole|none"]["median_range"]), r2(H2["whole|miss"]["median_range"])) == (0.44, 0.28, 0.97, 0.49)
     and H2["crop|miss"]["median_range"] > H2["crop|none"]["median_range"] / 2 and H2["whole|miss"]["median_range"] > H2["whole|none"]["median_range"] / 2,
     "supplementary_checks_1121.json: exact/seed_spread_sigma3072 (error_sources_summary_s3072.json h2, rounded)", "supplementary_checks_1121.py")
 # ---------------------------------------------------------------- cancellation
 nz, nz2 = SC["near_zero_arms"], N["near_zero"]
-add("Results 3; Discussion", "108 of 840 arms within 10%; Gamma at least 0.93 (median 1.22); coverage at most 55%",
-    "108/840; 0.93; 1.22; 55%", f"{nz['n']}/{nz2['arms']}; {nz['gross_min']}; {nz['gross_median']}; {100*nz2['max']:.1f}%",
-    nz["n"] == 108 and nz2["arms"] == 840 and nz["gross_min"] >= 0.93 and r2(nz["gross_median"]) == 1.22 and pct(nz2["max"]) == 55,
+add("Results 3; Discussion", "103 of 840 arms within 10%; Gamma at least 0.98 (median 1.23); coverage at most 54%",
+    "103/840; 0.98; 1.23; 54%", f"{nz['n']}/{nz2['arms']}; {nz['gross_min']}; {nz['gross_median']}; {100*nz2['max']:.1f}%",
+    nz["n"] == 103 and nz2["arms"] == 840 and nz["gross_min"] >= 0.98 and r2(nz["gross_median"]) == 1.23 and pct(nz2["max"]) == 54,
     "story_checks_1120.json: near_zero_arms; journal_numbers.json: near_zero", "story_checks_1120.py, journal_numbers.py")
 p1, p8 = SX["exact"]["pooled|whole|1"], SX["exact"]["pooled|whole|8"]
 add("Results 3; Fig. 3", "Whole-frame pooled: U/G 0.79 -> 0.29, D/G 0.69 -> 0.29, M/G 0.44 -> 0.63, e +1.04 -> -0.05",
@@ -203,13 +204,13 @@ add("Results 3; Fig. 3", "Whole-frame pooled: U/G 0.79 -> 0.29, D/G 0.69 -> 0.29
     f"{p1['U_per_G']}->{p8['U_per_G']}; {p1['D_per_G']}->{p8['D_per_G']}; {p1['M_per_G']}->{p8['M_per_G']}; {p1['e']}->{p8['e']}",
     (r2(p1["U_per_G"]), r2(p8["U_per_G"]), r2(p1["D_per_G"]), r2(p8["D_per_G"]), r2(p1["M_per_G"]), r2(p8["M_per_G"]), r2(p1["e"]), r2(p8["e"])) == (0.79, 0.29, 0.69, 0.29, 0.44, 0.63, 1.04, -0.05),
     "supplementary_checks_1121.json: exact/pooled|whole|1,8 (unrounded; journal_numbers.json: pooled_terms_by_interval)", "journal_numbers.py")
-add("Results 3", "Seed alone reversed the sign in 41/140 (crop) and 56/140 (whole frame) cells", "41/140; 56/140",
+add("Results 3", "Seed alone reversed the sign in 47/140 (crop) and 56/140 (whole frame) cells", "47/140; 56/140",
     f"{N['seed_effect_crop']['sign_flips']}/{N['seed_effect_crop']['cells']}; {N['seed_effect_whole']['sign_flips']}/{N['seed_effect_whole']['cells']}",
-    (N["seed_effect_crop"]["sign_flips"], N["seed_effect_whole"]["sign_flips"], N["seed_effect_crop"]["cells"]) == (41, 56, 140),
+    (N["seed_effect_crop"]["sign_flips"], N["seed_effect_whole"]["sign_flips"], N["seed_effect_crop"]["cells"]) == (47, 56, 140),
     "journal_numbers.json: seed_effect_crop, seed_effect_whole", "journal_numbers.py")
 aa = SC["aa_seed_pairs"]
-add("Results 3", "Two checkpoints of one recipe differ by a median of 0.30, by >=1.08 in a tenth of 840 pairs", "0.30; 1.08; 840",
-    f"{aa['median']}; share>=1.08 {aa['share_ge_1p08']}; n {aa['n']}", r2(aa["median"]) == 0.30 and abs(aa["share_ge_1p08"] - 0.10) < 0.01 and aa["n"] == 840,
+add("Results 3", "Two checkpoints of one recipe differ by a median of 0.31, by >=1.09 (90th percentile) in a tenth of 840 pairs", "0.31; 1.09; 840",
+    f"{aa['median']}; p90 {aa['p90']}; n {aa['n']}", r2(aa["median"]) == 0.31 and r2(aa["p90"]) == 1.09 and aa["n"] == 840,
     "story_checks_1120.json: aa_seed_pairs", "story_checks_1120.py")
 vv = SX["validation_vs_count"]
 add("Results 3", "Higher validation mAP had the larger |e| in 7/21 pairs at sigma 3072, 15 Hz; 8-10/21 under other summaries",
@@ -226,14 +227,14 @@ add("Results 4; Fig. 4a", "14 of 120 configurations within 10%, all mixing signs
     "14/120; 29%; 82%", f"{jt['configs']}/{len(CT['configs']) if isinstance(CT['configs'], list) else CT['configs']}; mixed {jt['configs_with_vines_of_both_signs']}; {jt['per_vine_abs_error']['median']}; p90 {jt['per_vine_abs_error']['p90']}",
     jt["configs"] == 14 and jt["configs_with_vines_of_both_signs"] == 14 and pct(jt["per_vine_abs_error"]["median"]) == 29 and pct(jt["per_vine_abs_error"]["p90"]) == 82,
     "calibration_transfer_1120.json: J_total_within_10pct", "calibration_transfer_1120.py")
-tab = [("None", CT["A_lovo_uncalibrated"], (0.44, 1.78)), ("Ratio on the other six", CT["A_lovo_ratio"], (0.30, 1.20)),
-       ("Straight line on the other six", CT["B_lovo_line"], (0.23, 0.82)),
+tab = [("None", CT["A_lovo_uncalibrated"], (0.44, 1.78)), ("Ratio on the other six", CT["A_lovo_ratio"], (0.31, 1.20)),
+       ("Straight line on the other six", CT["B_lovo_line"], (0.24, 0.82)),
        ("Best single ratio on all seven", CT["C_reference_same_config_per_vine"], (0.27, 0.97)),
        ("Ratio and configuration chosen on the other six", CR["nested_choice"]["per_vine"], (0.13, 1.33)),
-       ("Carried to another seed (total)", CT["C_across_seed"]["pooled"], (0.15, 0.57)),
-       ("Carried 15 Hz -> 1.9 Hz (total)", CT["D_across_interval_1_to_8"]["pooled"], (0.49, 0.59)),
+       ("Carried to another seed (total)", CT["C_across_seed"]["pooled"], (0.19, 0.57)),
+       ("Carried 15 Hz -> 1.9 Hz (total)", CT["D_across_interval_1_to_8"]["pooled"], (0.50, 0.59)),
        ("Carried to another scale (total)", CT["D_across_scale_from_3072"]["pooled"], (0.12, 0.47)),
-       ("Carried to the other representation (total)", dict(CT["D_across_representation"]["pooled"], median=SX["exact"]["transfer_representation_pooled_median"]), (0.22, 0.51))]
+       ("Carried to the other representation (total)", dict(CT["D_across_representation"]["pooled"], median=SX["exact"]["transfer_representation_pooled_median"]), (0.25, 0.51))]
 for name, d, (med, p90) in tab:
     add("Table 2; Results 4", f"Calibration: {name} median / 90th percentile", f"{med:.2f} / {p90:.2f}", f"{d['median']} / {d['p90']}",
         (r2(d["median"]), r2(d["p90"])) == (med, p90), "calibration_transfer_1120.json / calibration_robustness_1121.json",
@@ -241,9 +242,9 @@ for name, d, (med, p90) in tab:
 eo = CT["E_oracle_botsort_phase0"]["1"]["lovo_ratio"]
 add("Table 2", "Ratio on the other six, reference boxes at 15 Hz: 0.12 / 0.32", "0.12 / 0.32", f"{eo['median']} / {eo['p90']}",
     (r2(eo["median"]), r2(eo["p90"])) == (0.12, 0.32), "calibration_transfer_1120.json: E_oracle_botsort_phase0/1/lovo_ratio", "calibration_transfer_1120.py")
-add("Results 4", "Seed transfer up to 98%; seed-averaged counts 26%; median rho 0.36 (no configuration significant)",
-    "98%; 26%; 0.36", f"{CT['C_across_seed']['pooled']['max']}; {CR['seed_ensemble_lovo']['median']}; {CT['F_spearman_P_vs_G']['median']}, share>=0.786 {CT['F_spearman_P_vs_G']['share_ge_0786']}",
-    pct(CT["C_across_seed"]["pooled"]["max"]) == 98 and pct(CR["seed_ensemble_lovo"]["median"]) == 26 and r2(CT["F_spearman_P_vs_G"]["median"]) == 0.36 and CT["F_spearman_P_vs_G"]["share_ge_0786"] == 0,
+add("Results 4", "Seed transfer up to 98%; seed-averaged counts 27% (single seed 31%); median rho 0.32 (no configuration significant)",
+    "98%; 27%; 0.32", f"{CT['C_across_seed']['pooled']['max']}; {CR['seed_ensemble_lovo']['median']}; {CT['F_spearman_P_vs_G']['median']}, share>=0.786 {CT['F_spearman_P_vs_G']['share_ge_0786']}",
+    pct(CT["C_across_seed"]["pooled"]["max"]) == 98 and pct(CR["seed_ensemble_lovo"]["median"]) == 27 and pct(CR["single_seed_lovo_same_recipes"]["median"]) == 31 and r2(CT["F_spearman_P_vs_G"]["median"]) == 0.32 and CT["F_spearman_P_vs_G"]["share_ge_0786"] == 0,
     "calibration_transfer_1120.json, calibration_robustness_1121.json", "calibration_transfer_1120.py, calibration_robustness_1121.py")
 # per-vine errors of the nested choice (PP8 -44%, PP6 x3.7, five within 14%)
 NS = runpy.run_path(str(HERE / "tools/calibration_transfer_1120.py"), run_name="calib")
@@ -261,7 +262,7 @@ add("Abstract; Results 4; Discussion", "Configuration and ratio chosen on the ot
     len(within) == 5 and pct(err["PathPlanning_8"]) == -44 and round(1 + err["PathPlanning_6"], 1) == 3.7,
     "calibration_transfer_1120.py records + calibration_robustness_1121.json: nested_choice/chosen", "claims_pa_1121.py (recomputed)")
 i1 = CT["I1_spearman_across_vines"]["UD_vs_M"]["median"]
-add("Results 4", "Median rho between (U+D)/G and M/G over vines -0.75", "-0.75", str(i1), r2(i1) == -0.75,
+add("Results 4", "Median rho between (U+D)/G and M/G over vines -0.79", "-0.79", str(i1), r2(i1) == -0.79,
     "calibration_transfer_1120.json: I1_spearman_across_vines/UD_vs_M", "calibration_transfer_1120.py")
 fx = {s: J(f"calibration_under_fixes_{s}_s3072.json") for s in SETS}
 nonef = [fx[s]["none"]["F"] for s in SETS]
@@ -286,9 +287,9 @@ real_beats = [d for d in (CT["A_lovo_uncalibrated"], CT["A_lovo_ratio"], CT["B_l
               if d["median"] < st.median(base) and d["p90"] < calc_q(base, 0.9)]
 eo1 = CT["E_oracle_botsort_phase0"]["1"]["lovo_ratio"]
 add("Results 4; abstract; conclusions", "No real-detection calibration beats the baseline at both median and p90; the line "
-    "matches it in the median; reference boxes beat it on both", "line 0.23 vs 0.23; reference boxes 0.12/0.32",
+    "stays above it in the median (0.24 against 0.23); reference boxes beat it on both", "line 0.24 vs 0.23; reference boxes 0.12/0.32",
     f"line {CT['B_lovo_line']['median']} vs {st.median(base):.4f}; ref {eo1['median']}/{eo1['p90']}; real beating both: {len(real_beats)}",
-    not real_beats and r2(CT["B_lovo_line"]["median"]) == r2(st.median(base)) and CT["B_lovo_line"]["median"] >= st.median(base)
+    not real_beats and (r2(CT["B_lovo_line"]["median"]), r2(st.median(base))) == (0.24, 0.23) and CT["B_lovo_line"]["median"] >= st.median(base)
     and eo1["median"] < st.median(base) and eo1["p90"] < calc_q(base, 0.9),
     "calibration_transfer_1120.json (the chosen configuration, 0.13/1.33, is checked above)", "claims_pa_1121.py (recomputed)")
 
@@ -309,9 +310,8 @@ add("Table 3; Results 5", "Trajectories 180/134/2,311; absent for >=30 frames 85
 ret = [ex(og("lettuce", t, "return")) for t in TK]
 sing = [ex(og("lettuce", t, "single")) for t in TK]
 app = [ex(og("apple", t, "all")) for t in TK]
-add("Abstract; Results 5", "Lettuce return passes over-counted by 51-90%; single passes 1.5% below to 9% above; apple 13-72%",
-    "51-90; -1.5 to +9; 13-72", f"{100*min(ret):.2f}-{100*max(ret):.2f}; {100*min(sing):.2f} to {100*max(sing):.2f}; {100*min(app):.2f}-{100*max(app):.2f}",
-    (pct(min(ret)), pct(max(ret))) == (51, 90) and (pct(min(sing), 1), pct(max(sing))) == (-1.5, 9) and (pct(min(app)), pct(max(app))) == (13, 72),
+add("Abstract", "Lettuce beds passed twice over-counted by 51-90% (single passes and apples: Table 3 rows)",
+    "51-90", f"{100*min(ret):.2f}-{100*max(ret):.2f}", (pct(min(ret)), pct(max(ret))) == (51, 90),
     "external_checks_1122.json: oracle", "external_summary_1122.py")
 reent = [og("lettuce", t, "return")["duplicate_origin"].get("reentry_beyond_buffer", 0) for t in TK]
 shr = [r / og("lettuce", t, "return")["D"] for r, t in zip(reent, TK)]
@@ -378,6 +378,165 @@ add("Results 4", "Same two calibration vines: cross-validated seed-0 counts 39% 
     (pct(vm["xval_ratio_d1"]["median"]), pct(vm["xval_ratio_d8"]["median"]), pct(vm["ratio_d1"]["median"]),
      pct(vm["ratio_d8"]["median"])) == (39, 28, 34, 37),
     "vine_calibration_1122.json: metrics/xval_ratio_d1, xval_ratio_d8, ratio_d1, ratio_d8", "vine_calibration_1122.py")
+
+# ---------------------------------------------------------------- added after the pre-submission review (2026-11-25)
+RC = J("review_checks_1125.json")
+ns = RC["never_shown"]
+add("Methods", "Trajectories absent from every processed frame: at most 4 of 472", "4; 472",
+    f"{max(ns.values())} ({ns}); {RC['never_shown_of']}", max(ns.values()) == 4 and RC["never_shown_of"] == 472,
+    "review_checks_1125.json: never_shown", "review_checks_1125.py")
+add("Methods", "30 processed frames of retention = 2 s at 15 Hz and 16 s at 1.9 Hz (15/8 Hz)", "2; 16",
+    f"{30 / 15:.3f}; {30 / (15 / 8):.3f}", (30 / 15, 30 / (15 / 8)) == (2.0, 16.0), "arithmetic: 30 frames / (15 Hz / interval)", "-")
+DIB_T1 = dict(zip(VIDS, (209, 400, 373, 270, 284, 224, 374)))   # Ariza-Sentis et al. 2024, Data in Brief 54, Table 1
+dsr = RE["dataset"]
+rel = sum(dsr[v]["frames"] for v in VIDS)
+add("Methods", "2,138 annotated frames in the release, 2,134 in the data paper's table", "2138; 2134",
+    f"{rel}; {sum(DIB_T1.values())} (differ on PP" + ", PP".join(v[-1:] for v in VIDS if dsr[v]["frames"] != DIB_T1[v]) + ")",
+    rel == 2138 and sum(DIB_T1.values()) == 2134, "reentry_analysis_1120.json: dataset/frames; data paper Table 1", "reentry_analysis_1120.py")
+ra = RC["reentry_absences"]
+add("Results 1", "71 of the 99 absences of 30 frames or more were shorter than the 150-frame retention", "71; 99",
+    f"{ra['absences_shorter_than_150']}; {ra['absences_ge30']} ({ra['trajectories_with_absence_ge30']} trajectories)",
+    (ra["absences_shorter_than_150"], ra["absences_ge30"], ra["trajectories_with_absence_ge30"]) == (71, 99, 98),
+    "review_checks_1125.json: reentry_absences", "review_checks_1125.py")
+ma = RC["miss_alone_per_vine"]
+lo, hi = ma["exceptions_e_detected_range"]
+add("Results 2", "Missed boxes supplied alone: |e| larger in 162 of 168 vine-level runs; the six exceptions under-counted by 38-86%",
+    "162; 168; 38-86", f"{ma['worse']}; {ma['runs']}; {-100 * hi:.2f}-{-100 * lo:.2f}",
+    (ma["worse"], ma["runs"], ma["better"], pct(-hi), pct(-lo)) == (162, 168, 6, 38, 86),
+    "review_checks_1125.json: miss_alone_per_vine", "review_checks_1125.py")
+rt_ = N["controls"]["ret"]
+add("Results 2", "Retention scaled to about 2 s: seed-0 whole-frame count still fell in 101 of 105 steps", "101; 105",
+    f"{rt_['down']}; {rt_['down'] + rt_['tie'] + rt_['up']}", (rt_["down"], rt_["down"] + rt_["tie"] + rt_["up"]) == (101, 105),
+    "journal_numbers.json: controls/ret", "journal_numbers.py")
+cc = RC["calibration_configs"]
+add("Results 4", "Of 120 configurations, one beat the no-video baseline (median and p90) with the ratio, two with the line",
+    "120; 1; 2", f"{cc['configurations']}; {len(cc['beat_ratio'])}; {len(cc['beat_line'])} "
+    f"({', '.join(x['config'] for x in cc['beat_ratio'])} / {', '.join(x['config'] for x in cc['beat_line'])})",
+    (cc["configurations"], len(cc["beat_ratio"]), len(cc["beat_line"])) == (120, 1, 2),
+    "review_checks_1125.json: calibration_configs", "review_checks_1125.py")
+iv = RC["independent_vines"]
+add("Results 4", "Independent detectors beat the two-vine mean for three of the seven vines at 15 and at 1.9 Hz", "3; 3; 7",
+    f"{iv['ratio_d1']}; {iv['ratio_d8']}; {RC['independent_vines_of']}",
+    (iv["ratio_d1"], iv["ratio_d8"], RC["independent_vines_of"]) == (3, 3, 7), "review_checks_1125.json: independent_vines",
+    "review_checks_1125.py")
+n4 = [CT[k]["n"] for k in ("A_lovo_uncalibrated", "A_lovo_ratio", "B_lovo_line", "C_reference_same_config_per_vine")]
+n6 = [CT["E_oracle_botsort_phase0"]["1"]["lovo_ratio"]["n"]] + [vm[k]["n"] for k in ("ratio_d1", "ratio_d8", "mean_two")]
+nt = [CT[k]["pooled"]["n"] for k in ("C_across_seed", "D_across_interval_1_to_8", "D_across_scale_from_3072", "D_across_representation")]
+add("Table 2 caption", "840 vine estimates in the first four rows, seven in the next six, 30-240 pairs for the totals",
+    "840; 7; 30-240", f"{n4}; {n6}; {nt}", set(n4) == {840} and set(n6) == {7} and (min(nt), max(nt)) == (30, 240),
+    "calibration_transfer_1120.json: n; vine_calibration_1122.json: n", "calibration_transfer_1120.py")
+
+# ------------------------------------------------------------------ second pass of 25 November (ledger 10.28.17)
+AS, RB = J("assa_1125.json"), J("robust_matching_1125.json")
+nzA, allA, ob = AS["near_zero"]["AssA"], AS["all_arms"]["AssA"], AS["oracle_botsort"]
+add("Results 3", "Arms within 10%: median AssA 0.22, at most 0.40; 0.22 over all arms; rho(AssA, |e|) -0.14 over 840 arms",
+    "0.22; 0.40; 0.22; -0.14", f"{nzA['median']}; {nzA['max']}; {allA['median']}; {AS['spearman_AssA_vs_abs_e']} "
+    f"(n {nzA['n']}/{allA['n']}; whole-frame check dev {AS['check_whole_vs_identity_metrics_max_abs_dev']})",
+    (r2(nzA["median"]), r2(nzA["max"]), r2(allA["median"]), r2(AS["spearman_AssA_vs_abs_e"])) == (0.22, 0.40, 0.22, -0.14)
+    and nzA["n"] == 103 and allA["n"] == 840 and AS["check_whole_vs_identity_metrics_max_abs_dev"] < 1e-9,
+    "assa_1125.json: near_zero, all_arms, spearman_AssA_vs_abs_e", "assa_1125.py")
+add("Results 1", "Oracle BoT-SORT: median AssA 0.71 at 15 Hz, 0.20 at 1.9 Hz", "0.71; 0.20",
+    f"{ob['1']['AssA']['median']}; {ob['8']['AssA']['median']}",
+    (r2(ob["1"]["AssA"]["median"]), r2(ob["8"]["AssA"]["median"])) == (0.71, 0.20),
+    "assa_1125.json: oracle_botsort", "assa_1125.py")
+gv = RB["gated_vs_default"]
+alt = [RB[k] for k in ("default_0.3_tau1", "default_0.7_tau1", "default_0.5_tau3")]
+add("Results 3", "Scoring rule: gated matching changes U, D or M by one in 4 of 840 arms; IoU 0.3/0.7 or tau 3 keep "
+    "Gamma >= 0.82 and coverage <= 62% for the arms within 10%", "4; 1; 0.82; 62%",
+    f"{gv['arms_changed']}; {gv['max_abs_change_in_U_D_or_M']}; {min(a['gross_min'] for a in alt)}; "
+    f"{100 * max(a['coverage_max'] for a in alt):.1f}% (near-zero arms {[a['near_zero'] for a in alt]})",
+    (gv["arms_changed"], gv["max_abs_change_in_U_D_or_M"]) == (4, 1) and min(a["gross_min"] for a in alt) >= 0.82
+    and hu(100 * max(a["coverage_max"] for a in alt), 0) == 62 and RB["default_0.5_tau1"]["near_zero"] == 103,
+    "robust_matching_1125.json", "robust_matching_1125.py")
+rv = RC["recall_vs_error"]
+add("Results 2", "Six detector sets: recall and e ranked alike at every interval (rho 0.83-1.00); at 15 Hz rho 1.00 "
+    "with D, every set over-counted", "0.83-1.00; 1.00",
+    f"{rv['rho_e']}; D {rv['rho_D_15Hz']}; M {rv['rho_M_15Hz']}; min e at 15 Hz {min(rv['e_15Hz'].values())}",
+    (r2(min(rv["rho_e"].values())), r2(max(rv["rho_e"].values()))) == (0.83, 1.00) and r2(rv["rho_D_15Hz"]) == 1.00
+    and min(rv["e_15Hz"].values()) > 0, "review_checks_1125.json: recall_vs_error", "review_checks_1125.py")
+vb = RC["vine_bunches"]
+add("Results 4", "Median vine off by 20 bunches (14 near-total configs), 21 after the ratio, 19 for the mean of the other six",
+    "20; 21; 19", f"{vb['near_total']['median']}; {vb['ratio_other_six']['median']}; {vb['mean_other_six']['median']} "
+    f"(n {vb['near_total']['n']}, {vb['ratio_other_six']['n']}, {vb['mean_other_six']['n']})",
+    (hu(vb["near_total"]["median"], 0), hu(vb["ratio_other_six"]["median"], 0), hu(vb["mean_other_six"]["median"], 0)) == (20, 21, 19)
+    and vb["near_total_configs"] == 14, "review_checks_1125.json: vine_bunches", "review_checks_1125.py")
+ph = N["controls"]["phase"]
+add("Results 2", "Seed-0 whole-frame: count fell at the next sparser interval in 103 of 105 steps for the lowest and the highest "
+    "count over all starting frames", "103; 103; 105",
+    f"{ph['steps_down_lowest']}; {ph['steps_down_highest']}; {ph['cells']}",
+    (ph["steps_down_lowest"], ph["steps_down_highest"], ph["cells"]) == (103, 103, 105),
+    "journal_numbers.json: controls/phase", "journal_numbers.py")
+
+# ------------------------------------------------------------------ 27 November: L and R of the 24 November queue
+FU = J("pa_followup_readout_1127.json")
+lr, la, lb = FU["L"]["recall_iou50"], FU["L"]["H7a"], FU["L"]["H7b"]
+hi = [v for k, v in lr.items() if k.endswith(("|816", "|1088"))]
+e_over = [v["none"]["e"] for v in FU["L"]["rows"].values() if v["abs_e_up"] is not None]
+add("Methods; Results 5", "LettuceMOTS real detector: 95-97% of plants found at 816/1088 px; +62% at 1088 px and 15 Hz against "
+    "+68% with the reference boxes; 0.63 duplicates per plant; misses supplied raise |e| in all 11 over-counting "
+    "combinations and add duplicates in 12 of 16", "95-97%; +62%; +68%; 0.63; 11/11; 12/16",
+    f"{min(hi)}-{max(hi)}; {la['e_real']}; {la['e_reference_boxes']}; {la['D_per_G']}; {lb['abs_e_up']}/{lb['combos_e_nonneg']}; "
+    f"{lb['D_up']}/{lb['combos']}",
+    (hu(100 * min(hi), 0), hu(100 * max(hi), 0)) == (95, 97) and (pct(la["e_real"]), pct(la["e_reference_boxes"])) == (62, 68)
+    and r2(la["D_per_G"]) == 0.63 and (lb["abs_e_up"], lb["combos_e_nonneg"], lb["D_up"], lb["combos"]) == (11, 11, 12, 16)
+    and min(e_over) > 0, "pa_followup_readout_1127.json: L", "pa_followup_readout_1127.py")
+rr = FU["R"]
+add("Methods", "One crop checkpoint (PathPlanning_4_s2) first trained at batch 4 after an OOM was retrained at batch 8 and "
+    "replaced the published one (median |delta e| 0.34 >= 0.30, the rule fixed before the run)", "8; replaced",
+    f"batch {rr['trained']['batch_requested']}->{rr['trained']['batch_used']}; median |de| {rr['median_abs_delta']}; {rr['verdict']}",
+    rr["trained"]["batch_used"] == 8 and rr["median_abs_delta"] >= 0.30 and rr["verdict"].startswith("replace")
+    and all(x["replay"] == x["live"] for x in rr["pipeline_check_3072"].values()),
+    "pa_followup_readout_1127.json: R; crop_batch8_1127.py", "pa_followup_readout_1127.py")
+
+# ------------------------------------------------------------------ 28 November: M (YOLO26m) of the 24 November queue
+mm = FU["M"]
+mdd = mm["descriptive"]
+assert mm["complete"], "M incomplete"
+add("Methods", "YOLO26m: 21 checkpoints (3 seeds x 7 folds), all at batch 4 because batch 8 did not fit in GPU memory",
+    "21; 4", f"{len(mm['batch_used'])}; {sorted(set(mm['batch_used'].values()))}",
+    len(mm["batch_used"]) == 21 and set(mm["batch_used"].values()) == {4} and mm["seeds_complete"] == [0, 1, 2],
+    "pa_followup_readout_1127.json: M/batch_used (trained.json)", "pa_followup_readout_1127.py")
+ha = mm["H6a"]
+rm = [ha[f"s{sd}"]["recall_m"] for sd in (0, 1, 2)]
+dm = [ha[f"s{sd}"]["diff"] for sd in (0, 1, 2)]
+em = [mm["H6b"]["sets"][f"m_s{sd}"]["e_15Hz"] for sd in (0, 1, 2)]
+ec = [mm["H6b"]["sets"][f"crop_s{sd}"]["e_15Hz"] for sd in (0, 1, 2)]
+add("Results 2; Limitations", "YOLO26m matched 36-37% of the reference boxes (at most 37%), 3-9 points more than the crop "
+    "YOLO26s of the same seeds; 15 Hz e +1.40..+1.52 against +0.91..+1.32", "36-37%; 3-9; +1.40..+1.52; +0.91..+1.32",
+    f"{rm}; {dm}; {em}; {ec}",
+    (pct(min(rm)), pct(max(rm))) == (36, 37) and (hu(100 * min(dm), 0), hu(100 * max(dm), 0)) == (3, 9)
+    and (r2(min(em)), r2(max(em))) == (1.40, 1.52) and (r2(min(ec)), r2(max(ec))) == (0.91, 1.32),
+    "pa_followup_readout_1127.json: M/H6a, M/H6b/sets", "pa_followup_readout_1127.py")
+rho9 = mdd["rho_e_nine"]
+add("Results 2", "Nine sets: rho between matched fraction and e 0.83-0.93 over the four intervals (H6b at 15 Hz 0.833 >= 0.700); "
+    "misses supplied alone raise |e| in all 12 YOLO26m seed x interval combinations (H6c)", "0.83-0.93; 12",
+    f"{rho9}; H6b {mm['H6b']['rho']} ({mm['H6b']['verdict']}); H6c {mm['H6c']['worse']}/{mm['H6c']['n']} ({mm['H6c']['verdict']})",
+    (r2(min(rho9.values())), r2(max(rho9.values()))) == (0.83, 0.93) and rho9["1"] == mm["H6b"]["rho"] >= 0.700
+    and (mm["H6c"]["worse"], mm["H6c"]["n"]) == (12, 12), "pa_followup_readout_1127.json: M/descriptive/rho_e_nine, M/H6b, M/H6c",
+    "pa_followup_readout_1127.py")
+pp = mdd["paired_15Hz_3072"]
+add("Results 2", "Per vine (21 pairs, 15 Hz, sigma 3072): YOLO26m matched more boxes in 15, higher e in 13, median e difference "
+    "+0.23; median |difference| 0.32 against 0.44 between two crop YOLO26s seeds on the same vine", "15; 13; +0.23; 0.32; 0.44",
+    f"{pp['higher_recall']}; {pp['higher_e']} (lower {pp['lower_e']}, equal {pp['equal_e']}); {mm['paired_15Hz_3072']['median_diff_e']}; "
+    f"{pp['median_abs_diff_e']}; {mdd['crop_s_seed_pairs_15Hz_3072']['median_abs_diff_e']}",
+    (pp["higher_recall"], pp["higher_e"], mm["paired_15Hz_3072"]["n"]) == (15, 13, 21)
+    and r2(mm["paired_15Hz_3072"]["median_diff_e"]) == 0.23 and r2(pp["median_abs_diff_e"]) == 0.32
+    and r2(mdd["crop_s_seed_pairs_15Hz_3072"]["median_abs_diff_e"]) == 0.44,
+    "pa_followup_readout_1127.json: M/paired_15Hz_3072, M/descriptive", "pa_followup_readout_1127.py")
+h6d = mm["H6d"]
+add("Results 4", "YOLO26m: ratio on the other six vines left the median vine 28% off, one in ten 150% or more; does not beat the "
+    "no-video baseline 23% / 46% (H6d)", "28%; 150%",
+    f"{h6d['median']}; {h6d['p90']} (n {h6d['n']}); baseline {r2(h6d['baseline_median'])}/{r2(h6d['baseline_p90'])}; {h6d['verdict']}",
+    (pct(h6d["median"]), pct(h6d["p90"]), h6d["n"]) == (28, 150, 420) and h6d["median"] >= h6d["baseline_median"]
+    and h6d["p90"] >= h6d["baseline_p90"] and h6d["verdict"] == "unchanged with a larger detector",
+    "pa_followup_readout_1127.json: M/H6d", "pa_followup_readout_1127.py")
+pooled9 = pooled + rm
+add("Abstract", "Nine detector sets (six YOLO26s, three YOLO26m) matched 22-37% of the reference boxes in a frame; misses supplied "
+    "alone raised |e| for all nine (24/24 and 12/12 set x interval); at 15 Hz the sets that found more over-counted more "
+    "(rho over nine 0.83)", "22-37%; nine",
+    f"{min(pooled9)}-{max(pooled9)}; {worse}/24 + {mm['H6c']['worse']}/12; rho {mm['H6b']['rho']}",
+    (pct(min(pooled9)), pct(max(pooled9))) == (22, 37) and worse == 24 and mm["H6c"]["worse"] == 12 and mm["H6b"]["rho"] >= 0.700,
+    "supplementary_checks_1121.json: recall_s3072; pa_followup_readout_1127.json: M", "pa_followup_readout_1127.py")
 
 out_csv = RES / "claims_pa_1121.csv"
 with out_csv.open("w", newline="") as fh:

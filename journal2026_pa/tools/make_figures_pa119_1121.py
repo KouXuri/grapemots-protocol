@@ -6,8 +6,10 @@ Its artwork rules for small-sized journals: figures 119 mm wide and at most 195 
 lettering of 8-12 pt, kept consistent; lines at least 0.3 pt; no titles inside the artwork; parts labelled
 a, b; information readable in greyscale (colour is online only). All lettering here is Arial 8 pt
 (TrueType embedded), every line >= 0.5 pt, every colour paired with a marker, fill or hatch.
-Colours: Okabe-Ito blue #0072B2, vermilion #D55E00 and green #009E73 (validated earlier, all pairs, light
-surface), ink #333333; grey #8C8C8C / #D9D9D9 only for reference marks and distributions.
+Colours (2026-11-28, the authors' figure rule: no orange, one hue in steps of lightness plus neutral grey): dark blue
+#1D3D6B (L* 26), second series #4F7CAC (L* 51), mid blue #7FA6CE (L* 67), ink #333333; grey #8C8C8C / #D9D9D9 for
+reference marks and distributions. Series are also told apart by marker, fill or hatch, so they read in greyscale.
+Until 2026-11-27 the figures used Okabe-Ito blue, vermilion and green.
 
 Main text   Fig1.pdf/.eps  association alone (results/oracle_trackers_summary_1120.json)
             Fig2.pdf/.eps  missed bunches supplied alone (results/error_sources_summary_s3072.json)
@@ -40,7 +42,7 @@ OUT = HERE / "figures/pa_submission"
 OUT.mkdir(parents=True, exist_ok=True)
 MM = 1 / 25.4
 W = 119 * MM
-BLUE, VERM, GREEN, GREY, LIGHT, INK = "#0072B2", "#D55E00", "#009E73", "#8C8C8C", "#D9D9D9", "#333333"
+DARK, SECOND, MID, GREY, LIGHT, INK = "#1D3D6B", "#4F7CAC", "#7FA6CE", "#8C8C8C", "#D9D9D9", "#333333"
 plt.rcParams.update({
     "pdf.fonttype": 42, "ps.fonttype": 42,
     "font.family": "sans-serif", "font.sans-serif": ["Arial"],
@@ -79,13 +81,13 @@ C = json.loads((RES / "crop_vs_whole.json").read_text())
 # ----------------------------------------------------------------------------- Fig. 1
 TRK = [("botsort", "BoT-SORT"), ("deepocsort", "Deep OC-SORT"), ("strongsort", "StrongSORT"),
        ("ocsort", "OC-SORT"), ("bytetrack", "ByteTrack")]
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(W, 46 * MM), gridspec_kw=dict(wspace=0.12), sharey=True)
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(W, 40 * MM), gridspec_kw=dict(wspace=0.12), sharey=True)
 y = np.arange(len(TRK))[::-1]
 for yi, (k, name) in zip(y, TRK):
     mv = 100 * O[k]["d1|tau1"]["groups"]["PP2-8"]["e"]
     fr = 100 * O[k]["d2|tau1"]["groups"]["NP1-3"]["e"]
     a1.plot([fr, mv], [yi, yi], color=LIGHT, lw=1.5, zorder=1, solid_capstyle="round")
-    a1.plot(mv, yi, "o", color=BLUE, ms=4.5, zorder=3, label="Multi-view" if yi == y[0] else None)
+    a1.plot(mv, yi, "o", color=DARK, ms=4.5, zorder=3, label="Multi-view" if yi == y[0] else None)
     a1.plot(fr, yi, "s", mfc="white", mec=INK, mew=0.9, ms=4, zorder=3, label="Frontal" if yi == y[0] else None)
     a1.text(mv + 12, yi, f"{mv:.0f}", va="center", ha="left", fontsize=8)
 a1.set_yticks(y, [n for _, n in TRK])
@@ -95,8 +97,8 @@ a1.set_xticks([0, 100, 200, 300])
 a1.set_xlabel("Count error (%)")
 a1.legend(loc="upper right", borderaxespad=0.1)
 label(a1, "a")
-cls = [("switch_in_view", "Switch in view", BLUE, None), ("reentry_beyond_buffer", "Re-entry", VERM, "////"),
-       ("short_occlusion", "Short gap", GREEN, "....")]
+cls = [("switch_in_view", "Switch in view", DARK, None), ("reentry_beyond_buffer", "Re-entry", SECOND, "////"),
+       ("short_occlusion", "Short gap", GREY, "....")]
 G = O["botsort"]["d1|tau1"]["groups"]["PP2-8"]["G"]
 for yi, (k, name) in zip(y, TRK):
     g = O[k]["d1|tau1"]["groups"]["PP2-8"]
@@ -120,7 +122,7 @@ S = json.loads((RES / "error_sources_summary_s3072.json").read_text())
 SETS = [("crop_s0", "Crop, seed 0"), ("crop_s1", "Crop, seed 1"), ("crop_s2", "Crop, seed 2"),
         ("whole_s0", "Whole, seed 0"), ("whole_s1", "Whole, seed 1"), ("whole_s2", "Whole, seed 2")]
 RATE = {"1": "15 Hz", "2": "7.5 Hz", "4": "3.75 Hz", "8": "1.9 Hz"}
-fig, axs = plt.subplots(2, 2, figsize=(W, 64 * MM), sharey=True, sharex=True,
+fig, axs = plt.subplots(2, 2, figsize=(W, 50 * MM), sharey=True, sharex=True,
                         gridspec_kw=dict(wspace=0.08, hspace=0.36))
 yy = np.arange(len(SETS))[::-1]
 for ax, d in zip(axs.flat, ("1", "2", "4", "8")):
@@ -132,9 +134,9 @@ for ax, d in zip(axs.flat, ("1", "2", "4", "8")):
         e0 = 100 * w["none"]["e"]
         e1 = 100 * (w["none"]["e"] + w["alone"]["miss"]["e"])
         ax.annotate("", xy=(e1, yi), xytext=(e0, yi),
-                    arrowprops=dict(arrowstyle="-|>", color=VERM, lw=0.8, shrinkA=3, shrinkB=2, mutation_scale=6))
-        ax.plot(e0, yi, "o", color=BLUE, ms=3.8, zorder=3)
-        ax.plot(e1, yi, "^", mfc="white", mec=VERM, mew=0.9, ms=3.8, zorder=3)
+                    arrowprops=dict(arrowstyle="-|>", color=MID, lw=0.8, shrinkA=3, shrinkB=2, mutation_scale=6))
+        ax.plot(e0, yi, "o", color=DARK, ms=3.8, zorder=3)
+        ax.plot(e1, yi, "^", mfc="white", mec=SECOND, mew=0.9, ms=3.8, zorder=3)
     ax.set_title(RATE[d], pad=2)
     ax.set_xlim(-60, 340)
     ax.set_xticks([0, 100, 200, 300])
@@ -144,35 +146,36 @@ for ax in axs[:, 1]:
     ax.tick_params(axis="y", length=0)
 for ax in axs[1]:
     ax.set_xlabel("Count error (%)")
-fig.legend(handles=[Line2D([], [], marker="o", color=BLUE, ls="", ms=3.8, label="Real detections"),
-                    Line2D([], [], marker="^", mfc="white", mec=VERM, ls="", ms=3.8, label="Missed bunches supplied"),
+fig.legend(handles=[Line2D([], [], marker="o", color=DARK, ls="", ms=3.8, label="Real detections"),
+                    Line2D([], [], marker="^", mfc="white", mec=SECOND, ls="", ms=3.8, label="Missed bunches supplied"),
                     Line2D([], [], color=GREY, ls=(0, (3, 2)), lw=0.8, label="Reference boxes")],
            loc="lower center", bbox_to_anchor=(0.55, 0.955), ncol=3, columnspacing=1.0, handlelength=1.6)
+fig.subplots_adjust(left=0.2, right=0.985)   # keep the row labels inside the 119-mm canvas (tight bbox was 120.4 mm)
 save(fig, "Fig2")
 
 # ----------------------------------------------------------------------------- Fig. 3
-fig, (a, b) = plt.subplots(1, 2, figsize=(W, 52 * MM), gridspec_kw=dict(wspace=0.38, width_ratios=[1, 1.05]))
+fig, (a, b) = plt.subplots(1, 2, figsize=(W, 46 * MM), gridspec_kw=dict(wspace=0.38, width_ratios=[1, 1.05]))
 P = N["pooled_terms_by_interval"]
-spec = [("U_per_G", GREEN, "o", "U/G"), ("D_per_G", BLUE, "s", "D/G"), ("M_per_G", VERM, "^", "M/G")]
+spec = [("U_per_G", MID, "o", "U/G"), ("D_per_G", DARK, "s", "D/G"), ("M_per_G", SECOND, "^", "M/G")]
 for fam, ls in (("whole", "-"), ("crop", "--")):
     for key, col, mk, lab in spec:
         ys = [P[f"{fam}|{d}"][key] for d in DELTAS]
         a.plot(DELTAS, ys, color=col, marker=mk, ls=ls, lw=1.0, ms=3.6, mfc=col if fam == "whole" else "white")
-        if fam == "whole":
-            at = (8, ys[-1])
-            dy = {"U_per_G": -6, "D_per_G": 2, "M_per_G": 0}[key]
-            a.annotate(lab, at, xytext=(5, dy), textcoords="offset points", va="center", fontsize=8,
-                       color=col if key != "U_per_G" else GREEN)
+# the whole-frame U/G and D/G both end at 0.29, so the terms are named in the legend by marker rather than by
+# labels at the line ends (text in the mid blue, 2.6:1, would also fall below the journal's 4.5:1 contrast)
 a.set_xscale("log", base=2)
 a.set_xticks(DELTAS, ["1", "2", "4", "8"])
 a.minorticks_off()
-a.set_xlim(0.85, 14)
-a.set_ylim(0.25, 0.85)
+a.set_xlim(0.85, 10)
+a.set_ylim(0.18, 1.2)   # room above the data for the legend
+a.set_yticks([0.2, 0.4, 0.6, 0.8])
+a.spines["left"].set_bounds(0.18, 0.85)
 a.set_xlabel(r"Processing interval $\Delta$")
 a.set_ylabel("Per reference trajectory")
-a.legend(handles=[Line2D([], [], color=INK, ls="-", lw=1.0, label="Whole frame"),
-                  Line2D([], [], color=INK, ls="--", lw=1.0, label="Crop")], loc="upper right",
-         ncol=1, borderaxespad=0.1, handlelength=1.8)
+a.legend(handles=[Line2D([], [], color=col, marker=mk, ls="-", lw=1.0, ms=3.6, label=lab) for _, col, mk, lab in spec]
+         + [Line2D([], [], color=INK, ls="-", lw=1.0, label="Whole frame"),
+            Line2D([], [], color=INK, ls="--", lw=1.0, label="Crop")], loc="upper right",
+         ncol=2, borderaxespad=0.1, handlelength=1.6, columnspacing=0.7)
 label(a, "a")
 xs, ys, near = [], [], []
 for k, ev in C["error"].items():
@@ -198,12 +201,12 @@ near_c = [c for c in CONFIGS if abs(sum(pc(c, v) for v in VIDEOS) / sum(GF.value
 assert len(near_c) == 14, len(near_c)
 R = json.loads((RES / "calibration_robustness_1121.json").read_text())
 chosen = {v: tuple(int(x) if x.isdigit() else x for x in s.split("|")) for v, s in R["nested_choice"]["chosen"].items()}
-fig, (b1, b2) = plt.subplots(1, 2, figsize=(W, 48 * MM), gridspec_kw=dict(wspace=0.34))
+fig, (b1, b2) = plt.subplots(1, 2, figsize=(W, 43 * MM), gridspec_kw=dict(wspace=0.34))
 rng = np.random.default_rng(0)
 xs_ = np.arange(len(VIDEOS))
 for xi, v in zip(xs_, VIDEOS):
     ev = np.array([100 * (pc(c, v) / GF[v] - 1) for c in near_c])
-    b1.plot(xi + rng.uniform(-0.18, 0.18, len(ev)), ev, "o", mfc="white", mec=BLUE, mew=0.7, ms=3.0)
+    b1.plot(xi + rng.uniform(-0.18, 0.18, len(ev)), ev, "o", mfc="white", mec=DARK, mew=0.7, ms=3.0)
     lov = []
     for c in CONFIGS:
         oth = [u for u in VIDEOS if u != v]
@@ -216,7 +219,7 @@ for xi, v in zip(xs_, VIDEOS):
     c = chosen[v]
     oth = [u for u in VIDEOS if u != v]
     k = sum(GF[u] for u in oth) / sum(pc(c, u) for u in oth)
-    b2.plot(xi, 100 * (k * pc(c, v) / GF[v] - 1), "D", color=VERM, ms=3.8, zorder=4)
+    b2.plot(xi, 100 * (k * pc(c, v) / GF[v] - 1), "D", color=DARK, ms=3.8, zorder=4)
 for ax in (b1, b2):
     ax.axhline(0, color=INK, lw=0.6)
     ax.set_xticks(xs_, [v[-1] for v in VIDEOS])
@@ -226,8 +229,8 @@ label(b1, "a")
 b2.set_ylabel("Error after calibration (%)")
 label(b2, "b")
 fig.legend(handles=[plt.Rectangle((0, 0), 1, 1, facecolor=LIGHT, edgecolor=GREY, lw=0.6, label="All 120 configurations"),
-                    Line2D([], [], marker="D", color=VERM, ls="", ms=3.8, label="Configuration chosen on the other six vines")],
-           loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=2, handlelength=1.2, columnspacing=1.2)
+                    Line2D([], [], marker="D", color=DARK, ls="", ms=3.8, label="Configuration chosen on the other six vines")],
+           loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=2, handlelength=1.2, columnspacing=1.2)
 save(fig, "Fig4")
 
 # ----------------------------------------------------------------------------- Fig. S1 (sign-change maps)
@@ -285,16 +288,16 @@ for sd in SEEDS:
         be = min(arms, key=ee.get)
         b.annotate("", xy=(ee[be], hh[be]), xytext=(ee[bh], hh[bh]),
                    arrowprops=dict(arrowstyle="->", color=GREY, lw=0.6))
-        b.scatter([ee[bh]], [hh[bh]], s=10, color=BLUE, marker="o", zorder=3, lw=0)
-        b.scatter([ee[be]], [hh[be]], s=10, color=VERM, marker="s", zorder=3, lw=0)
+        b.scatter([ee[bh]], [hh[bh]], s=10, color=DARK, marker="o", zorder=3, lw=0)
+        b.scatter([ee[be]], [hh[be]], s=10, color=SECOND, marker="s", zorder=3, lw=0)
 b.set_xlabel(r"Absolute count error $|e|$")
 b.set_ylabel("HOTA, processed frames")
 label(b, "b")
 h, _ = a.get_legend_handles_labels()
 h += [Line2D([], [], color=INK, ls="-", label="Processed frames"),
       Line2D([], [], color=INK, ls=":", label="All annotated frames"),
-      Line2D([], [], color=BLUE, marker="o", ls="none", ms=3.5, label="Highest HOTA"),
-      Line2D([], [], color=VERM, marker="s", ls="none", ms=3.5, label="Smallest |e|")]
+      Line2D([], [], color=DARK, marker="o", ls="none", ms=3.5, label="Highest HOTA"),
+      Line2D([], [], color=SECOND, marker="s", ls="none", ms=3.5, label="Smallest |e|")]
 fig.legend(handles=h, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=3, columnspacing=0.9, handlelength=1.6)
 save(fig, "FigS2", eps=False)
 print("written:", sorted(p.name for p in OUT.glob("*.pdf")))

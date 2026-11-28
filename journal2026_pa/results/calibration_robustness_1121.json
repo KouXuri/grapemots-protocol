@@ -23,8 +23,8 @@
  ],
  "config_median_lovo_distribution": {
   "min": 0.121,
-  "q25": 0.242,
-  "median": 0.295
+  "q25": 0.25,
+  "median": 0.294
  },
  "nested_choice": {
   "per_vine": {
@@ -48,20 +48,20 @@
  },
  "seed_ensemble_lovo": {
   "n": 280,
-  "median": 0.261,
+  "median": 0.268,
   "p90": 1.184,
-  "max": 3.15,
-  "share_gt_010": 0.818,
-  "share_gt_020": 0.643,
-  "share_gt_030": 0.414
+  "max": 3.269,
+  "share_gt_010": 0.807,
+  "share_gt_020": 0.636,
+  "share_gt_030": 0.446
  },
  "single_seed_lovo_same_recipes": {
   "n": 840,
-  "median": 0.304,
+  "median": 0.306,
   "p90": 1.204,
-  "max": 3.536,
-  "share_gt_010": 0.862,
-  "share_gt_020": 0.688,
-  "share_gt_030": 0.511
+  "max": 3.615,
+  "share_gt_010": 0.856,
+  "share_gt_020": 0.686,
+  "share_gt_030": 0.515
  }
 }

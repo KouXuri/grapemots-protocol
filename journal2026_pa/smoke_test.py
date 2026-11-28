@@ -43,6 +43,10 @@ STEPS = [  # (command, frozen outputs it rewrites)
     (["gate_buffer_summary_1121.py"], ["gate_buffer_summary_1121.json"]),
     (["supplementary_checks_1121.py"], ["supplementary_checks_1121.json"]),
     (["vine_calibration_1122.py"], ["vine_calibration_1122.json"]),
+    (["robust_matching_1125.py"], ["robust_matching_1125.json"]),
+    (["assa_1125.py"], ["assa_1125.json"]),
+    (["review_checks_1125.py"], ["review_checks_1125.json"]),
+    (["pa_followup_readout_1127.py"], ["pa_followup_readout_1127.json"]),
     (["claims_pa_1121.py"], ["claims_pa_1121.csv"]),
 ]
 bad = []
